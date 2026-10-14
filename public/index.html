@@ -1,0 +1,68 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="Independent, market-free college football score projections.">
+  <title>Fourth Down | CFB Projections</title>
+  <link rel="stylesheet" href="assets/site.css">
+</head>
+<body>
+  <header class="shell masthead">
+    <a class="brand" href="#board"><span class="brand-mark">4D</span> FOURTH DOWN <small>CFB FORECAST</small></a>
+    <nav aria-label="Primary">
+      <a href="#board" data-view="board">Board</a>
+      <a href="#method" data-view="method">Method</a>
+      <a href="#data" data-view="data">Data quality</a>
+    </nav>
+  </header>
+
+  <main class="shell">
+    <section id="board" class="view">
+      <div class="eyebrow">INDEPENDENT SCORE PROJECTIONS</div>
+      <div class="page-heading">
+        <div><h1 id="board-title">Game board</h1><p id="generated-at">Loading projections…</p></div>
+        <div class="legend"><span class="dot teal"></span> Model projection <span class="dot amber"></span> Market comparison</div>
+      </div>
+      <div class="notice">Market lines are display-only. They are not model inputs. A pick appears only when the model-versus-market edge meets the published threshold.</div>
+      <div id="game-board" class="game-board" aria-live="polite"></div>
+    </section>
+
+    <section id="method" class="view hidden">
+      <div class="eyebrow">TRANSPARENCY</div>
+      <h1>Methodology</h1>
+      <div class="method-grid">
+        <article><h2>Score-first</h2><p>The system predicts each team’s final score. Projected spread and total are arithmetic consequences, rather than separately optimized betting targets.</p></article>
+        <article><h2>Pre-kickoff only</h2><p>Inputs use earlier game results, point-in-time opponent-adjusted ratings, preseason Elo, talent, recruiting, rest, week, and neutral-site status.</p></article>
+        <article><h2>Market firewall</h2><p>Opening and current lines are retrieved after predictions are created. They are displayed for comparison and never enter model fitting or score prediction.</p></article>
+        <article><h2>Walk-forward evaluation</h2><p>Each season is predicted by a model trained only on preceding seasons. Seasonal performance and feature coverage are published in the data-quality section.</p></article>
+      </div>
+    </section>
+
+    <section id="data" class="view hidden">
+      <div class="eyebrow">AUDIT TRAIL</div>
+      <h1>Data quality &amp; performance</h1>
+      <p class="subhead">These charts expose raw-source coverage, pre-model feature sparsity, every retained input distribution, and untouched seasonal performance.</p>
+      <div id="diagnostic-summary" class="metric-strip">Loading diagnostic summary…</div>
+      <div class="chart-grid">
+        <figure><img src="assets/diagnostics/source_coverage.png" alt="Raw input coverage by season"><figcaption>Raw input coverage by season</figcaption></figure>
+        <figure><img src="assets/diagnostics/feature_missingness.png" alt="Feature missingness heatmap"><figcaption>Feature missingness before model handling</figcaption></figure>
+        <figure><img src="assets/diagnostics/seasonal_score_mae.png" alt="Walk-forward score MAE by season"><figcaption>Walk-forward score MAE by season</figcaption></figure>
+        <figure class="wide"><img src="assets/diagnostics/feature_distributions.png" alt="Feature distribution histograms"><figcaption>Distribution of every retained model input</figcaption></figure>
+      </div>
+      <p class="download-links">Download the underlying audit tables: <a href="assets/diagnostics/source_coverage.csv">coverage</a>, <a href="assets/diagnostics/feature_missingness.csv">missingness</a>, <a href="assets/diagnostics/feature_distribution_summary.csv">distributions</a>, <a href="assets/diagnostics/candidate_metrics.csv">season metrics</a>, and <a href="assets/diagnostics/candidate_oof_predictions.csv">out-of-fold predictions</a>.</p>
+    </section>
+  </main>
+
+  <footer class="shell">Fourth Down Forecast · Projections are informational analysis, not financial advice.</footer>
+  <template id="game-template">
+    <article class="game-card">
+      <header class="game-meta"><span class="kickoff"></span><span class="broadcast"></span><span class="venue"></span></header>
+      <div class="teams"></div>
+      <div class="market-row"></div>
+      <footer class="card-foot"></footer>
+    </article>
+  </template>
+  <script src="assets/app.js"></script>
+</body>
+</html>

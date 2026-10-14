@@ -1,0 +1,95 @@
+name: Refresh and publish CFB dashboard
+
+on:
+  workflow_dispatch:
+    inputs:
+      season:
+        description: Season to publish
+        required: true
+        default: "2026"
+      week:
+        description: Week to predict and publish
+        required: true
+        default: "8"
+  schedule:
+    - cron: "17 * * * *"
+  push:
+    branches: [main]
+    paths:
+      - "src/**"
+      - "public/**"
+      - "data/raw/**"
+      - "pyproject.toml"
+      - ".github/workflows/publish-pages.yml"
+
+permissions:
+  contents: write
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
+      SEASON: ${{ inputs.season || vars.CFB_SEASON }}
+      WEEK: ${{ inputs.week || vars.CFB_WEEK }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+      - run: pip install .
+      - name: Validate required configuration
+        run: |
+          test -n "$CFBD_API_KEY"
+          test -n "$SEASON"
+          test -n "$WEEK"
+      - name: Build warehouse and evaluate market-free challengers
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          from src.cfb_model.data.warehouse import ensure_warehouse
+          from src.cfb_model.reporting.diagnostics import generate_diagnostics
+          db_path = ensure_warehouse()
+          report = generate_diagnostics(db_path)
+          Path("candidate.txt").write_text(report["winner"]["winner"])
+          print(report["winner"])
+          PY
+      - name: Predict the chosen candidate
+        run: |
+          python -m src.cfb_model.train.score_model \
+            --season "$SEASON" --predict-week "$WEEK" \
+            --candidate "$(cat candidate.txt)"
+      - name: Build static dashboard and retrieve display-only CFBD lines
+        run: |
+          python -m src.cfb_model.site.build_site \
+            --season "$SEASON" --week "$WEEK" --skip-diagnostics
+      - name: Preserve opening and current line snapshots
+        run: |
+          if git diff --quiet -- data/site/line_history.json; then
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/site/line_history.json
+          git commit -m "chore: refresh CFBD line snapshots [skip ci]"
+          git push
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: public
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4
