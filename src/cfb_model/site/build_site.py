@@ -7,7 +7,7 @@ import json
 import os
 import re
 from collections import defaultdict
-from datetime import UTC, datetime
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
@@ -182,7 +182,7 @@ def build_site(season: int, week: int | None, db_path: Path | None, include_diag
     ranking_rows = _api_get("rankings", {"year": season, "week": resolved_week}, api_key)
 
     history = _read_history()
-    timestamp = datetime.now(UTC).isoformat()
+    timestamp = datetime.now(timezone.utc).isoformat()
     lines_by_id, changed = _snapshot_lines(line_games, history, timestamp)
     if changed:
         _write_history(history)

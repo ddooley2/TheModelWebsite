@@ -127,7 +127,7 @@ def build_pregame_features(games: pd.DataFrame) -> pd.DataFrame:
 
     ordered = games.copy()
     ordered["input_order"] = np.arange(len(ordered))
-    ordered["game_date"] = pd.to_datetime(ordered["game_date"], utc=True)
+    ordered["game_date"] = pd.to_datetime(ordered["game_date"], utc=True, format="mixed")
     ordered = ordered.sort_values(["game_date", "input_order"], kind="stable")
 
     state = defaultdict(

@@ -60,7 +60,7 @@ def build_preseason_features(
         return pd.DataFrame(values, index=games.index)
 
     schedule = games.reset_index(drop=True)
-    dates = pd.to_datetime(schedule["game_date"], errors="coerce", utc=True).dt.date
+    dates = pd.to_datetime(schedule["game_date"], errors="coerce", utc=True, format="mixed").dt.date
     scores = {}
     for column in ("home_score", "away_score"):
         scores[column] = (
