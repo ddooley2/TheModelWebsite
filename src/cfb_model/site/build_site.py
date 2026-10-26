@@ -94,7 +94,15 @@ def _snapshot_lines(lines_games: list[dict], history: dict, timestamp: str) -> t
             observed = {name: (None if pd.isna(value) else value) for name, value in observed.items()}
             record = history.get(key)
             if record is None:
-                history[key] = {"opening": observed, "current": observed}
+                opening = observed.copy()
+                for field, source in (
+                    ("spread", "spreadOpen"),
+                    ("total", "overUnderOpen"),
+                ):
+                    value = pd.to_numeric(line.get(source), errors="coerce")
+                    if pd.notna(value):
+                        opening[field] = float(value)
+                history[key] = {"opening": opening, "current": observed}
                 changed = True
             elif record.get("current") != observed:
                 record["current"] = observed
@@ -143,16 +151,47 @@ def _match_schedule_game(prediction: pd.Series, games: list[dict]) -> dict:
     return {}
 
 
-def _market_payload(game: dict, history: dict) -> dict:
+def _favorite_line(record: dict | None, home_team: str, away_team: str) -> dict | None:
+    if not record:
+        return None
+    spread = pd.to_numeric(record.get("spread"), errors="coerce")
+    if pd.isna(spread):
+        return None
+    favorite = home_team if spread < 0 else away_team if spread > 0 else None
+    underdog = away_team if spread < 0 else home_team if spread > 0 else None
+    return {
+        "spread_favorite": -abs(float(spread)),
+        "favorite_team": favorite,
+        "underdog_team": underdog,
+        "total": record.get("total"),
+        "provider": record.get("provider"),
+        "observed_at": record.get("observed_at"),
+    }
+
+
+def _market_payload(
+    game: dict, history: dict, home_team: str, away_team: str
+) -> dict:
     selected = _select_line(game.get("lines") or [])
     if not selected:
-        return {"opening": None, "current": None, "provider": None}
+        return {
+            "opening": None,
+            "current": None,
+            "provider": None,
+            "favorite_team": None,
+            "underdog_team": None,
+        }
     key = _line_key(game, selected)
     record = history.get(key, {})
+    opening = _favorite_line(record.get("opening"), home_team, away_team)
+    current = _favorite_line(record.get("current"), home_team, away_team)
+    favorite = current or opening
     return {
-        "opening": record.get("opening"),
-        "current": record.get("current"),
+        "opening": opening,
+        "current": current,
         "provider": selected.get("provider") or selected.get("source"),
+        "favorite_team": favorite["favorite_team"] if favorite else None,
+        "underdog_team": favorite["underdog_team"] if favorite else None,
     }
 
 
@@ -203,13 +242,28 @@ def build_site(season: int, week: int | None, db_path: Path | None, include_diag
                 if _normalise(game.get("homeTeam")) == _normalise(prediction.home_team)
                 and _normalise(game.get("awayTeam")) == _normalise(prediction.away_team)
             ), {})
-        market = _market_payload(line_game, history)
+        market = _market_payload(
+            line_game, history, prediction.home_team, prediction.away_team
+        )
         home_margin = float(prediction.predicted_home_margin)
-        current_spread = (market.get("current") or {}).get("spread")
-        edge = None if current_spread is None else home_margin + float(current_spread)
+        current_spread = (market.get("current") or {}).get("spread_favorite")
+        favorite_team = market.get("favorite_team")
+        underdog_team = market.get("underdog_team")
+        favorite_margin = (
+            home_margin
+            if favorite_team == prediction.home_team
+            else -home_margin
+            if favorite_team == prediction.away_team
+            else None
+        )
+        edge = (
+            None
+            if current_spread is None or favorite_margin is None
+            else favorite_margin + float(current_spread)
+        )
         pick = None
         if edge is not None and abs(edge) >= 1.5:
-            pick = prediction.home_team if edge > 0 else prediction.away_team
+            pick = favorite_team if edge > 0 else underdog_team
         games.append({
             "id": str(schedule_game.get("id") or prediction.game_id),
             "start": schedule_game.get("startDate") or prediction.game_date,
@@ -230,9 +284,14 @@ def build_site(season: int, week: int | None, db_path: Path | None, include_diag
                 "projected_score": round(float(prediction.predicted_away_score), 1),
             },
             "projected_home_margin": round(home_margin, 1),
+            "projected_favorite_margin": (
+                None if favorite_margin is None else round(favorite_margin, 1)
+            ),
             "projected_total": round(float(prediction.predicted_total), 1),
+            "favorite_team": favorite_team,
+            "underdog_team": underdog_team,
             "market": market,
-            "model_edge_home": None if edge is None else round(edge, 1),
+            "model_edge_favorite": None if edge is None else round(edge, 1),
             "pick": pick,
         })
     payload = {
@@ -244,7 +303,7 @@ def build_site(season: int, week: int | None, db_path: Path | None, include_diag
         "methodology": {
             "model": "Market-free score model. Lines are shown only after prediction generation.",
             "pick_threshold_points": 1.5,
-            "spread_convention": "A negative spread means the home team is favored.",
+            "spread_convention": "A negative spread means the favorite is favored.",
         },
     }
     (DATA_DIR / "dashboard.json").write_text(json.dumps(payload, indent=2))
