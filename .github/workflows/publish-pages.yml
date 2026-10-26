@@ -3,24 +3,16 @@ name: Refresh and publish CFB dashboard
 on:
   workflow_dispatch:
     inputs:
-      run_type:
-        description: Run weekly predictions or refresh the daily dashboard
-        type: choice
-        required: true
-        default: weekly
-        options:
-          - weekly
-          - daily
       season:
         description: Season to publish
-        required: false
+        required: true
+        default: "2026"
       week:
-        description: Week to publish
-        required: false
+        description: Week to predict and publish
+        required: true
+        default: "8"
   schedule:
-    - cron: "17 14 * * 1"
-    - cron: "17 14 * * 2-6"
-    - cron: "17 14 * * 0"
+    - cron: "17 * * * *"
   push:
     branches: [main]
     paths:
@@ -46,8 +38,6 @@ jobs:
       CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
       SEASON: ${{ inputs.season || vars.CFB_SEASON }}
       WEEK: ${{ inputs.week || vars.CFB_WEEK }}
-      RUN_MODE: ${{ github.event_name == 'schedule' && github.event.schedule == '17 14 * * 1' && 'weekly' || github.event_name == 'push' && 'weekly' || inputs.run_type || 'daily' }}
-      PREDICTION_CSV: results/score_predictions_${{ inputs.season || vars.CFB_SEASON }}_week${{ inputs.week || vars.CFB_WEEK }}.csv
     steps:
       - uses: actions/checkout@v4
         with:
@@ -61,14 +51,8 @@ jobs:
           test -n "$CFBD_API_KEY"
           test -n "$SEASON"
           test -n "$WEEK"
-          test "$RUN_MODE" = weekly -o "$RUN_MODE" = daily
       - name: Build warehouse and evaluate market-free challengers
-        if: ${{ env.RUN_MODE == 'weekly' }}
         run: |
-          if [ -f "$PREDICTION_CSV" ]; then
-            echo "Weekly prediction already exists; preserving it."
-            exit 0
-          fi
           python - <<'PY'
           from pathlib import Path
           from src.cfb_model.data.warehouse import ensure_warehouse
@@ -79,12 +63,7 @@ jobs:
           print(report["winner"])
           PY
       - name: Predict the chosen candidate
-        if: ${{ env.RUN_MODE == 'weekly' }}
         run: |
-          if [ -f "$PREDICTION_CSV" ]; then
-            echo "Weekly prediction already exists; preserving it."
-            exit 0
-          fi
           python -m src.cfb_model.train.score_model \
             --season "$SEASON" --predict-week "$WEEK" \
             --candidate "$(cat candidate.txt)"
@@ -92,20 +71,15 @@ jobs:
         run: |
           python -m src.cfb_model.site.build_site \
             --season "$SEASON" --week "$WEEK" --skip-diagnostics
-      - name: Preserve weekly predictions and line snapshots
+      - name: Preserve opening and current line snapshots
         run: |
-          if [ -f data/site/line_history.json ]; then
-            git add -- data/site/line_history.json
-          fi
-          if [ "$RUN_MODE" = weekly ]; then
-            git add -- "$PREDICTION_CSV"
-          fi
-          if git diff --cached --quiet; then
+          if git diff --quiet -- data/site/line_history.json; then
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git commit -m "chore: persist weekly predictions and CFBD lines [skip ci]"
+          git add data/site/line_history.json
+          git commit -m "chore: refresh CFBD line snapshots [skip ci]"
           git push
       - uses: actions/upload-pages-artifact@v3
         with:

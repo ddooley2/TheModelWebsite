@@ -43,8 +43,8 @@ The dashboard is a static GitHub Pages site. It includes the weekly game board, 
 1. In **Settings → Pages**, select **GitHub Actions** as the deployment source.
 2. In **Settings → Secrets and variables → Actions**, create the secret `CFBD_API_KEY`.
 3. Create repository variables `CFB_SEASON` and `CFB_WEEK` for scheduled refreshes.
-4. Run **Refresh and publish CFB dashboard** manually once. The workflow runs the weekly model and snapshots each provider's published opening lines on Monday at 14:17 UTC. Tuesday through Sunday at 14:17 UTC, it refreshes current lines and republishes the site without recalculating predictions or changing opening lines. Manual runs let you choose a weekly prediction run or a daily line refresh.
+4. Run **Refresh and publish CFB dashboard** manually once. The hourly schedule thereafter refreshes score projections and display-only line snapshots.
 
-Opening values use CFBD's `spreadOpen` and `overUnderOpen` fields when available, falling back to the first observed values. The opening snapshot is retained while later runs update only current lines. CFBD's `/lines` endpoint requires bearer authentication.
+The workflow records the first observed line for each CFBD game/provider as the opening line and overwrites only the current snapshot later. This means a new game will show the opening line beginning with the first successful workflow run; CFBD’s documented `/lines` endpoint returns historical lines/results and requires bearer authentication.
 
 The model depends on `duckdb`, `lightgbm`, `numpy`, `pandas`, `pyarrow`, `requests`, `scikit-learn`, `scipy`, `matplotlib`, and `python-dotenv`.
