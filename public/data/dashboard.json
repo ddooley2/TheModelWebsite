@@ -1,1579 +1,2659 @@
 {
-  "generated_at": "2026-10-14T16:44:14.699953+00:00",
+  "generated_at": "2026-10-26T16:57:07.984829+00:00",
   "season": 2026,
-  "week": 8,
+  "week": 9,
   "games": [
     {
-      "id": "espn-401871055",
-      "start": "2026-10-20T23:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401871071",
+      "start": "2026-10-27T23:00:00.000Z",
+      "venue": "Houchens Industries-L.T. Smith Stadium",
+      "location": "Houchens Industries-L.T. Smith Stadium",
       "neutral_site": false,
       "home": {
-        "name": "Florida International",
-        "record": null,
+        "name": "Western Kentucky",
+        "logo_id": 98,
+        "record": "3-4",
         "rank": null,
-        "projected_score": 27.4
+        "projected_score": 27.3
       },
       "away": {
-        "name": "Middle Tennessee",
-        "record": null,
-        "rank": null,
-        "projected_score": 17.8
-      },
-      "projected_home_margin": 9.6,
-      "projected_total": 45.2,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401871069",
-      "start": "2026-10-20T23:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
         "name": "Delaware",
-        "record": null,
+        "logo_id": 48,
+        "record": "3-4",
         "rank": null,
-        "projected_score": 26.6
+        "projected_score": 27.2
       },
-      "away": {
+      "projected_home_margin": 0.2,
+      "projected_favorite_margin": 0.2,
+      "projected_total": 54.5,
+      "favorite_team": "Western Kentucky",
+      "underdog_team": "Delaware",
+      "market": {
+        "opening": {
+          "spread_favorite": -1.5,
+          "favorite_team": "Western Kentucky",
+          "underdog_team": "Delaware",
+          "total": 56.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -1.5,
+          "favorite_team": "Western Kentucky",
+          "underdog_team": "Delaware",
+          "total": 56.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Western Kentucky",
+        "underdog_team": "Delaware"
+      },
+      "model_edge_favorite": -1.3,
+      "pick": "Delaware"
+    },
+    {
+      "id": "401871072",
+      "start": "2026-10-28T00:00:00.000Z",
+      "venue": "Plaster Sports Complex",
+      "location": "Plaster Sports Complex",
+      "neutral_site": false,
+      "home": {
         "name": "Missouri State",
-        "record": null,
+        "logo_id": 2623,
+        "record": "2-5",
         "rank": null,
-        "projected_score": 20.5
-      },
-      "projected_home_margin": 6.1,
-      "projected_total": 47.1,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401871092",
-      "start": "2026-10-20T23:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Marshall",
-        "record": null,
-        "rank": null,
-        "projected_score": 28.2
+        "projected_score": 31.2
       },
       "away": {
-        "name": "South Alabama",
-        "record": null,
-        "rank": null,
-        "projected_score": 30.5
-      },
-      "projected_home_margin": -2.3,
-      "projected_total": 58.7,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401871070",
-      "start": "2026-10-22T00:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
         "name": "Sam Houston",
-        "record": null,
-        "rank": null,
-        "projected_score": 23.4
-      },
-      "away": {
-        "name": "New Mexico State",
-        "record": null,
-        "rank": null,
-        "projected_score": 24.8
-      },
-      "projected_home_margin": -1.4,
-      "projected_total": 48.2,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401869845",
-      "start": "2026-10-22T23:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "App State",
-        "record": null,
-        "rank": null,
-        "projected_score": 19.9
-      },
-      "away": {
-        "name": "James Madison",
-        "record": null,
-        "rank": null,
-        "projected_score": 35.2
-      },
-      "projected_home_margin": -15.3,
-      "projected_total": 55.2,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401871056",
-      "start": "2026-10-22T23:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Kennesaw State",
-        "record": null,
-        "rank": null,
-        "projected_score": 22.5
-      },
-      "away": {
-        "name": "Liberty",
-        "record": null,
-        "rank": null,
-        "projected_score": 29.4
-      },
-      "projected_home_margin": -6.9,
-      "projected_total": 51.9,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401862807",
-      "start": "2026-10-22T23:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Memphis",
-        "record": null,
-        "rank": null,
-        "projected_score": 32.7
-      },
-      "away": {
-        "name": "East Carolina",
-        "record": null,
-        "rank": null,
-        "projected_score": 22.7
-      },
-      "projected_home_margin": 10.0,
-      "projected_total": 55.5,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401858271",
-      "start": "2026-10-23T23:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Virginia",
-        "record": null,
-        "rank": null,
-        "projected_score": 23.1
-      },
-      "away": {
-        "name": "Duke",
-        "record": null,
-        "rank": null,
-        "projected_score": 25.1
-      },
-      "projected_home_margin": -2.0,
-      "projected_total": 48.2,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401861965",
-      "start": "2026-10-23T23:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "UConn",
-        "record": null,
-        "rank": null,
-        "projected_score": 38.0
-      },
-      "away": {
-        "name": "Massachusetts",
-        "record": null,
-        "rank": null,
-        "projected_score": 19.2
-      },
-      "projected_home_margin": 18.9,
-      "projected_total": 57.2,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401862808",
-      "start": "2026-10-24T00:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Tulsa",
-        "record": null,
-        "rank": null,
-        "projected_score": 20.9
-      },
-      "away": {
-        "name": "Army",
-        "record": null,
-        "rank": null,
-        "projected_score": 26.9
-      },
-      "projected_home_margin": -6.0,
-      "projected_total": 47.8,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401864525",
-      "start": "2026-10-24T01:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Wyoming",
-        "record": null,
-        "rank": null,
-        "projected_score": 22.2
-      },
-      "away": {
-        "name": "Air Force",
-        "record": null,
-        "rank": null,
-        "projected_score": 25.9
-      },
-      "projected_home_margin": -3.7,
-      "projected_total": 48.1,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401858272",
-      "start": "2026-10-24T02:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Stanford",
-        "record": null,
+        "logo_id": 2534,
+        "record": "1-6",
         "rank": null,
         "projected_score": 21.8
       },
-      "away": {
-        "name": "NC State",
-        "record": null,
-        "rank": null,
-        "projected_score": 34.0
-      },
-      "projected_home_margin": -12.3,
-      "projected_total": 55.8,
+      "projected_home_margin": 9.5,
+      "projected_favorite_margin": 9.5,
+      "projected_total": 53.0,
+      "favorite_team": "Missouri State",
+      "underdog_team": "Sam Houston",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -5.5,
+          "favorite_team": "Missouri State",
+          "underdog_team": "Sam Houston",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -5.5,
+          "favorite_team": "Missouri State",
+          "underdog_team": "Sam Houston",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Missouri State",
+        "underdog_team": "Sam Houston"
       },
-      "model_edge_home": null,
+      "model_edge_favorite": 4.0,
+      "pick": "Missouri State"
+    },
+    {
+      "id": "401871058",
+      "start": "2026-10-28T23:00:00.000Z",
+      "venue": "Johnny \"Red\" Floyd Stadium",
+      "location": "Johnny \"Red\" Floyd Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Middle Tennessee",
+        "logo_id": 2393,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 24.8
+      },
+      "away": {
+        "name": "Kennesaw State",
+        "logo_id": 338,
+        "record": "1-6",
+        "rank": null,
+        "projected_score": 21.1
+      },
+      "projected_home_margin": 3.6,
+      "projected_favorite_margin": 3.6,
+      "projected_total": 45.9,
+      "favorite_team": "Middle Tennessee",
+      "underdog_team": "Kennesaw State",
+      "market": {
+        "opening": {
+          "spread_favorite": -3.0,
+          "favorite_team": "Middle Tennessee",
+          "underdog_team": "Kennesaw State",
+          "total": 51.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -3.0,
+          "favorite_team": "Middle Tennessee",
+          "underdog_team": "Kennesaw State",
+          "total": 51.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Middle Tennessee",
+        "underdog_team": "Kennesaw State"
+      },
+      "model_edge_favorite": 0.6,
       "pick": null
     },
     {
-      "id": "espn-401856834",
-      "start": "2026-10-24T04:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401871057",
+      "start": "2026-10-29T00:00:00.000Z",
+      "venue": "Aggie Memorial Stadium",
+      "location": "Aggie Memorial Stadium",
       "neutral_site": false,
       "home": {
-        "name": "Kansas",
-        "record": null,
+        "name": "New Mexico State",
+        "logo_id": 166,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 19.4
+      },
+      "away": {
+        "name": "Jacksonville State",
+        "logo_id": 55,
+        "record": "5-2",
+        "rank": null,
+        "projected_score": 28.6
+      },
+      "projected_home_margin": -9.2,
+      "projected_favorite_margin": 9.2,
+      "projected_total": 48.0,
+      "favorite_team": "Jacksonville State",
+      "underdog_team": "New Mexico State",
+      "market": {
+        "opening": {
+          "spread_favorite": -3.0,
+          "favorite_team": "Jacksonville State",
+          "underdog_team": "New Mexico State",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -3.0,
+          "favorite_team": "Jacksonville State",
+          "underdog_team": "New Mexico State",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Jacksonville State",
+        "underdog_team": "New Mexico State"
+      },
+      "model_edge_favorite": 6.2,
+      "pick": "Jacksonville State"
+    },
+    {
+      "id": "401862812",
+      "start": "2026-10-29T23:30:00.000Z",
+      "venue": "DATCU Stadium",
+      "location": "DATCU Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "North Texas",
+        "logo_id": 249,
+        "record": "5-2",
+        "rank": null,
+        "projected_score": 44.3
+      },
+      "away": {
+        "name": "Florida Atlantic",
+        "logo_id": 2226,
+        "record": "5-2",
         "rank": null,
         "projected_score": 24.6
       },
-      "away": {
-        "name": "Baylor",
-        "record": null,
-        "rank": null,
-        "projected_score": 29.0
-      },
-      "projected_home_margin": -4.3,
-      "projected_total": 53.6,
+      "projected_home_margin": 19.8,
+      "projected_favorite_margin": 19.8,
+      "projected_total": 68.9,
+      "favorite_team": "North Texas",
+      "underdog_team": "Florida Atlantic",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -13.5,
+          "favorite_team": "North Texas",
+          "underdog_team": "Florida Atlantic",
+          "total": 76.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -13.5,
+          "favorite_team": "North Texas",
+          "underdog_team": "Florida Atlantic",
+          "total": 76.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "North Texas",
+        "underdog_team": "Florida Atlantic"
       },
-      "model_edge_home": null,
-      "pick": null
+      "model_edge_favorite": 6.3,
+      "pick": "North Texas"
     },
     {
-      "id": "espn-401856835",
-      "start": "2026-10-24T04:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401869963",
+      "start": "2026-10-29T23:30:00.000Z",
+      "venue": "Bridgeforth Stadium",
+      "location": "Bridgeforth Stadium",
       "neutral_site": false,
       "home": {
-        "name": "UCF",
-        "record": null,
-        "rank": null,
-        "projected_score": 19.1
-      },
-      "away": {
-        "name": "BYU",
-        "record": null,
-        "rank": null,
-        "projected_score": 28.1
-      },
-      "projected_home_margin": -9.0,
-      "projected_total": 47.3,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401856836",
-      "start": "2026-10-24T04:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Oklahoma State",
-        "record": null,
-        "rank": null,
-        "projected_score": 32.1
-      },
-      "away": {
-        "name": "Colorado",
-        "record": null,
-        "rank": null,
-        "projected_score": 18.8
-      },
-      "projected_home_margin": 13.3,
-      "projected_total": 50.9,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401856837",
-      "start": "2026-10-24T04:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Utah",
-        "record": null,
+        "name": "James Madison",
+        "logo_id": 256,
+        "record": "7-1",
         "rank": null,
         "projected_score": 31.9
       },
       "away": {
-        "name": "Houston",
-        "record": null,
+        "name": "Troy",
+        "logo_id": 2653,
+        "record": "3-4",
         "rank": null,
-        "projected_score": 19.4
+        "projected_score": 17.9
       },
-      "projected_home_margin": 12.5,
-      "projected_total": 51.3,
+      "projected_home_margin": 14.0,
+      "projected_favorite_margin": 14.0,
+      "projected_total": 49.8,
+      "favorite_team": "James Madison",
+      "underdog_team": "Troy",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -21.0,
+          "favorite_team": "James Madison",
+          "underdog_team": "Troy",
+          "total": 50.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -21.0,
+          "favorite_team": "James Madison",
+          "underdog_team": "Troy",
+          "total": 50.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "James Madison",
+        "underdog_team": "Troy"
       },
-      "model_edge_home": null,
-      "pick": null
+      "model_edge_favorite": -7.0,
+      "pick": "Troy"
     },
     {
-      "id": "espn-401856838",
-      "start": "2026-10-24T04:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401862813",
+      "start": "2026-10-30T23:00:00.000Z",
+      "venue": "Jerry Richardson Stadium",
+      "location": "Jerry Richardson Stadium",
       "neutral_site": false,
       "home": {
-        "name": "Arizona",
-        "record": null,
+        "name": "Charlotte",
+        "logo_id": 2429,
+        "record": "1-6",
         "rank": null,
-        "projected_score": 30.8
+        "projected_score": 17.3
       },
       "away": {
-        "name": "Iowa State",
-        "record": null,
+        "name": "Tulane",
+        "logo_id": 2655,
+        "record": "3-4",
         "rank": null,
-        "projected_score": 23.5
+        "projected_score": 34.2
       },
-      "projected_home_margin": 7.4,
-      "projected_total": 54.3,
+      "projected_home_margin": -17.0,
+      "projected_favorite_margin": 17.0,
+      "projected_total": 51.5,
+      "favorite_team": "Tulane",
+      "underdog_team": "Charlotte",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -10.0,
+          "favorite_team": "Tulane",
+          "underdog_team": "Charlotte",
+          "total": 46.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -10.0,
+          "favorite_team": "Tulane",
+          "underdog_team": "Charlotte",
+          "total": 46.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Tulane",
+        "underdog_team": "Charlotte"
       },
-      "model_edge_home": null,
+      "model_edge_favorite": 7.0,
+      "pick": "Tulane"
+    },
+    {
+      "id": "401856844",
+      "start": "2026-10-30T23:30:00.000Z",
+      "venue": "FBC Mortgage Stadium",
+      "location": "FBC Mortgage Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "UCF",
+        "logo_id": 2116,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 23.8
+      },
+      "away": {
+        "name": "Baylor",
+        "logo_id": 239,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 26.9
+      },
+      "projected_home_margin": -3.2,
+      "projected_favorite_margin": -3.2,
+      "projected_total": 50.7,
+      "favorite_team": "UCF",
+      "underdog_team": "Baylor",
+      "market": {
+        "opening": {
+          "spread_favorite": -1.5,
+          "favorite_team": "UCF",
+          "underdog_team": "Baylor",
+          "total": 47.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -1.5,
+          "favorite_team": "UCF",
+          "underdog_team": "Baylor",
+          "total": 47.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "UCF",
+        "underdog_team": "Baylor"
+      },
+      "model_edge_favorite": -4.7,
+      "pick": "Baylor"
+    },
+    {
+      "id": "401856842",
+      "start": "2026-10-31T16:00:00.000Z",
+      "venue": "Jones AT&T Stadium",
+      "location": "Jones AT&T Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Texas Tech",
+        "logo_id": 2641,
+        "record": "6-1",
+        "rank": 13,
+        "projected_score": 29.2
+      },
+      "away": {
+        "name": "Arizona",
+        "logo_id": 12,
+        "record": "6-1",
+        "rank": 22,
+        "projected_score": 26.6
+      },
+      "projected_home_margin": 2.6,
+      "projected_favorite_margin": 2.6,
+      "projected_total": 55.9,
+      "favorite_team": "Texas Tech",
+      "underdog_team": "Arizona",
+      "market": {
+        "opening": {
+          "spread_favorite": -3.0,
+          "favorite_team": "Texas Tech",
+          "underdog_team": "Arizona",
+          "total": 54.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -3.0,
+          "favorite_team": "Texas Tech",
+          "underdog_team": "Arizona",
+          "total": 54.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Texas Tech",
+        "underdog_team": "Arizona"
+      },
+      "model_edge_favorite": -0.4,
       "pick": null
     },
     {
-      "id": "espn-401856839",
-      "start": "2026-10-24T04:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401858277",
+      "start": "2026-10-31T16:00:00.000Z",
+      "venue": "Carter-Finley Stadium",
+      "location": "Carter-Finley Stadium",
       "neutral_site": false,
       "home": {
-        "name": "Arizona State",
-        "record": null,
+        "name": "NC State",
+        "logo_id": 152,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 32.2
+      },
+      "away": {
+        "name": "California",
+        "logo_id": 25,
+        "record": "3-5",
+        "rank": null,
+        "projected_score": 21.9
+      },
+      "projected_home_margin": 10.3,
+      "projected_favorite_margin": 10.3,
+      "projected_total": 54.2,
+      "favorite_team": "NC State",
+      "underdog_team": "California",
+      "market": {
+        "opening": {
+          "spread_favorite": -7.0,
+          "favorite_team": "NC State",
+          "underdog_team": "California",
+          "total": 56.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -7.0,
+          "favorite_team": "NC State",
+          "underdog_team": "California",
+          "total": 56.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "NC State",
+        "underdog_team": "California"
+      },
+      "model_edge_favorite": 3.3,
+      "pick": "NC State"
+    },
+    {
+      "id": "401858278",
+      "start": "2026-10-31T16:00:00.000Z",
+      "venue": "JMA Wireless Dome",
+      "location": "JMA Wireless Dome",
+      "neutral_site": false,
+      "home": {
+        "name": "Syracuse",
+        "logo_id": 183,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 22.8
+      },
+      "away": {
+        "name": "SMU",
+        "logo_id": 2567,
+        "record": "6-1",
+        "rank": 19,
+        "projected_score": 34.9
+      },
+      "projected_home_margin": -12.1,
+      "projected_favorite_margin": 12.1,
+      "projected_total": 57.7,
+      "favorite_team": "SMU",
+      "underdog_team": "Syracuse",
+      "market": {
+        "opening": {
+          "spread_favorite": -9.5,
+          "favorite_team": "SMU",
+          "underdog_team": "Syracuse",
+          "total": 58.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -9.5,
+          "favorite_team": "SMU",
+          "underdog_team": "Syracuse",
+          "total": 58.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "SMU",
+        "underdog_team": "Syracuse"
+      },
+      "model_edge_favorite": 2.6,
+      "pick": "SMU"
+    },
+    {
+      "id": "401858279",
+      "start": "2026-10-31T16:00:00.000Z",
+      "venue": "Wallace Wade Stadium",
+      "location": "Wallace Wade Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Duke",
+        "logo_id": 150,
+        "record": "5-2",
+        "rank": null,
+        "projected_score": 28.1
+      },
+      "away": {
+        "name": "Boston College",
+        "logo_id": 103,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 18.2
+      },
+      "projected_home_margin": 9.9,
+      "projected_favorite_margin": 9.9,
+      "projected_total": 46.3,
+      "favorite_team": "Duke",
+      "underdog_team": "Boston College",
+      "market": {
+        "opening": {
+          "spread_favorite": -7.0,
+          "favorite_team": "Duke",
+          "underdog_team": "Boston College",
+          "total": 48.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -7.0,
+          "favorite_team": "Duke",
+          "underdog_team": "Boston College",
+          "total": 48.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Duke",
+        "underdog_team": "Boston College"
+      },
+      "model_edge_favorite": 2.9,
+      "pick": "Duke"
+    },
+    {
+      "id": "401858502",
+      "start": "2026-10-31T16:00:00.000Z",
+      "venue": "Kinnick Stadium",
+      "location": "Kinnick Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Iowa",
+        "logo_id": 2294,
+        "record": "5-2",
         "rank": null,
         "projected_score": 23.9
       },
       "away": {
-        "name": "Kansas State",
-        "record": null,
-        "rank": null,
-        "projected_score": 29.5
+        "name": "Wisconsin",
+        "logo_id": 275,
+        "record": "5-2",
+        "rank": 25,
+        "projected_score": 18.0
       },
-      "projected_home_margin": -5.5,
-      "projected_total": 53.4,
+      "projected_home_margin": 6.0,
+      "projected_favorite_margin": 6.0,
+      "projected_total": 41.9,
+      "favorite_team": "Iowa",
+      "underdog_team": "Wisconsin",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -3.5,
+          "favorite_team": "Iowa",
+          "underdog_team": "Wisconsin",
+          "total": 36.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -3.5,
+          "favorite_team": "Iowa",
+          "underdog_team": "Wisconsin",
+          "total": 36.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Iowa",
+        "underdog_team": "Wisconsin"
       },
-      "model_edge_home": null,
-      "pick": null
+      "model_edge_favorite": 2.5,
+      "pick": "Iowa"
     },
     {
-      "id": "espn-401856840",
-      "start": "2026-10-24T04:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401858503",
+      "start": "2026-10-31T16:00:00.000Z",
+      "venue": "SECU Stadium",
+      "location": "SECU Stadium",
       "neutral_site": false,
       "home": {
-        "name": "Cincinnati",
-        "record": null,
-        "rank": null,
-        "projected_score": 20.2
-      },
-      "away": {
-        "name": "Texas Tech",
-        "record": null,
-        "rank": null,
-        "projected_score": 31.2
-      },
-      "projected_home_margin": -10.9,
-      "projected_total": 51.4,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401858276",
-      "start": "2026-10-24T04:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Clemson",
-        "record": null,
-        "rank": null,
-        "projected_score": 26.3
-      },
-      "away": {
-        "name": "Virginia Tech",
-        "record": null,
-        "rank": null,
-        "projected_score": 20.1
-      },
-      "projected_home_margin": 6.2,
-      "projected_total": 46.5,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401858495",
-      "start": "2026-10-24T04:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Illinois",
-        "record": null,
-        "rank": null,
-        "projected_score": 24.9
-      },
-      "away": {
-        "name": "Oregon",
-        "record": null,
-        "rank": null,
-        "projected_score": 33.4
-      },
-      "projected_home_margin": -8.4,
-      "projected_total": 58.3,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401858497",
-      "start": "2026-10-24T04:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Minnesota",
-        "record": null,
-        "rank": null,
-        "projected_score": 20.1
-      },
-      "away": {
-        "name": "Iowa",
-        "record": null,
-        "rank": null,
-        "projected_score": 26.4
-      },
-      "projected_home_margin": -6.3,
-      "projected_total": 46.5,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401858499",
-      "start": "2026-10-24T04:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "UCLA",
-        "record": null,
-        "rank": null,
-        "projected_score": 34.7
-      },
-      "away": {
-        "name": "Michigan State",
-        "record": null,
-        "rank": null,
-        "projected_score": 18.4
-      },
-      "projected_home_margin": 16.3,
-      "projected_total": 53.0,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401856728",
-      "start": "2026-10-24T16:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Auburn",
-        "record": null,
-        "rank": null,
-        "projected_score": 22.9
-      },
-      "away": {
-        "name": "LSU",
-        "record": null,
-        "rank": null,
-        "projected_score": 29.6
-      },
-      "projected_home_margin": -6.7,
-      "projected_total": 52.4,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401856841",
-      "start": "2026-10-24T16:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "TCU",
-        "record": null,
-        "rank": null,
-        "projected_score": 31.8
-      },
-      "away": {
-        "name": "West Virginia",
-        "record": null,
-        "rank": null,
-        "projected_score": 20.8
-      },
-      "projected_home_margin": 10.9,
-      "projected_total": 52.6,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401858270",
-      "start": "2026-10-24T16:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "SMU",
-        "record": null,
-        "rank": null,
-        "projected_score": 33.3
-      },
-      "away": {
-        "name": "California",
-        "record": null,
-        "rank": null,
-        "projected_score": 18.3
-      },
-      "projected_home_margin": 15.0,
-      "projected_total": 51.5,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401858274",
-      "start": "2026-10-24T16:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Miami",
-        "record": null,
-        "rank": null,
-        "projected_score": 35.1
-      },
-      "away": {
-        "name": "Pittsburgh",
-        "record": null,
-        "rank": null,
-        "projected_score": 16.4
-      },
-      "projected_home_margin": 18.7,
-      "projected_total": 51.5,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401858496",
-      "start": "2026-10-24T16:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Michigan",
-        "record": null,
-        "rank": null,
-        "projected_score": 20.4
-      },
-      "away": {
-        "name": "Indiana",
-        "record": null,
+        "name": "Maryland",
+        "logo_id": 120,
+        "record": "2-5",
         "rank": null,
         "projected_score": 23.7
       },
-      "projected_home_margin": -3.3,
-      "projected_total": 44.1,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+      "away": {
+        "name": "Illinois",
+        "logo_id": 356,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 35.1
       },
-      "model_edge_home": null,
-      "pick": null
+      "projected_home_margin": -11.4,
+      "projected_favorite_margin": 11.4,
+      "projected_total": 58.8,
+      "favorite_team": "Illinois",
+      "underdog_team": "Maryland",
+      "market": {
+        "opening": {
+          "spread_favorite": -2.5,
+          "favorite_team": "Illinois",
+          "underdog_team": "Maryland",
+          "total": 52.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -2.5,
+          "favorite_team": "Illinois",
+          "underdog_team": "Maryland",
+          "total": 52.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Illinois",
+        "underdog_team": "Maryland"
+      },
+      "model_edge_favorite": 8.9,
+      "pick": "Illinois"
     },
     {
-      "id": "espn-401858498",
-      "start": "2026-10-24T16:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
+      "id": "401859185",
+      "start": "2026-10-31T16:00:00.000Z",
+      "venue": "Gillette Stadium",
+      "location": "Gillette Stadium",
+      "neutral_site": true,
       "home": {
-        "name": "Northwestern",
-        "record": null,
+        "name": "Navy",
+        "logo_id": 2426,
+        "record": "2-5",
         "rank": null,
-        "projected_score": 37.0
+        "projected_score": 14.4
       },
       "away": {
-        "name": "Rutgers",
-        "record": null,
-        "rank": null,
-        "projected_score": 18.4
+        "name": "Notre Dame",
+        "logo_id": 87,
+        "record": "6-1",
+        "rank": 5,
+        "projected_score": 38.9
       },
-      "projected_home_margin": 18.6,
-      "projected_total": 55.4,
+      "projected_home_margin": -24.5,
+      "projected_favorite_margin": 24.5,
+      "projected_total": 53.2,
+      "favorite_team": "Notre Dame",
+      "underdog_team": "Navy",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -30.5,
+          "favorite_team": "Notre Dame",
+          "underdog_team": "Navy",
+          "total": 54.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -30.5,
+          "favorite_team": "Notre Dame",
+          "underdog_team": "Navy",
+          "total": 54.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Notre Dame",
+        "underdog_team": "Navy"
       },
-      "model_edge_home": null,
-      "pick": null
+      "model_edge_favorite": -6.0,
+      "pick": "Navy"
     },
     {
-      "id": "espn-401862809",
-      "start": "2026-10-24T16:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401862816",
+      "start": "2026-10-31T16:00:00.000Z",
+      "venue": "Raymond James Stadium",
+      "location": "Raymond James Stadium",
       "neutral_site": false,
       "home": {
-        "name": "Florida Atlantic",
-        "record": null,
+        "name": "South Florida",
+        "logo_id": 58,
+        "record": "5-2",
         "rank": null,
-        "projected_score": 32.9
+        "projected_score": 28.9
       },
       "away": {
-        "name": "Rice",
-        "record": null,
+        "name": "UAB",
+        "logo_id": 5,
+        "record": "4-3",
         "rank": null,
-        "projected_score": 18.9
+        "projected_score": 16.8
       },
-      "projected_home_margin": 14.0,
-      "projected_total": 51.9,
+      "projected_home_margin": 12.1,
+      "projected_favorite_margin": 12.1,
+      "projected_total": 45.7,
+      "favorite_team": "South Florida",
+      "underdog_team": "UAB",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -7.5,
+          "favorite_team": "South Florida",
+          "underdog_team": "UAB",
+          "total": 42.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -7.5,
+          "favorite_team": "South Florida",
+          "underdog_team": "UAB",
+          "total": 42.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "South Florida",
+        "underdog_team": "UAB"
       },
-      "model_edge_home": null,
-      "pick": null
+      "model_edge_favorite": 4.6,
+      "pick": "South Florida"
     },
     {
-      "id": "espn-401866450",
-      "start": "2026-10-24T16:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401866452",
+      "start": "2026-10-31T16:00:00.000Z",
+      "venue": "Waldo Stadium",
+      "location": "Waldo Stadium",
       "neutral_site": false,
       "home": {
-        "name": "Toledo",
-        "record": null,
-        "rank": null,
-        "projected_score": 25.8
-      },
-      "away": {
         "name": "Western Michigan",
-        "record": null,
+        "logo_id": 2711,
+        "record": "5-3",
         "rank": null,
-        "projected_score": 23.6
+        "projected_score": 35.3
       },
-      "projected_home_margin": 2.1,
-      "projected_total": 49.4,
+      "away": {
+        "name": "Bowling Green",
+        "logo_id": 189,
+        "record": "2-6",
+        "rank": null,
+        "projected_score": 18.7
+      },
+      "projected_home_margin": 16.6,
+      "projected_favorite_margin": 16.6,
+      "projected_total": 53.9,
+      "favorite_team": "Western Michigan",
+      "underdog_team": "Bowling Green",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -13.5,
+          "favorite_team": "Western Michigan",
+          "underdog_team": "Bowling Green",
+          "total": 43.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -13.5,
+          "favorite_team": "Western Michigan",
+          "underdog_team": "Bowling Green",
+          "total": 44.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Western Michigan",
+        "underdog_team": "Bowling Green"
       },
-      "model_edge_home": null,
+      "model_edge_favorite": 3.1,
+      "pick": "Western Michigan"
+    },
+    {
+      "id": "401858507",
+      "start": "2026-10-31T16:30:00.000Z",
+      "venue": "SHI Stadium",
+      "location": "SHI Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Rutgers",
+        "logo_id": 164,
+        "record": "2-5",
+        "rank": null,
+        "projected_score": 17.6
+      },
+      "away": {
+        "name": "Michigan",
+        "logo_id": 130,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 33.9
+      },
+      "projected_home_margin": -16.3,
+      "projected_favorite_margin": 16.3,
+      "projected_total": 51.5,
+      "favorite_team": "Michigan",
+      "underdog_team": "Rutgers",
+      "market": {
+        "opening": {
+          "spread_favorite": -14.0,
+          "favorite_team": "Michigan",
+          "underdog_team": "Rutgers",
+          "total": 46.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -14.0,
+          "favorite_team": "Michigan",
+          "underdog_team": "Rutgers",
+          "total": 46.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Michigan",
+        "underdog_team": "Rutgers"
+      },
+      "model_edge_favorite": 2.3,
+      "pick": "Michigan"
+    },
+    {
+      "id": "401856735",
+      "start": "2026-10-31T16:45:00.000Z",
+      "venue": "Vaught-Hemingway Stadium",
+      "location": "Vaught-Hemingway Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Ole Miss",
+        "logo_id": 145,
+        "record": "5-2",
+        "rank": 12,
+        "projected_score": 29.7
+      },
+      "away": {
+        "name": "Auburn",
+        "logo_id": 2,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 19.0
+      },
+      "projected_home_margin": 10.7,
+      "projected_favorite_margin": 10.7,
+      "projected_total": 48.7,
+      "favorite_team": "Ole Miss",
+      "underdog_team": "Auburn",
+      "market": {
+        "opening": {
+          "spread_favorite": -13.5,
+          "favorite_team": "Ole Miss",
+          "underdog_team": "Auburn",
+          "total": 57.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -13.5,
+          "favorite_team": "Ole Miss",
+          "underdog_team": "Auburn",
+          "total": 57.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Ole Miss",
+        "underdog_team": "Auburn"
+      },
+      "model_edge_favorite": -2.8,
+      "pick": "Auburn"
+    },
+    {
+      "id": "401871096",
+      "start": "2026-10-31T17:00:00.000Z",
+      "venue": "S.B. Ballard Stadium",
+      "location": "S.B. Ballard Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Old Dominion",
+        "logo_id": 295,
+        "record": "2-6",
+        "rank": null,
+        "projected_score": 19.8
+      },
+      "away": {
+        "name": "Marshall",
+        "logo_id": 276,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 23.2
+      },
+      "projected_home_margin": -3.5,
+      "projected_favorite_margin": 3.5,
+      "projected_total": 43.0,
+      "favorite_team": "Marshall",
+      "underdog_team": "Old Dominion",
+      "market": {
+        "opening": {
+          "spread_favorite": -2.5,
+          "favorite_team": "Marshall",
+          "underdog_team": "Old Dominion",
+          "total": 45.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -2.5,
+          "favorite_team": "Marshall",
+          "underdog_team": "Old Dominion",
+          "total": 45.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Marshall",
+        "underdog_team": "Old Dominion"
+      },
+      "model_edge_favorite": 1.0,
       "pick": null
     },
     {
-      "id": "espn-401866446",
-      "start": "2026-10-24T17:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401856846",
+      "start": "2026-10-31T18:00:00.000Z",
+      "venue": "Folsom Field",
+      "location": "Folsom Field",
       "neutral_site": false,
       "home": {
-        "name": "Kent State",
-        "record": null,
+        "name": "Colorado",
+        "logo_id": 38,
+        "record": "2-5",
         "rank": null,
-        "projected_score": 22.3
+        "projected_score": 17.6
       },
       "away": {
-        "name": "Akron",
-        "record": null,
+        "name": "Kansas State",
+        "logo_id": 2306,
+        "record": "4-3",
         "rank": null,
-        "projected_score": 24.4
+        "projected_score": 28.7
       },
-      "projected_home_margin": -2.1,
-      "projected_total": 46.7,
+      "projected_home_margin": -11.1,
+      "projected_favorite_margin": 11.1,
+      "projected_total": 46.3,
+      "favorite_team": "Kansas State",
+      "underdog_team": "Colorado",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -2.5,
+          "favorite_team": "Kansas State",
+          "underdog_team": "Colorado",
+          "total": 48.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -2.5,
+          "favorite_team": "Kansas State",
+          "underdog_team": "Colorado",
+          "total": 48.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Kansas State",
+        "underdog_team": "Colorado"
       },
-      "model_edge_home": null,
+      "model_edge_favorite": 8.6,
+      "pick": "Kansas State"
+    },
+    {
+      "id": "401869944",
+      "start": "2026-10-31T18:00:00.000Z",
+      "venue": "Center Parc Stadium",
+      "location": "Center Parc Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Georgia State",
+        "logo_id": 2247,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 31.7
+      },
+      "away": {
+        "name": "Coastal Carolina",
+        "logo_id": 324,
+        "record": "2-5",
+        "rank": null,
+        "projected_score": 23.8
+      },
+      "projected_home_margin": 8.0,
+      "projected_favorite_margin": 8.0,
+      "projected_total": 55.5,
+      "favorite_team": "Georgia State",
+      "underdog_team": "Coastal Carolina",
+      "market": {
+        "opening": {
+          "spread_favorite": -6.5,
+          "favorite_team": "Georgia State",
+          "underdog_team": "Coastal Carolina",
+          "total": 59.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -6.5,
+          "favorite_team": "Georgia State",
+          "underdog_team": "Coastal Carolina",
+          "total": 59.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Georgia State",
+        "underdog_team": "Coastal Carolina"
+      },
+      "model_edge_favorite": 1.5,
+      "pick": "Georgia State"
+    },
+    {
+      "id": "401861966",
+      "start": "2026-10-31T19:00:00.000Z",
+      "venue": "Falcon Stadium",
+      "location": "Falcon Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Air Force",
+        "logo_id": 2005,
+        "record": "5-2",
+        "rank": null,
+        "projected_score": 24.3
+      },
+      "away": {
+        "name": "UConn",
+        "logo_id": 41,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 22.1
+      },
+      "projected_home_margin": 2.2,
+      "projected_favorite_margin": 2.2,
+      "projected_total": 46.4,
+      "favorite_team": "Air Force",
+      "underdog_team": "UConn",
+      "market": {
+        "opening": {
+          "spread_favorite": -3.0,
+          "favorite_team": "Air Force",
+          "underdog_team": "UConn",
+          "total": 54.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -3.0,
+          "favorite_team": "Air Force",
+          "underdog_team": "UConn",
+          "total": 54.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Air Force",
+        "underdog_team": "UConn"
+      },
+      "model_edge_favorite": -0.8,
       "pick": null
     },
     {
-      "id": "espn-401866476",
-      "start": "2026-10-24T17:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401862815",
+      "start": "2026-10-31T19:00:00.000Z",
+      "venue": "Dowdy-Ficklen Stadium",
+      "location": "Dowdy-Ficklen Stadium",
       "neutral_site": false,
       "home": {
-        "name": "Central Michigan",
-        "record": null,
+        "name": "East Carolina",
+        "logo_id": 151,
+        "record": "3-4",
         "rank": null,
-        "projected_score": 24.6
+        "projected_score": 31.4
       },
       "away": {
-        "name": "Miami (OH)",
-        "record": null,
+        "name": "Temple",
+        "logo_id": 218,
+        "record": "2-5",
         "rank": null,
-        "projected_score": 25.3
+        "projected_score": 20.5
       },
-      "projected_home_margin": -0.7,
-      "projected_total": 49.8,
+      "projected_home_margin": 10.8,
+      "projected_favorite_margin": 10.8,
+      "projected_total": 51.9,
+      "favorite_team": "East Carolina",
+      "underdog_team": "Temple",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -6.0,
+          "favorite_team": "East Carolina",
+          "underdog_team": "Temple",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -6.0,
+          "favorite_team": "East Carolina",
+          "underdog_team": "Temple",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "East Carolina",
+        "underdog_team": "Temple"
       },
-      "model_edge_home": null,
-      "pick": null
+      "model_edge_favorite": 4.8,
+      "pick": "East Carolina"
     },
     {
-      "id": "espn-401856727",
-      "start": "2026-10-24T19:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401871097",
+      "start": "2026-10-31T19:00:00.000Z",
+      "venue": "Hancock Whitney Stadium",
+      "location": "Hancock Whitney Stadium",
       "neutral_site": false,
       "home": {
-        "name": "Alabama",
-        "record": null,
+        "name": "South Alabama",
+        "logo_id": 6,
+        "record": "4-3",
         "rank": null,
-        "projected_score": 37.7
+        "projected_score": 28.1
       },
       "away": {
-        "name": "Texas A&M",
-        "record": null,
+        "name": "Louisiana Tech",
+        "logo_id": 2348,
+        "record": "5-2",
         "rank": null,
-        "projected_score": 20.8
+        "projected_score": 30.5
       },
-      "projected_home_margin": 16.9,
-      "projected_total": 58.4,
+      "projected_home_margin": -2.3,
+      "projected_favorite_margin": 2.3,
+      "projected_total": 58.6,
+      "favorite_team": "Louisiana Tech",
+      "underdog_team": "South Alabama",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -5.5,
+          "favorite_team": "Louisiana Tech",
+          "underdog_team": "South Alabama",
+          "total": 57.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -5.5,
+          "favorite_team": "Louisiana Tech",
+          "underdog_team": "South Alabama",
+          "total": 57.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Louisiana Tech",
+        "underdog_team": "South Alabama"
       },
-      "model_edge_home": null,
-      "pick": null
+      "model_edge_favorite": -3.2,
+      "pick": "South Alabama"
     },
     {
-      "id": "espn-401856730",
-      "start": "2026-10-24T19:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401858283",
+      "start": "2026-10-31T19:15:00.000Z",
+      "venue": "L&N Federal Credit Union Stadium",
+      "location": "L&N Federal Credit Union Stadium",
       "neutral_site": false,
       "home": {
-        "name": "Mississippi State",
-        "record": null,
+        "name": "Louisville",
+        "logo_id": 97,
+        "record": "4-3",
         "rank": null,
-        "projected_score": 24.5
+        "projected_score": 40.9
       },
       "away": {
-        "name": "Oklahoma",
-        "record": null,
+        "name": "Stanford",
+        "logo_id": 24,
+        "record": "4-4",
         "rank": null,
-        "projected_score": 26.1
+        "projected_score": 16.7
       },
-      "projected_home_margin": -1.6,
-      "projected_total": 50.6,
+      "projected_home_margin": 24.2,
+      "projected_favorite_margin": 24.2,
+      "projected_total": 57.6,
+      "favorite_team": "Louisville",
+      "underdog_team": "Stanford",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -22.5,
+          "favorite_team": "Louisville",
+          "underdog_team": "Stanford",
+          "total": 61.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -22.5,
+          "favorite_team": "Louisville",
+          "underdog_team": "Stanford",
+          "total": 61.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Louisville",
+        "underdog_team": "Stanford"
       },
-      "model_edge_home": null,
-      "pick": null
+      "model_edge_favorite": 1.7,
+      "pick": "Louisville"
     },
     {
-      "id": "espn-401856731",
-      "start": "2026-10-24T19:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
+      "id": "401856734",
+      "start": "2026-10-31T19:30:00.000Z",
+      "venue": "Mercedes-Benz Stadium",
+      "location": "Mercedes-Benz Stadium",
+      "neutral_site": true,
       "home": {
-        "name": "South Carolina",
-        "record": null,
-        "rank": null,
-        "projected_score": 25.1
+        "name": "Georgia",
+        "logo_id": 61,
+        "record": "6-1",
+        "rank": 3,
+        "projected_score": 40.3
       },
       "away": {
-        "name": "Tennessee",
-        "record": null,
+        "name": "Florida",
+        "logo_id": 57,
+        "record": "5-2",
+        "rank": 17,
+        "projected_score": 17.5
+      },
+      "projected_home_margin": 22.8,
+      "projected_favorite_margin": 22.8,
+      "projected_total": 57.8,
+      "favorite_team": "Georgia",
+      "underdog_team": "Florida",
+      "market": {
+        "opening": {
+          "spread_favorite": -10.5,
+          "favorite_team": "Georgia",
+          "underdog_team": "Florida",
+          "total": 56.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -10.5,
+          "favorite_team": "Georgia",
+          "underdog_team": "Florida",
+          "total": 56.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Georgia",
+        "underdog_team": "Florida"
+      },
+      "model_edge_favorite": 12.3,
+      "pick": "Georgia"
+    },
+    {
+      "id": "401856843",
+      "start": "2026-10-31T19:30:00.000Z",
+      "venue": "LaVell Edwards Stadium",
+      "location": "LaVell Edwards Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "BYU",
+        "logo_id": 252,
+        "record": "6-1",
+        "rank": 8,
+        "projected_score": 32.8
+      },
+      "away": {
+        "name": "Arizona State",
+        "logo_id": 9,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 19.5
+      },
+      "projected_home_margin": 13.4,
+      "projected_favorite_margin": 13.4,
+      "projected_total": 52.3,
+      "favorite_team": "BYU",
+      "underdog_team": "Arizona State",
+      "market": {
+        "opening": {
+          "spread_favorite": -16.5,
+          "favorite_team": "BYU",
+          "underdog_team": "Arizona State",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -16.5,
+          "favorite_team": "BYU",
+          "underdog_team": "Arizona State",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "BYU",
+        "underdog_team": "Arizona State"
+      },
+      "model_edge_favorite": -3.1,
+      "pick": "Arizona State"
+    },
+    {
+      "id": "401856845",
+      "start": "2026-10-31T19:30:00.000Z",
+      "venue": "Amon G. Carter Stadium",
+      "location": "Amon G. Carter Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "TCU",
+        "logo_id": 2628,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 23.4
+      },
+      "away": {
+        "name": "Kansas",
+        "logo_id": 2305,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 19.0
+      },
+      "projected_home_margin": 4.4,
+      "projected_favorite_margin": 4.4,
+      "projected_total": 42.5,
+      "favorite_team": "TCU",
+      "underdog_team": "Kansas",
+      "market": {
+        "opening": {
+          "spread_favorite": -6.0,
+          "favorite_team": "TCU",
+          "underdog_team": "Kansas",
+          "total": 48.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -6.0,
+          "favorite_team": "TCU",
+          "underdog_team": "Kansas",
+          "total": 48.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "TCU",
+        "underdog_team": "Kansas"
+      },
+      "model_edge_favorite": -1.6,
+      "pick": "Kansas"
+    },
+    {
+      "id": "401858501",
+      "start": "2026-10-31T19:30:00.000Z",
+      "venue": "Memorial Stadium (Bloomington, IN)",
+      "location": "Memorial Stadium (Bloomington, IN)",
+      "neutral_site": false,
+      "home": {
+        "name": "Indiana",
+        "logo_id": 84,
+        "record": "7-1",
+        "rank": 4,
+        "projected_score": 29.2
+      },
+      "away": {
+        "name": "Minnesota",
+        "logo_id": 135,
+        "record": "5-2",
+        "rank": null,
+        "projected_score": 13.9
+      },
+      "projected_home_margin": 15.3,
+      "projected_favorite_margin": 15.3,
+      "projected_total": 43.2,
+      "favorite_team": "Indiana",
+      "underdog_team": "Minnesota",
+      "market": {
+        "opening": {
+          "spread_favorite": -19.5,
+          "favorite_team": "Indiana",
+          "underdog_team": "Minnesota",
+          "total": 42.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -19.5,
+          "favorite_team": "Indiana",
+          "underdog_team": "Minnesota",
+          "total": 42.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Indiana",
+        "underdog_team": "Minnesota"
+      },
+      "model_edge_favorite": -4.2,
+      "pick": "Minnesota"
+    },
+    {
+      "id": "401858505",
+      "start": "2026-10-31T19:30:00.000Z",
+      "venue": "Autzen Stadium",
+      "location": "Autzen Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Oregon",
+        "logo_id": 2483,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 30.0
+      },
+      "away": {
+        "name": "Northwestern",
+        "logo_id": 77,
+        "record": "6-1",
+        "rank": 20,
+        "projected_score": 19.3
+      },
+      "projected_home_margin": 10.7,
+      "projected_favorite_margin": 10.7,
+      "projected_total": 49.3,
+      "favorite_team": "Oregon",
+      "underdog_team": "Northwestern",
+      "market": {
+        "opening": {
+          "spread_favorite": -3.5,
+          "favorite_team": "Oregon",
+          "underdog_team": "Northwestern",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -3.5,
+          "favorite_team": "Oregon",
+          "underdog_team": "Northwestern",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Oregon",
+        "underdog_team": "Northwestern"
+      },
+      "model_edge_favorite": 7.2,
+      "pick": "Oregon"
+    },
+    {
+      "id": "401860910",
+      "start": "2026-10-31T19:30:00.000Z",
+      "venue": "Maverik Stadium",
+      "location": "Maverik Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Utah State",
+        "logo_id": 328,
+        "record": "2-5",
         "rank": null,
         "projected_score": 27.9
       },
-      "projected_home_margin": -2.8,
-      "projected_total": 53.0,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+      "away": {
+        "name": "Colorado State",
+        "logo_id": 36,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 25.6
       },
-      "model_edge_home": null,
-      "pick": null
+      "projected_home_margin": 2.4,
+      "projected_favorite_margin": 2.4,
+      "projected_total": 53.5,
+      "favorite_team": "Utah State",
+      "underdog_team": "Colorado State",
+      "market": {
+        "opening": {
+          "spread_favorite": -7.0,
+          "favorite_team": "Utah State",
+          "underdog_team": "Colorado State",
+          "total": 63.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -6.5,
+          "favorite_team": "Utah State",
+          "underdog_team": "Colorado State",
+          "total": 63.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Utah State",
+        "underdog_team": "Colorado State"
+      },
+      "model_edge_favorite": -4.1,
+      "pick": "Colorado State"
     },
     {
-      "id": "espn-401858273",
-      "start": "2026-10-24T19:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401871059",
+      "start": "2026-10-31T19:30:00.000Z",
+      "venue": "Williams Stadium (VA)",
+      "location": "Williams Stadium (VA)",
       "neutral_site": false,
       "home": {
-        "name": "Georgia Tech",
-        "record": null,
+        "name": "Liberty",
+        "logo_id": 2335,
+        "record": "6-1",
         "rank": null,
-        "projected_score": 28.3
+        "projected_score": 27.9
       },
       "away": {
-        "name": "Boston College",
-        "record": null,
+        "name": "Florida International",
+        "logo_id": 2229,
+        "record": "3-4",
         "rank": null,
-        "projected_score": 18.2
+        "projected_score": 15.5
       },
-      "projected_home_margin": 10.1,
-      "projected_total": 46.5,
+      "projected_home_margin": 12.4,
+      "projected_favorite_margin": 12.4,
+      "projected_total": 43.5,
+      "favorite_team": "Liberty",
+      "underdog_team": "Florida International",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -14.5,
+          "favorite_team": "Liberty",
+          "underdog_team": "Florida International",
+          "total": 45.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -14.0,
+          "favorite_team": "Liberty",
+          "underdog_team": "Florida International",
+          "total": 45.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Liberty",
+        "underdog_team": "Florida International"
       },
-      "model_edge_home": null,
+      "model_edge_favorite": -1.6,
+      "pick": "Florida International"
+    },
+    {
+      "id": "401871095",
+      "start": "2026-10-31T19:30:00.000Z",
+      "venue": "Malone Stadium",
+      "location": "Malone Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "UL Monroe",
+        "logo_id": 2433,
+        "record": "1-6",
+        "rank": null,
+        "projected_score": 25.6
+      },
+      "away": {
+        "name": "Southern Miss",
+        "logo_id": 2572,
+        "record": "2-5",
+        "rank": null,
+        "projected_score": 29.7
+      },
+      "projected_home_margin": -4.1,
+      "projected_favorite_margin": 4.1,
+      "projected_total": 55.3,
+      "favorite_team": "Southern Miss",
+      "underdog_team": "UL Monroe",
+      "market": {
+        "opening": {
+          "spread_favorite": -3.5,
+          "favorite_team": "Southern Miss",
+          "underdog_team": "UL Monroe",
+          "total": 53.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -3.5,
+          "favorite_team": "Southern Miss",
+          "underdog_team": "UL Monroe",
+          "total": 53.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Southern Miss",
+        "underdog_team": "UL Monroe"
+      },
+      "model_edge_favorite": 0.6,
       "pick": null
     },
     {
-      "id": "espn-401862810",
-      "start": "2026-10-24T19:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401856848",
+      "start": "2026-10-31T19:45:00.000Z",
+      "venue": "Nippert Stadium",
+      "location": "Nippert Stadium",
       "neutral_site": false,
       "home": {
-        "name": "Navy",
-        "record": null,
+        "name": "Cincinnati",
+        "logo_id": 2132,
+        "record": "5-2",
+        "rank": null,
+        "projected_score": 23.8
+      },
+      "away": {
+        "name": "Utah",
+        "logo_id": 254,
+        "record": "7-0",
+        "rank": 6,
+        "projected_score": 30.1
+      },
+      "projected_home_margin": -6.3,
+      "projected_favorite_margin": 6.3,
+      "projected_total": 53.8,
+      "favorite_team": "Utah",
+      "underdog_team": "Cincinnati",
+      "market": {
+        "opening": {
+          "spread_favorite": -6.5,
+          "favorite_team": "Utah",
+          "underdog_team": "Cincinnati",
+          "total": 58.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -6.5,
+          "favorite_team": "Utah",
+          "underdog_team": "Cincinnati",
+          "total": 58.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Utah",
+        "underdog_team": "Cincinnati"
+      },
+      "model_edge_favorite": -0.2,
+      "pick": null
+    },
+    {
+      "id": "401858284",
+      "start": "2026-10-31T19:45:00.000Z",
+      "venue": "Allegacy Federal Credit Union Stadium",
+      "location": "Allegacy Federal Credit Union Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Wake Forest",
+        "logo_id": 154,
+        "record": "6-1",
+        "rank": 14,
+        "projected_score": 32.1
+      },
+      "away": {
+        "name": "Virginia",
+        "logo_id": 258,
+        "record": "4-4",
+        "rank": null,
+        "projected_score": 16.5
+      },
+      "projected_home_margin": 15.6,
+      "projected_favorite_margin": 15.6,
+      "projected_total": 48.6,
+      "favorite_team": "Wake Forest",
+      "underdog_team": "Virginia",
+      "market": {
+        "opening": {
+          "spread_favorite": -14.0,
+          "favorite_team": "Wake Forest",
+          "underdog_team": "Virginia",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -14.0,
+          "favorite_team": "Wake Forest",
+          "underdog_team": "Virginia",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Wake Forest",
+        "underdog_team": "Virginia"
+      },
+      "model_edge_favorite": 1.6,
+      "pick": "Wake Forest"
+    },
+    {
+      "id": "401864529",
+      "start": "2026-10-31T20:00:00.000Z",
+      "venue": "CEFCU Stadium",
+      "location": "CEFCU Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "San Jos\u00e9 State",
+        "logo_id": 23,
+        "record": "4-4",
+        "rank": null,
+        "projected_score": 19.6
+      },
+      "away": {
+        "name": "New Mexico",
+        "logo_id": 167,
+        "record": "6-1",
+        "rank": null,
+        "projected_score": 24.2
+      },
+      "projected_home_margin": -4.6,
+      "projected_favorite_margin": 4.6,
+      "projected_total": 43.8,
+      "favorite_team": "New Mexico",
+      "underdog_team": "San Jos\u00e9 State",
+      "market": {
+        "opening": {
+          "spread_favorite": -14.5,
+          "favorite_team": "New Mexico",
+          "underdog_team": "San Jos\u00e9 State",
+          "total": 41.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -14.5,
+          "favorite_team": "New Mexico",
+          "underdog_team": "San Jos\u00e9 State",
+          "total": 41.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "New Mexico",
+        "underdog_team": "San Jos\u00e9 State"
+      },
+      "model_edge_favorite": -9.9,
+      "pick": "San Jos\u00e9 State"
+    },
+    {
+      "id": "401856736",
+      "start": "2026-10-31T20:15:00.000Z",
+      "venue": "Memorial Stadium (Norman, OK)",
+      "location": "Memorial Stadium (Norman, OK)",
+      "neutral_site": false,
+      "home": {
+        "name": "Oklahoma",
+        "logo_id": 201,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 30.3
+      },
+      "away": {
+        "name": "South Carolina",
+        "logo_id": 2579,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 24.3
+      },
+      "projected_home_margin": 6.0,
+      "projected_favorite_margin": 6.0,
+      "projected_total": 54.6,
+      "favorite_team": "Oklahoma",
+      "underdog_team": "South Carolina",
+      "market": {
+        "opening": {
+          "spread_favorite": -5.5,
+          "favorite_team": "Oklahoma",
+          "underdog_team": "South Carolina",
+          "total": 44.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -5.5,
+          "favorite_team": "Oklahoma",
+          "underdog_team": "South Carolina",
+          "total": 44.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Oklahoma",
+        "underdog_team": "South Carolina"
+      },
+      "model_edge_favorite": 0.5,
+      "pick": null
+    },
+    {
+      "id": "401858506",
+      "start": "2026-10-31T20:15:00.000Z",
+      "venue": "Beaver Stadium",
+      "location": "Beaver Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Penn State",
+        "logo_id": 213,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 33.5
+      },
+      "away": {
+        "name": "Purdue",
+        "logo_id": 2509,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 17.6
+      },
+      "projected_home_margin": 15.9,
+      "projected_favorite_margin": 15.9,
+      "projected_total": 51.0,
+      "favorite_team": "Penn State",
+      "underdog_team": "Purdue",
+      "market": {
+        "opening": {
+          "spread_favorite": -7.5,
+          "favorite_team": "Penn State",
+          "underdog_team": "Purdue",
+          "total": 53.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -7.5,
+          "favorite_team": "Penn State",
+          "underdog_team": "Purdue",
+          "total": 53.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Penn State",
+        "underdog_team": "Purdue"
+      },
+      "model_edge_favorite": 8.4,
+      "pick": "Penn State"
+    },
+    {
+      "id": "401858508",
+      "start": "2026-10-31T20:15:00.000Z",
+      "venue": "Rose Bowl",
+      "location": "Rose Bowl",
+      "neutral_site": false,
+      "home": {
+        "name": "UCLA",
+        "logo_id": 26,
+        "record": "7-0",
+        "rank": 7,
+        "projected_score": 31.4
+      },
+      "away": {
+        "name": "Nevada",
+        "logo_id": 2440,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 14.8
+      },
+      "projected_home_margin": 16.6,
+      "projected_favorite_margin": 16.6,
+      "projected_total": 46.3,
+      "favorite_team": "UCLA",
+      "underdog_team": "Nevada",
+      "market": {
+        "opening": {
+          "spread_favorite": -22.5,
+          "favorite_team": "UCLA",
+          "underdog_team": "Nevada",
+          "total": 44.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -22.5,
+          "favorite_team": "UCLA",
+          "underdog_team": "Nevada",
+          "total": 44.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "UCLA",
+        "underdog_team": "Nevada"
+      },
+      "model_edge_favorite": -5.9,
+      "pick": "Nevada"
+    },
+    {
+      "id": "401869846",
+      "start": "2026-10-31T22:30:00.000Z",
+      "venue": "Allen E. Paulson Stadium",
+      "location": "Allen E. Paulson Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Georgia Southern",
+        "logo_id": 290,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 27.1
+      },
+      "away": {
+        "name": "App State",
+        "logo_id": 2026,
+        "record": "5-2",
+        "rank": null,
+        "projected_score": 24.5
+      },
+      "projected_home_margin": 2.6,
+      "projected_favorite_margin": 2.6,
+      "projected_total": 51.7,
+      "favorite_team": "Georgia Southern",
+      "underdog_team": "App State",
+      "market": {
+        "opening": {
+          "spread_favorite": -5.5,
+          "favorite_team": "Georgia Southern",
+          "underdog_team": "App State",
+          "total": 54.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -5.5,
+          "favorite_team": "Georgia Southern",
+          "underdog_team": "App State",
+          "total": 54.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Georgia Southern",
+        "underdog_team": "App State"
+      },
+      "model_edge_favorite": -2.9,
+      "pick": "App State"
+    },
+    {
+      "id": "401856847",
+      "start": "2026-10-31T23:00:00.000Z",
+      "venue": "Jack Trice Stadium",
+      "location": "Jack Trice Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Iowa State",
+        "logo_id": 66,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 31.3
+      },
+      "away": {
+        "name": "Oklahoma State",
+        "logo_id": 197,
+        "record": "5-2",
+        "rank": 24,
+        "projected_score": 28.7
+      },
+      "projected_home_margin": 2.6,
+      "projected_favorite_margin": -2.6,
+      "projected_total": 60.0,
+      "favorite_team": "Oklahoma State",
+      "underdog_team": "Iowa State",
+      "market": {
+        "opening": {
+          "spread_favorite": -8.5,
+          "favorite_team": "Oklahoma State",
+          "underdog_team": "Iowa State",
+          "total": 56.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -8.5,
+          "favorite_team": "Oklahoma State",
+          "underdog_team": "Iowa State",
+          "total": 56.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Oklahoma State",
+        "underdog_team": "Iowa State"
+      },
+      "model_edge_favorite": -11.1,
+      "pick": "Iowa State"
+    },
+    {
+      "id": "401858280",
+      "start": "2026-10-31T23:00:00.000Z",
+      "venue": "Doak Campbell Stadium",
+      "location": "Doak Campbell Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Florida State",
+        "logo_id": 52,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 28.8
+      },
+      "away": {
+        "name": "Clemson",
+        "logo_id": 228,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 25.0
+      },
+      "projected_home_margin": 3.9,
+      "projected_favorite_margin": 3.9,
+      "projected_total": 53.8,
+      "favorite_team": "Florida State",
+      "underdog_team": "Clemson",
+      "market": {
+        "opening": {
+          "spread_favorite": -6.0,
+          "favorite_team": "Florida State",
+          "underdog_team": "Clemson",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -6.0,
+          "favorite_team": "Florida State",
+          "underdog_team": "Clemson",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Florida State",
+        "underdog_team": "Clemson"
+      },
+      "model_edge_favorite": -2.1,
+      "pick": "Clemson"
+    },
+    {
+      "id": "401860909",
+      "start": "2026-10-31T23:00:00.000Z",
+      "venue": "Snapdragon Stadium",
+      "location": "Snapdragon Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "San Diego State",
+        "logo_id": 21,
+        "record": "3-5",
         "rank": null,
         "projected_score": 29.2
       },
       "away": {
-        "name": "North Texas",
-        "record": null,
-        "rank": null,
-        "projected_score": 30.4
-      },
-      "projected_home_margin": -1.2,
-      "projected_total": 59.5,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401864526",
-      "start": "2026-10-24T19:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Northern Illinois",
-        "record": null,
-        "rank": null,
-        "projected_score": 19.2
-      },
-      "away": {
-        "name": "Hawai'i",
-        "record": null,
-        "rank": null,
-        "projected_score": 27.1
-      },
-      "projected_home_margin": -8.0,
-      "projected_total": 46.3,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401866448",
-      "start": "2026-10-24T19:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Buffalo",
-        "record": null,
-        "rank": null,
-        "projected_score": 29.7
-      },
-      "away": {
-        "name": "Bowling Green",
-        "record": null,
-        "rank": null,
-        "projected_score": 18.1
-      },
-      "projected_home_margin": 11.6,
-      "projected_total": 47.8,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401866449",
-      "start": "2026-10-24T20:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Ohio",
-        "record": null,
-        "rank": null,
-        "projected_score": 32.6
-      },
-      "away": {
-        "name": "Eastern Michigan",
-        "record": null,
-        "rank": null,
-        "projected_score": 20.6
-      },
-      "projected_home_margin": 12.0,
-      "projected_total": 53.3,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401871094",
-      "start": "2026-10-24T20:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Troy",
-        "record": null,
-        "rank": null,
-        "projected_score": 40.6
-      },
-      "away": {
-        "name": "UL Monroe",
-        "record": null,
-        "rank": null,
-        "projected_score": 18.8
-      },
-      "projected_home_margin": 21.8,
-      "projected_total": 59.4,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401864528",
-      "start": "2026-10-24T21:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Nevada",
-        "record": null,
-        "rank": null,
-        "projected_score": 27.2
-      },
-      "away": {
-        "name": "San Jos\u00e9 State",
-        "record": null,
-        "rank": null,
-        "projected_score": 23.2
-      },
-      "projected_home_margin": 4.0,
-      "projected_total": 50.4,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401869967",
-      "start": "2026-10-24T21:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Southern Miss",
-        "record": null,
-        "rank": null,
-        "projected_score": 21.9
-      },
-      "away": {
-        "name": "Louisiana",
-        "record": null,
-        "rank": null,
-        "projected_score": 32.4
-      },
-      "projected_home_margin": -10.5,
-      "projected_total": 54.3,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401871093",
-      "start": "2026-10-24T21:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Louisiana Tech",
-        "record": null,
-        "rank": null,
-        "projected_score": 27.6
-      },
-      "away": {
-        "name": "Old Dominion",
-        "record": null,
-        "rank": null,
-        "projected_score": 26.0
-      },
-      "projected_home_margin": 1.6,
-      "projected_total": 53.5,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401860907",
-      "start": "2026-10-24T22:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
         "name": "Washington State",
-        "record": null,
+        "logo_id": 265,
+        "record": "1-7",
         "rank": null,
-        "projected_score": 17.5
+        "projected_score": 26.6
       },
-      "away": {
-        "name": "Boise State",
-        "record": null,
-        "rank": null,
-        "projected_score": 31.3
-      },
-      "projected_home_margin": -13.8,
-      "projected_total": 48.9,
+      "projected_home_margin": 2.6,
+      "projected_favorite_margin": 2.6,
+      "projected_total": 55.8,
+      "favorite_team": "San Diego State",
+      "underdog_team": "Washington State",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -2.5,
+          "favorite_team": "San Diego State",
+          "underdog_team": "Washington State",
+          "total": 48.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -2.5,
+          "favorite_team": "San Diego State",
+          "underdog_team": "Washington State",
+          "total": 48.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "San Diego State",
+        "underdog_team": "Washington State"
       },
-      "model_edge_home": null,
+      "model_edge_favorite": 0.1,
       "pick": null
     },
     {
-      "id": "espn-401860905",
-      "start": "2026-10-24T22:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Colorado State",
-        "record": null,
-        "rank": null,
-        "projected_score": 33.4
-      },
-      "away": {
-        "name": "San Diego State",
-        "record": null,
-        "rank": null,
-        "projected_score": 27.6
-      },
-      "projected_home_margin": 5.9,
-      "projected_total": 61.0,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401869935",
-      "start": "2026-10-24T23:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Arkansas State",
-        "record": null,
-        "rank": null,
-        "projected_score": 26.1
-      },
-      "away": {
-        "name": "Georgia State",
-        "record": null,
-        "rank": null,
-        "projected_score": 31.1
-      },
-      "projected_home_margin": -5.0,
-      "projected_total": 57.2,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401856729",
-      "start": "2026-10-24T23:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
-      "neutral_site": false,
-      "home": {
-        "name": "Kentucky",
-        "record": null,
-        "rank": null,
-        "projected_score": 34.1
-      },
-      "away": {
-        "name": "Vanderbilt",
-        "record": null,
-        "rank": null,
-        "projected_score": 26.2
-      },
-      "projected_home_margin": 7.9,
-      "projected_total": 60.3,
-      "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
-      },
-      "model_edge_home": null,
-      "pick": null
-    },
-    {
-      "id": "espn-401856732",
-      "start": "2026-10-24T23:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401856737",
+      "start": "2026-10-31T23:30:00.000Z",
+      "venue": "DKR-Texas Memorial Stadium",
+      "location": "DKR-Texas Memorial Stadium",
       "neutral_site": false,
       "home": {
         "name": "Texas",
-        "record": null,
-        "rank": null,
-        "projected_score": 30.2
+        "logo_id": 251,
+        "record": "5-2",
+        "rank": 11,
+        "projected_score": 33.9
       },
       "away": {
-        "name": "Ole Miss",
-        "record": null,
+        "name": "Mississippi State",
+        "logo_id": 344,
+        "record": "4-3",
         "rank": null,
-        "projected_score": 23.5
+        "projected_score": 16.2
       },
-      "projected_home_margin": 6.7,
-      "projected_total": 53.7,
+      "projected_home_margin": 17.6,
+      "projected_favorite_margin": 17.6,
+      "projected_total": 50.1,
+      "favorite_team": "Texas",
+      "underdog_team": "Mississippi State",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -21.0,
+          "favorite_team": "Texas",
+          "underdog_team": "Mississippi State",
+          "total": 51.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -21.0,
+          "favorite_team": "Texas",
+          "underdog_team": "Mississippi State",
+          "total": 50.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Texas",
+        "underdog_team": "Mississippi State"
       },
-      "model_edge_home": null,
+      "model_edge_favorite": -3.4,
+      "pick": "Mississippi State"
+    },
+    {
+      "id": "401858281",
+      "start": "2026-10-31T23:30:00.000Z",
+      "venue": "Acrisure Stadium",
+      "location": "Acrisure Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Pittsburgh",
+        "logo_id": 221,
+        "record": "5-3",
+        "rank": null,
+        "projected_score": 30.7
+      },
+      "away": {
+        "name": "Georgia Tech",
+        "logo_id": 59,
+        "record": "2-5",
+        "rank": null,
+        "projected_score": 22.8
+      },
+      "projected_home_margin": 7.9,
+      "projected_favorite_margin": 7.9,
+      "projected_total": 53.5,
+      "favorite_team": "Pittsburgh",
+      "underdog_team": "Georgia Tech",
+      "market": {
+        "opening": {
+          "spread_favorite": -7.5,
+          "favorite_team": "Pittsburgh",
+          "underdog_team": "Georgia Tech",
+          "total": 53.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -7.5,
+          "favorite_team": "Pittsburgh",
+          "underdog_team": "Georgia Tech",
+          "total": 53.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Pittsburgh",
+        "underdog_team": "Georgia Tech"
+      },
+      "model_edge_favorite": 0.4,
       "pick": null
     },
     {
-      "id": "espn-401858275",
-      "start": "2026-10-24T23:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401858282",
+      "start": "2026-10-31T23:30:00.000Z",
+      "venue": "Kenan Stadium",
+      "location": "Kenan Stadium",
       "neutral_site": false,
       "home": {
         "name": "North Carolina",
-        "record": null,
+        "logo_id": 153,
+        "record": "4-3",
         "rank": null,
-        "projected_score": 24.9
+        "projected_score": 20.8
       },
       "away": {
-        "name": "Syracuse",
-        "record": null,
-        "rank": null,
-        "projected_score": 21.4
+        "name": "Miami",
+        "logo_id": 2390,
+        "record": "7-0",
+        "rank": 1,
+        "projected_score": 40.6
       },
-      "projected_home_margin": 3.5,
-      "projected_total": 46.3,
+      "projected_home_margin": -19.8,
+      "projected_favorite_margin": 19.8,
+      "projected_total": 61.5,
+      "favorite_team": "Miami",
+      "underdog_team": "North Carolina",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -14.5,
+          "favorite_team": "Miami",
+          "underdog_team": "North Carolina",
+          "total": 52.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -14.5,
+          "favorite_team": "Miami",
+          "underdog_team": "North Carolina",
+          "total": 52.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Miami",
+        "underdog_team": "North Carolina"
       },
-      "model_edge_home": null,
-      "pick": null
+      "model_edge_favorite": 5.3,
+      "pick": "Miami"
     },
     {
-      "id": "espn-401858500",
-      "start": "2026-10-24T23:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401858509",
+      "start": "2026-10-31T23:30:00.000Z",
+      "venue": "Los Angeles Memorial Coliseum",
+      "location": "Los Angeles Memorial Coliseum",
       "neutral_site": false,
       "home": {
-        "name": "Wisconsin",
-        "record": null,
-        "rank": null,
-        "projected_score": 28.6
-      },
-      "away": {
         "name": "USC",
-        "record": null,
+        "logo_id": 30,
+        "record": "6-2",
         "rank": null,
-        "projected_score": 26.7
+        "projected_score": 23.3
       },
-      "projected_home_margin": 2.0,
-      "projected_total": 55.3,
+      "away": {
+        "name": "Ohio State",
+        "logo_id": 194,
+        "record": "6-1",
+        "rank": 2,
+        "projected_score": 32.3
+      },
+      "projected_home_margin": -9.0,
+      "projected_favorite_margin": 9.0,
+      "projected_total": 55.6,
+      "favorite_team": "Ohio State",
+      "underdog_team": "USC",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -7.0,
+          "favorite_team": "Ohio State",
+          "underdog_team": "USC",
+          "total": 51.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -7.0,
+          "favorite_team": "Ohio State",
+          "underdog_team": "USC",
+          "total": 51.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Ohio State",
+        "underdog_team": "USC"
       },
-      "model_edge_home": null,
-      "pick": null
+      "model_edge_favorite": 2.0,
+      "pick": "Ohio State"
     },
     {
-      "id": "espn-401860906",
-      "start": "2026-10-24T23:30Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401856733",
+      "start": "2026-10-31T23:45:00.000Z",
+      "venue": "Razorback Stadium",
+      "location": "Razorback Stadium",
       "neutral_site": false,
       "home": {
+        "name": "Arkansas",
+        "logo_id": 8,
+        "record": "3-4",
+        "rank": null,
+        "projected_score": 18.0
+      },
+      "away": {
+        "name": "Missouri",
+        "logo_id": 142,
+        "record": "5-2",
+        "rank": 23,
+        "projected_score": 26.0
+      },
+      "projected_home_margin": -8.1,
+      "projected_favorite_margin": 8.1,
+      "projected_total": 44.0,
+      "favorite_team": "Missouri",
+      "underdog_team": "Arkansas",
+      "market": {
+        "opening": {
+          "spread_favorite": -10.0,
+          "favorite_team": "Missouri",
+          "underdog_team": "Arkansas",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -10.0,
+          "favorite_team": "Missouri",
+          "underdog_team": "Arkansas",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Missouri",
+        "underdog_team": "Arkansas"
+      },
+      "model_edge_favorite": -1.9,
+      "pick": "Arkansas"
+    },
+    {
+      "id": "401858504",
+      "start": "2026-11-01T00:00:00.000Z",
+      "venue": "Memorial Stadium (Lincoln, NE)",
+      "location": "Memorial Stadium (Lincoln, NE)",
+      "neutral_site": false,
+      "home": {
+        "name": "Nebraska",
+        "logo_id": 158,
+        "record": "5-2",
+        "rank": null,
+        "projected_score": 26.6
+      },
+      "away": {
+        "name": "Washington",
+        "logo_id": 264,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 22.5
+      },
+      "projected_home_margin": 4.1,
+      "projected_favorite_margin": 4.1,
+      "projected_total": 49.0,
+      "favorite_team": "Nebraska",
+      "underdog_team": "Washington",
+      "market": {
+        "opening": {
+          "spread_favorite": -8.5,
+          "favorite_team": "Nebraska",
+          "underdog_team": "Washington",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -8.5,
+          "favorite_team": "Nebraska",
+          "underdog_team": "Washington",
+          "total": 49.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Nebraska",
+        "underdog_team": "Washington"
+      },
+      "model_edge_favorite": -4.4,
+      "pick": "Washington"
+    },
+    {
+      "id": "401862814",
+      "start": "2026-11-01T00:00:00.000Z",
+      "venue": "Simmons Bank Liberty Stadium",
+      "location": "Simmons Bank Liberty Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Memphis",
+        "logo_id": 235,
+        "record": "6-2",
+        "rank": null,
+        "projected_score": 31.5
+      },
+      "away": {
+        "name": "Army",
+        "logo_id": 349,
+        "record": "5-2",
+        "rank": null,
+        "projected_score": 27.1
+      },
+      "projected_home_margin": 4.4,
+      "projected_favorite_margin": 4.4,
+      "projected_total": 58.6,
+      "favorite_team": "Memphis",
+      "underdog_team": "Army",
+      "market": {
+        "opening": {
+          "spread_favorite": -6.0,
+          "favorite_team": "Memphis",
+          "underdog_team": "Army",
+          "total": 58.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -6.0,
+          "favorite_team": "Memphis",
+          "underdog_team": "Army",
+          "total": 58.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Memphis",
+        "underdog_team": "Army"
+      },
+      "model_edge_favorite": -1.6,
+      "pick": "Army"
+    },
+    {
+      "id": "401860908",
+      "start": "2026-11-01T02:00:00.000Z",
+      "venue": "Albertsons Stadium",
+      "location": "Albertsons Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "Boise State",
+        "logo_id": 68,
+        "record": "6-1",
+        "rank": 20,
+        "projected_score": 38.5
+      },
+      "away": {
         "name": "Texas State",
-        "record": null,
+        "logo_id": 326,
+        "record": "4-3",
         "rank": null,
-        "projected_score": 25.8
+        "projected_score": 19.9
+      },
+      "projected_home_margin": 18.6,
+      "projected_favorite_margin": 18.6,
+      "projected_total": 58.3,
+      "favorite_team": "Boise State",
+      "underdog_team": "Texas State",
+      "market": {
+        "opening": {
+          "spread_favorite": -11.5,
+          "favorite_team": "Boise State",
+          "underdog_team": "Texas State",
+          "total": 63.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -11.5,
+          "favorite_team": "Boise State",
+          "underdog_team": "Texas State",
+          "total": 63.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Boise State",
+        "underdog_team": "Texas State"
+      },
+      "model_edge_favorite": 7.1,
+      "pick": "Boise State"
+    },
+    {
+      "id": "401864530",
+      "start": "2026-11-01T02:30:00.000Z",
+      "venue": "Allegiant Stadium",
+      "location": "Allegiant Stadium",
+      "neutral_site": false,
+      "home": {
+        "name": "UNLV",
+        "logo_id": 2439,
+        "record": "4-3",
+        "rank": null,
+        "projected_score": 40.1
       },
       "away": {
-        "name": "Utah State",
-        "record": null,
+        "name": "Northern Illinois",
+        "logo_id": 2459,
+        "record": "0-7",
         "rank": null,
-        "projected_score": 22.6
+        "projected_score": 15.7
       },
-      "projected_home_margin": 3.3,
-      "projected_total": 48.4,
+      "projected_home_margin": 24.4,
+      "projected_favorite_margin": 24.4,
+      "projected_total": 55.8,
+      "favorite_team": "UNLV",
+      "underdog_team": "Northern Illinois",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -24.5,
+          "favorite_team": "UNLV",
+          "underdog_team": "Northern Illinois",
+          "total": 53.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -24.5,
+          "favorite_team": "UNLV",
+          "underdog_team": "Northern Illinois",
+          "total": 53.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "UNLV",
+        "underdog_team": "Northern Illinois"
       },
-      "model_edge_home": null,
+      "model_edge_favorite": -0.1,
       "pick": null
     },
     {
-      "id": "espn-401862811",
-      "start": "2026-10-25T00:00Z",
-      "network": null,
-      "venue": null,
-      "location": null,
+      "id": "401860924",
+      "start": "2026-11-01T03:00:00.000Z",
+      "venue": "Valley Children's Stadium",
+      "location": "Valley Children's Stadium",
       "neutral_site": false,
       "home": {
-        "name": "Tulane",
-        "record": null,
+        "name": "Fresno State",
+        "logo_id": 278,
+        "record": "4-3",
         "rank": null,
-        "projected_score": 24.6
+        "projected_score": 25.9
       },
       "away": {
-        "name": "UTSA",
-        "record": null,
+        "name": "Oregon State",
+        "logo_id": 204,
+        "record": "5-2",
         "rank": null,
-        "projected_score": 23.8
+        "projected_score": 30.7
       },
-      "projected_home_margin": 0.8,
-      "projected_total": 48.4,
+      "projected_home_margin": -4.8,
+      "projected_favorite_margin": 4.8,
+      "projected_total": 56.6,
+      "favorite_team": "Oregon State",
+      "underdog_team": "Fresno State",
       "market": {
-        "opening": null,
-        "current": null,
-        "provider": null
+        "opening": {
+          "spread_favorite": -5.5,
+          "favorite_team": "Oregon State",
+          "underdog_team": "Fresno State",
+          "total": 56.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T15:42:07.104700+00:00"
+        },
+        "current": {
+          "spread_favorite": -5.5,
+          "favorite_team": "Oregon State",
+          "underdog_team": "Fresno State",
+          "total": 56.5,
+          "provider": "DraftKings",
+          "observed_at": "2026-10-26T16:57:07.984829+00:00"
+        },
+        "provider": "DraftKings",
+        "favorite_team": "Oregon State",
+        "underdog_team": "Fresno State"
       },
-      "model_edge_home": null,
+      "model_edge_favorite": -0.7,
       "pick": null
     }
   ],
-  "market_data_status": "no CFBD_API_KEY; market fields unavailable",
+  "market_data_status": "live CFBD snapshot",
   "methodology": {
     "model": "Market-free score model. Lines are shown only after prediction generation.",
-    "pick_threshold_points": 1.5,
-    "spread_convention": "A negative spread means the home team is favored."
+    "pick_threshold_points": 1.0,
+    "spread_convention": "A negative spread means the favorite is favored."
   }
 }
