@@ -128,7 +128,59 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git commit -m "chore: persist weekly predictions and CFBD lines [skip ci]"
-          git push
+          if ! git push; then
+            git fetch origin main
+            if ! git rebase origin/main; then
+              python - <<'PY'
+              import json
+              import subprocess
+              from pathlib import Path
+
+              conflicts = subprocess.check_output(
+                  ["git", "diff", "--name-only", "--diff-filter=U"], text=True
+              ).splitlines()
+              supported = {
+                  "data/site/line_history.json",
+                  "data/site/ats_results.json",
+              }
+              if not conflicts or not set(conflicts) <= supported:
+                  raise RuntimeError(f"Cannot safely resolve rebase conflicts: {conflicts}")
+
+              def stage_json(stage, path):
+                  return json.loads(subprocess.check_output(
+                      ["git", "show", f":{stage}:{path}"], text=True
+                  ))
+
+              for path in conflicts:
+                  remote = stage_json(2, path)
+                  local = stage_json(3, path)
+                  if path.endswith("line_history.json"):
+                      merged = {}
+                      for key in remote.keys() | local.keys():
+                          records = [data[key] for data in (remote, local) if key in data]
+                          opening = min(
+                              records,
+                              key=lambda record: record.get("opening", {}).get("observed_at", ""),
+                          )
+                          current = max(
+                              records,
+                              key=lambda record: record.get("current", {}).get("observed_at", ""),
+                          )
+                          merged[key] = {
+                              **current,
+                              "opening": opening.get("opening", current.get("opening")),
+                          }
+                  else:
+                      merged = remote
+                      for season, games in local.items():
+                          merged.setdefault(season, {}).update(games)
+                  Path(path).write_text(json.dumps(merged, indent=2, sort_keys=True) + "\n")
+                  subprocess.run(["git", "add", path], check=True)
+          PY
+              GIT_EDITOR=true git rebase --continue
+            fi
+            git push
+          fi
       - uses: actions/upload-pages-artifact@v3
         with:
           path: public
