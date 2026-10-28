@@ -103,14 +103,21 @@ jobs:
           python -m src.cfb_model.train.score_model \
             --season "$SEASON" --predict-week "$WEEK" \
             --candidate "$(cat candidate.txt)"
+          echo "PREDICTIONS_GENERATED=true" >> "$GITHUB_ENV"
       - name: Build static dashboard and retrieve display-only CFBD lines
         run: |
-          python -m src.cfb_model.site.build_site \
-            --season "$SEASON" --week "$WEEK" --skip-diagnostics
-      - name: Preserve weekly predictions and line snapshots
+          args=(--season "$SEASON" --week "$WEEK" --skip-diagnostics)
+          if [ "$PREDICTIONS_GENERATED" = true ]; then
+            args+=(--predictions-generated)
+          fi
+          python -m src.cfb_model.site.build_site "${args[@]}"
+      - name: Persist weekly predictions, line snapshots, and ATS results
         run: |
           if [ -f data/site/line_history.json ]; then
             git add -- data/site/line_history.json
+          fi
+          if [ -f data/site/ats_results.json ]; then
+            git add -- data/site/ats_results.json
           fi
           if [ "$RUN_MODE" = weekly ]; then
             git add -- "$PREDICTION_CSV"

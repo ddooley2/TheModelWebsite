@@ -8,13 +8,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=bodoni-moda">
+  <link rel="stylesheet" href="assets/site.css?v=final-board-controls">
 </head>
 <body>
   <header class="shell masthead">
     <a class="brand" href="#board"><span>$YNDICATE<small>COLLEGE FOOTBALL BETTING</small></span></a>
     <nav aria-label="Primary">
       <a href="#board" data-view="board">Board</a>
+      <a href="#performance" data-view="performance">Performance</a>
       <a href="#method" data-view="method">Method</a>
     </nav>
   </header>
@@ -26,7 +27,18 @@
         <div><h1 id="board-title">Game board</h1><p id="generated-at">Loading projections…</p></div>
       </div>
       <div class="notice">Favorites are bolded. Spreads are shown relative to the favorite.</div>
+      <div class="board-filters" role="group" aria-label="Filter games">
+        <button type="button" class="board-filter active" data-filter="all" aria-pressed="true">All Games</button>
+        <button type="button" class="board-filter" data-filter="top25" aria-pressed="false">Top 25</button>
+      </div>
       <div id="game-board" class="game-board" aria-live="polite"></div>
+    </section>
+
+    <section id="performance" class="view hidden">
+      <div class="eyebrow">WEEKLY PERFORMANCE</div>
+      <h1>Performance</h1>
+      <p class="performance-intro">Weekly results for model picks, starting in Week 9.</p>
+      <div id="performance-content" aria-live="polite"></div>
     </section>
 
     <section id="method" class="view hidden">
@@ -35,7 +47,7 @@
       <div class="method-grid">
         <article><h2>Score-first</h2><p>The system predicts each team’s final score. Projected spread and total are calculated from these scores.</p></article>
         <article><h2>Pre-kickoff only</h2><p>Inputs use earlier game results, point-in-time opponent-adjusted ratings, preseason Elo, talent, recruiting, rest, week, neutral-site status, and other metrics to predict scores.</p></article>
-        <article><h2>Market firewall</h2><p>Opening and current lines are retrieved after predictions are created. They are displayed for comparison and never enter model fitting or score prediction. Our predictions cut through the betting hype.</p></article>
+        <article><h2>Market firewall</h2><p>Betting lines are retrieved after predictions are created and displayed for comparison only. They never enter model fitting or score prediction, allowing our predictions to cut through the betting hype.</p></article>
         <article><h2>Walk-forward evaluation</h2><p>Each season is predicted by a model trained only on preceding seasons.</p></article>
       </div>
     </section>
@@ -50,6 +62,6 @@
       <footer class="card-foot"></footer>
     </article>
   </template>
-  <script src="assets/app.js?v=dollar-wordmark"></script>
+  <script src="assets/app.js?v=final-board-controls"></script>
 </body>
 </html>

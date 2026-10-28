@@ -1,0 +1,2 @@
+season,week,games_evaluated,games_with_spread,games_with_total,ats_picks,ats_wins,ats_losses,ats_pushes,ats_win_pct_excluding_pushes,total_picks,total_wins,total_losses,total_pushes,total_win_pct_excluding_pushes,home_margin_mae,total_mae,ats_edge_mae,over_under_edge_mae
+2026,8,47,47,47,47,27,19,1,0.5869565217391305,47,21,26,0,0.44680851063829785,11.441182317039646,14.767605731291995,11.441182317039646,14.767605731291995
