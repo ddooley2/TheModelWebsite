@@ -18,9 +18,9 @@ on:
         description: Week to publish
         required: false
   schedule:
-    - cron: "17 14 * * 1"
-    - cron: "17 14 * * 2-6"
-    - cron: "17 14 * * 0"
+    - cron: "0 12 * * 1"
+    - cron: "0 12 * * 2-6"
+    - cron: "0 12 * * 0"
   push:
     branches: [main]
     paths:
@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-      RUN_MODE: ${{ github.event_name == 'schedule' && github.event.schedule == '17 14 * * 1' && 'weekly' || github.event_name == 'schedule' && 'daily' || github.event_name == 'push' && 'daily' || inputs.run_type || 'weekly' }}
+      RUN_MODE: ${{ github.event_name == 'schedule' && github.event.schedule == '0 12 * * 1' && 'weekly' || github.event_name == 'schedule' && 'daily' || github.event_name == 'push' && 'daily' || inputs.run_type || 'weekly' }}
       SEASON_OVERRIDE: ${{ inputs.season }}
       WEEK_OVERRIDE: ${{ inputs.week }}
     steps:
