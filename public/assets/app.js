@@ -23,6 +23,7 @@ function formatStart(value) {
   const date = new Date(value);
   return Number.isNaN(date.getTime()) ? "Time TBD" : new Intl.DateTimeFormat(undefined, {weekday:"short", month:"short", day:"numeric", hour:"numeric", minute:"2-digit", timeZone:"America/New_York", timeZoneName:"short"}).format(date);
 }
+const etDate = date => new Intl.DateTimeFormat("en-CA", {timeZone:"America/New_York"}).format(date);
 function gameGroup(game) {
   const date = new Date(game.start);
   if (!game.start || Number.isNaN(date.getTime())) {
@@ -38,9 +39,10 @@ function gameGroup(game) {
     hourCycle:"h23",
   }).formatToParts(date).map(part => [part.type, part.value]));
   const dateKey = `${parts.year}-${parts.month}-${parts.day}`;
+  const past = etDate(date) < etDate(new Date());
   const dateLabel = `${parts.weekday}, ${parts.month} ${parts.day}`;
   if (parts.weekday !== "Saturday") {
-    return {key:dateKey, label:dateLabel, dayLabel:dateLabel, windowLabel:null};
+    return {key:dateKey, label:dateLabel, dayLabel:dateLabel, windowLabel:null, past};
   }
 
   const hour = Number(parts.hour);
@@ -55,6 +57,7 @@ function gameGroup(game) {
     key:dateKey,
     label:dateLabel,
     dayLabel:dateLabel,
+    past,
     windowKey:window[0],
     windowLabel:window[1],
   };
@@ -82,6 +85,8 @@ function card(game) {
   } else foot.innerHTML = `<span class="unavailable">Reference spread or model projection unavailable.</span>`;
   if (game.pick && (game.ats_result === "win" || game.ats_result === "loss")) {
     foot.classList.add(`outcome-${game.ats_result}`);
+  } else if (!game.pick && game.su_result) {
+    foot.classList.add("outcome-none");
   }
   return template;
 }
@@ -107,6 +112,7 @@ function renderGameBoard(games, filter = "all") {
       groups.set(group.key, {
         label:group.label,
         dayLabel:group.dayLabel,
+        past:group.past,
         windows:new Map(),
       });
     }
@@ -120,17 +126,19 @@ function renderGameBoard(games, filter = "all") {
 
   const sections = [];
   for (const day of groups.values()) {
-    const section = document.createElement("section");
+    const section = document.createElement("details");
     section.className = "game-day";
-    const heading = document.createElement("h2");
+    section.open = !day.past;
+    const heading = document.createElement("summary");
     heading.className = "game-day-heading";
     heading.textContent = day.dayLabel;
     section.append(heading);
     for (const window of day.windows.values()) {
-      const windowSection = document.createElement(window.label ? "section" : "div");
-      if (window.label) windowSection.className = "game-window";
+      const windowSection = document.createElement(window.label ? "details" : "div");
       if (window.label) {
-        const subheading = document.createElement("h3");
+        windowSection.className = "game-window";
+        windowSection.open = !day.past;
+        const subheading = document.createElement("summary");
         subheading.className = "game-window-heading";
         subheading.textContent = window.label;
         windowSection.append(subheading);
