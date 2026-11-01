@@ -83,7 +83,7 @@ function card(game) {
     if (game.pick) foot.innerHTML = `<span class="pick">MODEL PICK: ${game.pick}</span> · ${Math.abs(edge).toFixed(1)} points versus the reference spread`;
     else foot.textContent = `Pick 'em · margin versus the reference spread: ${spread(edge)} points`;
   } else foot.innerHTML = `<span class="unavailable">Reference spread or model projection unavailable.</span>`;
-  if (game.pick && (game.ats_result === "win" || game.ats_result === "loss")) {
+  if (game.pick && (["win", "loss", "push"].includes(game.ats_result))) {
     foot.classList.add(`outcome-${game.ats_result}`);
   } else if (!game.pick && game.su_result) {
     foot.classList.add("outcome-none");
