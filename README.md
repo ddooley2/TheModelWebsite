@@ -1,6 +1,6 @@
 # Score-first college football model
 
-This repository predicts home and away final scores for FBS-vs-FBS games. Margin and total are derived from those scores. The production candidate uses **only pre-kickoff, market-free features**: point-in-time form, Elo, opponent-adjusted ratings, preseason Elo, talent/recruiting priors, rest, week, and neutral-site status.
+This repository predicts home and away final scores for FBS-vs-FBS games. Margin and total are derived from those scores. The production candidate uses **only pre-kickoff, market-free features**: point-in-time form, Elo, opponent-adjusted ratings, shrunk running averages of CFBD advanced stats (PPA, success rate, explosiveness), preseason Elo, talent/recruiting priors, rest, week, and neutral-site status.
 
 ## Data integrity
 

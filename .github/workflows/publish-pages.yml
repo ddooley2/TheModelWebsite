@@ -44,7 +44,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       CFBD_API_KEY: ${{ secrets.CFBD_API_KEY }}
-      RUN_MODE: ${{ github.event_name == 'schedule' && github.event.schedule == '0 12 * * 1' && 'weekly' || github.event_name == 'schedule' && 'daily' || github.event_name == 'push' && 'daily' || inputs.run_type || 'weekly' }}
+      RUN_MODE: ${{ github.event_name == 'schedule' && github.event.schedule == '0 10 * * 1' && 'weekly' || github.event_name == 'schedule' && 'daily' || github.event_name == 'push' && 'daily' || inputs.run_type || 'weekly' }}
       SEASON_OVERRIDE: ${{ inputs.season }}
       WEEK_OVERRIDE: ${{ inputs.week }}
     steps:

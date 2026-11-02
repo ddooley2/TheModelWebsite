@@ -10,7 +10,7 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from src.cfb_model.train.score_model import MODEL_COLUMNS, build_model_features, load_historical_games, load_roster_priors
+from src.cfb_model.train.score_model import MODEL_COLUMNS, build_model_features, load_advanced_stats, load_historical_games, load_roster_priors
 from src.cfb_model.train.experiments import choose_winner, run_candidate_backtest
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -80,7 +80,7 @@ def _plot_missingness(features: pd.DataFrame, games: pd.DataFrame, output: Path)
 def _plot_distributions(features: pd.DataFrame, output: Path) -> pd.DataFrame:
     summary = features[MODEL_COLUMNS].describe(percentiles=[0.01, 0.5, 0.99]).T.reset_index(names="feature")
     columns = MODEL_COLUMNS
-    fig, axes = plt.subplots(7, 5, figsize=(16, 18))
+    fig, axes = plt.subplots(10, 5, figsize=(16, 26))
     for axis, column in zip(axes.flat, columns):
         values = features[column].dropna()
         axis.hist(values, bins=30, color="#33b7b2", edgecolor="white")
@@ -106,7 +106,7 @@ def generate_diagnostics(db_path: Path, output_dir: Path = DEFAULT_OUTPUT) -> di
     """Create public report artifacts and return a compact machine-readable summary."""
     output_dir.mkdir(parents=True, exist_ok=True)
     games = load_historical_games(db_path)
-    features = build_model_features(games, load_roster_priors(db_path))
+    features = build_model_features(games, load_roster_priors(db_path), load_advanced_stats(db_path))
     coverage = _source_coverage(db_path)
     missingness = _plot_missingness(features, games, output_dir)
     distributions = _plot_distributions(features, output_dir)

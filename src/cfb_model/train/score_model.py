@@ -18,6 +18,7 @@ from dotenv import load_dotenv
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, roc_auc_score
 from sklearn.multioutput import MultiOutputRegressor
 
+from src.cfb_model.features.advanced import ADVANCED_METRICS, FEATURE_COLUMNS as ADVANCED_COLUMNS, build_advanced_features
 from src.cfb_model.features.opponent_adjusted import build_opponent_adjusted_features
 from src.cfb_model.data.warehouse import ensure_warehouse
 from src.cfb_model.features.preseason import build_preseason_features
@@ -68,7 +69,7 @@ PRESEASON_COLUMNS = [
     "home_recruiting_points",
     "away_recruiting_points",
 ]
-MODEL_COLUMNS = FEATURE_COLUMNS + RATING_COLUMNS + PRESEASON_COLUMNS
+MODEL_COLUMNS = FEATURE_COLUMNS + RATING_COLUMNS + PRESEASON_COLUMNS + ADVANCED_COLUMNS
 TARGET_COLUMNS = ["home_score", "away_score"]
 CFBD_API = "https://api.collegefootballdata.com"
 FIRST_TRAIN_SEASON = 2013
@@ -291,7 +292,42 @@ def load_roster_priors(db_path: Path = DB_PATH, season: int | None = None) -> pd
     return pd.concat([priors, current], ignore_index=True)
 
 
-def build_model_features(games: pd.DataFrame, roster_priors: pd.DataFrame) -> pd.DataFrame:
+def load_advanced_stats(db_path: Path = DB_PATH, season: int | None = None) -> pd.DataFrame:
+    """Load per-game advanced team stats, adding CFBD's current-season rows when absent."""
+    columns = ["game_id", "season", "week", "team", *ADVANCED_METRICS]
+    with duckdb.connect(str(db_path), read_only=True) as connection:
+        stats = connection.execute(
+            f"SELECT {', '.join(columns)} FROM stg_team_game_stats_raw"
+        ).fetchdf()
+    if season is None or (stats["season"] == season).any():
+        return stats
+
+    load_dotenv()
+    api_key = os.environ.get("CFBD_API_KEY")
+    if not api_key:
+        raise RuntimeError(f"CFBD_API_KEY is required to fetch {season} advanced stats.")
+    response = requests.get(
+        f"{CFBD_API}/stats/game/advanced",
+        headers={"Authorization": "Bearer " + api_key},
+        params={"year": season, "seasonType": "regular"},
+        timeout=60,
+    )
+    response.raise_for_status()
+    rows = []
+    for item in response.json():
+        row = {"season": item.get("season"), "week": item.get("week"), "team": item.get("team")}
+        for side in ("offense", "defense"):
+            for metric in ("ppa", "successRate", "explosiveness"):
+                row[f"{side}_{metric}"] = (item.get(side) or {}).get(metric)
+        rows.append(row)
+    # ESPN-sourced current games have no CFBD id; they join on season/week/team.
+    current = pd.DataFrame(rows, columns=columns)
+    return pd.concat([stats, current], ignore_index=True)
+
+
+def build_model_features(
+    games: pd.DataFrame, roster_priors: pd.DataFrame, advanced: pd.DataFrame | None = None
+) -> pd.DataFrame:
     """Build all pregame features (no market inputs); output is row-aligned with games."""
     pregame = build_pregame_features(games)
     ratings = build_opponent_adjusted_features(games).reset_index(drop=True)
@@ -301,7 +337,10 @@ def build_model_features(games: pd.DataFrame, roster_priors: pd.DataFrame) -> pd
         "away_elo": "away_preseason_elo",
         "elo_diff": "preseason_elo_diff",
     })
-    features = pd.concat([pregame, ratings, preseason], axis=1)
+    if advanced is None:
+        advanced = pd.DataFrame(columns=["game_id", "season", "week", "team", *ADVANCED_METRICS])
+    advanced_features = build_advanced_features(games, advanced)
+    features = pd.concat([pregame, ratings, preseason, advanced_features], axis=1)
     return features[MODEL_COLUMNS]
 
 
@@ -441,7 +480,9 @@ def load_espn_season(season: int, teams: set[str]) -> pd.DataFrame:
 def run_backtest(db_path: Path = DB_PATH) -> pd.DataFrame:
     ensure_warehouse(db_path)
     games = load_historical_games(db_path)
-    features = build_model_features(games, load_roster_priors(db_path))
+    features = build_model_features(
+        games, load_roster_priors(db_path), load_advanced_stats(db_path)
+    )
     return run_walk_forward(games, features)
 
 
@@ -456,7 +497,9 @@ def predict_week(
     )
     current = load_espn_season(season, teams)
     games = pd.concat([historical, current], ignore_index=True, sort=False)
-    features = build_model_features(games, load_roster_priors(db_path, season))
+    features = build_model_features(
+        games, load_roster_priors(db_path, season), load_advanced_stats(db_path, season)
+    )
 
     train_mask = (games["season"] >= FIRST_TRAIN_SEASON) & (games["season"] < season)
     predict_mask = (
