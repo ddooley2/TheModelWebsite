@@ -70,7 +70,43 @@ function animateGameCards(container) {
   });
 }
 function animateOnOpen(details) {
-  details.querySelector("summary").addEventListener("click", () => {
+  let closing = false;
+  details.querySelector("summary").addEventListener("click", event => {
+    if (details.open) {
+      event.preventDefault();
+      if (closing) return;
+
+      const cards = [...details.querySelectorAll(".game-card")];
+      if (!cards.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        details.open = false;
+        return;
+      }
+
+      closing = true;
+      const exitOrder = cards.reverse();
+      let remaining = exitOrder.length;
+      exitOrder.forEach((gameCard, index) => {
+        gameCard.classList.remove("entering");
+        gameCard.style.setProperty("--exit-delay", `${Math.min(index, 3) * 35}ms`);
+        gameCard.addEventListener("animationend", animationEvent => {
+          if (animationEvent.target !== gameCard) return;
+          gameCard.classList.remove("leaving");
+          gameCard.style.removeProperty("--exit-delay");
+          remaining -= 1;
+          if (remaining === 0) {
+            details.open = false;
+            closing = false;
+          }
+        }, {once:true});
+        gameCard.classList.add("leaving");
+      });
+      return;
+    }
+
+    if (closing) {
+      event.preventDefault();
+      return;
+    }
     window.setTimeout(() => {
       if (details.open) animateGameCards(details);
     }, 0);

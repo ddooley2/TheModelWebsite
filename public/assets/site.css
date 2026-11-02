@@ -26,8 +26,10 @@ details:not([open])>.game-day-heading::before,details:not([open])>.game-window-h
 .game-card.entering:nth-child(3) { animation-delay:70ms; }
 .game-card.entering:nth-child(4) { animation-delay:105ms; }
 @keyframes game-card-in { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+.game-card.leaving { animation:game-card-out 160ms ease-in var(--exit-delay,0ms) both; }
+@keyframes game-card-out { from { opacity:1; transform:translateY(0); } to { opacity:0; transform:translateY(-5px); } }
 @media (prefers-reduced-motion:reduce) {
-  .game-card.entering { animation:none; }
+  .game-card.entering,.game-card.leaving { animation:none; }
   .game-day-heading::before,.game-window-heading::before { transition:none; }
 }
 .game-card { background:var(--panel); border:1px solid var(--edge); border-radius:5px; overflow:hidden; box-shadow:0 8px 22px #0008; }
