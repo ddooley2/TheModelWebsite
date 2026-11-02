@@ -1,0 +1,160 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>$yndicate | Animation Playground</title>
+  <style>
+    :root {
+      color-scheme: dark;
+      --ink:#f2e4c2; --muted:#b4a88e; --paper:#0a0908; --panel:#17130f;
+      --edge:#4c3923; --teal:#d8b66c; --amber:#b77d42;
+      font:15px/1.45 Georgia,serif;
+    }
+    * { box-sizing:border-box; }
+    body { max-width:1100px; margin:0 auto; padding:24px; background:var(--paper); color:var(--ink); }
+    h1 { margin:8px 0; font-size:clamp(28px,5vw,42px); }
+    h2 { margin:0 0 12px; font-size:19px; }
+    p { color:var(--muted); }
+    .eyebrow, .hint { color:var(--teal); font-size:11px; letter-spacing:.14em; text-transform:uppercase; }
+    .intro { margin-bottom:28px; }
+    .options { display:grid; grid-template-columns:repeat(3,minmax(0,1fr)); gap:10px; margin:24px 0 32px; }
+    .option, .filter, .disclosure {
+      color:var(--ink); background:var(--panel); border:1px solid var(--edge);
+      border-radius:5px; font:inherit; cursor:pointer;
+    }
+    .option { padding:13px; text-align:left; }
+    .option:hover, .filter:hover, .disclosure:hover { border-color:var(--teal); }
+    .option[aria-pressed="true"], .filter[aria-pressed="true"] { color:#17130f; background:var(--teal); border-color:var(--teal); }
+    .option strong, .option span { display:block; }
+    .option span { margin-top:4px; color:var(--muted); font-size:12px; }
+    .option[aria-pressed="true"] span { color:#392f1c; }
+    .demos { display:grid; grid-template-columns:1fr 1.4fr; gap:30px; align-items:start; }
+    .demo { min-width:0; }
+    .disclosure { width:100%; padding:12px 14px; text-align:left; }
+    .disclosure::after { content:"▾"; float:right; color:var(--teal); transition:transform 180ms ease; }
+    .disclosure[aria-expanded="true"]::after { transform:rotate(180deg); }
+    .dropdown { display:grid; grid-template-rows:0fr; opacity:0; transition:grid-template-rows 180ms ease, opacity 140ms ease; }
+    .dropdown.open { grid-template-rows:1fr; opacity:1; }
+    .dropdown-inner { overflow:hidden; min-height:0; }
+    .dropdown-content { margin-top:8px; padding:13px; background:var(--panel); border:1px solid var(--edge); border-radius:5px; }
+    .dropdown-content p { margin:0; }
+    .filters { display:flex; gap:8px; margin-bottom:14px; }
+    .filter { padding:7px 14px; }
+    .cards { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; }
+    .card { padding:14px; background:var(--panel); border:1px solid var(--edge); border-radius:5px; }
+    .card .teams { color:var(--ink); }
+    .card small { display:block; margin-top:8px; color:var(--muted); }
+    .empty { grid-column:1/-1; padding:18px; color:var(--muted); border:1px dashed var(--edge); }
+    .hint { margin-top:14px; }
+
+    /* A: restrained fade and lift. */
+    [data-motion="lift"] .dropdown.open .dropdown-inner { animation:lift-in 160ms ease-out both; }
+    [data-motion="lift"] .card.entering { animation:lift-in 170ms ease-out both; }
+    @keyframes lift-in { from { opacity:0; transform:translateY(7px); } to { opacity:1; transform:translateY(0); } }
+
+    /* B: quick scale-in. */
+    [data-motion="pop"] .dropdown.open .dropdown-inner { animation:pop-in 190ms cubic-bezier(.2,.8,.2,1) both; }
+    [data-motion="pop"] .card.entering { animation:pop-in 200ms cubic-bezier(.2,.8,.2,1) both; }
+    @keyframes pop-in { from { opacity:0; transform:scale(.97); } to { opacity:1; transform:scale(1); } }
+
+    /* C: short cascade for cards; a soft reveal for the disclosure. */
+    [data-motion="cascade"] .dropdown.open .dropdown-inner { animation:lift-in 210ms ease-out both; }
+    [data-motion="cascade"] .card.entering { animation:lift-in 190ms ease-out both; }
+    [data-motion="cascade"] .card.entering:nth-child(2) { animation-delay:35ms; }
+    [data-motion="cascade"] .card.entering:nth-child(3) { animation-delay:70ms; }
+    [data-motion="cascade"] .card.entering:nth-child(4) { animation-delay:105ms; }
+
+    @media (prefers-reduced-motion:reduce) {
+      *, *::before, *::after { animation-duration:.01ms !important; animation-iteration-count:1 !important; scroll-behavior:auto !important; transition-duration:.01ms !important; }
+    }
+    @media (max-width:720px) {
+      body { padding:18px; }
+      .options { grid-template-columns:1fr; }
+      .demos { grid-template-columns:1fr; }
+    }
+  </style>
+</head>
+<body data-motion="lift">
+  <p class="eyebrow">$yndicate · Interaction test</p>
+  <h1>Animation Playground</h1>
+  <p class="intro">Choose a motion style, then try the date dropdown and game filters. This standalone mockup does not change the live site.</p>
+
+  <div class="options" role="group" aria-label="Animation style">
+    <button class="option" type="button" data-style="lift" aria-pressed="true">
+      <strong>1 · Fade + lift</strong><span>Subtle and snappy · 160–170 ms</span>
+    </button>
+    <button class="option" type="button" data-style="pop" aria-pressed="false">
+      <strong>2 · Quick pop</strong><span>Soft scale-in · 190–200 ms</span>
+    </button>
+    <button class="option" type="button" data-style="cascade" aria-pressed="false">
+      <strong>3 · Short cascade</strong><span>Cards arrive in a quick stagger · 190–315 ms</span>
+    </button>
+  </div>
+
+  <main class="demos">
+    <section class="demo" aria-labelledby="dropdown-title">
+      <h2 id="dropdown-title">Date dropdown</h2>
+      <button class="disclosure" type="button" aria-expanded="false" aria-controls="date-panel">Saturday, November 7</button>
+      <div class="dropdown" id="date-panel" aria-hidden="true">
+        <div class="dropdown-inner">
+          <div class="dropdown-content"><p>Noon Window · 4 games<br>3:30 PM Window · 6 games<br>Primetime Window · 5 games</p></div>
+        </div>
+      </div>
+      <p class="hint">Click to open / close</p>
+    </section>
+
+    <section class="demo" aria-labelledby="filters-title">
+      <h2 id="filters-title">Game filters</h2>
+      <div class="filters" role="group" aria-label="Filter demo games">
+        <button class="filter" type="button" data-filter="all" aria-pressed="true">All Games</button>
+        <button class="filter" type="button" data-filter="top25" aria-pressed="false">Top 25</button>
+      </div>
+      <div class="cards" aria-live="polite">
+        <article class="card" data-rank="top25"><span class="teams">#4 Ohio State · #18 Penn State</span><small>12:00 PM · Noon Window</small></article>
+        <article class="card" data-rank="other"><span class="teams">Iowa · Wisconsin</span><small>3:30 PM · Afternoon Window</small></article>
+        <article class="card" data-rank="top25"><span class="teams">#7 Oregon · #21 USC</span><small>7:30 PM · Primetime Window</small></article>
+        <article class="card" data-rank="other"><span class="teams">Kansas · Colorado</span><small>8:00 PM · Late Window</small></article>
+      </div>
+      <p class="hint">Switch filters to replay the entrance animation</p>
+    </section>
+  </main>
+  <script>
+    const root = document.body;
+    const motionOptions = document.querySelectorAll(".option");
+    const filterButtons = document.querySelectorAll(".filter");
+    const cards = document.querySelector(".cards");
+    const allCards = [...cards.querySelectorAll(".card")];
+    const disclosure = document.querySelector(".disclosure");
+    const panel = document.querySelector(".dropdown");
+
+    motionOptions.forEach(button => button.addEventListener("click", () => {
+      root.dataset.motion = button.dataset.style;
+      motionOptions.forEach(option => option.setAttribute("aria-pressed", String(option === button)));
+    }));
+
+    disclosure.addEventListener("click", () => {
+      const expanded = disclosure.getAttribute("aria-expanded") !== "true";
+      disclosure.setAttribute("aria-expanded", String(expanded));
+      panel.classList.toggle("open", expanded);
+      panel.setAttribute("aria-hidden", String(!expanded));
+    });
+
+    filterButtons.forEach(button => button.addEventListener("click", () => {
+      filterButtons.forEach(filter => filter.setAttribute("aria-pressed", String(filter === button)));
+      const visibleCards = allCards.filter(card =>
+        button.dataset.filter === "all" || card.dataset.rank === "top25"
+      );
+      const visibleCardsWithAnimation = visibleCards.map(card => {
+        const clone = card.cloneNode(true);
+        clone.classList.add("entering");
+        return clone;
+      });
+      cards.replaceChildren(...(visibleCardsWithAnimation.length ? visibleCardsWithAnimation : [Object.assign(document.createElement("p"), {
+        className:"empty",
+        textContent:"No games match this filter."
+      })]));
+    }));
+  </script>
+</body>
+</html>

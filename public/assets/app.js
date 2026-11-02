@@ -62,6 +62,20 @@ function gameGroup(game) {
     windowLabel:window[1],
   };
 }
+function animateGameCards(container) {
+  container.querySelectorAll(".game-card").forEach(gameCard => {
+    gameCard.classList.remove("entering");
+    void gameCard.offsetWidth;
+    gameCard.classList.add("entering");
+  });
+}
+function animateOnOpen(details) {
+  details.querySelector("summary").addEventListener("click", () => {
+    window.setTimeout(() => {
+      if (details.open) animateGameCards(details);
+    }, 0);
+  });
+}
 function card(game) {
   const template = $("#game-template").content.cloneNode(true);
   template.querySelector(".kickoff").textContent = formatStart(game.start);
@@ -133,6 +147,7 @@ function renderGameBoard(games, filter = "all") {
     heading.className = "game-day-heading";
     heading.textContent = day.dayLabel;
     section.append(heading);
+    animateOnOpen(section);
     for (const window of day.windows.values()) {
       const windowSection = document.createElement(window.label ? "details" : "div");
       if (window.label) {
@@ -142,6 +157,7 @@ function renderGameBoard(games, filter = "all") {
         subheading.className = "game-window-heading";
         subheading.textContent = window.label;
         windowSection.append(subheading);
+        animateOnOpen(windowSection);
       }
       const cards = document.createElement("div");
       cards.className = "game-day-games";
@@ -211,6 +227,7 @@ document.querySelectorAll(".board-filter").forEach(button => {
       filterButton.setAttribute("aria-pressed", String(active));
     });
     renderGameBoard(boardGames, boardFilter);
+    animateGameCards($("#game-board"));
   });
 });
 async function loadBoard() {

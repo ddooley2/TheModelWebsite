@@ -19,6 +19,17 @@ h1 { font-size:clamp(30px,4vw,46px); letter-spacing:-.035em; line-height:1.05; m
 .board-filters { display:flex; gap:8px; margin:-12px 0 24px; }.board-filter { padding:7px 15px; color:var(--muted); background:#17130f; border:1px solid var(--edge); border-radius:4px; font:inherit; font-size:13px; cursor:pointer; }.board-filter:hover { border-color:var(--teal); color:var(--ink); }.board-filter.active { color:#17130f; background:var(--teal); border-color:var(--teal); font-weight:750; }.top25-empty { grid-column:1/-1; color:var(--muted); }
 .game-board { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
 .game-day { grid-column:1/-1; margin-bottom:24px; }.game-day-heading { margin:8px 0 12px; padding-bottom:7px; color:var(--teal); border-bottom:1px solid var(--edge); font-size:17px; }.game-window { margin:20px 0 24px; padding:14px; background:#211c13; border:1px solid #9a814b; border-radius:5px; }.game-window-heading { display:table; margin:0 0 12px; padding:5px 11px; color:var(--ink); background:#392f1c; border-left:3px solid var(--teal); border-radius:2px; font-size:13px; letter-spacing:.06em; text-transform:uppercase; }summary.game-day-heading,summary.game-window-heading { cursor:pointer; }summary.game-day-heading { display:block; }.game-day-heading::before,.game-window-heading::before { content:"▾ "; }details:not([open])>.game-day-heading::before,details:not([open])>.game-window-heading::before { content:"▸ "; }summary::-webkit-details-marker { display:none; }summary { list-style:none; }.game-day-games { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:15px; }
+.game-day-heading::before,.game-window-heading::before { content:"▾ "; display:inline-block; transition:transform 150ms ease; }
+details:not([open])>.game-day-heading::before,details:not([open])>.game-window-heading::before { content:"▾ "; transform:rotate(-90deg); }
+.game-card.entering { animation:game-card-in 190ms ease-out both; }
+.game-card.entering:nth-child(2) { animation-delay:35ms; }
+.game-card.entering:nth-child(3) { animation-delay:70ms; }
+.game-card.entering:nth-child(4) { animation-delay:105ms; }
+@keyframes game-card-in { from { opacity:0; transform:translateY(6px); } to { opacity:1; transform:translateY(0); } }
+@media (prefers-reduced-motion:reduce) {
+  .game-card.entering { animation:none; }
+  .game-day-heading::before,.game-window-heading::before { transition:none; }
+}
 .game-card { background:var(--panel); border:1px solid var(--edge); border-radius:5px; overflow:hidden; box-shadow:0 8px 22px #0008; }
 .game-meta { min-height:37px; padding:10px 13px; display:flex; gap:11px; color:var(--muted); font-size:11px; border-bottom:1px solid var(--edge); text-transform:uppercase; letter-spacing:.04em; }
 .game-meta .venue { margin-left:auto; text-align:right; text-transform:none; letter-spacing:0; }
