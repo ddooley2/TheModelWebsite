@@ -9,7 +9,21 @@ def test_daily_refresh_uses_current_dashboard_schedule(tmp_path):
     dashboard = tmp_path / "dashboard.json"
     dashboard.write_text(json.dumps({"season": 2026, "week": 9}))
 
-    assert resolve_publish_schedule("daily", dashboard_path=dashboard) == (2026, 9)
+    assert resolve_publish_schedule(
+        "daily", dashboard_path=dashboard, results_dir=tmp_path / "results"
+    ) == (2026, 9)
+
+
+def test_daily_refresh_prefers_newer_saved_prediction(tmp_path):
+    dashboard = tmp_path / "dashboard.json"
+    dashboard.write_text(json.dumps({"season": 2026, "week": 9}))
+    results = tmp_path / "results"
+    results.mkdir()
+    (results / "score_predictions_2026_week10.csv").touch()
+
+    assert resolve_publish_schedule(
+        "daily", dashboard_path=dashboard, results_dir=results
+    ) == (2026, 10)
 
 
 def test_daily_refresh_accepts_explicit_schedule(tmp_path):

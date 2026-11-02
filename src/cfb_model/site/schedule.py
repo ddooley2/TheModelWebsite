@@ -11,6 +11,7 @@ import requests
 
 CFBD_API = "https://api.collegefootballdata.com"
 DEFAULT_DASHBOARD = Path(__file__).resolve().parents[3] / "public" / "data" / "dashboard.json"
+DEFAULT_RESULTS_DIR = Path(__file__).resolve().parents[3] / "results"
 
 
 def _upcoming_week(season: int, api_key: str, now: datetime) -> int | None:
@@ -40,6 +41,7 @@ def resolve_publish_schedule(
     season_override: str | None = None,
     week_override: str | None = None,
     dashboard_path: Path = DEFAULT_DASHBOARD,
+    results_dir: Path = DEFAULT_RESULTS_DIR,
     api_key: str | None = None,
     now: datetime | None = None,
 ) -> tuple[int, int]:
@@ -56,7 +58,16 @@ def resolve_publish_schedule(
             return season, week
         dashboard = json.loads(dashboard_path.read_text())
         season = season or int(dashboard["season"])
-        week = week or int(dashboard["week"])
+        if week is not None:
+            return season, week
+        week = int(dashboard["week"])
+        prediction_prefix = f"score_predictions_{season}_week"
+        saved_weeks = (
+            int(path.stem.removeprefix(prediction_prefix))
+            for path in results_dir.glob(f"{prediction_prefix}*.csv")
+            if path.stem.removeprefix(prediction_prefix).isdigit()
+        )
+        week = max([week, *saved_weeks])
         return season, week
     if run_mode not in {"daily", "weekly"}:
         raise ValueError(f"Unsupported publish run mode: {run_mode}")
