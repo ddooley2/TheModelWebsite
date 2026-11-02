@@ -100,6 +100,8 @@ jobs:
             echo "Weekly prediction already exists; preserving it."
             exit 0
           fi
+          python -m src.cfb_model.site.build_site \
+            --season "$SEASON" --week "$WEEK" --capture-reference
           python -m src.cfb_model.train.score_model \
             --season "$SEASON" --predict-week "$WEEK" \
             --candidate "$(cat candidate.txt)"

@@ -73,6 +73,48 @@ def test_line_snapshot_uses_published_opening_line_once():
     assert market["current"]["total"] == 49.5
 
 
+def test_prediction_reference_capture_uses_live_current_and_stays_immutable(
+    tmp_path, monkeypatch
+):
+    history = {
+        "9:draftkings": {
+            "opening": {"spread": -3.5, "total": 48.5, "provider": "DraftKings",
+                        "observed_at": "old"},
+            "current": {"spread": -5.0, "total": 49.5, "provider": "DraftKings",
+                        "observed_at": "older"},
+        }
+    }
+    game = {"id": 9, "lines": [
+        {"provider": "DraftKings", "spread": -6.5, "overUnder": 50.5,
+         "spreadOpen": -2.5, "overUnderOpen": 45.5}
+    ]}
+    monkeypatch.setattr(site_builder, "HISTORY_PATH", tmp_path / "line_history.json")
+    monkeypatch.setattr(site_builder, "_read_history", lambda: history)
+    monkeypatch.setattr(site_builder, "_write_history", lambda value: None)
+    monkeypatch.setattr(site_builder, "_api_get", lambda *args: [game])
+
+    site_builder.capture_reference_lines(2026, 10)
+    captured = history["9:draftkings"]["opening"].copy()
+
+    assert captured["spread"] == -6.5
+    assert captured["total"] == 50.5
+    assert captured == history["9:draftkings"]["current"]
+
+    later = [{"id": 9, "lines": [
+        {"provider": "DraftKings", "spread": -8.0, "overUnder": 52.5}
+    ]}]
+    _snapshot_lines(later, history, "later")
+    assert history["9:draftkings"]["opening"] == captured
+    assert history["9:draftkings"]["current"]["spread"] == -8.0
+
+
+def test_prediction_reference_capture_fails_without_lines(monkeypatch):
+    monkeypatch.setattr(site_builder, "_api_get", lambda *args: [])
+
+    with pytest.raises(RuntimeError, match="No CFBD lines returned for 2026 week 10"):
+        site_builder.capture_reference_lines(2026, 10)
+
+
 def test_site_payload_uses_favorite_perspective_and_current_total(tmp_path, monkeypatch):
     prediction_path = tmp_path / "week9.csv"
     pd.DataFrame([{

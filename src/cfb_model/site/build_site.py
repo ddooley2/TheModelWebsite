@@ -217,6 +217,27 @@ def _snapshot_lines(lines_games: list[dict], history: dict, timestamp: str) -> t
     return by_game, changed
 
 
+def capture_reference_lines(season: int, week: int) -> None:
+    """Capture live line history as the immutable reference for new predictions."""
+    api_key = os.environ.get("CFBD_API_KEY")
+    line_games = _api_get(
+        "lines", {"year": season, "week": week, "seasonType": "regular"}, api_key
+    )
+    if not any(game.get("lines") for game in line_games):
+        raise RuntimeError(f"No CFBD lines returned for {season} week {week}")
+    history = _read_history()
+    timestamp = datetime.now(timezone.utc).isoformat()
+    _snapshot_lines(line_games, history, timestamp)
+    for game in line_games:
+        for line in game.get("lines") or []:
+            if not isinstance(line, dict):
+                continue
+            record = history.get(_line_key(game, line))
+            if record and record.get("current"):
+                record["opening"] = record["current"].copy()
+    _write_history(history)
+
+
 def _records(games: list[dict], season: int) -> dict[str, str]:
     record = defaultdict(lambda: [0, 0])
     for game in games:
@@ -479,7 +500,13 @@ def main() -> None:
     parser.add_argument("--db-path", type=Path)
     parser.add_argument("--skip-diagnostics", action="store_true")
     parser.add_argument("--predictions-generated", action="store_true")
+    parser.add_argument("--capture-reference", action="store_true")
     args = parser.parse_args()
+    if args.capture_reference:
+        if args.week is None:
+            raise ValueError("--week is required with --capture-reference")
+        capture_reference_lines(args.season, args.week)
+        return
     output = build_site(
         args.season,
         args.week,
