@@ -1,5 +1,17 @@
 {
   "2026": {
+    "10:401866453": {
+      "game_id": "401866453",
+      "result": "loss",
+      "su_result": "win",
+      "week": 10
+    },
+    "10:401866454": {
+      "game_id": "401866454",
+      "result": "loss",
+      "su_result": "loss",
+      "week": 10
+    },
     "9:401856733": {
       "game_id": "401856733",
       "result": "loss",
