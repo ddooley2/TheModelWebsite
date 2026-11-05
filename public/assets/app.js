@@ -3,6 +3,13 @@ const pretty = (value, fallback = "—") => value === null || value === undefine
 const numeric = (value) => value === null || value === undefined || value === "" || !Number.isFinite(Number(value)) ? null : Number(value);
 const line = (value) => numeric(value) === null ? "—" : numeric(value).toFixed(1);
 const spread = (value) => numeric(value) === null ? "—" : `${numeric(value) > 0 ? "+" : ""}${numeric(value).toFixed(1)}`;
+const favoriteName = (marketLine) => numeric(marketLine?.spread_favorite) ? marketLine.favorite_team : null;
+function spreadWithTeam(value, team) {
+  const formatted = spread(value);
+  if (numeric(value) === null || typeof team !== "string" || !team.trim()) return formatted;
+  const safeTeam = team.trim().replace(/[&<>"']/g, char => ({"&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;"}[char]));
+  return `${formatted} ${safeTeam}`;
+}
 
 function showView() {
   const target = location.hash.slice(1) || "board";
@@ -125,9 +132,9 @@ function card(game) {
   const modelMargin = numeric(game.projected_favorite_margin);
   const referenceSpread = numeric(opening.spread_favorite);
   template.querySelector(".market-row").innerHTML = `
-    <div><span>Reference Spread</span><strong>${spread(opening.spread_favorite)}</strong></div>
-    <div><span>Current Spread</span><strong>${spread(current.spread_favorite)}</strong></div>
-    <div><span>Model Spread</span><strong>${modelMargin === null ? "—" : spread(-modelMargin)}</strong></div>
+    <div><span>Reference Spread</span><strong>${spreadWithTeam(opening.spread_favorite, favoriteName(opening))}</strong></div>
+    <div><span>Current Spread</span><strong>${spreadWithTeam(current.spread_favorite, favoriteName(current))}</strong></div>
+    <div><span>Model Spread</span><strong>${spreadWithTeam(modelMargin === null ? null : -modelMargin, favoriteName(opening))}</strong></div>
     <div><span>Model Total / Market Total</span><strong>${line(game.projected_total)} / ${line(current.total)}</strong></div>`;
   const foot = template.querySelector(".card-foot");
   if (referenceSpread !== null && modelMargin !== null) {
@@ -194,12 +201,12 @@ function detailBettingInfo(game) {
   const opening = market.opening || {};
   const current = market.current || {};
   const modelMargin = numeric(game.projected_favorite_margin);
-  const modelMarginLabel = modelMargin === null ? "—" : spread(-modelMargin);
+  const modelMarginLabel = spreadWithTeam(modelMargin === null ? null : -modelMargin, favoriteName(opening));
 
   return `<div class="detail-betting">
     <div class="detail-market-row">
-      <div><span>Reference Spread</span><strong>${spread(opening.spread_favorite)}</strong></div>
-      <div><span>Current Spread</span><strong>${spread(current.spread_favorite)}</strong></div>
+      <div><span>Reference Spread</span><strong>${spreadWithTeam(opening.spread_favorite, favoriteName(opening))}</strong></div>
+      <div><span>Current Spread</span><strong>${spreadWithTeam(current.spread_favorite, favoriteName(current))}</strong></div>
       <div><span>Model Spread</span><strong>${modelMarginLabel}</strong></div>
       <div><span>Model Total / Market Total</span><strong>${line(game.projected_total)} / ${line(current.total)}</strong></div>
     </div>

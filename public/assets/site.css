@@ -134,6 +134,7 @@ details:not([open])>.game-day-heading::before,details:not([open])>.game-window-h
 .detail-market-row>div { min-width:0; padding:8px 10px; background:var(--panel); border:1px solid var(--edge); border-radius:4px; }
 .detail-market-row span { display:block; color:var(--muted); font-size:9px; letter-spacing:.04em; text-transform:uppercase; }
 .detail-market-row strong { display:block; color:var(--ink); font-size:13px; font-variant-numeric:tabular-nums; }
+.market-row strong,.detail-market-row strong { overflow-wrap:anywhere; }
 .detail-team-title { display:flex; align-items:baseline; gap:7px; min-width:0; }
 .detail-model-pick { flex:none; padding:1px 5px; color:var(--teal); border:1px solid var(--teal); border-radius:3px; font-size:8px; font-weight:800; letter-spacing:.06em; white-space:nowrap; }
 @media(max-width:700px){.detail-market-row{grid-template-columns:repeat(2,minmax(0,1fr));}}
