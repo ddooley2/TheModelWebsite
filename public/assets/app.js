@@ -76,7 +76,8 @@ function animateOnOpen(details) {
       event.preventDefault();
       if (closing) return;
 
-      const cards = [...details.querySelectorAll(".game-card")];
+      const cards = [...details.querySelectorAll(".game-card")]
+        .filter(gameCard => !gameCard.closest("details:not([open])"));
       if (!cards.length || window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
         details.open = false;
         return;
