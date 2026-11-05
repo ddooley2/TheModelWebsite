@@ -58,10 +58,11 @@ details:not([open])>.game-day-heading::before,details:not([open])>.game-window-h
 .stat-swatch.away { background:#4cc9f0; }
 .stat-swatch.home { background:#ffb000; }
 .coverage-layout { display:grid; grid-template-columns:minmax(0,1.25fr) minmax(205px,.9fr); align-items:center; gap:8px; }
+.coverage-note { margin:0 0 6px; color:var(--muted); font-size:11px; }
 .coverage-wrap { width:100%; }
 .radar-grid { stroke:#766747; stroke-width:1.25; }
 .radar-axis { stroke:#766747; stroke-width:1.2; }
-.radar-label { fill:#fff0d0; font:11px Georgia,serif; font-weight:bold; }
+.radar-label { fill:#fff0d0; font:11px Georgia,serif; font-weight:bold; cursor:help; }
 .radar-area { stroke-width:3; }
 .radar-area.away { fill:#4cc9f055; stroke:#4cc9f0; }
 .radar-area.home { fill:#ffb00055; stroke:#ffb000; }

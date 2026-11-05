@@ -18,6 +18,11 @@ from src.cfb_model.train.score_model import (
     _make_model,
     score_metrics,
 )
+from src.cfb_model.features.game_role_performance import (
+    FEATURE_COLUMNS as ROLE_FEATURE_COLUMNS,
+    FORMULATIONS as ROLE_FORMULATIONS,
+    build_game_role_features,
+)
 
 
 def _make_target_model() -> MultiOutputRegressor:
@@ -63,13 +68,29 @@ def _fit_environment(
 CANDIDATES: dict[str, Callable[[pd.DataFrame, np.ndarray, pd.DataFrame], np.ndarray]] = {
     "direct_score_l1": _fit_direct,
     "environment_total_margin_l1": _fit_environment,
+    **{f"role_{formulation}_score_l1": _fit_direct for formulation in ROLE_FORMULATIONS},
 }
+BASE_CANDIDATES = {"direct_score_l1", "environment_total_margin_l1"}
+ROLE_CANDIDATES = {
+    f"role_{formulation}_score_l1": formulation
+    for formulation in ROLE_FORMULATIONS
+}
+
+
+def candidate_feature_columns(candidate: str) -> list[str]:
+    """Return the input columns used by a registered candidate."""
+    if candidate not in CANDIDATES:
+        raise ValueError(f"Unknown candidate {candidate!r}; choose from {sorted(CANDIDATES)}")
+    if candidate in BASE_CANDIDATES:
+        return MODEL_COLUMNS
+    return MODEL_COLUMNS + ROLE_FEATURE_COLUMNS[ROLE_CANDIDATES[candidate]]
 
 
 def run_candidate_backtest(
     games: pd.DataFrame,
     features: pd.DataFrame,
     val_seasons: list[int] = BACKTEST_SEASONS,
+    advanced: pd.DataFrame | None = None,
 ) -> tuple[pd.DataFrame, pd.DataFrame]:
     """Return season metrics and row-level, untouched out-of-fold predictions.
 
@@ -80,6 +101,8 @@ def run_candidate_backtest(
     if forbidden:
         raise ValueError(f"Market-derived columns are forbidden: {forbidden}")
 
+    role_features = build_game_role_features(games, advanced)
+    candidate_features = pd.concat([features, role_features], axis=1)
     summaries: list[dict] = []
     predictions: list[pd.DataFrame] = []
     for season in val_seasons:
@@ -88,12 +111,13 @@ def run_candidate_backtest(
         if not train_mask.any() or not valid_mask.any():
             continue
 
-        train_x = features.loc[train_mask, MODEL_COLUMNS]
-        valid_x = features.loc[valid_mask, MODEL_COLUMNS]
         train_y = games.loc[train_mask, TARGET_COLUMNS].to_numpy(dtype=float)
         valid_y = games.loc[valid_mask, TARGET_COLUMNS].to_numpy(dtype=float)
 
         for name, fit_predict in CANDIDATES.items():
+            columns = candidate_feature_columns(name)
+            train_x = candidate_features.loc[train_mask, columns]
+            valid_x = candidate_features.loc[valid_mask, columns]
             predicted = fit_predict(train_x, train_y, valid_x)
             summaries.append({"candidate": name, "season": season, "games": len(valid_y), **score_metrics(valid_y, predicted)})
             fold = games.loc[valid_mask, ["game_id", "season", "week", "game_date", "home_team", "away_team"]].copy()

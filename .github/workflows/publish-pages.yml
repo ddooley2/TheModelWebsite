@@ -90,7 +90,9 @@ jobs:
           from src.cfb_model.reporting.diagnostics import generate_diagnostics
           db_path = ensure_warehouse()
           report = generate_diagnostics(db_path)
-          Path("candidate.txt").write_text(report["winner"]["winner"])
+          candidate = "role_relevant_and_overall_score_l1"
+          Path("candidate.txt").write_text(candidate)
+          print(f"Pinned production candidate: {candidate}")
           print(report["winner"])
           PY
       - name: Predict the chosen candidate
@@ -121,6 +123,9 @@ jobs:
           if [ -f data/site/ats_results.json ]; then
             git add -- data/site/ats_results.json
           fi
+          if [ -f public/data/dashboard.json ]; then
+            git add -- public/data/dashboard.json
+          fi
           if [ "$RUN_MODE" = weekly ]; then
             git add -- "$PREDICTION_CSV"
           fi
@@ -144,6 +149,7 @@ jobs:
           supported = {
               "data/site/line_history.json",
               "data/site/ats_results.json",
+              "public/data/dashboard.json",
           }
           if not conflicts or not set(conflicts) <= supported:
               raise RuntimeError(f"Cannot safely resolve rebase conflicts: {conflicts}")
@@ -172,10 +178,15 @@ jobs:
                           **current,
                           "opening": opening.get("opening", current.get("opening")),
                       }
-              else:
+              elif path.endswith("ats_results.json"):
                   merged = remote
                   for season, games in local.items():
                       merged.setdefault(season, {}).update(games)
+              else:
+                  merged = max(
+                      (remote, local),
+                      key=lambda dashboard: dashboard.get("generated_at", ""),
+                  )
               Path(path).write_text(json.dumps(merged, indent=2, sort_keys=True) + "\n")
               subprocess.run(["git", "add", path], check=True)
           PY

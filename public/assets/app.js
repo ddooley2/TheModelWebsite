@@ -161,16 +161,17 @@ const detailDialog = $("#game-detail");
 let selectedDetailGame = null;
 
 const advancedMetrics = [
-  {key:"offense_ppa", label:"Offense PPA", short:"Off. PPA"},
-  {key:"offense_successRate", label:"Success rate", short:"Off. success"},
-  {key:"offense_explosiveness", label:"Explosiveness", short:"Off. explosive"},
-  {key:"defense_ppa", label:"PPA allowed", short:"Def. PPA"},
-  {key:"defense_successRate", label:"Success rate allowed", short:"Def. success"},
-  {key:"defense_explosiveness", label:"Explosiveness allowed", short:"Def. explosive"},
+  {key:"offense_ppa", short:"Off. PPA", tooltip:"Ability to create scoring value across offensive plays."},
+  {key:"offense_successRate", short:"Off. success", tooltip:"Ability to succeed consistently on offense."},
+  {key:"offense_explosiveness", short:"Off. explosive", tooltip:"Ability to create high-value offensive plays."},
+  {key:"defense_ppa", short:"Def. PPA", lowerIsBetter:true, tooltip:"Ability to suppress the scoring value of opposing plays."},
+  {key:"defense_successRate", short:"Def. success", lowerIsBetter:true, tooltip:"Ability to limit successful offensive plays."},
+  {key:"defense_explosiveness", short:"Def. explosive", lowerIsBetter:true, tooltip:"Ability to prevent successful offensive plays from becoming high-value gains."},
 ];
 
 function normalizedScore(game, side, metric) {
-  return numeric(game.advanced_stats_normalized?.[side]?.[metric.key]);
+  const score = numeric(game.advanced_stats_normalized?.[side]?.[metric.key]);
+  return score === null || !metric.lowerIsBetter ? score : 100 - score;
 }
 
 function detailStatHeader(game) {
@@ -267,7 +268,7 @@ function renderCoverage(game) {
       ? "middle"
       : Math.cos(angle(index)) > 0 ? "start" : "end";
     return `<line class="radar-axis" x1="${centerX}" y1="${centerY}" x2="${x}" y2="${y}"></line>
-      <text class="radar-label" x="${labelX.toFixed(1)}" y="${labelY.toFixed(1)}" text-anchor="${anchor}">${metric.short}</text>`;
+      <text class="radar-label" x="${labelX.toFixed(1)}" y="${labelY.toFixed(1)}" text-anchor="${anchor}"><title>${metric.tooltip}</title>${metric.short}</text>`;
   }).join("");
   const scaleMarks = [0, 25, 50, 75, 100].map(level => {
     const y = centerY - radius * level / 100;
@@ -284,6 +285,7 @@ function renderCoverage(game) {
     return `<circle class="radar-dot ${side}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3"></circle>`;
   }).join("");
   return `${detailStatHeader(game)}
+    <p class="coverage-note">Higher values indicate better performance. 100% is best and 0% is worst.</p>
     <div class="coverage-layout"><div class="coverage-wrap"><svg class="coverage-plot" viewBox="0 0 440 350" role="img" aria-label="Radar coverage plot comparing normalized advanced stats for ${game.away.name} and ${game.home.name}">
       <polygon class="radar-grid" points="${ring(25)}"></polygon><polygon class="radar-grid" points="${ring(50)}"></polygon><polygon class="radar-grid" points="${ring(75)}"></polygon><polygon class="radar-grid" points="${ring(100)}"></polygon>
       ${spokes}

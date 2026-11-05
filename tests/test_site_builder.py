@@ -241,6 +241,33 @@ def test_prediction_reference_capture_uses_live_current_and_stays_immutable(
     assert history["9:draftkings"]["current"]["spread"] == -8.0
 
 
+def test_reference_line_stays_with_captured_provider_when_provider_changes(
+    tmp_path, monkeypatch
+):
+    history = {}
+    game = {"id": 9, "lines": [
+        {"provider": "FanDuel", "spread": -3.5, "overUnder": 48.5}
+    ]}
+    monkeypatch.setattr(site_builder, "HISTORY_PATH", tmp_path / "line_history.json")
+    monkeypatch.setattr(site_builder, "_read_history", lambda: history)
+    monkeypatch.setattr(site_builder, "_write_history", lambda value: None)
+    monkeypatch.setattr(site_builder, "_api_get", lambda *args: [game])
+
+    site_builder.capture_reference_lines(2026, 10)
+    refreshed = {"id": 9, "lines": [
+        {"provider": "DraftKings", "spread": -7.5, "overUnder": 50.5},
+        {"provider": "FanDuel", "spread": -5.0, "overUnder": 49.5},
+    ]}
+    _snapshot_lines([refreshed], history, "later")
+
+    market = _market_payload(refreshed, history, "Alpha", "Beta")
+
+    assert market["opening"]["spread_favorite"] == -3.5
+    assert market["opening"]["provider"] == "FanDuel"
+    assert market["current"]["spread_favorite"] == -7.5
+    assert market["provider"] == "DraftKings"
+
+
 def test_prediction_reference_capture_fails_without_lines(monkeypatch):
     monkeypatch.setattr(site_builder, "_api_get", lambda *args: [])
 

@@ -230,12 +230,19 @@ def capture_reference_lines(season: int, week: int) -> None:
     timestamp = datetime.now(timezone.utc).isoformat()
     _snapshot_lines(line_games, history, timestamp)
     for game in line_games:
+        selected = _select_line(game.get("lines") or [])
+        if selected is None:
+            continue
+        selected_key = _line_key(game, selected)
         for line in game.get("lines") or []:
             if not isinstance(line, dict):
                 continue
             record = history.get(_line_key(game, line))
             if record and record.get("current"):
                 record["opening"] = record["current"].copy()
+                record.pop("reference", None)
+                if _line_key(game, line) == selected_key:
+                    record["reference"] = record["current"].copy()
     _write_history(history)
 
 
@@ -481,7 +488,19 @@ def _market_payload(
         }
     key = _line_key(game, selected)
     record = history.get(key, {})
-    opening = _favorite_line(record.get("opening"), home_team, away_team)
+    reference_record = next(
+        (
+            value for history_key, value in history.items()
+            if history_key.startswith(f"{game.get('id', '')}:")
+            and value.get("reference") is not None
+        ),
+        record,
+    )
+    opening = _favorite_line(
+        reference_record.get("reference") or reference_record.get("opening"),
+        home_team,
+        away_team,
+    )
     current = _favorite_line(record.get("current"), home_team, away_team)
     favorite = current or opening
     return {

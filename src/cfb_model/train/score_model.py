@@ -70,6 +70,16 @@ PRESEASON_COLUMNS = [
     "away_recruiting_points",
 ]
 MODEL_COLUMNS = FEATURE_COLUMNS + RATING_COLUMNS + PRESEASON_COLUMNS + ADVANCED_COLUMNS
+DISPLAY_ADVANCED_COLUMNS = [
+    f"{side}_display_{metric}"
+    for metric in ADVANCED_METRICS
+    for side in ("home", "away")
+]
+ADVANCED_RANGE_COLUMNS = [
+    f"advanced_{metric}_{bound}"
+    for metric in ADVANCED_METRICS
+    for bound in ("min", "max")
+]
 TARGET_COLUMNS = ["home_score", "away_score"]
 CFBD_API = "https://api.collegefootballdata.com"
 FIRST_TRAIN_SEASON = 2013
@@ -325,6 +335,36 @@ def load_advanced_stats(db_path: Path = DB_PATH, season: int | None = None) -> p
     return pd.concat([stats, current], ignore_index=True)
 
 
+def _season_to_date_advanced_stats(
+    predictions: pd.DataFrame,
+    advanced: pd.DataFrame,
+    fbs_teams: set[str],
+    season: int,
+    week: int,
+) -> tuple[pd.DataFrame, dict[str, dict[str, float | None]]]:
+    prior_games = advanced[
+        (pd.to_numeric(advanced["season"], errors="coerce") == season)
+        & (pd.to_numeric(advanced["week"], errors="coerce") < week)
+        & advanced["team"].isin(fbs_teams)
+    ].drop_duplicates(["game_id", "season", "week", "team"])
+    team_averages = prior_games.groupby("team")[list(ADVANCED_METRICS)].mean()
+
+    display = pd.DataFrame(index=predictions.index)
+    for side in ("home", "away"):
+        for metric in ADVANCED_METRICS:
+            display[f"{side}_display_{metric}"] = predictions[f"{side}_team"].map(
+                team_averages[metric]
+            )
+    ranges = {}
+    for metric in ADVANCED_METRICS:
+        values = team_averages[metric].dropna()
+        ranges[metric] = {
+            "min": float(values.min()) if not values.empty else None,
+            "max": float(values.max()) if not values.empty else None,
+        }
+    return display, ranges
+
+
 def build_model_features(
     games: pd.DataFrame, roster_priors: pd.DataFrame, advanced: pd.DataFrame | None = None
 ) -> pd.DataFrame:
@@ -497,9 +537,16 @@ def predict_week(
     )
     current = load_espn_season(season, teams)
     games = pd.concat([historical, current], ignore_index=True, sort=False)
+    advanced = load_advanced_stats(db_path, season)
     features = build_model_features(
-        games, load_roster_priors(db_path, season), load_advanced_stats(db_path, season)
+        games, load_roster_priors(db_path, season), advanced
     )
+    prediction_features = features
+    if candidate.startswith("role_"):
+        from src.cfb_model.features.game_role_performance import build_game_role_features
+        prediction_features = pd.concat(
+            [features, build_game_role_features(games, advanced)], axis=1
+        )
 
     train_mask = (games["season"] >= FIRST_TRAIN_SEASON) & (games["season"] < season)
     predict_mask = (
@@ -514,26 +561,37 @@ def predict_week(
     if candidate == "direct_score_l1":
         model = _make_model()
         model.fit(
-            features.loc[train_mask, MODEL_COLUMNS],
+            prediction_features.loc[train_mask, MODEL_COLUMNS],
             games.loc[train_mask, TARGET_COLUMNS].to_numpy(dtype=float),
         )
-        predictions = model.predict(features.loc[predict_mask, MODEL_COLUMNS])
+        predictions = model.predict(prediction_features.loc[predict_mask, MODEL_COLUMNS])
     else:
-        from src.cfb_model.train.experiments import predict_candidate
+        from src.cfb_model.train.experiments import candidate_feature_columns, predict_candidate
+        columns = candidate_feature_columns(candidate)
         predictions = predict_candidate(
             candidate,
-            features.loc[train_mask, MODEL_COLUMNS],
+            prediction_features.loc[train_mask, columns],
             games.loc[train_mask, TARGET_COLUMNS].to_numpy(dtype=float),
-            features.loc[predict_mask, MODEL_COLUMNS],
+            prediction_features.loc[predict_mask, columns],
         )
     output = games.loc[predict_mask, ["game_id", "season", "week", "game_date", "home_team", "away_team"]].copy()
+    display_stats, display_ranges = _season_to_date_advanced_stats(
+        output, advanced, teams, season, week
+    )
+    for column in DISPLAY_ADVANCED_COLUMNS:
+        output[column] = display_stats[column].to_numpy()
+    for metric, bounds in display_ranges.items():
+        for bound, value in bounds.items():
+            output[f"advanced_{metric}_{bound}"] = value
     for column in (
         "home_points_for_season",
         "home_points_against_season",
         "away_points_for_season",
         "away_points_against_season",
     ):
-        output[column] = features.loc[predict_mask, column].to_numpy()
+        output[column] = prediction_features.loc[predict_mask, column].to_numpy()
+    for column in ADVANCED_COLUMNS:
+        output[column] = prediction_features.loc[predict_mask, column].to_numpy()
     output["predicted_home_score"] = predictions[:, 0]
     output["predicted_away_score"] = predictions[:, 1]
     output["predicted_home_margin"] = predictions[:, 0] - predictions[:, 1]
@@ -550,7 +608,15 @@ def main() -> None:
     parser.add_argument("--output", type=Path, help="CSV path for weekly score predictions.")
     parser.add_argument(
         "--candidate", default="direct_score_l1",
-        choices=["direct_score_l1", "environment_total_margin_l1"],
+        choices=[
+            "direct_score_l1",
+            "environment_total_margin_l1",
+            "role_points_score_l1",
+            "role_form_score_l1",
+            "role_advanced_score_l1",
+            "role_both_roles_score_l1",
+            "role_relevant_and_overall_score_l1",
+        ],
         help="Market-free score candidate. Use the validated winner only after backtesting.",
     )
     args = parser.parse_args()

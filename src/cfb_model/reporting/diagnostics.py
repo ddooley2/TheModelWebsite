@@ -111,7 +111,9 @@ def generate_diagnostics(db_path: Path, output_dir: Path = DEFAULT_OUTPUT) -> di
     missingness = _plot_missingness(features, games, output_dir)
     distributions = _plot_distributions(features, output_dir)
     _plot_source_coverage(coverage, output_dir)
-    metrics, predictions = run_candidate_backtest(games, features)
+    metrics, predictions = run_candidate_backtest(
+        games, features, advanced=load_advanced_stats(db_path)
+    )
     _plot_performance(metrics, output_dir)
 
     coverage.to_csv(output_dir / "source_coverage.csv", index=False)
