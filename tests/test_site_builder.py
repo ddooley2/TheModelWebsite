@@ -3,14 +3,147 @@ import json
 import pandas as pd
 import pytest
 
+from src.cfb_model.features.advanced import ADVANCED_METRICS
 import src.cfb_model.site.build_site as site_builder
 from src.cfb_model.site.build_site import (
+    _advanced_stats_payload,
+    _normalize_advanced_stats,
     _grade_ats,
     _grade_straight_up,
     _market_payload,
     _performance,
+    _pregame_stats_payload,
+    _saved_pregame_stats_payload,
     _snapshot_lines,
 )
+
+
+def test_advanced_stats_payload_uses_pregame_team_averages():
+    historical_games = pd.DataFrame([
+        {
+            "game_id": 1, "season": 2026, "week": 1, "game_date": "2026-09-01",
+            "home_team": "Alpha", "away_team": "One", "home_score": 20,
+            "away_score": 10, "neutral_site": False,
+        },
+        {
+            "game_id": 2, "season": 2026, "week": 2, "game_date": "2026-09-08",
+            "home_team": "Two", "away_team": "Beta", "home_score": 10,
+            "away_score": 20, "neutral_site": False,
+        },
+        {
+            "game_id": 3, "season": 2026, "week": 3, "game_date": "2026-09-15",
+            "home_team": "Alpha", "away_team": "Three", "home_score": 24,
+            "away_score": 17, "neutral_site": False,
+        },
+    ])
+    advanced_rows = []
+    for game_id, week, teams, ppa in [
+        (1, 1, ("Alpha", "One"), (0.2, 0.1)),
+        (2, 2, ("Two", "Beta"), (0.1, 0.3)),
+        (3, 3, ("Alpha", "Three"), (0.6, 0.2)),
+    ]:
+        for team, team_ppa in zip(teams, ppa):
+            advanced_rows.append({
+                "game_id": game_id, "season": 2026, "week": week, "team": team,
+                **{metric: team_ppa if metric.endswith("_ppa") else 0.4 for metric in ADVANCED_METRICS},
+            })
+    predictions = pd.DataFrame([{
+        "game_id": "espn-4", "season": 2026, "week": 4,
+        "game_date": "2026-09-22", "home_team": "Alpha", "away_team": "Beta",
+    }])
+
+    payload = _advanced_stats_payload(
+        predictions, historical_games, pd.DataFrame(advanced_rows), []
+    )
+
+    assert payload[("alpha", "beta")]["home"]["offense_ppa"] == pytest.approx(0.4)
+    assert payload[("alpha", "beta")]["away"]["offense_ppa"] == pytest.approx(0.3)
+    assert payload[("alpha", "beta")]["home"]["offense_successRate"] == pytest.approx(0.4)
+
+
+def test_advanced_stats_normalization_uses_week_team_min_and_max():
+    stats = {
+        ("alpha", "beta"): {
+            "home": {metric: 0.2 for metric in ADVANCED_METRICS},
+            "away": {metric: 0.4 for metric in ADVANCED_METRICS},
+        },
+        ("gamma", "delta"): {
+            "home": {metric: 0.6 for metric in ADVANCED_METRICS},
+            "away": {metric: 0.3 for metric in ADVANCED_METRICS},
+        },
+    }
+
+    normalized, ranges = _normalize_advanced_stats(stats)
+
+    for metric in ADVANCED_METRICS:
+        assert ranges[metric] == {"min": 0.2, "max": 0.6}
+        assert normalized[("alpha", "beta")]["home"][metric] == 0
+        assert normalized[("alpha", "beta")]["away"][metric] == 50
+        assert normalized[("gamma", "delta")]["home"][metric] == 100
+        assert normalized[("gamma", "delta")]["away"][metric] == 25
+
+
+def test_pregame_stats_payload_reports_prior_scoring_averages():
+    historical_games = pd.DataFrame([{
+        "game_id": 1, "season": 2025, "week": 1, "game_date": "2025-09-01",
+        "home_team": "Alpha", "away_team": "One", "home_score": 17,
+        "away_score": 10, "neutral_site": False,
+    }])
+    season_games = [
+        {
+            "id": 11, "season": 2026, "week": 1, "startDate": "2026-09-01",
+            "homeTeam": "Alpha", "awayTeam": "One", "homePoints": 20,
+            "awayPoints": 10, "neutralSite": False,
+        },
+        {
+            "id": 12, "season": 2026, "week": 1, "startDate": "2026-09-01",
+            "homeTeam": "Two", "awayTeam": "Beta", "homePoints": 21,
+            "awayPoints": 14, "neutralSite": False,
+        },
+        {
+            "id": 13, "season": 2026, "week": 2, "startDate": "2026-09-08",
+            "homeTeam": "Alpha", "awayTeam": "Three", "homePoints": 30,
+            "awayPoints": 20, "neutralSite": False,
+        },
+        {
+            "id": 14, "season": 2026, "week": 2, "startDate": "2026-09-08",
+            "homeTeam": "Four", "awayTeam": "Beta", "homePoints": 17,
+            "awayPoints": 24, "neutralSite": False,
+        },
+    ]
+    predictions = pd.DataFrame([{
+        "game_id": "espn-15", "season": 2026, "week": 3,
+        "game_date": "2026-09-15", "home_team": "Alpha", "away_team": "Beta",
+    }])
+
+    payload = _pregame_stats_payload(predictions, historical_games, season_games, 2026, [])
+
+    assert payload[("alpha", "beta")]["home"] == {
+        "points_for": 25.0,
+        "points_against": 15.0,
+    }
+    assert payload[("alpha", "beta")]["away"] == {
+        "points_for": 19.0,
+        "points_against": 19.0,
+    }
+
+
+def test_saved_pregame_stats_payload_uses_model_feature_columns():
+    predictions = pd.DataFrame([{
+        "home_team": "Alpha",
+        "away_team": "Beta",
+        "home_points_for_season": 25.0,
+        "home_points_against_season": 15.0,
+        "away_points_for_season": 19.0,
+        "away_points_against_season": 19.0,
+    }])
+
+    payload = _saved_pregame_stats_payload(predictions)
+
+    assert payload[("alpha", "beta")] == {
+        "home": {"points_for": 25.0, "points_against": 15.0},
+        "away": {"points_for": 19.0, "points_against": 19.0},
+    }
 
 
 def test_line_snapshot_preserves_first_observation_as_opening():
@@ -187,11 +320,25 @@ def test_line_refresh_preserves_prediction_timestamp(tmp_path, monkeypatch):
     }
     dashboard_dir = tmp_path / "public" / "data"
     dashboard_dir.mkdir(parents=True)
+    saved_advanced = {
+        "home": {"offense_ppa": 0.21},
+        "away": {"offense_ppa": 0.14},
+    }
+    saved_scoring = {
+        "home": {"points_for": 25.0, "points_against": 15.0},
+        "away": {"points_for": 19.0, "points_against": 19.0},
+    }
     (dashboard_dir / "dashboard.json").write_text(json.dumps({
         "generated_at": "2026-10-26T14:17:00+00:00",
         "season": 2026,
         "week": 9,
-        "games": [],
+        "games": [{
+            "id": "9",
+            "home": {"name": "Alpha"},
+            "away": {"name": "Beta"},
+            "advanced_stats": saved_advanced,
+            "pregame_stats": saved_scoring,
+        }],
     }))
     monkeypatch.setattr(site_builder, "PROJECT_ROOT", tmp_path)
     monkeypatch.setattr(site_builder, "SITE_DIR", tmp_path / "public")
@@ -210,6 +357,8 @@ def test_line_refresh_preserves_prediction_timestamp(tmp_path, monkeypatch):
     payload = json.loads(output.read_text())
     assert payload["generated_at"] == "2026-10-26T14:17:00+00:00"
     assert payload["games"][0]["market"]["current"]["observed_at"] != payload["generated_at"]
+    assert payload["games"][0]["advanced_stats"] == saved_advanced
+    assert payload["games"][0]["pregame_stats"] == saved_scoring
 
 
 def test_new_predictions_refresh_prediction_timestamp(tmp_path, monkeypatch):

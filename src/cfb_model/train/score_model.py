@@ -527,6 +527,13 @@ def predict_week(
             features.loc[predict_mask, MODEL_COLUMNS],
         )
     output = games.loc[predict_mask, ["game_id", "season", "week", "game_date", "home_team", "away_team"]].copy()
+    for column in (
+        "home_points_for_season",
+        "home_points_against_season",
+        "away_points_for_season",
+        "away_points_against_season",
+    ):
+        output[column] = features.loc[predict_mask, column].to_numpy()
     output["predicted_home_score"] = predictions[:, 0]
     output["predicted_away_score"] = predictions[:, 1]
     output["predicted_home_margin"] = predictions[:, 0] - predictions[:, 1]

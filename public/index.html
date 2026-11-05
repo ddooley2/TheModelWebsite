@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:wght@400;700&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="assets/site.css?v=short-cascade2">
+  <link rel="stylesheet" href="assets/site.css?v=game-details-13">
 </head>
 <body>
   <header class="shell masthead">
@@ -55,13 +55,21 @@
 
   <footer class="shell">$yndicate · Projections are informational analysis, not financial advice.</footer>
   <template id="game-template">
-    <article class="game-card">
+    <article class="game-card" tabindex="0" role="button" aria-label="Open game breakdown">
       <header class="game-meta"><span class="kickoff"></span><span class="venue"></span></header>
       <div class="teams"></div>
       <div class="market-row"></div>
       <footer class="card-foot"></footer>
     </article>
   </template>
-  <script src="assets/app.js?v=short-cascade2"></script>
+  <dialog id="game-detail" class="game-detail" aria-label="Game comparison">
+    <div class="detail-shell">
+      <button class="detail-close" type="button" aria-label="Close game breakdown">×</button>
+      <div class="detail-teams"></div>
+      <div class="detail-info"></div>
+      <div class="detail-content"></div>
+    </div>
+  </dialog>
+  <script src="assets/app.js?v=game-details-13"></script>
 </body>
 </html>

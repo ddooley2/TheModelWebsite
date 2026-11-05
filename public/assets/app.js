@@ -114,6 +114,7 @@ function animateOnOpen(details) {
 }
 function card(game) {
   const template = $("#game-template").content.cloneNode(true);
+  const gameCard = template.querySelector(".game-card");
   template.querySelector(".kickoff").textContent = formatStart(game.start);
   template.querySelector(".venue").textContent = pretty(game.venue, game.neutral_site ? "Neutral site" : "");
   template.querySelector(".teams").innerHTML = teamRow(game.away, game.favorite_team) + teamRow(game.home, game.favorite_team);
@@ -138,8 +139,172 @@ function card(game) {
   } else if (!game.pick && game.su_result) {
     foot.classList.add("outcome-none");
   }
+  gameCard.setAttribute("aria-label", `Open ${game.away.name} at ${game.home.name} game breakdown`);
+  gameCard.addEventListener("click", () => openGameDetail(game));
+  gameCard.addEventListener("keydown", event => {
+    if (event.target !== gameCard || !["Enter", " "].includes(event.key)) return;
+    event.preventDefault();
+    openGameDetail(game);
+  });
   return template;
 }
+
+const detailDialog = $("#game-detail");
+let selectedDetailGame = null;
+
+const advancedMetrics = [
+  {key:"offense_ppa", label:"Offense PPA", short:"Off. PPA"},
+  {key:"offense_successRate", label:"Success rate", short:"Off. success"},
+  {key:"offense_explosiveness", label:"Explosiveness", short:"Off. explosive"},
+  {key:"defense_ppa", label:"PPA allowed", short:"Def. PPA"},
+  {key:"defense_successRate", label:"Success rate allowed", short:"Def. success"},
+  {key:"defense_explosiveness", label:"Explosiveness allowed", short:"Def. explosive"},
+];
+
+function normalizedScore(game, side, metric) {
+  return numeric(game.advanced_stats_normalized?.[side]?.[metric.key]);
+}
+
+function detailStatHeader(game) {
+  return `<div class="detail-stat-legend">
+    <span><i class="stat-swatch away"></i>${game.away.name}</span>
+    <span><i class="stat-swatch home"></i>${game.home.name}</span>
+  </div>`;
+}
+
+function detailTeamHeader(game) {
+  return [["away", game.away, "AWAY"], ["home", game.home, game.neutral_site ? "HOME · NEUTRAL" : "HOME"]]
+    .map(([side, team, label]) => {
+      const logo = Number.isInteger(team.logo_id)
+        ? `<img class="detail-team-logo" src="assets/logos/${team.logo_id}.png" alt="">`
+        : "";
+      const pickBadge = team.name?.trim().toLowerCase() === game.pick?.trim().toLowerCase()
+        ? `<span class="detail-model-pick">MODEL PICK</span>`
+        : "";
+      return `<div class="detail-team-card ${side}">
+        ${logo}<div class="detail-team-copy"><span>${label}</span><div class="detail-team-title"><strong>${team.name}</strong>${pickBadge}</div></div>
+        <div class="detail-team-projection"><b>${line(team.projected_score)}</b><span>PROJ.</span></div>
+      </div>`;
+    }).join("");
+}
+
+function detailBettingInfo(game) {
+  const market = game.market || {};
+  const opening = market.opening || {};
+  const current = market.current || {};
+  const modelMargin = numeric(game.projected_favorite_margin);
+  const modelMarginLabel = modelMargin === null ? "—" : spread(-modelMargin);
+
+  return `<div class="detail-betting">
+    <div class="detail-market-row">
+      <div><span>Reference Spread</span><strong>${spread(opening.spread_favorite)}</strong></div>
+      <div><span>Current Spread</span><strong>${spread(current.spread_favorite)}</strong></div>
+      <div><span>Model Spread</span><strong>${modelMarginLabel}</strong></div>
+      <div><span>Model Total / Market Total</span><strong>${line(game.projected_total)} / ${line(current.total)}</strong></div>
+    </div>
+  </div>`;
+}
+
+function renderPointsChart(game) {
+  const rows = [
+    {key:"points_for", label:"Points for"},
+    {key:"points_against", label:"Points against"},
+  ];
+  const values = rows.flatMap(row => ["away", "home"].map(
+    side => numeric(game.pregame_stats?.[side]?.[row.key])
+  )).filter(value => value !== null);
+  if (!values.length) {
+    return `<section class="points-panel"><h3>2026 Averages</h3><p>Scoring averages unavailable.</p></section>`;
+  }
+  const maximum = Math.ceil(Math.max(...values) / 5) * 5 || 5;
+  const groups = rows.map((row, index) => {
+    const teamRows = [["away", game.away], ["home", game.home]].map(([side, team]) => {
+      const value = numeric(game.pregame_stats?.[side]?.[row.key]);
+      return `<span class="points-team-name">${team.name}</span>
+        <div class="points-bar-track"><i class="${side}" style="width:${value === null ? 0 : value / maximum * 100}%"></i></div>
+        <b class="points-value">${value === null ? "—" : value.toFixed(1)}</b>`;
+    }).join("");
+    return `<div class="points-group-title${index === 0 ? " first" : ""}"><strong>${row.label}</strong></div>
+      <span class="points-axis-spacer"></span>
+      <div class="points-axis"><span>0</span><span>${maximum} pts</span></div>
+      ${teamRows}`;
+  }).join("");
+  return `<section class="points-panel">
+    <h3>2026 Averages</h3>
+    <div class="points-grid">
+      ${groups}
+    </div>
+  </section>`;
+}
+
+function renderCoverage(game) {
+  const centerX = 220;
+  const centerY = 174;
+  const radius = 108;
+  const angle = index => (-90 + index * 360 / advancedMetrics.length) * Math.PI / 180;
+  const point = (index, value, distance = radius) => {
+    const radians = angle(index);
+    const scaled = distance * value / 100;
+    return [centerX + Math.cos(radians) * scaled, centerY + Math.sin(radians) * scaled];
+  };
+  const polygonPoints = values => values.map((value, index) => {
+    const [x, y] = point(index, value ?? 0);
+    return `${x.toFixed(1)},${y.toFixed(1)}`;
+  }).join(" ");
+  const ring = level => polygonPoints(advancedMetrics.map(() => level));
+  const spokes = advancedMetrics.map((metric, index) => {
+    const [x, y] = point(index, 100);
+    const [labelX, labelY] = point(index, 100, 145);
+    const anchor = Math.abs(Math.cos(angle(index))) < 0.25
+      ? "middle"
+      : Math.cos(angle(index)) > 0 ? "start" : "end";
+    return `<line class="radar-axis" x1="${centerX}" y1="${centerY}" x2="${x}" y2="${y}"></line>
+      <text class="radar-label" x="${labelX.toFixed(1)}" y="${labelY.toFixed(1)}" text-anchor="${anchor}">${metric.short}</text>`;
+  }).join("");
+  const scaleMarks = [0, 25, 50, 75, 100].map(level => {
+    const y = centerY - radius * level / 100;
+    return `<text class="radar-scale-label" x="${centerX + 5}" y="${y + 3}">${level}%</text>`;
+  }).join("");
+  const awayScores = advancedMetrics.map(metric => normalizedScore(game, "away", metric));
+  const homeScores = advancedMetrics.map(metric => normalizedScore(game, "home", metric));
+  if (awayScores.every(value => value === null) || homeScores.every(value => value === null)) {
+    return `<p class="detail-chart-empty">Week-level advanced stats are unavailable for this matchup.</p>`;
+  }
+  const dots = (scores, side) => scores.map((score, index) => {
+    if (score === null) return "";
+    const [x, y] = point(index, score);
+    return `<circle class="radar-dot ${side}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3"></circle>`;
+  }).join("");
+  return `${detailStatHeader(game)}
+    <div class="coverage-layout"><div class="coverage-wrap"><svg class="coverage-plot" viewBox="0 0 440 350" role="img" aria-label="Radar coverage plot comparing normalized advanced stats for ${game.away.name} and ${game.home.name}">
+      <polygon class="radar-grid" points="${ring(25)}"></polygon><polygon class="radar-grid" points="${ring(50)}"></polygon><polygon class="radar-grid" points="${ring(75)}"></polygon><polygon class="radar-grid" points="${ring(100)}"></polygon>
+      ${spokes}
+      <polygon class="radar-area away" points="${polygonPoints(awayScores)}"></polygon>
+      <polygon class="radar-area home" points="${polygonPoints(homeScores)}"></polygon>
+      ${dots(awayScores, "away")}${dots(homeScores, "home")}${scaleMarks}
+    </svg></div>${renderPointsChart(game)}</div>`;
+}
+
+function renderDetailView() {
+  const game = selectedDetailGame;
+  if (!game) return;
+  $(".detail-teams").innerHTML = detailTeamHeader(game);
+  $(".detail-info").innerHTML = detailBettingInfo(game);
+  $(".detail-content").innerHTML = renderCoverage(game);
+}
+
+function openGameDetail(game) {
+  selectedDetailGame = game;
+  renderDetailView();
+  detailDialog.showModal();
+  $(".detail-close").focus();
+}
+
+$(".detail-close").addEventListener("click", () => detailDialog.close());
+detailDialog.addEventListener("click", event => {
+  if (event.target === detailDialog) detailDialog.close();
+});
+
 function renderGameBoard(games, filter = "all") {
   const top25Only = filter === "top25";
   const visibleGames = top25Only
