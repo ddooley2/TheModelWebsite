@@ -1,9 +1,38 @@
 {
   "2026": {
+    "10:401856855": {
+      "game_id": "401856855",
+      "result": "win",
+      "su_result": "win",
+      "week": 10
+    },
+    "10:401858288": {
+      "game_id": "401858288",
+      "su_result": "win",
+      "week": 10
+    },
+    "10:401858510": {
+      "game_id": "401858510",
+      "result": "win",
+      "su_result": "loss",
+      "week": 10
+    },
     "10:401862817": {
       "game_id": "401862817",
       "result": "loss",
       "su_result": "loss",
+      "week": 10
+    },
+    "10:401862818": {
+      "game_id": "401862818",
+      "result": "loss",
+      "su_result": "loss",
+      "week": 10
+    },
+    "10:401864533": {
+      "game_id": "401864533",
+      "result": "loss",
+      "su_result": "win",
       "week": 10
     },
     "10:401866453": {
