@@ -303,18 +303,20 @@ def load_roster_priors(db_path: Path = DB_PATH, season: int | None = None) -> pd
 
 
 def load_advanced_stats(db_path: Path = DB_PATH, season: int | None = None) -> pd.DataFrame:
-    """Load per-game advanced team stats, adding CFBD's current-season rows when absent."""
+    """Load warehouse stats and refresh the requested season from CFBD when available."""
     columns = ["game_id", "season", "week", "team", *ADVANCED_METRICS]
     with duckdb.connect(str(db_path), read_only=True) as connection:
         stats = connection.execute(
             f"SELECT {', '.join(columns)} FROM stg_team_game_stats_raw"
         ).fetchdf()
-    if season is None or (stats["season"] == season).any():
+    if season is None:
         return stats
 
     load_dotenv()
     api_key = os.environ.get("CFBD_API_KEY")
     if not api_key:
+        if (pd.to_numeric(stats["season"], errors="coerce") == season).any():
+            return stats
         raise RuntimeError(f"CFBD_API_KEY is required to fetch {season} advanced stats.")
     response = requests.get(
         f"{CFBD_API}/stats/game/advanced",
@@ -325,13 +327,20 @@ def load_advanced_stats(db_path: Path = DB_PATH, season: int | None = None) -> p
     response.raise_for_status()
     rows = []
     for item in response.json():
-        row = {"season": item.get("season"), "week": item.get("week"), "team": item.get("team")}
+        row = {
+            "season": item.get("season") or season,
+            "week": item.get("week"),
+            "team": item.get("team"),
+        }
         for side in ("offense", "defense"):
             for metric in ("ppa", "successRate", "explosiveness"):
                 row[f"{side}_{metric}"] = (item.get(side) or {}).get(metric)
         rows.append(row)
     # ESPN-sourced current games have no CFBD id; they join on season/week/team.
     current = pd.DataFrame(rows, columns=columns)
+    if current.empty:
+        return stats
+    stats = stats[pd.to_numeric(stats["season"], errors="coerce") != season]
     return pd.concat([stats, current], ignore_index=True)
 
 

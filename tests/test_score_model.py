@@ -1,6 +1,7 @@
 import numpy as np
 import pandas as pd
 
+from src.cfb_model.features.advanced import build_advanced_features
 from src.cfb_model.train.score_model import (
     ADVANCED_COLUMNS,
     ADVANCED_METRICS,
@@ -9,6 +10,7 @@ from src.cfb_model.train.score_model import (
     _parse_espn_event,
     build_model_features,
     build_pregame_features,
+    load_advanced_stats,
     predict_week,
     score_metrics,
 )
@@ -119,6 +121,93 @@ def test_espn_event_parser_keeps_scheduled_score_targets_missing():
     assert game["game_id"] == "espn-123"
     assert np.isnan(game["home_score"])
     assert np.isnan(game["away_score"])
+
+
+def test_advanced_features_use_prior_current_season_stats_and_prior_year_shrinkage():
+    games = pd.DataFrame([
+        {
+            "game_id": 1, "season": 2025, "week": 1, "game_date": "2025-08-30",
+            "home_team": "Alpha", "away_team": "Beta",
+        },
+        {
+            "game_id": 2, "season": 2026, "week": 1, "game_date": "2026-08-29",
+            "home_team": "Alpha", "away_team": "Beta",
+        },
+        {
+            "game_id": 3, "season": 2026, "week": 2, "game_date": "2026-09-05",
+            "home_team": "Alpha", "away_team": "Beta",
+        },
+    ])
+    advanced_rows = []
+    for game_id, season, week, team, ppa in [
+        (1, 2025, 1, "Alpha", 0.1),
+        (1, 2025, 1, "Beta", 0.2),
+        (np.nan, 2026, 1, "Alpha", 0.5),
+        (np.nan, 2026, 1, "Beta", 0.6),
+        (np.nan, 2026, 2, "Alpha", 99.0),
+        (np.nan, 2026, 2, "Beta", 99.0),
+    ]:
+        advanced_rows.append({
+            "game_id": game_id, "season": season, "week": week, "team": team,
+            **{
+                metric: ppa if metric == "offense_ppa" else 0.5
+                for metric in ADVANCED_METRICS
+            },
+        })
+
+    features = build_advanced_features(games, pd.DataFrame(advanced_rows))
+
+    assert np.isclose(features.loc[2, "home_offense_ppa"], 0.2)
+    assert np.isclose(features.loc[2, "away_offense_ppa"], 0.3)
+
+
+def test_load_advanced_stats_refreshes_partial_requested_season(tmp_path, monkeypatch):
+    import duckdb
+    import src.cfb_model.train.score_model as score_model
+
+    db_path = tmp_path / "warehouse.duckdb"
+    with duckdb.connect(str(db_path)) as connection:
+        connection.execute(
+            "CREATE TABLE stg_team_game_stats_raw ("
+            "game_id BIGINT, season INTEGER, week INTEGER, team VARCHAR, "
+            + ", ".join(f"{metric} DOUBLE" for metric in ADVANCED_METRICS)
+            + ")"
+        )
+        connection.execute(
+            "INSERT INTO stg_team_game_stats_raw VALUES "
+            "(1, 2025, 1, 'Alpha', 0.1, 0.1, 0.1, 0.1, 0.1, 0.1), "
+            "(2, 2026, 1, 'Alpha', 0.2, 0.2, 0.2, 0.2, 0.2, 0.2)"
+        )
+
+    class Response:
+        def raise_for_status(self):
+            pass
+
+        def json(self):
+            return [
+                {
+                    "season": 2026, "week": 1, "team": "Alpha",
+                    "offense": {"ppa": 0.4, "successRate": 0.5, "explosiveness": 1.2},
+                    "defense": {"ppa": -0.1, "successRate": 0.3, "explosiveness": 0.9},
+                },
+                {
+                    "season": 2026, "week": 2, "team": "Beta",
+                    "offense": {"ppa": 0.7, "successRate": 0.6, "explosiveness": 1.3},
+                    "defense": {"ppa": -0.2, "successRate": 0.4, "explosiveness": 0.8},
+                },
+            ]
+
+    monkeypatch.setattr(score_model, "load_dotenv", lambda: None)
+    monkeypatch.setattr(score_model.requests, "get", lambda *args, **kwargs: Response())
+    monkeypatch.setenv("CFBD_API_KEY", "test")
+
+    stats = load_advanced_stats(db_path, season=2026)
+    current = stats[stats["season"] == 2026].set_index(["week", "team"])
+
+    assert stats[stats["season"] == 2025].shape[0] == 1
+    assert current.loc[(1, "Alpha"), "offense_ppa"] == 0.4
+    assert current.loc[(2, "Beta"), "offense_ppa"] == 0.7
+    assert len(current) == 2
 
 
 def test_predict_week_saves_prediction_time_features(monkeypatch, tmp_path):

@@ -13,8 +13,9 @@ from typing import Any
 
 import pandas as pd
 import requests
+from dotenv import load_dotenv
 
-from src.cfb_model.features.advanced import ADVANCED_METRICS, build_advanced_features
+from src.cfb_model.features.advanced import ADVANCED_METRICS
 from src.cfb_model.reporting.diagnostics import generate_diagnostics
 from src.cfb_model.train.score_model import PROJECT_ROOT
 
@@ -220,6 +221,7 @@ def _snapshot_lines(lines_games: list[dict], history: dict, timestamp: str) -> t
 
 def capture_reference_lines(season: int, week: int) -> None:
     """Capture live line history as the immutable reference for new predictions."""
+    load_dotenv()
     api_key = os.environ.get("CFBD_API_KEY")
     line_games = _api_get(
         "lines", {"year": season, "week": week, "seasonType": "regular"}, api_key
@@ -281,34 +283,26 @@ def _matchup_key(home_team: str, away_team: str) -> tuple[str, str]:
     return _normalise(home_team), _normalise(away_team)
 
 
-def _advanced_stats_payload(
+def _prediction_advanced_stats_payload(
     predictions: pd.DataFrame,
-    historical_games: pd.DataFrame,
-    advanced: pd.DataFrame,
-    schedule: list[dict],
 ) -> dict[tuple[str, str], dict]:
-    upcoming = predictions[
-        ["game_id", "season", "week", "game_date", "home_team", "away_team"]
-    ].copy()
-    upcoming["home_score"] = float("nan")
-    upcoming["away_score"] = float("nan")
-    upcoming["neutral_site"] = [
-        bool(_match_schedule_game(prediction, schedule).get("neutralSite", False))
-        for _, prediction in predictions.iterrows()
-    ]
-    historical_count = len(historical_games)
-    games = pd.concat([historical_games, upcoming], ignore_index=True, sort=False)
-    feature_rows = build_advanced_features(games, advanced).iloc[historical_count:]
+    required = {
+        f"{side}_display_{metric}"
+        for side in ("home", "away")
+        for metric in ADVANCED_METRICS
+    }
+    if not required.issubset(predictions.columns):
+        return {}
 
     payload = {}
-    for prediction, feature_row in zip(
-        predictions.itertuples(index=False), feature_rows.itertuples(index=False)
-    ):
+    for prediction in predictions.itertuples(index=False):
         teams = {}
         for side in ("home", "away"):
             teams[side] = {}
             for metric in ADVANCED_METRICS:
-                value = getattr(feature_row, f"{side}_{metric}")
+                value = pd.to_numeric(
+                    getattr(prediction, f"{side}_display_{metric}"), errors="coerce"
+                )
                 teams[side][metric] = (
                     None if pd.isna(value) else round(float(value), 4)
                 )
@@ -316,74 +310,29 @@ def _advanced_stats_payload(
     return payload
 
 
-def _pregame_stats_payload(
+def _prediction_advanced_stat_ranges(
     predictions: pd.DataFrame,
-    historical_games: pd.DataFrame,
-    season_games: list[dict],
-    season: int,
-    schedule: list[dict],
-) -> dict[tuple[str, str], dict]:
-    completed = []
-    for game in season_games:
-        if int(game.get("season") or 0) != season:
-            continue
-        home_score = pd.to_numeric(game.get("homePoints"), errors="coerce")
-        away_score = pd.to_numeric(game.get("awayPoints"), errors="coerce")
-        if (
-            pd.isna(home_score)
-            or pd.isna(away_score)
-            or game.get("completed") is False
-            or not game.get("startDate")
-            or game.get("week") is None
-            or not game.get("homeTeam")
-            or not game.get("awayTeam")
-        ):
-            continue
-        completed.append({
-            "game_id": game.get("id"),
-            "season": season,
-            "week": game.get("week"),
-            "game_date": game["startDate"],
-            "home_team": game.get("homeTeam"),
-            "away_team": game.get("awayTeam"),
-            "home_score": home_score,
-            "away_score": away_score,
-            "neutral_site": bool(game.get("neutralSite", False)),
-        })
+) -> dict[str, dict[str, float | None]] | None:
+    columns = {
+        f"advanced_{metric}_{bound}"
+        for metric in ADVANCED_METRICS
+        for bound in ("min", "max")
+    }
+    if not columns.issubset(predictions.columns) or predictions.empty:
+        return None
 
-    previous_seasons = historical_games[historical_games["season"] < season]
-    current_results = pd.DataFrame(completed, columns=historical_games.columns)
-    upcoming = predictions[
-        ["game_id", "season", "week", "game_date", "home_team", "away_team"]
-    ].copy()
-    upcoming["home_score"] = float("nan")
-    upcoming["away_score"] = float("nan")
-    upcoming["neutral_site"] = [
-        bool(_match_schedule_game(prediction, schedule).get("neutralSite", False))
-        for _, prediction in predictions.iterrows()
-    ]
-
-    history_count = len(previous_seasons) + len(current_results)
-    games = pd.concat(
-        [previous_seasons, current_results, upcoming], ignore_index=True, sort=False
-    )
-    from src.cfb_model.train.score_model import build_pregame_features
-
-    feature_rows = build_pregame_features(games).iloc[history_count:]
-    payload = {}
-    for prediction, row in zip(
-        predictions.itertuples(index=False), feature_rows.itertuples(index=False)
-    ):
-        teams = {}
-        for side in ("home", "away"):
-            teams[side] = {
-                "points_for": round(float(getattr(row, f"{side}_points_for_season")), 1),
-                "points_against": round(
-                    float(getattr(row, f"{side}_points_against_season")), 1
-                ),
-            }
-        payload[_matchup_key(prediction.home_team, prediction.away_team)] = teams
-    return payload
+    first = predictions.iloc[0]
+    return {
+        metric: {
+            bound: (
+                None
+                if pd.isna(pd.to_numeric(first[f"advanced_{metric}_{bound}"], errors="coerce"))
+                else float(first[f"advanced_{metric}_{bound}"])
+            )
+            for bound in ("min", "max")
+        }
+        for metric in ADVANCED_METRICS
+    }
 
 
 def _saved_pregame_stats_payload(predictions: pd.DataFrame) -> dict[tuple[str, str], dict]:
@@ -404,9 +353,9 @@ def _saved_pregame_stats_payload(predictions: pd.DataFrame) -> dict[tuple[str, s
                 getattr(prediction, against_column), errors="coerce"
             )
             teams[side] = {
-                "points_for": None if pd.isna(points_for) else round(float(points_for), 1),
+                "points_for": None if pd.isna(points_for) else round(float(points_for), 2),
                 "points_against": (
-                    None if pd.isna(points_against) else round(float(points_against), 1)
+                    None if pd.isna(points_against) else round(float(points_against), 2)
                 ),
             }
         payload[_matchup_key(prediction.home_team, prediction.away_team)] = teams
@@ -415,19 +364,21 @@ def _saved_pregame_stats_payload(predictions: pd.DataFrame) -> dict[tuple[str, s
 
 def _normalize_advanced_stats(
     stats_by_matchup: dict[tuple[str, str], dict],
+    ranges: dict[str, dict[str, float | None]] | None = None,
 ) -> tuple[dict[tuple[str, str], dict], dict[str, dict[str, float | None]]]:
-    ranges = {}
-    for metric in ADVANCED_METRICS:
-        values = [
-            value
-            for teams in stats_by_matchup.values()
-            for side in ("home", "away")
-            if (value := teams.get(side, {}).get(metric)) is not None
-        ]
-        ranges[metric] = {
-            "min": min(values) if values else None,
-            "max": max(values) if values else None,
-        }
+    if ranges is None:
+        ranges = {}
+        for metric in ADVANCED_METRICS:
+            values = [
+                value
+                for teams in stats_by_matchup.values()
+                for side in ("home", "away")
+                if (value := teams.get(side, {}).get(metric)) is not None
+            ]
+            ranges[metric] = {
+                "min": min(values) if values else None,
+                "max": max(values) if values else None,
+            }
 
     normalized = {}
     for matchup, teams in stats_by_matchup.items():
@@ -521,7 +472,7 @@ def _prediction_file(season: int, week: int | None) -> Path:
     choices = sorted((PROJECT_ROOT / "results").glob(f"score_predictions_{season}_week*.csv"))
     if not choices:
         raise FileNotFoundError(f"No prediction CSV for {season}. Run the score model first.")
-    return choices[-1]
+    return max(choices, key=lambda path: int(path.stem.rsplit("_week", 1)[1]))
 
 
 def build_site(
@@ -532,6 +483,7 @@ def build_site(
     predictions_generated: bool = False,
 ) -> Path:
     """Build static data for the dashboard; CFBD is display-only, never a model input."""
+    load_dotenv()
     SITE_DIR.mkdir(parents=True, exist_ok=True)
     DATA_DIR.mkdir(parents=True, exist_ok=True)
     api_key = os.environ.get("CFBD_API_KEY")
@@ -568,70 +520,28 @@ def build_site(
         {"id": game.get("id"), "homeTeam": game.get("homeTeam"), "awayTeam": game.get("awayTeam")}
         for game in line_games
     ]
-    advanced_by_game = {
-        _matchup_key(game["home"]["name"], game["away"]["name"]): game["advanced_stats"]
-        for game in (matching_previous or {}).get("games", [])
-        if game.get("home", {}).get("name")
-        and game.get("away", {}).get("name")
-        and game.get("advanced_stats") is not None
-    } if not predictions_generated else {}
-    pregame_by_game = {
-        _matchup_key(game["home"]["name"], game["away"]["name"]): game["pregame_stats"]
-        for game in (matching_previous or {}).get("games", [])
-        if game.get("home", {}).get("name")
-        and game.get("away", {}).get("name")
-        and game.get("pregame_stats") is not None
-    } if not predictions_generated else {}
-    missing_advanced = [
-        _matchup_key(game.home_team, game.away_team)
-        for game in predictions.itertuples(index=False)
-        if _matchup_key(game.home_team, game.away_team) not in advanced_by_game
-    ]
-    missing_pregame = [
-        _matchup_key(game.home_team, game.away_team)
-        for game in predictions.itertuples(index=False)
-        if _matchup_key(game.home_team, game.away_team) not in pregame_by_game
-    ]
-    feature_db_path = db_path or PROJECT_ROOT / "db" / "warehouse.duckdb"
-    if missing_pregame:
-        saved_pregame = _saved_pregame_stats_payload(predictions)
-        if saved_pregame:
-            pregame_by_game = {**saved_pregame, **pregame_by_game}
-            missing_pregame = [
-                matchup
-                for matchup in missing_pregame
-                if matchup not in pregame_by_game
-            ]
-    if (
-        not feature_db_path.exists()
-        and db_path is None
-        and api_key
-        and (missing_pregame or missing_advanced)
-    ):
-        from src.cfb_model.data.warehouse import ensure_warehouse
-
-        feature_db_path = ensure_warehouse(feature_db_path)
-    if feature_db_path.exists() and (missing_pregame or (missing_advanced and api_key)):
-        from src.cfb_model.train.score_model import load_historical_games
-        historical_games = load_historical_games(feature_db_path)
-        if missing_pregame:
-            pregame_by_game = {
-                **_pregame_stats_payload(
-                    predictions, historical_games, all_games, season, schedule_by_teams
-                ),
-                **pregame_by_game,
-            }
-        if missing_advanced and api_key:
-            from src.cfb_model.train.score_model import load_advanced_stats
-
-            advanced = load_advanced_stats(feature_db_path, season)
-            advanced_by_game = {
-                **_advanced_stats_payload(
-                    predictions, historical_games, advanced, schedule_by_teams
-                ),
-                **advanced_by_game,
-            }
-    normalized_by_game, advanced_stat_ranges = _normalize_advanced_stats(advanced_by_game)
+    advanced_by_game = _prediction_advanced_stats_payload(predictions)
+    if not advanced_by_game and not predictions_generated and matching_previous:
+        advanced_by_game = {
+            _matchup_key(game["home"]["name"], game["away"]["name"]): game["advanced_stats"]
+            for game in (matching_previous or {}).get("games", [])
+            if game.get("home", {}).get("name")
+            and game.get("away", {}).get("name")
+            and game.get("advanced_stats") is not None
+        }
+    pregame_by_game = _saved_pregame_stats_payload(predictions)
+    if not pregame_by_game and not predictions_generated and matching_previous:
+        pregame_by_game = {
+            _matchup_key(game["home"]["name"], game["away"]["name"]): game["pregame_stats"]
+            for game in (matching_previous or {}).get("games", [])
+            if game.get("home", {}).get("name")
+            and game.get("away", {}).get("name")
+            and game.get("pregame_stats") is not None
+        }
+    prediction_ranges = _prediction_advanced_stat_ranges(predictions)
+    normalized_by_game, advanced_stat_ranges = _normalize_advanced_stats(
+        advanced_by_game, prediction_ranges
+    )
     record_lookup = _records(all_games, season)
     rank_lookup = _rankings(ranking_rows)
     ats_results = _read_ats_results()

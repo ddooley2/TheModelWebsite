@@ -6,59 +6,59 @@ import pytest
 from src.cfb_model.features.advanced import ADVANCED_METRICS
 import src.cfb_model.site.build_site as site_builder
 from src.cfb_model.site.build_site import (
-    _advanced_stats_payload,
     _normalize_advanced_stats,
+    _prediction_advanced_stat_ranges,
+    _prediction_advanced_stats_payload,
+    _prediction_file,
     _grade_ats,
     _grade_straight_up,
     _market_payload,
     _performance,
-    _pregame_stats_payload,
     _saved_pregame_stats_payload,
     _snapshot_lines,
 )
 
 
-def test_advanced_stats_payload_uses_pregame_team_averages():
-    historical_games = pd.DataFrame([
-        {
-            "game_id": 1, "season": 2026, "week": 1, "game_date": "2026-09-01",
-            "home_team": "Alpha", "away_team": "One", "home_score": 20,
-            "away_score": 10, "neutral_site": False,
-        },
-        {
-            "game_id": 2, "season": 2026, "week": 2, "game_date": "2026-09-08",
-            "home_team": "Two", "away_team": "Beta", "home_score": 10,
-            "away_score": 20, "neutral_site": False,
-        },
-        {
-            "game_id": 3, "season": 2026, "week": 3, "game_date": "2026-09-15",
-            "home_team": "Alpha", "away_team": "Three", "home_score": 24,
-            "away_score": 17, "neutral_site": False,
-        },
-    ])
-    advanced_rows = []
-    for game_id, week, teams, ppa in [
-        (1, 1, ("Alpha", "One"), (0.2, 0.1)),
-        (2, 2, ("Two", "Beta"), (0.1, 0.3)),
-        (3, 3, ("Alpha", "Three"), (0.6, 0.2)),
-    ]:
-        for team, team_ppa in zip(teams, ppa):
-            advanced_rows.append({
-                "game_id": game_id, "season": 2026, "week": week, "team": team,
-                **{metric: team_ppa if metric.endswith("_ppa") else 0.4 for metric in ADVANCED_METRICS},
-            })
+@pytest.fixture(autouse=True)
+def isolate_cfbd_credentials(monkeypatch):
+    monkeypatch.setattr(site_builder, "load_dotenv", lambda: None)
+    monkeypatch.delenv("CFBD_API_KEY", raising=False)
+
+
+def test_prediction_file_without_week_selects_highest_numeric_week(tmp_path, monkeypatch):
+    results = tmp_path / "results"
+    results.mkdir()
+    week9 = results / "score_predictions_2026_week9.csv"
+    week10 = results / "score_predictions_2026_week10.csv"
+    week9.touch()
+    week10.touch()
+    monkeypatch.setattr(site_builder, "PROJECT_ROOT", tmp_path)
+
+    assert _prediction_file(2026, None) == week10
+
+
+def test_prediction_advanced_stats_payload_reads_saved_model_features():
     predictions = pd.DataFrame([{
-        "game_id": "espn-4", "season": 2026, "week": 4,
-        "game_date": "2026-09-22", "home_team": "Alpha", "away_team": "Beta",
+        "home_team": "Alpha",
+        "away_team": "Beta",
+        **{
+            f"{side}_display_{metric}": 0.1 if side == "home" else 0.2
+            for side in ("home", "away")
+            for metric in ADVANCED_METRICS
+        },
+        **{
+            f"advanced_{metric}_{bound}": 0.0 if bound == "min" else 1.0
+            for metric in ADVANCED_METRICS
+            for bound in ("min", "max")
+        },
     }])
 
-    payload = _advanced_stats_payload(
-        predictions, historical_games, pd.DataFrame(advanced_rows), []
-    )
+    payload = _prediction_advanced_stats_payload(predictions)
+    ranges = _prediction_advanced_stat_ranges(predictions)
 
-    assert payload[("alpha", "beta")]["home"]["offense_ppa"] == pytest.approx(0.4)
-    assert payload[("alpha", "beta")]["away"]["offense_ppa"] == pytest.approx(0.3)
-    assert payload[("alpha", "beta")]["home"]["offense_successRate"] == pytest.approx(0.4)
+    assert payload[("alpha", "beta")]["home"]["offense_ppa"] == 0.1
+    assert payload[("alpha", "beta")]["away"]["offense_ppa"] == 0.2
+    assert ranges["offense_ppa"] == {"min": 0.0, "max": 1.0}
 
 
 def test_advanced_stats_normalization_uses_week_team_min_and_max():
@@ -83,49 +83,64 @@ def test_advanced_stats_normalization_uses_week_team_min_and_max():
         assert normalized[("gamma", "delta")]["away"][metric] == 25
 
 
-def test_pregame_stats_payload_reports_prior_scoring_averages():
-    historical_games = pd.DataFrame([{
-        "game_id": 1, "season": 2025, "week": 1, "game_date": "2025-09-01",
-        "home_team": "Alpha", "away_team": "One", "home_score": 17,
-        "away_score": 10, "neutral_site": False,
-    }])
-    season_games = [
-        {
-            "id": 11, "season": 2026, "week": 1, "startDate": "2026-09-01",
-            "homeTeam": "Alpha", "awayTeam": "One", "homePoints": 20,
-            "awayPoints": 10, "neutralSite": False,
+def test_site_refresh_uses_prediction_features_over_cached_stats(tmp_path, monkeypatch):
+    prediction_path = tmp_path / "week10.csv"
+    pd.DataFrame([{
+        "game_id": "espn-10", "season": 2026, "week": 10,
+        "game_date": "2026-11-07T23:15:00Z",
+        "home_team": "Tennessee", "away_team": "Kentucky",
+        "predicted_home_score": 30.0, "predicted_away_score": 20.0,
+        "predicted_home_margin": 10.0, "predicted_total": 50.0,
+        "home_points_for_season": 32.2, "home_points_against_season": 16.25,
+        "away_points_for_season": 32.9, "away_points_against_season": 24.8,
+        **{
+            f"{side}_{metric}": 0.1
+            for side in ("home", "away")
+            for metric in ADVANCED_METRICS
         },
-        {
-            "id": 12, "season": 2026, "week": 1, "startDate": "2026-09-01",
-            "homeTeam": "Two", "awayTeam": "Beta", "homePoints": 21,
-            "awayPoints": 14, "neutralSite": False,
+        **{
+            f"{side}_display_{metric}": 0.2032 if side == "home" else 0.15
+            for side in ("home", "away")
+            for metric in ADVANCED_METRICS
         },
-        {
-            "id": 13, "season": 2026, "week": 2, "startDate": "2026-09-08",
-            "homeTeam": "Alpha", "awayTeam": "Three", "homePoints": 30,
-            "awayPoints": 20, "neutralSite": False,
+        **{
+            f"advanced_{metric}_{bound}": 0.0 if bound == "min" else 0.5
+            for metric in ADVANCED_METRICS
+            for bound in ("min", "max")
         },
-        {
-            "id": 14, "season": 2026, "week": 2, "startDate": "2026-09-08",
-            "homeTeam": "Four", "awayTeam": "Beta", "homePoints": 17,
-            "awayPoints": 24, "neutralSite": False,
-        },
-    ]
-    predictions = pd.DataFrame([{
-        "game_id": "espn-15", "season": 2026, "week": 3,
-        "game_date": "2026-09-15", "home_team": "Alpha", "away_team": "Beta",
-    }])
+    }]).to_csv(prediction_path, index=False)
+    dashboard_dir = tmp_path / "public" / "data"
+    dashboard_dir.mkdir(parents=True)
+    (dashboard_dir / "dashboard.json").write_text(json.dumps({
+        "season": 2026,
+        "week": 10,
+        "games": [{
+            "home": {"name": "Tennessee"},
+            "away": {"name": "Kentucky"},
+            "advanced_stats": {},
+            "pregame_stats": {
+                "home": {"points_for": 28.3, "points_against": 24.3},
+                "away": {"points_for": 24.2, "points_against": 27.5},
+            },
+        }],
+    }))
+    monkeypatch.setattr(site_builder, "PROJECT_ROOT", tmp_path)
+    monkeypatch.setattr(site_builder, "SITE_DIR", tmp_path / "public")
+    monkeypatch.setattr(site_builder, "DATA_DIR", dashboard_dir)
+    monkeypatch.setattr(site_builder, "HISTORY_PATH", tmp_path / "line_history.json")
+    monkeypatch.setattr(site_builder, "ATS_RESULTS_PATH", tmp_path / "ats_results.json")
+    monkeypatch.setattr(site_builder, "_prediction_file", lambda season, week: prediction_path)
+    monkeypatch.setattr(site_builder, "_api_get", lambda *args: [])
+    monkeypatch.setattr(site_builder, "_read_history", lambda: {})
+    monkeypatch.setattr(site_builder, "_write_history", lambda history: None)
+    monkeypatch.setenv("CFBD_API_KEY", "test")
 
-    payload = _pregame_stats_payload(predictions, historical_games, season_games, 2026, [])
+    output = site_builder.build_site(2026, 10, None, False)
 
-    assert payload[("alpha", "beta")]["home"] == {
-        "points_for": 25.0,
-        "points_against": 15.0,
-    }
-    assert payload[("alpha", "beta")]["away"] == {
-        "points_for": 19.0,
-        "points_against": 19.0,
-    }
+    payload = json.loads(output.read_text())
+    assert payload["games"][0]["pregame_stats"]["home"]["points_against"] == 16.25
+    assert payload["games"][0]["advanced_stats"]["home"]["offense_ppa"] == 0.2032
+    assert payload["games"][0]["advanced_stats_normalized"]["home"]["offense_ppa"] == 40.6
 
 
 def test_saved_pregame_stats_payload_uses_model_feature_columns():

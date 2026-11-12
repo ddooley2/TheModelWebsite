@@ -43,7 +43,7 @@
           "underdog_team": "Akron",
           "total": 50.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Western Michigan",
@@ -51,48 +51,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0342,
-          "offense_successRate": 0.3756,
-          "offense_explosiveness": 1.2084,
-          "defense_ppa": 0.1751,
-          "defense_successRate": 0.4154,
-          "defense_explosiveness": 1.3265
+          "offense_ppa": 0.0598,
+          "offense_successRate": 0.4245,
+          "offense_explosiveness": 1.1213,
+          "defense_ppa": 0.2237,
+          "defense_successRate": 0.4207,
+          "defense_explosiveness": 1.4838
         },
         "away": {
-          "offense_ppa": 0.0882,
-          "offense_successRate": 0.4153,
-          "offense_explosiveness": 1.0896,
-          "defense_ppa": 0.0479,
-          "defense_successRate": 0.3681,
-          "defense_explosiveness": 1.2435
+          "offense_ppa": 0.1092,
+          "offense_successRate": 0.411,
+          "offense_explosiveness": 1.1953,
+          "defense_ppa": 0.0603,
+          "defense_successRate": 0.4247,
+          "defense_explosiveness": 1.1546
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 20.5,
-          "offense_successRate": 32.7,
-          "offense_explosiveness": 27.9,
-          "defense_ppa": 48.3,
+          "offense_ppa": 39.4,
+          "offense_successRate": 48.0,
+          "offense_explosiveness": 25.9,
+          "defense_ppa": 76.1,
           "defense_successRate": 52.5,
-          "defense_explosiveness": 58.3
+          "defense_explosiveness": 77.0
         },
         "away": {
-          "offense_ppa": 32.5,
-          "offense_successRate": 50.4,
-          "offense_explosiveness": 0.0,
-          "defense_ppa": 23.3,
-          "defense_successRate": 30.9,
-          "defense_explosiveness": 40.6
+          "offense_ppa": 48.1,
+          "offense_successRate": 41.7,
+          "offense_explosiveness": 43.3,
+          "defense_ppa": 45.8,
+          "defense_successRate": 54.1,
+          "defense_explosiveness": 23.2
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 15.9,
+          "points_for": 15.88,
           "points_against": 35.0
         },
         "away": {
-          "points_for": 23.4,
-          "points_against": 19.9
+          "points_for": 23.38,
+          "points_against": 19.88
         }
       },
       "model_edge_favorite": 0.7,
@@ -140,7 +140,7 @@
           "underdog_team": "Kent State",
           "total": 42.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Bowling Green",
@@ -148,48 +148,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.037,
-          "offense_successRate": 0.3559,
-          "offense_explosiveness": 1.3379,
-          "defense_ppa": 0.1698,
-          "defense_successRate": 0.4195,
-          "defense_explosiveness": 1.3209
+          "offense_ppa": -0.0021,
+          "offense_successRate": 0.3864,
+          "offense_explosiveness": 1.1161,
+          "defense_ppa": 0.126,
+          "defense_successRate": 0.4458,
+          "defense_explosiveness": 1.2446
         },
         "away": {
-          "offense_ppa": 0.0574,
-          "offense_successRate": 0.3436,
-          "offense_explosiveness": 1.3877,
-          "defense_ppa": 0.2058,
-          "defense_successRate": 0.4503,
-          "defense_explosiveness": 1.2589
+          "offense_ppa": -0.115,
+          "offense_successRate": 0.3228,
+          "offense_explosiveness": 1.3136,
+          "defense_ppa": 0.1003,
+          "defense_successRate": 0.4407,
+          "defense_explosiveness": 1.1919
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 21.1,
-          "offense_successRate": 23.9,
-          "offense_explosiveness": 58.4,
-          "defense_ppa": 47.3,
-          "defense_successRate": 54.4,
-          "defense_explosiveness": 57.1
+          "offense_ppa": 28.5,
+          "offense_successRate": 30.3,
+          "offense_explosiveness": 24.7,
+          "defense_ppa": 58.0,
+          "defense_successRate": 62.4,
+          "defense_explosiveness": 37.9
         },
         "away": {
-          "offense_ppa": 25.7,
-          "offense_successRate": 18.4,
-          "offense_explosiveness": 70.1,
-          "defense_ppa": 54.3,
-          "defense_successRate": 68.4,
-          "defense_explosiveness": 43.9
+          "offense_ppa": 8.6,
+          "offense_successRate": 0.8,
+          "offense_explosiveness": 71.0,
+          "defense_ppa": 53.3,
+          "defense_successRate": 60.4,
+          "defense_explosiveness": 29.3
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 15.6,
+          "points_for": 15.57,
           "points_against": 33.0
         },
         "away": {
-          "points_for": 11.9,
-          "points_against": 32.7
+          "points_for": 11.86,
+          "points_against": 32.71
         }
       },
       "model_edge_favorite": 4.9,
@@ -237,7 +237,7 @@
           "underdog_team": "Miami (OH)",
           "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Ohio",
@@ -245,48 +245,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0818,
-          "offense_successRate": 0.3835,
-          "offense_explosiveness": 1.2129,
-          "defense_ppa": 0.1096,
-          "defense_successRate": 0.3971,
-          "defense_explosiveness": 1.2357
+          "offense_ppa": 0.1502,
+          "offense_successRate": 0.4092,
+          "offense_explosiveness": 1.3719,
+          "defense_ppa": 0.0911,
+          "defense_successRate": 0.4089,
+          "defense_explosiveness": 1.2884
         },
         "away": {
-          "offense_ppa": 0.1766,
-          "offense_successRate": 0.4345,
-          "offense_explosiveness": 1.2168,
-          "defense_ppa": 0.1022,
-          "defense_successRate": 0.412,
-          "defense_explosiveness": 1.2506
+          "offense_ppa": 0.1873,
+          "offense_successRate": 0.4541,
+          "offense_explosiveness": 1.243,
+          "defense_ppa": 0.0397,
+          "defense_successRate": 0.3914,
+          "defense_explosiveness": 1.2219
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 31.1,
-          "offense_successRate": 36.2,
-          "offense_explosiveness": 29.0,
-          "defense_ppa": 35.5,
-          "defense_successRate": 44.1,
-          "defense_explosiveness": 38.9
+          "offense_ppa": 55.3,
+          "offense_successRate": 40.9,
+          "offense_explosiveness": 84.6,
+          "defense_ppa": 51.6,
+          "defense_successRate": 47.9,
+          "defense_explosiveness": 45.1
         },
         "away": {
-          "offense_ppa": 52.1,
-          "offense_successRate": 58.9,
-          "offense_explosiveness": 29.9,
-          "defense_ppa": 34.0,
-          "defense_successRate": 50.9,
-          "defense_explosiveness": 42.1
+          "offense_ppa": 61.9,
+          "offense_successRate": 61.8,
+          "offense_explosiveness": 54.4,
+          "defense_ppa": 42.0,
+          "defense_successRate": 41.1,
+          "defense_explosiveness": 34.2
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 25.2,
-          "points_against": 29.1
+          "points_for": 25.25,
+          "points_against": 29.12
         },
         "away": {
           "points_for": 26.0,
-          "points_against": 25.9
+          "points_against": 25.86
         }
       },
       "model_edge_favorite": -0.8,
@@ -334,7 +334,7 @@
           "underdog_team": "Ball State",
           "total": 52.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Buffalo",
@@ -342,47 +342,47 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": -0.0346,
-          "offense_successRate": 0.3022,
-          "offense_explosiveness": 1.3008,
-          "defense_ppa": 0.1866,
-          "defense_successRate": 0.4473,
-          "defense_explosiveness": 1.301
+          "offense_ppa": 0.0979,
+          "offense_successRate": 0.3889,
+          "offense_explosiveness": 1.3512,
+          "defense_ppa": 0.2573,
+          "defense_successRate": 0.4382,
+          "defense_explosiveness": 1.3934
         },
         "away": {
-          "offense_ppa": 0.0555,
-          "offense_successRate": 0.3756,
-          "offense_explosiveness": 1.1879,
-          "defense_ppa": 0.1174,
-          "defense_successRate": 0.3949,
-          "defense_explosiveness": 1.2808
+          "offense_ppa": 0.045,
+          "offense_successRate": 0.3551,
+          "offense_explosiveness": 1.2475,
+          "defense_ppa": 0.1017,
+          "defense_successRate": 0.3958,
+          "defense_explosiveness": 1.2248
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 5.2,
-          "offense_successRate": 0.0,
-          "offense_explosiveness": 49.6,
-          "defense_ppa": 50.6,
-          "defense_successRate": 67.1,
-          "defense_explosiveness": 52.8
+          "offense_ppa": 46.1,
+          "offense_successRate": 31.5,
+          "offense_explosiveness": 79.8,
+          "defense_ppa": 82.3,
+          "defense_successRate": 59.4,
+          "defense_explosiveness": 62.2
         },
         "away": {
-          "offense_ppa": 25.2,
-          "offense_successRate": 32.7,
-          "offense_explosiveness": 23.1,
-          "defense_ppa": 37.0,
-          "defense_successRate": 43.1,
-          "defense_explosiveness": 48.5
+          "offense_ppa": 36.8,
+          "offense_successRate": 15.8,
+          "offense_explosiveness": 55.5,
+          "defense_ppa": 53.5,
+          "defense_successRate": 42.8,
+          "defense_explosiveness": 34.7
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 18.7,
-          "points_against": 39.9
+          "points_for": 18.71,
+          "points_against": 39.86
         },
         "away": {
-          "points_for": 23.3,
+          "points_for": 23.29,
           "points_against": 27.0
         }
       },
@@ -431,7 +431,7 @@
           "underdog_team": "Massachusetts",
           "total": 52.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Toledo",
@@ -439,48 +439,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1926,
-          "offense_successRate": 0.4338,
-          "offense_explosiveness": 1.2301,
-          "defense_ppa": -0.0591,
-          "defense_successRate": 0.3417,
-          "defense_explosiveness": 1.2151
+          "offense_ppa": 0.1867,
+          "offense_successRate": 0.4233,
+          "offense_explosiveness": 1.3767,
+          "defense_ppa": -0.0544,
+          "defense_successRate": 0.3228,
+          "defense_explosiveness": 1.399
         },
         "away": {
-          "offense_ppa": -0.0582,
-          "offense_successRate": 0.3187,
-          "offense_explosiveness": 1.1809,
-          "defense_ppa": 0.2942,
-          "defense_successRate": 0.4949,
-          "defense_explosiveness": 1.1378
+          "offense_ppa": 0.1695,
+          "offense_successRate": 0.428,
+          "offense_explosiveness": 1.221,
+          "defense_ppa": 0.0301,
+          "defense_successRate": 0.3862,
+          "defense_explosiveness": 1.1738
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 55.7,
-          "offense_successRate": 58.6,
-          "offense_explosiveness": 33.0,
-          "defense_ppa": 2.3,
-          "defense_successRate": 18.8,
-          "defense_explosiveness": 34.6
+          "offense_ppa": 61.7,
+          "offense_successRate": 47.4,
+          "offense_explosiveness": 85.7,
+          "defense_ppa": 24.6,
+          "defense_successRate": 14.2,
+          "defense_explosiveness": 63.1
         },
         "away": {
-          "offense_ppa": 0.0,
-          "offense_successRate": 7.3,
-          "offense_explosiveness": 21.5,
-          "defense_ppa": 71.7,
-          "defense_successRate": 88.8,
-          "defense_explosiveness": 18.1
+          "offense_ppa": 58.7,
+          "offense_successRate": 49.6,
+          "offense_explosiveness": 49.3,
+          "defense_ppa": 40.3,
+          "defense_successRate": 39.0,
+          "defense_explosiveness": 26.4
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 33.7,
-          "points_against": 27.6
+          "points_for": 33.71,
+          "points_against": 27.57
         },
         "away": {
           "points_for": 22.5,
-          "points_against": 28.2
+          "points_against": 28.17
         }
       },
       "model_edge_favorite": 8.3,
@@ -523,12 +523,12 @@
           "observed_at": "2026-11-09T10:12:59.205964+00:00"
         },
         "current": {
-          "spread_favorite": -3.5,
+          "spread_favorite": -4.0,
           "favorite_team": "Memphis",
           "underdog_team": "South Florida",
-          "total": 50.5,
+          "total": 49.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Memphis",
@@ -536,48 +536,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.2862,
-          "offense_successRate": 0.4635,
-          "offense_explosiveness": 1.3005,
-          "defense_ppa": 0.1095,
-          "defense_successRate": 0.3817,
-          "defense_explosiveness": 1.3504
+          "offense_ppa": 0.1116,
+          "offense_successRate": 0.4524,
+          "offense_explosiveness": 1.054,
+          "defense_ppa": 0.0142,
+          "defense_successRate": 0.3947,
+          "defense_explosiveness": 1.0901
         },
         "away": {
-          "offense_ppa": 0.2356,
-          "offense_successRate": 0.442,
-          "offense_explosiveness": 1.3205,
-          "defense_ppa": 0.1806,
-          "defense_successRate": 0.4042,
-          "defense_explosiveness": 1.2989
+          "offense_ppa": 0.2008,
+          "offense_successRate": 0.4923,
+          "offense_explosiveness": 1.2499,
+          "defense_ppa": 0.0667,
+          "defense_successRate": 0.3603,
+          "defense_explosiveness": 1.3707
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 76.5,
-          "offense_successRate": 71.8,
-          "offense_explosiveness": 49.6,
-          "defense_ppa": 35.4,
-          "defense_successRate": 37.1,
-          "defense_explosiveness": 63.4
+          "offense_ppa": 48.5,
+          "offense_successRate": 61.0,
+          "offense_explosiveness": 10.2,
+          "defense_ppa": 37.3,
+          "defense_successRate": 42.4,
+          "defense_explosiveness": 12.7
         },
         "away": {
-          "offense_ppa": 65.2,
-          "offense_successRate": 62.3,
-          "offense_explosiveness": 54.3,
-          "defense_ppa": 49.4,
-          "defense_successRate": 47.4,
-          "defense_explosiveness": 52.4
+          "offense_ppa": 64.2,
+          "offense_successRate": 79.5,
+          "offense_explosiveness": 56.0,
+          "defense_ppa": 47.0,
+          "defense_successRate": 28.9,
+          "defense_explosiveness": 58.5
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 21.8,
-          "points_against": 14.9
+          "points_for": 21.75,
+          "points_against": 14.88
         },
         "away": {
-          "points_for": 36.6,
-          "points_against": 23.9
+          "points_for": 36.62,
+          "points_against": 23.88
         }
       },
       "model_edge_favorite": -2.4,
@@ -623,9 +623,9 @@
           "spread_favorite": -10.5,
           "favorite_team": "Louisiana",
           "underdog_team": "UL Monroe",
-          "total": 49.5,
+          "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Louisiana",
@@ -633,48 +633,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0529,
-          "offense_successRate": 0.355,
-          "offense_explosiveness": 1.4029,
-          "defense_ppa": 0.2085,
-          "defense_successRate": 0.4151,
-          "defense_explosiveness": 1.3843
+          "offense_ppa": -0.0113,
+          "offense_successRate": 0.4069,
+          "offense_explosiveness": 1.1245,
+          "defense_ppa": 0.1866,
+          "defense_successRate": 0.4461,
+          "defense_explosiveness": 1.1859
         },
         "away": {
-          "offense_ppa": 0.0949,
-          "offense_successRate": 0.37,
-          "offense_explosiveness": 1.2613,
-          "defense_ppa": 0.2076,
-          "defense_successRate": 0.4587,
-          "defense_explosiveness": 1.2097
+          "offense_ppa": 0.1512,
+          "offense_successRate": 0.4499,
+          "offense_explosiveness": 1.2011,
+          "defense_ppa": -0.0601,
+          "defense_successRate": 0.401,
+          "defense_explosiveness": 1.0503
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 24.7,
-          "offense_successRate": 23.5,
-          "offense_explosiveness": 73.6,
-          "defense_ppa": 54.9,
-          "defense_successRate": 52.4,
-          "defense_explosiveness": 70.6
+          "offense_ppa": 26.9,
+          "offense_successRate": 39.8,
+          "offense_explosiveness": 26.7,
+          "defense_ppa": 69.2,
+          "defense_successRate": 62.5,
+          "defense_explosiveness": 28.3
         },
         "away": {
-          "offense_ppa": 34.0,
-          "offense_successRate": 30.2,
-          "offense_explosiveness": 40.4,
-          "defense_ppa": 54.7,
-          "defense_successRate": 72.3,
-          "defense_explosiveness": 33.4
+          "offense_ppa": 55.5,
+          "offense_successRate": 59.8,
+          "offense_explosiveness": 44.6,
+          "defense_ppa": 23.5,
+          "defense_successRate": 44.8,
+          "defense_explosiveness": 6.2
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 18.2,
-          "points_against": 34.4
+          "points_for": 18.25,
+          "points_against": 34.38
         },
         "away": {
-          "points_for": 28.9,
-          "points_against": 23.6
+          "points_for": 28.88,
+          "points_against": 23.62
         }
       },
       "model_edge_favorite": 4.2,
@@ -720,9 +720,9 @@
           "spread_favorite": -3.5,
           "favorite_team": "Pittsburgh",
           "underdog_team": "Florida State",
-          "total": 53.5,
+          "total": 52.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Pittsburgh",
@@ -730,47 +730,47 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1517,
-          "offense_successRate": 0.3939,
-          "offense_explosiveness": 1.3252,
-          "defense_ppa": 0.0777,
-          "defense_successRate": 0.3668,
-          "defense_explosiveness": 1.3655
+          "offense_ppa": 0.1468,
+          "offense_successRate": 0.4402,
+          "offense_explosiveness": 1.2011,
+          "defense_ppa": -0.0182,
+          "defense_successRate": 0.3246,
+          "defense_explosiveness": 1.4814
         },
         "away": {
-          "offense_ppa": 0.2559,
-          "offense_successRate": 0.4574,
-          "offense_explosiveness": 1.3348,
-          "defense_ppa": 0.1616,
-          "defense_successRate": 0.4111,
-          "defense_explosiveness": 1.1906
+          "offense_ppa": 0.185,
+          "offense_successRate": 0.441,
+          "offense_explosiveness": 1.3603,
+          "defense_ppa": 0.1696,
+          "defense_successRate": 0.43,
+          "defense_explosiveness": 1.287
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 46.6,
-          "offense_successRate": 40.8,
-          "offense_explosiveness": 55.4,
-          "defense_ppa": 29.2,
-          "defense_successRate": 30.3,
-          "defense_explosiveness": 66.6
+          "offense_ppa": 54.7,
+          "offense_successRate": 55.3,
+          "offense_explosiveness": 44.6,
+          "defense_ppa": 31.3,
+          "defense_successRate": 14.9,
+          "defense_explosiveness": 76.6
         },
         "away": {
-          "offense_ppa": 69.7,
-          "offense_successRate": 69.1,
-          "offense_explosiveness": 57.6,
-          "defense_ppa": 45.7,
-          "defense_successRate": 50.5,
-          "defense_explosiveness": 29.3
+          "offense_ppa": 61.5,
+          "offense_successRate": 55.7,
+          "offense_explosiveness": 81.9,
+          "defense_ppa": 66.1,
+          "defense_successRate": 56.2,
+          "defense_explosiveness": 44.8
         }
       },
       "pregame_stats": {
         "home": {
           "points_for": 28.5,
-          "points_against": 22.2
+          "points_against": 22.25
         },
         "away": {
-          "points_for": 30.2,
+          "points_for": 30.25,
           "points_against": 31.0
         }
       },
@@ -819,7 +819,7 @@
           "underdog_team": "Illinois",
           "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "UCLA",
@@ -827,48 +827,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1109,
-          "offense_successRate": 0.4082,
-          "offense_explosiveness": 1.1643,
-          "defense_ppa": 0.2598,
-          "defense_successRate": 0.4995,
-          "defense_explosiveness": 1.1591
+          "offense_ppa": 0.1641,
+          "offense_successRate": 0.4542,
+          "offense_explosiveness": 1.1645,
+          "defense_ppa": -0.1872,
+          "defense_successRate": 0.3139,
+          "defense_explosiveness": 1.1663
         },
         "away": {
-          "offense_ppa": 0.1701,
-          "offense_successRate": 0.4637,
-          "offense_explosiveness": 1.1614,
-          "defense_ppa": 0.2072,
-          "defense_successRate": 0.4591,
-          "defense_explosiveness": 1.1689
+          "offense_ppa": 0.2235,
+          "offense_successRate": 0.4746,
+          "offense_explosiveness": 1.3317,
+          "defense_ppa": 0.2127,
+          "defense_successRate": 0.4495,
+          "defense_explosiveness": 1.2392
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 37.5,
-          "offense_successRate": 47.2,
-          "offense_explosiveness": 17.6,
-          "defense_ppa": 65.0,
-          "defense_successRate": 90.9,
-          "defense_explosiveness": 22.6
+          "offense_ppa": 57.8,
+          "offense_successRate": 61.8,
+          "offense_explosiveness": 36.0,
+          "defense_ppa": 0.0,
+          "defense_successRate": 10.7,
+          "defense_explosiveness": 25.1
         },
         "away": {
-          "offense_ppa": 50.7,
-          "offense_successRate": 71.9,
-          "offense_explosiveness": 16.9,
-          "defense_ppa": 54.6,
-          "defense_successRate": 72.5,
-          "defense_explosiveness": 24.7
+          "offense_ppa": 68.2,
+          "offense_successRate": 71.3,
+          "offense_explosiveness": 75.2,
+          "defense_ppa": 74.1,
+          "defense_successRate": 63.8,
+          "defense_explosiveness": 37.0
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 33.6,
-          "points_against": 14.1
+          "points_for": 33.56,
+          "points_against": 14.11
         },
         "away": {
           "points_for": 26.0,
-          "points_against": 24.6
+          "points_against": 24.62
         }
       },
       "model_edge_favorite": -1.7,
@@ -916,7 +916,7 @@
           "underdog_team": "Colorado",
           "total": 51.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Houston",
@@ -924,48 +924,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0927,
-          "offense_successRate": 0.3543,
-          "offense_explosiveness": 1.3967,
-          "defense_ppa": 0.1944,
-          "defense_successRate": 0.4252,
-          "defense_explosiveness": 1.356
+          "offense_ppa": 0.0381,
+          "offense_successRate": 0.4008,
+          "offense_explosiveness": 1.236,
+          "defense_ppa": 0.0671,
+          "defense_successRate": 0.4002,
+          "defense_explosiveness": 1.199
         },
         "away": {
-          "offense_ppa": 0.1105,
-          "offense_successRate": 0.4198,
-          "offense_explosiveness": 1.2384,
-          "defense_ppa": 0.1376,
-          "defense_successRate": 0.425,
-          "defense_explosiveness": 1.188
+          "offense_ppa": 0.3283,
+          "offense_successRate": 0.5364,
+          "offense_explosiveness": 1.1268,
+          "defense_ppa": 0.1375,
+          "defense_successRate": 0.4263,
+          "defense_explosiveness": 1.2958
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 33.5,
-          "offense_successRate": 23.2,
-          "offense_explosiveness": 72.2,
-          "defense_ppa": 52.1,
-          "defense_successRate": 57.0,
-          "defense_explosiveness": 64.5
+          "offense_ppa": 35.6,
+          "offense_successRate": 37.0,
+          "offense_explosiveness": 52.8,
+          "defense_ppa": 47.1,
+          "defense_successRate": 44.5,
+          "defense_explosiveness": 30.5
         },
         "away": {
-          "offense_ppa": 37.5,
-          "offense_successRate": 52.4,
-          "offense_explosiveness": 35.0,
-          "defense_ppa": 41.0,
-          "defense_successRate": 56.9,
-          "defense_explosiveness": 28.8
+          "offense_ppa": 86.7,
+          "offense_successRate": 100.0,
+          "offense_explosiveness": 27.2,
+          "defense_ppa": 60.1,
+          "defense_successRate": 54.7,
+          "defense_explosiveness": 46.3
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 15.8,
-          "points_against": 29.2
+          "points_for": 15.75,
+          "points_against": 29.25
         },
         "away": {
-          "points_for": 30.2,
-          "points_against": 23.2
+          "points_for": 30.25,
+          "points_against": 23.25
         }
       },
       "model_edge_favorite": 0.5,
@@ -1013,7 +1013,7 @@
           "underdog_team": "Cincinnati",
           "total": 59.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Iowa State",
@@ -1021,48 +1021,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1586,
-          "offense_successRate": 0.4404,
-          "offense_explosiveness": 1.1901,
-          "defense_ppa": 0.103,
-          "defense_successRate": 0.3972,
-          "defense_explosiveness": 1.2251
+          "offense_ppa": 0.1244,
+          "offense_successRate": 0.3875,
+          "offense_explosiveness": 1.3286,
+          "defense_ppa": 0.1541,
+          "defense_successRate": 0.4301,
+          "defense_explosiveness": 1.2812
         },
         "away": {
-          "offense_ppa": 0.2538,
-          "offense_successRate": 0.4458,
-          "offense_explosiveness": 1.339,
-          "defense_ppa": 0.223,
-          "defense_successRate": 0.456,
-          "defense_explosiveness": 1.1735
+          "offense_ppa": 0.2312,
+          "offense_successRate": 0.4579,
+          "offense_explosiveness": 1.4048,
+          "defense_ppa": 0.1657,
+          "defense_successRate": 0.4537,
+          "defense_explosiveness": 1.2184
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 48.1,
-          "offense_successRate": 61.6,
-          "offense_explosiveness": 23.6,
-          "defense_ppa": 34.2,
-          "defense_successRate": 44.2,
-          "defense_explosiveness": 36.7
+          "offense_ppa": 50.8,
+          "offense_successRate": 30.8,
+          "offense_explosiveness": 74.5,
+          "defense_ppa": 63.2,
+          "defense_successRate": 56.2,
+          "defense_explosiveness": 43.9
         },
         "away": {
-          "offense_ppa": 69.3,
-          "offense_successRate": 64.0,
-          "offense_explosiveness": 58.6,
-          "defense_ppa": 57.7,
-          "defense_successRate": 71.1,
-          "defense_explosiveness": 25.7
+          "offense_ppa": 69.6,
+          "offense_successRate": 63.5,
+          "offense_explosiveness": 92.3,
+          "defense_ppa": 65.4,
+          "defense_successRate": 65.5,
+          "defense_explosiveness": 33.6
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 28.1,
-          "points_against": 31.2
+          "points_for": 28.12,
+          "points_against": 31.25
         },
         "away": {
-          "points_for": 29.4,
-          "points_against": 31.9
+          "points_for": 29.38,
+          "points_against": 31.88
         }
       },
       "model_edge_favorite": -2.8,
@@ -1110,7 +1110,7 @@
           "underdog_team": "Mississippi State",
           "total": 50.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Auburn",
@@ -1118,48 +1118,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1281,
-          "offense_successRate": 0.4056,
-          "offense_explosiveness": 1.278,
-          "defense_ppa": 0.217,
-          "defense_successRate": 0.434,
-          "defense_explosiveness": 1.323
+          "offense_ppa": 0.0848,
+          "offense_successRate": 0.4236,
+          "offense_explosiveness": 1.2229,
+          "defense_ppa": 0.1282,
+          "defense_successRate": 0.4223,
+          "defense_explosiveness": 1.1739
         },
         "away": {
-          "offense_ppa": 0.1407,
-          "offense_successRate": 0.4268,
-          "offense_explosiveness": 1.0936,
-          "defense_ppa": 0.0566,
-          "defense_successRate": 0.3727,
-          "defense_explosiveness": 1.2875
+          "offense_ppa": 0.0982,
+          "offense_successRate": 0.3979,
+          "offense_explosiveness": 1.3232,
+          "defense_ppa": 0.0893,
+          "defense_successRate": 0.4206,
+          "defense_explosiveness": 1.2083
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 41.4,
-          "offense_successRate": 46.1,
-          "offense_explosiveness": 44.3,
-          "defense_ppa": 56.5,
-          "defense_successRate": 61.0,
-          "defense_explosiveness": 57.5
+          "offense_ppa": 43.8,
+          "offense_successRate": 47.6,
+          "offense_explosiveness": 49.7,
+          "defense_ppa": 58.4,
+          "defense_successRate": 53.2,
+          "defense_explosiveness": 26.4
         },
         "away": {
-          "offense_ppa": 44.2,
-          "offense_successRate": 55.5,
-          "offense_explosiveness": 0.9,
-          "defense_ppa": 25.1,
-          "defense_successRate": 33.0,
-          "defense_explosiveness": 50.0
+          "offense_ppa": 46.2,
+          "offense_successRate": 35.6,
+          "offense_explosiveness": 73.2,
+          "defense_ppa": 51.2,
+          "defense_successRate": 52.5,
+          "defense_explosiveness": 32.0
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 26.2,
-          "points_against": 27.8
+          "points_for": 26.22,
+          "points_against": 27.78
         },
         "away": {
-          "points_for": 24.3,
-          "points_against": 26.3
+          "points_for": 24.33,
+          "points_against": 26.33
         }
       },
       "model_edge_favorite": -0.8,
@@ -1207,7 +1207,7 @@
           "underdog_team": "Duke",
           "total": 54.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Miami",
@@ -1215,48 +1215,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.202,
-          "offense_successRate": 0.4504,
-          "offense_explosiveness": 1.1744,
-          "defense_ppa": 0.0406,
-          "defense_successRate": 0.3587,
-          "defense_explosiveness": 1.2544
+          "offense_ppa": 0.3544,
+          "offense_successRate": 0.5164,
+          "offense_explosiveness": 1.3129,
+          "defense_ppa": 0.0649,
+          "defense_successRate": 0.3791,
+          "defense_explosiveness": 1.2683
         },
         "away": {
-          "offense_ppa": 0.2299,
-          "offense_successRate": 0.4517,
-          "offense_explosiveness": 1.3372,
-          "defense_ppa": 0.2258,
-          "defense_successRate": 0.4417,
-          "defense_explosiveness": 1.3444
+          "offense_ppa": 0.2421,
+          "offense_successRate": 0.4248,
+          "offense_explosiveness": 1.3295,
+          "defense_ppa": -0.0681,
+          "defense_successRate": 0.3649,
+          "defense_explosiveness": 1.0886
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 57.8,
-          "offense_successRate": 66.0,
-          "offense_explosiveness": 19.9,
-          "defense_ppa": 21.9,
-          "defense_successRate": 26.6,
-          "defense_explosiveness": 42.9
+          "offense_ppa": 91.3,
+          "offense_successRate": 90.7,
+          "offense_explosiveness": 70.8,
+          "defense_ppa": 46.7,
+          "defense_successRate": 36.2,
+          "defense_explosiveness": 41.8
         },
         "away": {
-          "offense_ppa": 64.0,
-          "offense_successRate": 66.6,
-          "offense_explosiveness": 58.2,
-          "defense_ppa": 58.3,
-          "defense_successRate": 64.5,
-          "defense_explosiveness": 62.1
+          "offense_ppa": 71.5,
+          "offense_successRate": 48.1,
+          "offense_explosiveness": 74.7,
+          "defense_ppa": 22.1,
+          "defense_successRate": 30.7,
+          "defense_explosiveness": 12.4
         }
       },
       "pregame_stats": {
         "home": {
           "points_for": 41.0,
-          "points_against": 20.8
+          "points_against": 20.75
         },
         "away": {
-          "points_for": 29.4,
-          "points_against": 13.8
+          "points_for": 29.38,
+          "points_against": 13.75
         }
       },
       "model_edge_favorite": -1.8,
@@ -1299,12 +1299,12 @@
           "observed_at": "2026-11-09T10:12:59.205964+00:00"
         },
         "current": {
-          "spread_favorite": -2.5,
+          "spread_favorite": -3.0,
           "favorite_team": "Syracuse",
           "underdog_team": "NC State",
           "total": 53.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Syracuse",
@@ -1312,48 +1312,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.2063,
-          "offense_successRate": 0.4041,
-          "offense_explosiveness": 1.3746,
-          "defense_ppa": 0.2099,
-          "defense_successRate": 0.406,
-          "defense_explosiveness": 1.4002
+          "offense_ppa": 0.1406,
+          "offense_successRate": 0.438,
+          "offense_explosiveness": 1.1432,
+          "defense_ppa": 0.1463,
+          "defense_successRate": 0.4133,
+          "defense_explosiveness": 1.2862
         },
         "away": {
-          "offense_ppa": 0.0023,
-          "offense_successRate": 0.3708,
-          "offense_explosiveness": 1.1582,
-          "defense_ppa": 0.3044,
-          "defense_successRate": 0.4547,
-          "defense_explosiveness": 1.3537
+          "offense_ppa": 0.0854,
+          "offense_successRate": 0.4208,
+          "offense_explosiveness": 1.2582,
+          "defense_ppa": 0.0776,
+          "defense_successRate": 0.4067,
+          "defense_explosiveness": 1.2498
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 58.7,
-          "offense_successRate": 45.4,
-          "offense_explosiveness": 67.0,
-          "defense_ppa": 55.2,
-          "defense_successRate": 48.2,
-          "defense_explosiveness": 74.0
+          "offense_ppa": 53.6,
+          "offense_successRate": 54.3,
+          "offense_explosiveness": 31.0,
+          "defense_ppa": 61.8,
+          "defense_successRate": 49.6,
+          "defense_explosiveness": 44.7
         },
         "away": {
-          "offense_ppa": 13.4,
-          "offense_successRate": 30.6,
-          "offense_explosiveness": 16.1,
-          "defense_ppa": 73.7,
-          "defense_successRate": 70.5,
-          "defense_explosiveness": 64.1
+          "offense_ppa": 43.9,
+          "offense_successRate": 46.3,
+          "offense_explosiveness": 58.0,
+          "defense_ppa": 49.1,
+          "defense_successRate": 47.1,
+          "defense_explosiveness": 38.8
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 23.4,
+          "points_for": 23.38,
           "points_against": 31.0
         },
         "away": {
-          "points_for": 24.8,
-          "points_against": 28.2
+          "points_for": 24.75,
+          "points_against": 28.25
         }
       },
       "model_edge_favorite": -8.0,
@@ -1401,7 +1401,7 @@
           "underdog_team": "Wake Forest",
           "total": 60.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "SMU",
@@ -1409,48 +1409,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.2534,
-          "offense_successRate": 0.4276,
-          "offense_explosiveness": 1.3802,
-          "defense_ppa": 0.0441,
-          "defense_successRate": 0.3949,
-          "defense_explosiveness": 1.2385
+          "offense_ppa": 0.2813,
+          "offense_successRate": 0.4941,
+          "offense_explosiveness": 1.2822,
+          "defense_ppa": 0.084,
+          "defense_successRate": 0.3925,
+          "defense_explosiveness": 1.2574
         },
         "away": {
-          "offense_ppa": 0.1663,
-          "offense_successRate": 0.3829,
-          "offense_explosiveness": 1.4232,
-          "defense_ppa": 0.0532,
-          "defense_successRate": 0.3615,
-          "defense_explosiveness": 1.1944
+          "offense_ppa": 0.4039,
+          "offense_successRate": 0.5085,
+          "offense_explosiveness": 1.3314,
+          "defense_ppa": -0.0442,
+          "defense_successRate": 0.3858,
+          "defense_explosiveness": 1.0476
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 69.2,
-          "offense_successRate": 55.9,
-          "offense_explosiveness": 68.3,
-          "defense_ppa": 22.6,
-          "defense_successRate": 43.1,
-          "defense_explosiveness": 39.5
+          "offense_ppa": 78.4,
+          "offense_successRate": 80.3,
+          "offense_explosiveness": 63.6,
+          "defense_ppa": 50.2,
+          "defense_successRate": 41.5,
+          "defense_explosiveness": 40.0
         },
         "away": {
-          "offense_ppa": 49.8,
-          "offense_successRate": 35.9,
-          "offense_explosiveness": 78.4,
-          "defense_ppa": 24.4,
-          "defense_successRate": 27.8,
-          "defense_explosiveness": 30.2
+          "offense_ppa": 100.0,
+          "offense_successRate": 87.0,
+          "offense_explosiveness": 75.1,
+          "defense_ppa": 26.5,
+          "defense_successRate": 38.9,
+          "defense_explosiveness": 5.7
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 34.6,
+          "points_for": 34.62,
           "points_against": 24.5
         },
         "away": {
-          "points_for": 39.1,
-          "points_against": 17.9
+          "points_for": 39.12,
+          "points_against": 17.88
         }
       },
       "model_edge_favorite": -1.5,
@@ -1498,7 +1498,7 @@
           "underdog_team": "Maryland",
           "total": 42.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Wisconsin",
@@ -1506,48 +1506,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0855,
-          "offense_successRate": 0.3777,
-          "offense_explosiveness": 1.3212,
-          "defense_ppa": 0.1426,
-          "defense_successRate": 0.4476,
-          "defense_explosiveness": 1.2276
+          "offense_ppa": 0.0795,
+          "offense_successRate": 0.397,
+          "offense_explosiveness": 1.3175,
+          "defense_ppa": 0.1145,
+          "defense_successRate": 0.4087,
+          "defense_explosiveness": 1.2848
         },
         "away": {
-          "offense_ppa": 0.0181,
-          "offense_successRate": 0.3601,
-          "offense_explosiveness": 1.2229,
-          "defense_ppa": 0.1694,
-          "defense_successRate": 0.4427,
-          "defense_explosiveness": 1.1468
+          "offense_ppa": 0.1071,
+          "offense_successRate": 0.3862,
+          "offense_explosiveness": 1.3572,
+          "defense_ppa": -0.0587,
+          "defense_successRate": 0.3826,
+          "defense_explosiveness": 1.0124
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 31.9,
-          "offense_successRate": 33.6,
-          "offense_explosiveness": 54.4,
-          "defense_ppa": 41.9,
-          "defense_successRate": 67.2,
-          "defense_explosiveness": 37.2
+          "offense_ppa": 42.9,
+          "offense_successRate": 35.2,
+          "offense_explosiveness": 71.9,
+          "defense_ppa": 55.9,
+          "defense_successRate": 47.8,
+          "defense_explosiveness": 44.5
         },
         "away": {
-          "offense_ppa": 16.9,
-          "offense_successRate": 25.8,
-          "offense_explosiveness": 31.3,
-          "defense_ppa": 47.2,
-          "defense_successRate": 65.0,
-          "defense_explosiveness": 20.0
+          "offense_ppa": 47.7,
+          "offense_successRate": 30.2,
+          "offense_explosiveness": 81.2,
+          "defense_ppa": 23.8,
+          "defense_successRate": 37.6,
+          "defense_explosiveness": -0.0
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 23.4,
-          "points_against": 35.2
+          "points_for": 23.38,
+          "points_against": 35.25
         },
         "away": {
           "points_for": 23.0,
-          "points_against": 17.2
+          "points_against": 17.25
         }
       },
       "model_edge_favorite": -0.4,
@@ -1595,7 +1595,7 @@
           "underdog_team": "Northwestern",
           "total": 44.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Ohio State",
@@ -1603,47 +1603,47 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.3018,
-          "offense_successRate": 0.5102,
-          "offense_explosiveness": 1.1547,
-          "defense_ppa": -0.0019,
-          "defense_successRate": 0.3565,
-          "defense_explosiveness": 1.0563
+          "offense_ppa": 0.23,
+          "offense_successRate": 0.4752,
+          "offense_explosiveness": 1.2908,
+          "defense_ppa": -0.048,
+          "defense_successRate": 0.3442,
+          "defense_explosiveness": 1.2569
         },
         "away": {
-          "offense_ppa": 0.1244,
-          "offense_successRate": 0.4236,
-          "offense_explosiveness": 1.1531,
-          "defense_ppa": 0.1801,
-          "defense_successRate": 0.4596,
-          "defense_explosiveness": 1.1532
+          "offense_ppa": 0.2723,
+          "offense_successRate": 0.4823,
+          "offense_explosiveness": 1.2872,
+          "defense_ppa": 0.0385,
+          "defense_successRate": 0.4254,
+          "defense_explosiveness": 1.1518
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 79.9,
-          "offense_successRate": 92.7,
-          "offense_explosiveness": 15.3,
-          "defense_ppa": 13.6,
-          "defense_successRate": 25.6,
-          "defense_explosiveness": 0.8
+          "offense_ppa": 69.4,
+          "offense_successRate": 71.6,
+          "offense_explosiveness": 65.6,
+          "defense_ppa": 25.8,
+          "defense_successRate": 22.6,
+          "defense_explosiveness": 39.9
         },
         "away": {
-          "offense_ppa": 40.5,
-          "offense_successRate": 54.1,
-          "offense_explosiveness": 14.9,
-          "defense_ppa": 49.3,
-          "defense_successRate": 72.7,
-          "defense_explosiveness": 21.4
+          "offense_ppa": 76.8,
+          "offense_successRate": 74.9,
+          "offense_explosiveness": 64.8,
+          "defense_ppa": 41.8,
+          "defense_successRate": 54.4,
+          "defense_explosiveness": 22.8
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 35.7,
-          "points_against": 18.3
+          "points_for": 35.67,
+          "points_against": 18.33
         },
         "away": {
-          "points_for": 30.6,
+          "points_for": 30.62,
           "points_against": 19.5
         }
       },
@@ -1692,7 +1692,7 @@
           "underdog_team": "UConn",
           "total": 57.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "James Madison",
@@ -1700,48 +1700,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.2817,
-          "offense_successRate": 0.4554,
-          "offense_explosiveness": 1.3259,
-          "defense_ppa": 0.2233,
-          "defense_successRate": 0.4737,
-          "defense_explosiveness": 1.173
+          "offense_ppa": 0.1883,
+          "offense_successRate": 0.4454,
+          "offense_explosiveness": 1.3833,
+          "defense_ppa": 0.0967,
+          "defense_successRate": 0.4213,
+          "defense_explosiveness": 1.1491
         },
         "away": {
-          "offense_ppa": 0.2182,
-          "offense_successRate": 0.4482,
-          "offense_explosiveness": 1.2979,
-          "defense_ppa": 0.0186,
-          "defense_successRate": 0.3006,
-          "defense_explosiveness": 1.5226
+          "offense_ppa": 0.2494,
+          "offense_successRate": 0.4616,
+          "offense_explosiveness": 1.2393,
+          "defense_ppa": -0.0358,
+          "defense_successRate": 0.3638,
+          "defense_explosiveness": 1.2263
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 75.5,
-          "offense_successRate": 68.2,
-          "offense_explosiveness": 55.5,
-          "defense_ppa": 57.8,
-          "defense_successRate": 79.1,
-          "defense_explosiveness": 25.6
+          "offense_ppa": 62.0,
+          "offense_successRate": 57.7,
+          "offense_explosiveness": 87.3,
+          "defense_ppa": 52.6,
+          "defense_successRate": 52.8,
+          "defense_explosiveness": 22.3
         },
         "away": {
-          "offense_ppa": 61.4,
-          "offense_successRate": 65.0,
-          "offense_explosiveness": 49.0,
-          "defense_ppa": 17.6,
-          "defense_successRate": 0.0,
-          "defense_explosiveness": 100.0
+          "offense_ppa": 72.8,
+          "offense_successRate": 65.2,
+          "offense_explosiveness": 53.6,
+          "defense_ppa": 28.0,
+          "defense_successRate": 30.3,
+          "defense_explosiveness": 34.9
         }
       },
       "pregame_stats": {
         "home": {
           "points_for": 30.0,
-          "points_against": 29.1
+          "points_against": 29.12
         },
         "away": {
-          "points_for": 35.4,
-          "points_against": 21.1
+          "points_for": 35.44,
+          "points_against": 21.11
         }
       },
       "model_edge_favorite": 5.3,
@@ -1789,7 +1789,7 @@
           "underdog_team": "Georgia Tech",
           "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Clemson",
@@ -1797,48 +1797,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1629,
-          "offense_successRate": 0.4215,
-          "offense_explosiveness": 1.2106,
-          "defense_ppa": 0.1057,
-          "defense_successRate": 0.3862,
-          "defense_explosiveness": 1.3451
+          "offense_ppa": -0.0171,
+          "offense_successRate": 0.3554,
+          "offense_explosiveness": 1.2197,
+          "defense_ppa": 0.0144,
+          "defense_successRate": 0.3874,
+          "defense_explosiveness": 1.1799
         },
         "away": {
-          "offense_ppa": 0.2678,
-          "offense_successRate": 0.4908,
-          "offense_explosiveness": 1.1544,
-          "defense_ppa": 0.2086,
-          "defense_successRate": 0.4473,
-          "defense_explosiveness": 1.2336
+          "offense_ppa": 0.0844,
+          "offense_successRate": 0.4052,
+          "offense_explosiveness": 1.302,
+          "defense_ppa": 0.2108,
+          "defense_successRate": 0.4464,
+          "defense_explosiveness": 1.2026
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 49.1,
-          "offense_successRate": 53.1,
-          "offense_explosiveness": 28.4,
-          "defense_ppa": 34.7,
-          "defense_successRate": 39.1,
-          "defense_explosiveness": 62.2
+          "offense_ppa": 25.9,
+          "offense_successRate": 15.9,
+          "offense_explosiveness": 49.0,
+          "defense_ppa": 37.3,
+          "defense_successRate": 39.5,
+          "defense_explosiveness": 27.3
         },
         "away": {
-          "offense_ppa": 72.4,
-          "offense_successRate": 84.0,
-          "offense_explosiveness": 15.2,
-          "defense_ppa": 54.9,
-          "defense_successRate": 67.1,
-          "defense_explosiveness": 38.5
+          "offense_ppa": 43.7,
+          "offense_successRate": 39.0,
+          "offense_explosiveness": 68.2,
+          "defense_ppa": 73.7,
+          "defense_successRate": 62.6,
+          "defense_explosiveness": 31.1
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 20.9,
-          "points_against": 23.2
+          "points_for": 20.88,
+          "points_against": 23.25
         },
         "away": {
-          "points_for": 21.4,
-          "points_against": 34.9
+          "points_for": 21.38,
+          "points_against": 34.88
         }
       },
       "model_edge_favorite": -2.9,
@@ -1886,7 +1886,7 @@
           "underdog_team": "Rutgers",
           "total": 51.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Nebraska",
@@ -1894,48 +1894,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1763,
-          "offense_successRate": 0.4512,
-          "offense_explosiveness": 1.1889,
-          "defense_ppa": 0.3659,
-          "defense_successRate": 0.4898,
-          "defense_explosiveness": 1.3541
+          "offense_ppa": 0.0803,
+          "offense_successRate": 0.4038,
+          "offense_explosiveness": 1.4374,
+          "defense_ppa": 0.249,
+          "defense_successRate": 0.4558,
+          "defense_explosiveness": 1.3286
         },
         "away": {
-          "offense_ppa": 0.1464,
-          "offense_successRate": 0.4535,
-          "offense_explosiveness": 1.105,
-          "defense_ppa": 0.2092,
-          "defense_successRate": 0.4333,
-          "defense_explosiveness": 1.2687
+          "offense_ppa": 0.2012,
+          "offense_successRate": 0.4461,
+          "offense_explosiveness": 1.3305,
+          "defense_ppa": -0.0035,
+          "defense_successRate": 0.3531,
+          "defense_explosiveness": 1.3323
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 52.1,
-          "offense_successRate": 66.4,
-          "offense_explosiveness": 23.3,
-          "defense_ppa": 85.8,
-          "defense_successRate": 86.5,
-          "defense_explosiveness": 64.1
+          "offense_ppa": 43.0,
+          "offense_successRate": 38.4,
+          "offense_explosiveness": 100.0,
+          "defense_ppa": 80.8,
+          "defense_successRate": 66.3,
+          "defense_explosiveness": 51.6
         },
         "away": {
-          "offense_ppa": 45.4,
-          "offense_successRate": 67.4,
-          "offense_explosiveness": 3.6,
-          "defense_ppa": 55.0,
-          "defense_successRate": 60.7,
-          "defense_explosiveness": 46.0
+          "offense_ppa": 64.3,
+          "offense_successRate": 58.0,
+          "offense_explosiveness": 74.9,
+          "defense_ppa": 34.0,
+          "defense_successRate": 26.1,
+          "defense_explosiveness": 52.2
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 21.8,
-          "points_against": 35.6
+          "points_for": 21.75,
+          "points_against": 35.62
         },
         "away": {
-          "points_for": 29.8,
-          "points_against": 17.8
+          "points_for": 29.75,
+          "points_against": 17.75
         }
       },
       "model_edge_favorite": -1.5,
@@ -1983,7 +1983,7 @@
           "underdog_team": "Vanderbilt",
           "total": 50.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Alabama",
@@ -1991,48 +1991,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.3922,
-          "offense_successRate": 0.4887,
-          "offense_explosiveness": 1.4463,
-          "defense_ppa": 0.2069,
-          "defense_successRate": 0.4313,
-          "defense_explosiveness": 1.3046
+          "offense_ppa": 0.0805,
+          "offense_successRate": 0.4012,
+          "offense_explosiveness": 1.3047,
+          "defense_ppa": 0.1342,
+          "defense_successRate": 0.4373,
+          "defense_explosiveness": 1.1908
         },
         "away": {
-          "offense_ppa": 0.1886,
-          "offense_successRate": 0.4121,
-          "offense_explosiveness": 1.3192,
-          "defense_ppa": 0.0891,
-          "defense_successRate": 0.3847,
-          "defense_explosiveness": 1.2672
+          "offense_ppa": 0.2335,
+          "offense_successRate": 0.4624,
+          "offense_explosiveness": 1.2923,
+          "defense_ppa": -0.0508,
+          "defense_successRate": 0.3712,
+          "defense_explosiveness": 1.2739
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 100.0,
-          "offense_successRate": 83.1,
-          "offense_explosiveness": 83.8,
-          "defense_ppa": 54.6,
-          "defense_successRate": 59.8,
-          "defense_explosiveness": 53.6
+          "offense_ppa": 43.1,
+          "offense_successRate": 37.2,
+          "offense_explosiveness": 68.9,
+          "defense_ppa": 59.5,
+          "defense_successRate": 59.0,
+          "defense_explosiveness": 29.1
         },
         "away": {
-          "offense_ppa": 54.8,
-          "offense_successRate": 49.0,
-          "offense_explosiveness": 54.0,
-          "defense_ppa": 31.4,
-          "defense_successRate": 38.5,
-          "defense_explosiveness": 45.6
+          "offense_ppa": 70.0,
+          "offense_successRate": 65.6,
+          "offense_explosiveness": 66.0,
+          "defense_ppa": 25.3,
+          "defense_successRate": 33.2,
+          "defense_explosiveness": 42.7
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 22.4,
+          "points_for": 22.38,
           "points_against": 32.0
         },
         "away": {
-          "points_for": 37.4,
-          "points_against": 20.3
+          "points_for": 37.44,
+          "points_against": 20.33
         }
       },
       "model_edge_favorite": -2.0,
@@ -2080,7 +2080,7 @@
           "underdog_team": "Charlotte",
           "total": 45.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "East Carolina",
@@ -2088,48 +2088,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": -0.0578,
-          "offense_successRate": 0.3254,
-          "offense_explosiveness": 1.2148,
-          "defense_ppa": 0.2244,
-          "defense_successRate": 0.5193,
-          "defense_explosiveness": 1.0824
+          "offense_ppa": -0.0604,
+          "offense_successRate": 0.3376,
+          "offense_explosiveness": 1.2087,
+          "defense_ppa": 0.2183,
+          "defense_successRate": 0.4951,
+          "defense_explosiveness": 1.1978
         },
         "away": {
-          "offense_ppa": 0.1649,
-          "offense_successRate": 0.4445,
-          "offense_explosiveness": 1.1965,
-          "defense_ppa": 0.0684,
-          "defense_successRate": 0.3859,
-          "defense_explosiveness": 1.2807
+          "offense_ppa": 0.0274,
+          "offense_successRate": 0.3834,
+          "offense_explosiveness": 1.2187,
+          "defense_ppa": -0.0037,
+          "defense_successRate": 0.3694,
+          "defense_explosiveness": 1.2449
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 0.1,
-          "offense_successRate": 10.3,
-          "offense_explosiveness": 29.4,
-          "defense_ppa": 58.0,
-          "defense_successRate": 100.0,
-          "defense_explosiveness": 6.3
+          "offense_ppa": 18.2,
+          "offense_successRate": 7.6,
+          "offense_explosiveness": 46.4,
+          "defense_ppa": 75.1,
+          "defense_successRate": 81.7,
+          "defense_explosiveness": 30.3
         },
         "away": {
-          "offense_ppa": 49.5,
-          "offense_successRate": 63.4,
-          "offense_explosiveness": 25.1,
-          "defense_ppa": 27.4,
-          "defense_successRate": 39.0,
-          "defense_explosiveness": 48.5
+          "offense_ppa": 33.7,
+          "offense_successRate": 28.9,
+          "offense_explosiveness": 48.7,
+          "defense_ppa": 34.0,
+          "defense_successRate": 32.4,
+          "defense_explosiveness": 38.0
         }
       },
       "pregame_stats": {
         "home": {
           "points_for": 17.0,
-          "points_against": 37.8
+          "points_against": 37.75
         },
         "away": {
-          "points_for": 21.2,
-          "points_against": 25.1
+          "points_for": 21.25,
+          "points_against": 25.12
         }
       },
       "model_edge_favorite": 5.0,
@@ -2177,7 +2177,7 @@
           "underdog_team": "UAB",
           "total": 48.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Temple",
@@ -2185,47 +2185,47 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1388,
-          "offense_successRate": 0.41,
-          "offense_explosiveness": 1.1573,
-          "defense_ppa": 0.2689,
-          "defense_successRate": 0.4557,
-          "defense_explosiveness": 1.269
+          "offense_ppa": 0.1399,
+          "offense_successRate": 0.4171,
+          "offense_explosiveness": 1.2621,
+          "defense_ppa": 0.1709,
+          "defense_successRate": 0.4666,
+          "defense_explosiveness": 1.1445
         },
         "away": {
-          "offense_ppa": 0.1521,
-          "offense_successRate": 0.4139,
-          "offense_explosiveness": 1.2948,
-          "defense_ppa": 0.3052,
-          "defense_successRate": 0.4813,
-          "defense_explosiveness": 1.2598
+          "offense_ppa": 0.011,
+          "offense_successRate": 0.407,
+          "offense_explosiveness": 1.1928,
+          "defense_ppa": 0.0112,
+          "defense_successRate": 0.4025,
+          "defense_explosiveness": 1.0928
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 43.7,
-          "offense_successRate": 48.0,
-          "offense_explosiveness": 15.9,
-          "defense_ppa": 66.7,
-          "defense_successRate": 70.9,
-          "defense_explosiveness": 46.0
+          "offense_ppa": 53.5,
+          "offense_successRate": 44.6,
+          "offense_explosiveness": 58.9,
+          "defense_ppa": 66.3,
+          "defense_successRate": 70.5,
+          "defense_explosiveness": 21.6
         },
         "away": {
-          "offense_ppa": 46.7,
-          "offense_successRate": 49.8,
-          "offense_explosiveness": 48.2,
-          "defense_ppa": 73.9,
-          "defense_successRate": 82.6,
-          "defense_explosiveness": 44.1
+          "offense_ppa": 30.8,
+          "offense_successRate": 39.9,
+          "offense_explosiveness": 42.7,
+          "defense_ppa": 36.8,
+          "defense_successRate": 45.4,
+          "defense_explosiveness": 13.1
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 23.2,
-          "points_against": 30.1
+          "points_for": 23.25,
+          "points_against": 30.12
         },
         "away": {
-          "points_for": 20.4,
+          "points_for": 20.38,
           "points_against": 25.0
         }
       },
@@ -2274,7 +2274,7 @@
           "underdog_team": "Arkansas State",
           "total": 51.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Coastal Carolina",
@@ -2282,48 +2282,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0593,
-          "offense_successRate": 0.3519,
-          "offense_explosiveness": 1.3209,
-          "defense_ppa": 0.2183,
-          "defense_successRate": 0.4477,
-          "defense_explosiveness": 1.2962
+          "offense_ppa": 0.0789,
+          "offense_successRate": 0.3916,
+          "offense_explosiveness": 1.3627,
+          "defense_ppa": 0.1032,
+          "defense_successRate": 0.44,
+          "defense_explosiveness": 1.1324
         },
         "away": {
-          "offense_ppa": 0.0719,
-          "offense_successRate": 0.4087,
-          "offense_explosiveness": 1.1609,
-          "defense_ppa": 0.202,
-          "defense_successRate": 0.4399,
-          "defense_explosiveness": 1.2914
+          "offense_ppa": 0.165,
+          "offense_successRate": 0.4784,
+          "offense_explosiveness": 1.1476,
+          "defense_ppa": 0.1593,
+          "defense_successRate": 0.4518,
+          "defense_explosiveness": 1.2396
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 26.1,
-          "offense_successRate": 22.1,
-          "offense_explosiveness": 54.4,
-          "defense_ppa": 56.8,
-          "defense_successRate": 67.3,
-          "defense_explosiveness": 51.8
+          "offense_ppa": 42.8,
+          "offense_successRate": 32.7,
+          "offense_explosiveness": 82.5,
+          "defense_ppa": 53.8,
+          "defense_successRate": 60.1,
+          "defense_explosiveness": 19.6
         },
         "away": {
-          "offense_ppa": 28.9,
-          "offense_successRate": 47.4,
-          "offense_explosiveness": 16.8,
-          "defense_ppa": 53.6,
-          "defense_successRate": 63.7,
-          "defense_explosiveness": 50.8
+          "offense_ppa": 57.9,
+          "offense_successRate": 73.0,
+          "offense_explosiveness": 32.1,
+          "defense_ppa": 64.2,
+          "defense_successRate": 64.7,
+          "defense_explosiveness": 37.1
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 22.1,
-          "points_against": 26.9
+          "points_for": 22.12,
+          "points_against": 26.88
         },
         "away": {
-          "points_for": 24.4,
-          "points_against": 28.8
+          "points_for": 24.38,
+          "points_against": 28.75
         }
       },
       "model_edge_favorite": -1.9,
@@ -2369,9 +2369,9 @@
           "spread_favorite": -10.5,
           "favorite_team": "TCU",
           "underdog_team": "Kansas State",
-          "total": 45.5,
+          "total": 44.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "TCU",
@@ -2379,48 +2379,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1725,
-          "offense_successRate": 0.4338,
-          "offense_explosiveness": 1.2765,
-          "defense_ppa": 0.1252,
-          "defense_successRate": 0.3912,
-          "defense_explosiveness": 1.3059
+          "offense_ppa": 0.0931,
+          "offense_successRate": 0.4239,
+          "offense_explosiveness": 1.2541,
+          "defense_ppa": -0.0574,
+          "defense_successRate": 0.3425,
+          "defense_explosiveness": 1.1797
         },
         "away": {
-          "offense_ppa": 0.1881,
-          "offense_successRate": 0.3942,
-          "offense_explosiveness": 1.4253,
-          "defense_ppa": 0.1148,
-          "defense_successRate": 0.397,
-          "defense_explosiveness": 1.318
+          "offense_ppa": 0.146,
+          "offense_successRate": 0.4533,
+          "offense_explosiveness": 1.1943,
+          "defense_ppa": 0.1346,
+          "defense_successRate": 0.3746,
+          "defense_explosiveness": 1.4356
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 51.2,
-          "offense_successRate": 58.6,
-          "offense_explosiveness": 43.9,
-          "defense_ppa": 38.5,
-          "defense_successRate": 41.4,
-          "defense_explosiveness": 53.9
+          "offense_ppa": 45.3,
+          "offense_successRate": 47.7,
+          "offense_explosiveness": 57.0,
+          "defense_ppa": 24.0,
+          "defense_successRate": 21.9,
+          "defense_explosiveness": 27.3
         },
         "away": {
-          "offense_ppa": 54.7,
-          "offense_successRate": 41.0,
-          "offense_explosiveness": 78.9,
-          "defense_ppa": 36.5,
-          "defense_successRate": 44.1,
-          "defense_explosiveness": 56.5
+          "offense_ppa": 54.6,
+          "offense_successRate": 61.4,
+          "offense_explosiveness": 43.0,
+          "defense_ppa": 59.6,
+          "defense_successRate": 34.5,
+          "defense_explosiveness": 69.1
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 18.9,
-          "points_against": 16.9
+          "points_for": 18.88,
+          "points_against": 16.88
         },
         "away": {
-          "points_for": 26.4,
-          "points_against": 29.8
+          "points_for": 26.38,
+          "points_against": 29.75
         }
       },
       "model_edge_favorite": -4.5,
@@ -2466,9 +2466,9 @@
           "spread_favorite": -2.5,
           "favorite_team": "Rice",
           "underdog_team": "Tulane",
-          "total": 47.5,
+          "total": 48.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Rice",
@@ -2476,48 +2476,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0124,
-          "offense_successRate": 0.3389,
-          "offense_explosiveness": 1.3005,
-          "defense_ppa": 0.2647,
-          "defense_successRate": 0.4238,
-          "defense_explosiveness": 1.4934
+          "offense_ppa": 0.0345,
+          "offense_successRate": 0.4002,
+          "offense_explosiveness": 1.2659,
+          "defense_ppa": 0.1763,
+          "defense_successRate": 0.4309,
+          "defense_explosiveness": 1.3417
         },
         "away": {
-          "offense_ppa": 0.2121,
-          "offense_successRate": 0.4477,
-          "offense_explosiveness": 1.2306,
-          "defense_ppa": 0.1401,
-          "defense_successRate": 0.4399,
-          "defense_explosiveness": 1.1711
+          "offense_ppa": 0.0528,
+          "offense_successRate": 0.3546,
+          "offense_explosiveness": 1.4376,
+          "defense_ppa": 0.1601,
+          "defense_successRate": 0.4474,
+          "defense_explosiveness": 1.2028
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 15.7,
-          "offense_successRate": 16.3,
-          "offense_explosiveness": 49.6,
-          "defense_ppa": 65.9,
-          "defense_successRate": 56.3,
-          "defense_explosiveness": 93.8
+          "offense_ppa": 35.0,
+          "offense_successRate": 36.7,
+          "offense_explosiveness": 59.8,
+          "defense_ppa": 67.3,
+          "defense_successRate": 56.5,
+          "defense_explosiveness": 53.8
         },
         "away": {
-          "offense_ppa": 60.0,
-          "offense_successRate": 64.8,
-          "offense_explosiveness": 33.1,
-          "defense_ppa": 41.4,
-          "defense_successRate": 63.7,
-          "defense_explosiveness": 25.2
+          "offense_ppa": 38.2,
+          "offense_successRate": 15.5,
+          "offense_explosiveness": 100.0,
+          "defense_ppa": 64.3,
+          "defense_successRate": 63.0,
+          "defense_explosiveness": 31.1
         }
       },
       "pregame_stats": {
         "home": {
           "points_for": 20.0,
-          "points_against": 37.9
+          "points_against": 37.88
         },
         "away": {
-          "points_for": 21.1,
-          "points_against": 29.2
+          "points_for": 21.11,
+          "points_against": 29.22
         }
       },
       "model_edge_favorite": -16.6,
@@ -2560,12 +2560,12 @@
           "observed_at": "2026-11-09T10:12:59.205964+00:00"
         },
         "current": {
-          "spread_favorite": -7.5,
+          "spread_favorite": -7.0,
           "favorite_team": "Kennesaw State",
           "underdog_team": "Sam Houston",
           "total": 46.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Kennesaw State",
@@ -2573,48 +2573,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": -0.0056,
-          "offense_successRate": 0.3555,
-          "offense_explosiveness": 1.2582,
-          "defense_ppa": 0.264,
-          "defense_successRate": 0.4861,
-          "defense_explosiveness": 1.2761
+          "offense_ppa": -0.0418,
+          "offense_successRate": 0.3514,
+          "offense_explosiveness": 1.3527,
+          "defense_ppa": 0.1132,
+          "defense_successRate": 0.4055,
+          "defense_explosiveness": 1.2414
         },
         "away": {
-          "offense_ppa": 0.158,
-          "offense_successRate": 0.4079,
-          "offense_explosiveness": 1.3711,
-          "defense_ppa": 0.176,
-          "defense_successRate": 0.433,
-          "defense_explosiveness": 1.2065
+          "offense_ppa": 0.071,
+          "offense_successRate": 0.4182,
+          "offense_explosiveness": 1.1509,
+          "defense_ppa": 0.0905,
+          "defense_successRate": 0.4165,
+          "defense_explosiveness": 1.1339
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 11.7,
-          "offense_successRate": 23.7,
-          "offense_explosiveness": 39.6,
-          "defense_ppa": 65.8,
-          "defense_successRate": 84.8,
-          "defense_explosiveness": 47.5
+          "offense_ppa": 21.5,
+          "offense_successRate": 14.0,
+          "offense_explosiveness": 80.1,
+          "defense_ppa": 55.6,
+          "defense_successRate": 46.6,
+          "defense_explosiveness": 37.4
         },
         "away": {
-          "offense_ppa": 48.0,
-          "offense_successRate": 47.1,
-          "offense_explosiveness": 66.2,
-          "defense_ppa": 48.5,
-          "defense_successRate": 60.5,
-          "defense_explosiveness": 32.7
+          "offense_ppa": 41.4,
+          "offense_successRate": 45.1,
+          "offense_explosiveness": 32.9,
+          "defense_ppa": 51.4,
+          "defense_successRate": 50.9,
+          "defense_explosiveness": 19.8
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 12.4,
+          "points_for": 12.38,
           "points_against": 31.0
         },
         "away": {
-          "points_for": 22.4,
-          "points_against": 30.4
+          "points_for": 22.38,
+          "points_against": 30.38
         }
       },
       "model_edge_favorite": -1.0,
@@ -2662,7 +2662,7 @@
           "underdog_team": "Texas A&M",
           "total": 43.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Tennessee",
@@ -2670,48 +2670,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.2377,
-          "offense_successRate": 0.4556,
-          "offense_explosiveness": 1.2387,
-          "defense_ppa": 0.1341,
-          "defense_successRate": 0.3532,
-          "defense_explosiveness": 1.4186
+          "offense_ppa": 0.0674,
+          "offense_successRate": 0.4203,
+          "offense_explosiveness": 1.1143,
+          "defense_ppa": -0.0018,
+          "defense_successRate": 0.3659,
+          "defense_explosiveness": 1.252
         },
         "away": {
-          "offense_ppa": 0.3033,
-          "offense_successRate": 0.4921,
-          "offense_explosiveness": 1.2819,
-          "defense_ppa": 0.1645,
-          "defense_successRate": 0.4617,
-          "defense_explosiveness": 1.1409
+          "offense_ppa": 0.1881,
+          "offense_successRate": 0.4581,
+          "offense_explosiveness": 1.1426,
+          "defense_ppa": -0.0808,
+          "defense_successRate": 0.3783,
+          "defense_explosiveness": 1.0791
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 65.7,
-          "offense_successRate": 68.3,
-          "offense_explosiveness": 35.0,
-          "defense_ppa": 40.3,
-          "defense_successRate": 24.1,
-          "defense_explosiveness": 77.9
+          "offense_ppa": 40.7,
+          "offense_successRate": 46.1,
+          "offense_explosiveness": 24.3,
+          "defense_ppa": 34.3,
+          "defense_successRate": 31.1,
+          "defense_explosiveness": 39.1
         },
         "away": {
-          "offense_ppa": 80.3,
-          "offense_successRate": 84.6,
-          "offense_explosiveness": 45.2,
-          "defense_ppa": 46.2,
-          "defense_successRate": 73.7,
-          "defense_explosiveness": 18.8
+          "offense_ppa": 62.0,
+          "offense_successRate": 63.6,
+          "offense_explosiveness": 30.9,
+          "defense_ppa": 19.7,
+          "defense_successRate": 35.9,
+          "defense_explosiveness": 10.9
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 24.2,
+          "points_for": 24.25,
           "points_against": 21.0
         },
         "away": {
           "points_for": 29.5,
-          "points_against": 15.9
+          "points_against": 15.88
         }
       },
       "model_edge_favorite": -2.7,
@@ -2757,9 +2757,9 @@
           "spread_favorite": -1.5,
           "favorite_team": "Missouri State",
           "underdog_team": "New Mexico State",
-          "total": 48.5,
+          "total": 49.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Missouri State",
@@ -2767,48 +2767,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1455,
-          "offense_successRate": 0.3885,
-          "offense_explosiveness": 1.4731,
-          "defense_ppa": 0.2497,
-          "defense_successRate": 0.4298,
-          "defense_explosiveness": 1.343
+          "offense_ppa": 0.0458,
+          "offense_successRate": 0.3867,
+          "offense_explosiveness": 1.2349,
+          "defense_ppa": 0.198,
+          "defense_successRate": 0.4594,
+          "defense_explosiveness": 1.1855
         },
         "away": {
-          "offense_ppa": 0.0268,
-          "offense_successRate": 0.3684,
-          "offense_explosiveness": 1.2667,
-          "defense_ppa": 0.1185,
-          "defense_successRate": 0.434,
-          "defense_explosiveness": 1.1848
+          "offense_ppa": -0.0652,
+          "offense_successRate": 0.3818,
+          "offense_explosiveness": 1.2858,
+          "defense_ppa": 0.1123,
+          "defense_successRate": 0.4248,
+          "defense_explosiveness": 1.2546
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 45.2,
-          "offense_successRate": 38.4,
-          "offense_explosiveness": 90.1,
-          "defense_ppa": 63.0,
-          "defense_successRate": 59.1,
-          "defense_explosiveness": 61.8
+          "offense_ppa": 36.9,
+          "offense_successRate": 30.4,
+          "offense_explosiveness": 52.5,
+          "defense_ppa": 71.4,
+          "defense_successRate": 67.7,
+          "defense_explosiveness": 28.3
         },
         "away": {
-          "offense_ppa": 18.9,
-          "offense_successRate": 29.5,
-          "offense_explosiveness": 41.6,
-          "defense_ppa": 37.2,
-          "defense_successRate": 61.0,
-          "defense_explosiveness": 28.1
+          "offense_ppa": 17.4,
+          "offense_successRate": 28.2,
+          "offense_explosiveness": 64.5,
+          "defense_ppa": 55.5,
+          "defense_successRate": 54.1,
+          "defense_explosiveness": 39.5
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 20.9,
+          "points_for": 20.88,
           "points_against": 32.0
         },
         "away": {
-          "points_for": 16.9,
-          "points_against": 27.2
+          "points_for": 16.88,
+          "points_against": 27.25
         }
       },
       "model_edge_favorite": 11.3,
@@ -2856,7 +2856,7 @@
           "underdog_team": "Florida International",
           "total": 53.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Delaware",
@@ -2864,47 +2864,47 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1802,
-          "offense_successRate": 0.4232,
-          "offense_explosiveness": 1.3211,
-          "defense_ppa": 0.2255,
-          "defense_successRate": 0.4142,
-          "defense_explosiveness": 1.442
+          "offense_ppa": 0.1143,
+          "offense_successRate": 0.4198,
+          "offense_explosiveness": 1.2612,
+          "defense_ppa": 0.115,
+          "defense_successRate": 0.4235,
+          "defense_explosiveness": 1.3232
         },
         "away": {
-          "offense_ppa": 0.1411,
-          "offense_successRate": 0.3942,
-          "offense_explosiveness": 1.3464,
-          "defense_ppa": 0.17,
-          "defense_successRate": 0.4275,
-          "defense_explosiveness": 1.2767
+          "offense_ppa": 0.0207,
+          "offense_successRate": 0.3955,
+          "offense_explosiveness": 1.1537,
+          "defense_ppa": 0.0398,
+          "defense_successRate": 0.396,
+          "defense_explosiveness": 1.2041
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 52.9,
-          "offense_successRate": 53.9,
-          "offense_explosiveness": 54.4,
-          "defense_ppa": 58.2,
-          "defense_successRate": 51.9,
-          "defense_explosiveness": 82.8
+          "offense_ppa": 49.0,
+          "offense_successRate": 45.8,
+          "offense_explosiveness": 58.7,
+          "defense_ppa": 56.0,
+          "defense_successRate": 53.6,
+          "defense_explosiveness": 50.7
         },
         "away": {
-          "offense_ppa": 44.2,
-          "offense_successRate": 41.0,
-          "offense_explosiveness": 60.4,
-          "defense_ppa": 47.3,
-          "defense_successRate": 58.0,
-          "defense_explosiveness": 47.7
+          "offense_ppa": 32.5,
+          "offense_successRate": 34.5,
+          "offense_explosiveness": 33.5,
+          "defense_ppa": 42.1,
+          "defense_successRate": 42.9,
+          "defense_explosiveness": 31.3
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 28.9,
-          "points_against": 31.9
+          "points_for": 28.88,
+          "points_against": 31.88
         },
         "away": {
-          "points_for": 19.2,
+          "points_for": 19.25,
           "points_against": 22.5
         }
       },
@@ -2953,7 +2953,7 @@
           "underdog_team": "Arizona State",
           "total": 48.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "UCF",
@@ -2961,48 +2961,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1059,
-          "offense_successRate": 0.3901,
-          "offense_explosiveness": 1.3061,
-          "defense_ppa": 0.1281,
-          "defense_successRate": 0.4324,
-          "defense_explosiveness": 1.1242
+          "offense_ppa": 0.0798,
+          "offense_successRate": 0.4142,
+          "offense_explosiveness": 1.2426,
+          "defense_ppa": 0.0742,
+          "defense_successRate": 0.4157,
+          "defense_explosiveness": 1.1718
         },
         "away": {
-          "offense_ppa": 0.1032,
-          "offense_successRate": 0.3904,
-          "offense_explosiveness": 1.2431,
-          "defense_ppa": 0.1205,
-          "defense_successRate": 0.4106,
-          "defense_explosiveness": 1.2491
+          "offense_ppa": 0.0498,
+          "offense_successRate": 0.4238,
+          "offense_explosiveness": 1.183,
+          "defense_ppa": 0.0287,
+          "defense_successRate": 0.3958,
+          "defense_explosiveness": 1.1678
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 36.4,
-          "offense_successRate": 39.2,
-          "offense_explosiveness": 50.9,
-          "defense_ppa": 39.1,
-          "defense_successRate": 60.3,
-          "defense_explosiveness": 15.2
+          "offense_ppa": 42.9,
+          "offense_successRate": 43.2,
+          "offense_explosiveness": 54.3,
+          "defense_ppa": 48.4,
+          "defense_successRate": 50.6,
+          "defense_explosiveness": 26.0
         },
         "away": {
-          "offense_ppa": 35.8,
-          "offense_successRate": 39.3,
-          "offense_explosiveness": 36.1,
-          "defense_ppa": 37.6,
-          "defense_successRate": 50.3,
-          "defense_explosiveness": 41.8
+          "offense_ppa": 37.6,
+          "offense_successRate": 47.7,
+          "offense_explosiveness": 40.4,
+          "defense_ppa": 40.0,
+          "defense_successRate": 42.8,
+          "defense_explosiveness": 25.4
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 24.8,
+          "points_for": 24.75,
           "points_against": 28.5
         },
         "away": {
-          "points_for": 23.2,
-          "points_against": 29.9
+          "points_for": 23.25,
+          "points_against": 29.88
         }
       },
       "model_edge_favorite": -2.6,
@@ -3050,7 +3050,7 @@
           "underdog_team": "Baylor",
           "total": 48.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "BYU",
@@ -3058,48 +3058,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1877,
-          "offense_successRate": 0.4494,
-          "offense_explosiveness": 1.165,
-          "defense_ppa": 0.0806,
-          "defense_successRate": 0.401,
-          "defense_explosiveness": 1.2042
+          "offense_ppa": 0.2065,
+          "offense_successRate": 0.457,
+          "offense_explosiveness": 1.2577,
+          "defense_ppa": 0.0127,
+          "defense_successRate": 0.3824,
+          "defense_explosiveness": 1.1767
         },
         "away": {
-          "offense_ppa": 0.1966,
-          "offense_successRate": 0.45,
-          "offense_explosiveness": 1.3003,
-          "defense_ppa": 0.1913,
-          "defense_successRate": 0.4467,
-          "defense_explosiveness": 1.1845
+          "offense_ppa": 0.1417,
+          "offense_successRate": 0.3934,
+          "offense_explosiveness": 1.4007,
+          "defense_ppa": -0.0753,
+          "defense_successRate": 0.3448,
+          "defense_explosiveness": 1.2602
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 54.6,
-          "offense_successRate": 65.6,
-          "offense_explosiveness": 17.7,
-          "defense_ppa": 29.8,
-          "defense_successRate": 45.9,
-          "defense_explosiveness": 32.2
+          "offense_ppa": 65.2,
+          "offense_successRate": 63.1,
+          "offense_explosiveness": 57.9,
+          "defense_ppa": 37.0,
+          "defense_successRate": 37.5,
+          "defense_explosiveness": 26.8
         },
         "away": {
-          "offense_ppa": 56.6,
-          "offense_successRate": 65.8,
-          "offense_explosiveness": 49.5,
-          "defense_ppa": 51.5,
-          "defense_successRate": 66.8,
-          "defense_explosiveness": 28.0
+          "offense_ppa": 53.8,
+          "offense_successRate": 33.6,
+          "offense_explosiveness": 91.4,
+          "defense_ppa": 20.7,
+          "defense_successRate": 22.8,
+          "defense_explosiveness": 40.5
         }
       },
       "pregame_stats": {
         "home": {
           "points_for": 27.0,
-          "points_against": 21.4
+          "points_against": 21.38
         },
         "away": {
-          "points_for": 30.4,
-          "points_against": 18.8
+          "points_for": 30.38,
+          "points_against": 18.75
         }
       },
       "model_edge_favorite": -2.5,
@@ -3147,7 +3147,7 @@
           "underdog_team": "Missouri",
           "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Georgia",
@@ -3155,48 +3155,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.2361,
-          "offense_successRate": 0.4546,
-          "offense_explosiveness": 1.2118,
-          "defense_ppa": 0.0945,
-          "defense_successRate": 0.3817,
-          "defense_explosiveness": 1.152
+          "offense_ppa": 0.3132,
+          "offense_successRate": 0.5175,
+          "offense_explosiveness": 1.1828,
+          "defense_ppa": -0.0129,
+          "defense_successRate": 0.3586,
+          "defense_explosiveness": 1.2164
         },
         "away": {
-          "offense_ppa": 0.1742,
-          "offense_successRate": 0.433,
-          "offense_explosiveness": 1.2321,
-          "defense_ppa": 0.0429,
-          "defense_successRate": 0.3339,
-          "defense_explosiveness": 1.3284
+          "offense_ppa": 0.1581,
+          "offense_successRate": 0.4004,
+          "offense_explosiveness": 1.3337,
+          "defense_ppa": 0.0132,
+          "defense_successRate": 0.37,
+          "defense_explosiveness": 1.3042
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 65.3,
-          "offense_successRate": 67.9,
-          "offense_explosiveness": 28.7,
-          "defense_ppa": 32.5,
-          "defense_successRate": 37.1,
-          "defense_explosiveness": 21.1
+          "offense_ppa": 84.0,
+          "offense_successRate": 91.2,
+          "offense_explosiveness": 40.3,
+          "defense_ppa": 32.3,
+          "defense_successRate": 28.2,
+          "defense_explosiveness": 33.3
         },
         "away": {
-          "offense_ppa": 51.6,
-          "offense_successRate": 58.3,
-          "offense_explosiveness": 33.5,
-          "defense_ppa": 22.4,
-          "defense_successRate": 15.2,
-          "defense_explosiveness": 58.7
+          "offense_ppa": 56.7,
+          "offense_successRate": 36.8,
+          "offense_explosiveness": 75.7,
+          "defense_ppa": 37.1,
+          "defense_successRate": 32.7,
+          "defense_explosiveness": 47.6
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 38.4,
-          "points_against": 15.4
+          "points_for": 38.38,
+          "points_against": 15.38
         },
         "away": {
-          "points_for": 27.2,
-          "points_against": 20.9
+          "points_for": 27.25,
+          "points_against": 20.88
         }
       },
       "model_edge_favorite": 4.8,
@@ -3244,7 +3244,7 @@
           "underdog_team": "Boston College",
           "total": 52.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Notre Dame",
@@ -3252,48 +3252,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.3421,
-          "offense_successRate": 0.4632,
-          "offense_explosiveness": 1.5151,
-          "defense_ppa": 0.0301,
-          "defense_successRate": 0.3641,
-          "defense_explosiveness": 1.2577
+          "offense_ppa": 0.3457,
+          "offense_successRate": 0.5003,
+          "offense_explosiveness": 1.1949,
+          "defense_ppa": -0.0149,
+          "defense_successRate": 0.3726,
+          "defense_explosiveness": 1.2232
         },
         "away": {
-          "offense_ppa": 0.1381,
-          "offense_successRate": 0.4195,
-          "offense_explosiveness": 1.2198,
-          "defense_ppa": 0.2674,
-          "defense_successRate": 0.4365,
-          "defense_explosiveness": 1.4001
+          "offense_ppa": 0.0023,
+          "offense_successRate": 0.4125,
+          "offense_explosiveness": 1.2041,
+          "defense_ppa": 0.0649,
+          "defense_successRate": 0.4129,
+          "defense_explosiveness": 1.1921
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 88.9,
-          "offense_successRate": 71.7,
-          "offense_explosiveness": 100.0,
-          "defense_ppa": 19.9,
-          "defense_successRate": 29.0,
-          "defense_explosiveness": 43.6
+          "offense_ppa": 89.7,
+          "offense_successRate": 83.2,
+          "offense_explosiveness": 43.2,
+          "defense_ppa": 31.9,
+          "defense_successRate": 33.7,
+          "defense_explosiveness": 34.4
         },
         "away": {
-          "offense_ppa": 43.6,
-          "offense_successRate": 52.2,
-          "offense_explosiveness": 30.6,
-          "defense_ppa": 66.4,
-          "defense_successRate": 62.1,
-          "defense_explosiveness": 73.9
+          "offense_ppa": 29.3,
+          "offense_successRate": 42.4,
+          "offense_explosiveness": 45.3,
+          "defense_ppa": 46.7,
+          "defense_successRate": 49.5,
+          "defense_explosiveness": 29.3
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 39.3,
-          "points_against": 14.6
+          "points_for": 39.33,
+          "points_against": 14.56
         },
         "away": {
-          "points_for": 21.9,
-          "points_against": 28.4
+          "points_for": 21.88,
+          "points_against": 28.38
         }
       },
       "model_edge_favorite": -3.0,
@@ -3341,7 +3341,7 @@
           "underdog_team": "California",
           "total": 46.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Virginia",
@@ -3349,48 +3349,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1373,
-          "offense_successRate": 0.3981,
-          "offense_explosiveness": 1.2828,
-          "defense_ppa": 0.0669,
-          "defense_successRate": 0.3687,
-          "defense_explosiveness": 1.2192
+          "offense_ppa": 0.1154,
+          "offense_successRate": 0.4222,
+          "offense_explosiveness": 1.1306,
+          "defense_ppa": 0.0574,
+          "defense_successRate": 0.3965,
+          "defense_explosiveness": 1.1345
         },
         "away": {
-          "offense_ppa": 0.1186,
-          "offense_successRate": 0.4002,
-          "offense_explosiveness": 1.2754,
-          "defense_ppa": 0.1911,
-          "defense_successRate": 0.4307,
-          "defense_explosiveness": 1.1904
+          "offense_ppa": -0.0392,
+          "offense_successRate": 0.3733,
+          "offense_explosiveness": 1.2032,
+          "defense_ppa": 0.1776,
+          "defense_successRate": 0.4073,
+          "defense_explosiveness": 1.3888
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 43.4,
-          "offense_successRate": 42.7,
-          "offense_explosiveness": 45.4,
-          "defense_ppa": 27.1,
-          "defense_successRate": 31.1,
-          "defense_explosiveness": 35.4
+          "offense_ppa": 49.2,
+          "offense_successRate": 46.9,
+          "offense_explosiveness": 28.1,
+          "defense_ppa": 45.3,
+          "defense_successRate": 43.1,
+          "defense_explosiveness": 19.9
         },
         "away": {
-          "offense_ppa": 39.3,
-          "offense_successRate": 43.7,
-          "offense_explosiveness": 43.7,
-          "defense_ppa": 51.5,
-          "defense_successRate": 59.5,
-          "defense_explosiveness": 29.3
+          "offense_ppa": 22.0,
+          "offense_successRate": 24.2,
+          "offense_explosiveness": 45.1,
+          "defense_ppa": 67.6,
+          "defense_successRate": 47.3,
+          "defense_explosiveness": 61.5
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 21.8,
-          "points_against": 25.6
+          "points_for": 21.75,
+          "points_against": 25.62
         },
         "away": {
           "points_for": 18.5,
-          "points_against": 34.6
+          "points_against": 34.62
         }
       },
       "model_edge_favorite": -3.2,
@@ -3433,12 +3433,12 @@
           "observed_at": "2026-11-09T10:12:59.205964+00:00"
         },
         "current": {
-          "spread_favorite": -10.0,
+          "spread_favorite": -8.5,
           "favorite_team": "Indiana",
           "underdog_team": "USC",
           "total": 50.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Indiana",
@@ -3446,48 +3446,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.3226,
-          "offense_successRate": 0.4992,
-          "offense_explosiveness": 1.2485,
-          "defense_ppa": 0.0254,
-          "defense_successRate": 0.3483,
-          "defense_explosiveness": 1.3768
+          "offense_ppa": 0.2837,
+          "offense_successRate": 0.4427,
+          "offense_explosiveness": 1.3787,
+          "defense_ppa": -0.0749,
+          "defense_successRate": 0.3059,
+          "defense_explosiveness": 1.4004
         },
         "away": {
-          "offense_ppa": 0.3513,
-          "offense_successRate": 0.4919,
-          "offense_explosiveness": 1.369,
-          "defense_ppa": 0.1496,
-          "defense_successRate": 0.4492,
-          "defense_explosiveness": 1.1742
+          "offense_ppa": 0.2287,
+          "offense_successRate": 0.4766,
+          "offense_explosiveness": 1.2893,
+          "defense_ppa": 0.1025,
+          "defense_successRate": 0.4028,
+          "defense_explosiveness": 1.2401
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 84.5,
-          "offense_successRate": 87.8,
-          "offense_explosiveness": 37.3,
-          "defense_ppa": 18.9,
-          "defense_successRate": 21.8,
-          "defense_explosiveness": 69.0
+          "offense_ppa": 78.8,
+          "offense_successRate": 56.5,
+          "offense_explosiveness": 86.2,
+          "defense_ppa": 20.8,
+          "defense_successRate": 7.6,
+          "defense_explosiveness": 63.4
         },
         "away": {
-          "offense_ppa": 90.9,
-          "offense_successRate": 84.5,
-          "offense_explosiveness": 65.7,
-          "defense_ppa": 43.3,
-          "defense_successRate": 67.9,
-          "defense_explosiveness": 25.9
+          "offense_ppa": 69.1,
+          "offense_successRate": 72.2,
+          "offense_explosiveness": 65.3,
+          "defense_ppa": 53.7,
+          "defense_successRate": 45.5,
+          "defense_explosiveness": 37.2
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 29.6,
+          "points_for": 29.62,
           "points_against": 14.0
         },
         "away": {
-          "points_for": 32.4,
-          "points_against": 24.2
+          "points_for": 32.44,
+          "points_against": 24.22
         }
       },
       "model_edge_favorite": -2.3,
@@ -3535,7 +3535,7 @@
           "underdog_team": "Michigan",
           "total": 38.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Oregon",
@@ -3543,48 +3543,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.2911,
-          "offense_successRate": 0.4682,
-          "offense_explosiveness": 1.3572,
-          "defense_ppa": 0.0305,
-          "defense_successRate": 0.3569,
-          "defense_explosiveness": 1.2328
+          "offense_ppa": 0.1197,
+          "offense_successRate": 0.4085,
+          "offense_explosiveness": 1.3234,
+          "defense_ppa": -0.0225,
+          "defense_successRate": 0.3551,
+          "defense_explosiveness": 1.3042
         },
         "away": {
-          "offense_ppa": 0.1847,
-          "offense_successRate": 0.4434,
-          "offense_explosiveness": 1.1766,
-          "defense_ppa": 0.1056,
-          "defense_successRate": 0.412,
-          "defense_explosiveness": 1.13
+          "offense_ppa": 0.0489,
+          "offense_successRate": 0.3985,
+          "offense_explosiveness": 1.18,
+          "defense_ppa": -0.0791,
+          "defense_successRate": 0.3265,
+          "defense_explosiveness": 1.2611
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 77.6,
-          "offense_successRate": 73.9,
-          "offense_explosiveness": 62.9,
-          "defense_ppa": 19.9,
-          "defense_successRate": 25.7,
-          "defense_explosiveness": 38.3
+          "offense_ppa": 50.0,
+          "offense_successRate": 40.6,
+          "offense_explosiveness": 73.3,
+          "defense_ppa": 30.5,
+          "defense_successRate": 26.8,
+          "defense_explosiveness": 47.6
         },
         "away": {
-          "offense_ppa": 53.9,
-          "offense_successRate": 62.9,
-          "offense_explosiveness": 20.4,
-          "defense_ppa": 34.7,
-          "defense_successRate": 50.9,
-          "defense_explosiveness": 16.5
+          "offense_ppa": 37.5,
+          "offense_successRate": 35.9,
+          "offense_explosiveness": 39.7,
+          "defense_ppa": 20.0,
+          "defense_successRate": 15.6,
+          "defense_explosiveness": 40.6
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 27.9,
-          "points_against": 24.9
+          "points_for": 27.88,
+          "points_against": 24.88
         },
         "away": {
-          "points_for": 19.6,
-          "points_against": 16.2
+          "points_for": 19.56,
+          "points_against": 16.22
         }
       },
       "model_edge_favorite": -5.9,
@@ -3632,7 +3632,7 @@
           "underdog_team": "Florida Atlantic",
           "total": 74.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Tulsa",
@@ -3640,48 +3640,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0921,
-          "offense_successRate": 0.3987,
-          "offense_explosiveness": 1.2532,
-          "defense_ppa": 0.1721,
-          "defense_successRate": 0.4302,
-          "defense_explosiveness": 1.236
+          "offense_ppa": 0.2149,
+          "offense_successRate": 0.4307,
+          "offense_explosiveness": 1.2394,
+          "defense_ppa": 0.0332,
+          "defense_successRate": 0.407,
+          "defense_explosiveness": 1.1641
         },
         "away": {
-          "offense_ppa": 0.1516,
-          "offense_successRate": 0.3929,
-          "offense_explosiveness": 1.4399,
-          "defense_ppa": 0.2335,
-          "defense_successRate": 0.4483,
-          "defense_explosiveness": 1.2614
+          "offense_ppa": 0.2225,
+          "offense_successRate": 0.4615,
+          "offense_explosiveness": 1.2838,
+          "defense_ppa": 0.263,
+          "defense_successRate": 0.4331,
+          "defense_explosiveness": 1.4976
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 33.4,
-          "offense_successRate": 43.0,
-          "offense_explosiveness": 38.4,
-          "defense_ppa": 47.7,
-          "defense_successRate": 59.3,
-          "defense_explosiveness": 39.0
+          "offense_ppa": 66.7,
+          "offense_successRate": 50.9,
+          "offense_explosiveness": 53.6,
+          "defense_ppa": 40.8,
+          "defense_successRate": 47.2,
+          "defense_explosiveness": 24.8
         },
         "away": {
-          "offense_ppa": 46.6,
-          "offense_successRate": 40.4,
-          "offense_explosiveness": 82.3,
-          "defense_ppa": 59.8,
-          "defense_successRate": 67.5,
-          "defense_explosiveness": 44.4
+          "offense_ppa": 68.1,
+          "offense_successRate": 65.2,
+          "offense_explosiveness": 64.0,
+          "defense_ppa": 83.4,
+          "defense_successRate": 57.4,
+          "defense_explosiveness": 79.2
         }
       },
       "pregame_stats": {
         "home": {
           "points_for": 32.0,
-          "points_against": 25.6
+          "points_against": 25.62
         },
         "away": {
           "points_for": 37.0,
-          "points_against": 38.1
+          "points_against": 38.12
         }
       },
       "model_edge_favorite": 1.4,
@@ -3729,7 +3729,7 @@
           "underdog_team": "Northern Illinois",
           "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Nevada",
@@ -3737,47 +3737,47 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0443,
-          "offense_successRate": 0.3429,
-          "offense_explosiveness": 1.2877,
-          "defense_ppa": 0.211,
-          "defense_successRate": 0.4538,
-          "defense_explosiveness": 1.1856
+          "offense_ppa": -0.0347,
+          "offense_successRate": 0.3981,
+          "offense_explosiveness": 1.2058,
+          "defense_ppa": 0.2401,
+          "defense_successRate": 0.4849,
+          "defense_explosiveness": 1.2417
         },
         "away": {
-          "offense_ppa": 0.0288,
-          "offense_successRate": 0.3632,
-          "offense_explosiveness": 1.2078,
-          "defense_ppa": 0.1988,
-          "defense_successRate": 0.4323,
-          "defense_explosiveness": 1.1922
+          "offense_ppa": -0.0156,
+          "offense_successRate": 0.3576,
+          "offense_explosiveness": 1.2995,
+          "defense_ppa": 0.1041,
+          "defense_successRate": 0.3767,
+          "defense_explosiveness": 1.2157
         }
       },
       "advanced_stats_normalized": {
         "home": {
           "offense_ppa": 22.8,
-          "offense_successRate": 18.1,
-          "offense_explosiveness": 46.6,
-          "defense_ppa": 55.4,
-          "defense_successRate": 70.1,
-          "defense_explosiveness": 28.3
+          "offense_successRate": 35.7,
+          "offense_explosiveness": 45.7,
+          "defense_ppa": 79.2,
+          "defense_successRate": 77.7,
+          "defense_explosiveness": 37.4
         },
         "away": {
-          "offense_ppa": 19.3,
-          "offense_successRate": 27.2,
-          "offense_explosiveness": 27.8,
-          "defense_ppa": 53.0,
-          "defense_successRate": 60.2,
-          "defense_explosiveness": 29.7
+          "offense_ppa": 26.1,
+          "offense_successRate": 16.9,
+          "offense_explosiveness": 67.7,
+          "defense_ppa": 54.0,
+          "defense_successRate": 35.3,
+          "defense_explosiveness": 33.2
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 15.6,
-          "points_against": 37.9
+          "points_for": 15.62,
+          "points_against": 37.88
         },
         "away": {
-          "points_for": 23.3,
+          "points_for": 23.29,
           "points_against": 23.0
         }
       },
@@ -3826,7 +3826,7 @@
           "underdog_team": "Georgia State",
           "total": 56.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Georgia Southern",
@@ -3834,48 +3834,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1092,
-          "offense_successRate": 0.3922,
-          "offense_explosiveness": 1.2617,
-          "defense_ppa": 0.2924,
-          "defense_successRate": 0.4683,
-          "defense_explosiveness": 1.275
+          "offense_ppa": 0.2013,
+          "offense_successRate": 0.4482,
+          "offense_explosiveness": 1.2732,
+          "defense_ppa": 0.0571,
+          "defense_successRate": 0.3886,
+          "defense_explosiveness": 1.2258
         },
         "away": {
-          "offense_ppa": 0.1878,
-          "offense_successRate": 0.4233,
-          "offense_explosiveness": 1.2428,
-          "defense_ppa": 0.2884,
-          "defense_successRate": 0.5007,
-          "defense_explosiveness": 1.2539
+          "offense_ppa": 0.167,
+          "offense_successRate": 0.4402,
+          "offense_explosiveness": 1.1958,
+          "defense_ppa": 0.0219,
+          "defense_successRate": 0.3808,
+          "defense_explosiveness": 1.1858
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 37.2,
-          "offense_successRate": 40.1,
-          "offense_explosiveness": 40.4,
-          "defense_ppa": 71.4,
-          "defense_successRate": 76.7,
-          "defense_explosiveness": 47.3
+          "offense_ppa": 64.3,
+          "offense_successRate": 59.0,
+          "offense_explosiveness": 61.5,
+          "defense_ppa": 45.3,
+          "defense_successRate": 40.0,
+          "defense_explosiveness": 34.8
         },
         "away": {
-          "offense_ppa": 54.6,
-          "offense_successRate": 53.9,
-          "offense_explosiveness": 36.0,
-          "defense_ppa": 70.6,
-          "defense_successRate": 91.5,
-          "defense_explosiveness": 42.8
+          "offense_ppa": 58.3,
+          "offense_successRate": 55.3,
+          "offense_explosiveness": 43.4,
+          "defense_ppa": 38.7,
+          "defense_successRate": 36.9,
+          "defense_explosiveness": 28.3
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 31.4,
-          "points_against": 28.2
+          "points_for": 31.38,
+          "points_against": 28.25
         },
         "away": {
           "points_for": 26.0,
-          "points_against": 22.1
+          "points_against": 22.12
         }
       },
       "model_edge_favorite": -4.3,
@@ -3923,7 +3923,7 @@
           "underdog_team": "Western Kentucky",
           "total": 54.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Jacksonville State",
@@ -3931,47 +3931,47 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1338,
-          "offense_successRate": 0.4256,
-          "offense_explosiveness": 1.2078,
-          "defense_ppa": 0.12,
-          "defense_successRate": 0.3724,
-          "defense_explosiveness": 1.354
+          "offense_ppa": 0.0679,
+          "offense_successRate": 0.3949,
+          "offense_explosiveness": 1.2531,
+          "defense_ppa": 0.1754,
+          "defense_successRate": 0.4208,
+          "defense_explosiveness": 1.3511
         },
         "away": {
-          "offense_ppa": 0.1723,
-          "offense_successRate": 0.4266,
-          "offense_explosiveness": 1.2858,
-          "defense_ppa": 0.1759,
-          "defense_successRate": 0.427,
-          "defense_explosiveness": 1.3381
+          "offense_ppa": 0.1488,
+          "offense_successRate": 0.4537,
+          "offense_explosiveness": 1.2045,
+          "defense_ppa": 0.0741,
+          "defense_successRate": 0.3998,
+          "defense_explosiveness": 1.1007
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 42.6,
-          "offense_successRate": 55.0,
-          "offense_explosiveness": 27.8,
-          "defense_ppa": 37.5,
-          "defense_successRate": 32.8,
-          "defense_explosiveness": 64.1
+          "offense_ppa": 40.8,
+          "offense_successRate": 34.3,
+          "offense_explosiveness": 56.8,
+          "defense_ppa": 67.2,
+          "defense_successRate": 52.6,
+          "defense_explosiveness": 55.3
         },
         "away": {
-          "offense_ppa": 51.2,
-          "offense_successRate": 55.4,
-          "offense_explosiveness": 46.1,
-          "defense_ppa": 48.5,
-          "defense_successRate": 57.8,
-          "defense_explosiveness": 60.7
+          "offense_ppa": 55.1,
+          "offense_successRate": 61.6,
+          "offense_explosiveness": 45.4,
+          "defense_ppa": 48.4,
+          "defense_successRate": 44.4,
+          "defense_explosiveness": 14.4
         }
       },
       "pregame_stats": {
         "home": {
           "points_for": 20.0,
-          "points_against": 36.6
+          "points_against": 36.62
         },
         "away": {
-          "points_for": 29.4,
+          "points_for": 29.43,
           "points_against": 19.0
         }
       },
@@ -4020,7 +4020,7 @@
           "underdog_team": "Middle Tennessee",
           "total": 53.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Liberty",
@@ -4028,48 +4028,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1626,
-          "offense_successRate": 0.4287,
-          "offense_explosiveness": 1.1992,
-          "defense_ppa": 0.1932,
-          "defense_successRate": 0.4198,
-          "defense_explosiveness": 1.2495
+          "offense_ppa": 0.2461,
+          "offense_successRate": 0.5087,
+          "offense_explosiveness": 1.1437,
+          "defense_ppa": -0.0412,
+          "defense_successRate": 0.3538,
+          "defense_explosiveness": 1.3099
         },
         "away": {
-          "offense_ppa": 0.1731,
-          "offense_successRate": 0.4297,
-          "offense_explosiveness": 1.2714,
-          "defense_ppa": 0.2108,
-          "defense_successRate": 0.4405,
-          "defense_explosiveness": 1.3086
+          "offense_ppa": 0.1163,
+          "offense_successRate": 0.4078,
+          "offense_explosiveness": 1.2748,
+          "defense_ppa": 0.1857,
+          "defense_successRate": 0.4667,
+          "defense_explosiveness": 1.2043
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 49.0,
-          "offense_successRate": 56.3,
-          "offense_explosiveness": 25.8,
-          "defense_ppa": 51.9,
-          "defense_successRate": 54.5,
-          "defense_explosiveness": 41.9
+          "offense_ppa": 72.2,
+          "offense_successRate": 87.1,
+          "offense_explosiveness": 31.2,
+          "defense_ppa": 27.0,
+          "defense_successRate": 26.3,
+          "defense_explosiveness": 48.6
         },
         "away": {
-          "offense_ppa": 51.4,
-          "offense_successRate": 56.8,
-          "offense_explosiveness": 42.7,
-          "defense_ppa": 55.3,
-          "defense_successRate": 64.0,
-          "defense_explosiveness": 54.5
+          "offense_ppa": 49.4,
+          "offense_successRate": 40.2,
+          "offense_explosiveness": 61.9,
+          "defense_ppa": 69.1,
+          "defense_successRate": 70.6,
+          "defense_explosiveness": 31.3
         }
       },
       "pregame_stats": {
         "home": {
           "points_for": 34.5,
-          "points_against": 12.4
+          "points_against": 12.38
         },
         "away": {
           "points_for": 25.5,
-          "points_against": 33.1
+          "points_against": 33.12
         }
       },
       "model_edge_favorite": -1.0,
@@ -4117,7 +4117,7 @@
           "underdog_team": "Fresno State",
           "total": 59.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Texas State",
@@ -4125,48 +4125,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.324,
-          "offense_successRate": 0.4626,
-          "offense_explosiveness": 1.3811,
-          "defense_ppa": 0.1884,
-          "defense_successRate": 0.4143,
-          "defense_explosiveness": 1.36
+          "offense_ppa": 0.2664,
+          "offense_successRate": 0.4974,
+          "offense_explosiveness": 1.2809,
+          "defense_ppa": 0.1153,
+          "defense_successRate": 0.4328,
+          "defense_explosiveness": 1.2263
         },
         "away": {
-          "offense_ppa": 0.0691,
-          "offense_successRate": 0.3712,
-          "offense_explosiveness": 1.2773,
-          "defense_ppa": 0.0745,
-          "defense_successRate": 0.379,
-          "defense_explosiveness": 1.1549
+          "offense_ppa": 0.0896,
+          "offense_successRate": 0.3782,
+          "offense_explosiveness": 1.3748,
+          "defense_ppa": 0.0128,
+          "defense_successRate": 0.4203,
+          "defense_explosiveness": 1.1274
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 84.9,
-          "offense_successRate": 71.4,
-          "offense_explosiveness": 68.5,
-          "defense_ppa": 50.9,
-          "defense_successRate": 52.0,
-          "defense_explosiveness": 65.4
+          "offense_ppa": 75.8,
+          "offense_successRate": 81.9,
+          "offense_explosiveness": 63.3,
+          "defense_ppa": 56.0,
+          "defense_successRate": 57.3,
+          "defense_explosiveness": 34.9
         },
         "away": {
-          "offense_ppa": 28.3,
-          "offense_successRate": 30.7,
-          "offense_explosiveness": 44.1,
-          "defense_ppa": 28.6,
-          "defense_successRate": 35.8,
-          "defense_explosiveness": 21.7
+          "offense_ppa": 44.7,
+          "offense_successRate": 26.5,
+          "offense_explosiveness": 85.3,
+          "defense_ppa": 37.0,
+          "defense_successRate": 52.4,
+          "defense_explosiveness": 18.8
         }
       },
       "pregame_stats": {
         "home": {
           "points_for": 35.5,
-          "points_against": 33.4
+          "points_against": 33.38
         },
         "away": {
           "points_for": 24.0,
-          "points_against": 22.8
+          "points_against": 22.75
         }
       },
       "model_edge_favorite": -3.4,
@@ -4214,7 +4214,7 @@
           "underdog_team": "Ole Miss",
           "total": 49.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Oklahoma",
@@ -4222,47 +4222,47 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0706,
-          "offense_successRate": 0.3914,
-          "offense_explosiveness": 1.2672,
-          "defense_ppa": -0.0232,
-          "defense_successRate": 0.3008,
-          "defense_explosiveness": 1.351
+          "offense_ppa": 0.0282,
+          "offense_successRate": 0.3881,
+          "offense_explosiveness": 1.1039,
+          "defense_ppa": -0.0753,
+          "defense_successRate": 0.3443,
+          "defense_explosiveness": 1.2976
         },
         "away": {
-          "offense_ppa": 0.2982,
-          "offense_successRate": 0.4723,
-          "offense_explosiveness": 1.3208,
-          "defense_ppa": 0.1294,
-          "defense_successRate": 0.3936,
-          "defense_explosiveness": 1.3197
+          "offense_ppa": 0.2025,
+          "offense_successRate": 0.4911,
+          "offense_explosiveness": 1.1469,
+          "defense_ppa": 0.1435,
+          "defense_successRate": 0.423,
+          "defense_explosiveness": 1.2989
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 28.6,
-          "offense_successRate": 39.7,
-          "offense_explosiveness": 41.7,
-          "defense_ppa": 9.4,
-          "defense_successRate": 0.1,
-          "defense_explosiveness": 63.5
+          "offense_ppa": 33.8,
+          "offense_successRate": 31.1,
+          "offense_explosiveness": 21.8,
+          "defense_ppa": 20.7,
+          "defense_successRate": 22.6,
+          "defense_explosiveness": 46.6
         },
         "away": {
-          "offense_ppa": 79.1,
-          "offense_successRate": 75.8,
-          "offense_explosiveness": 54.3,
-          "defense_ppa": 39.3,
-          "defense_successRate": 42.5,
-          "defense_explosiveness": 56.8
+          "offense_ppa": 64.5,
+          "offense_successRate": 78.9,
+          "offense_explosiveness": 31.9,
+          "defense_ppa": 61.3,
+          "defense_successRate": 53.4,
+          "defense_explosiveness": 46.8
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 22.1,
-          "points_against": 19.2
+          "points_for": 22.11,
+          "points_against": 19.22
         },
         "away": {
-          "points_for": 33.8,
+          "points_for": 33.78,
           "points_against": 26.0
         }
       },
@@ -4311,7 +4311,7 @@
           "underdog_team": "Michigan State",
           "total": 42.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Washington",
@@ -4319,48 +4319,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1027,
-          "offense_successRate": 0.4124,
-          "offense_explosiveness": 1.1757,
-          "defense_ppa": 0.1888,
-          "defense_successRate": 0.4443,
-          "defense_explosiveness": 1.1789
+          "offense_ppa": -0.024,
+          "offense_successRate": 0.4121,
+          "offense_explosiveness": 1.0705,
+          "defense_ppa": 0.1262,
+          "defense_successRate": 0.4184,
+          "defense_explosiveness": 1.2982
         },
         "away": {
-          "offense_ppa": 0.2621,
-          "offense_successRate": 0.4795,
-          "offense_explosiveness": 1.237,
-          "defense_ppa": 0.058,
-          "defense_successRate": 0.3872,
-          "defense_explosiveness": 1.2118
+          "offense_ppa": 0.1241,
+          "offense_successRate": 0.4169,
+          "offense_explosiveness": 1.2411,
+          "defense_ppa": 0.0079,
+          "defense_successRate": 0.3887,
+          "defense_explosiveness": 1.2768
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 35.7,
-          "offense_successRate": 49.1,
-          "offense_explosiveness": 20.2,
-          "defense_ppa": 51.0,
-          "defense_successRate": 65.7,
-          "defense_explosiveness": 26.9
+          "offense_ppa": 24.7,
+          "offense_successRate": 42.2,
+          "offense_explosiveness": 14.0,
+          "defense_ppa": 58.1,
+          "defense_successRate": 51.6,
+          "defense_explosiveness": 46.7
         },
         "away": {
-          "offense_ppa": 71.1,
-          "offense_successRate": 79.0,
-          "offense_explosiveness": 34.6,
-          "defense_ppa": 25.3,
-          "defense_successRate": 39.6,
-          "defense_explosiveness": 33.9
+          "offense_ppa": 50.7,
+          "offense_successRate": 44.5,
+          "offense_explosiveness": 54.0,
+          "defense_ppa": 36.1,
+          "defense_successRate": 40.0,
+          "defense_explosiveness": 43.2
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 19.3,
-          "points_against": 23.6
+          "points_for": 19.33,
+          "points_against": 23.56
         },
         "away": {
-          "points_for": 23.6,
-          "points_against": 22.6
+          "points_for": 23.62,
+          "points_against": 22.62
         }
       },
       "model_edge_favorite": 4.1,
@@ -4408,7 +4408,7 @@
           "underdog_team": "Southern Miss",
           "total": 56.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Louisiana Tech",
@@ -4416,48 +4416,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1391,
-          "offense_successRate": 0.3996,
-          "offense_explosiveness": 1.2263,
-          "defense_ppa": 0.0744,
-          "defense_successRate": 0.3741,
-          "defense_explosiveness": 1.3804
+          "offense_ppa": 0.1417,
+          "offense_successRate": 0.4001,
+          "offense_explosiveness": 1.3038,
+          "defense_ppa": -0.0835,
+          "defense_successRate": 0.3529,
+          "defense_explosiveness": 1.2609
         },
         "away": {
-          "offense_ppa": 0.1703,
-          "offense_successRate": 0.3917,
-          "offense_explosiveness": 1.3603,
-          "defense_ppa": 0.1269,
-          "defense_successRate": 0.4188,
-          "defense_explosiveness": 1.2368
+          "offense_ppa": 0.0166,
+          "offense_successRate": 0.398,
+          "offense_explosiveness": 1.2169,
+          "defense_ppa": 0.1475,
+          "defense_successRate": 0.4334,
+          "defense_explosiveness": 1.1728
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 43.8,
-          "offense_successRate": 43.4,
-          "offense_explosiveness": 32.1,
-          "defense_ppa": 28.5,
-          "defense_successRate": 33.6,
-          "defense_explosiveness": 69.7
+          "offense_ppa": 53.8,
+          "offense_successRate": 36.7,
+          "offense_explosiveness": 68.7,
+          "defense_ppa": 19.2,
+          "defense_successRate": 26.0,
+          "defense_explosiveness": 40.6
         },
         "away": {
-          "offense_ppa": 50.7,
-          "offense_successRate": 39.9,
-          "offense_explosiveness": 63.6,
-          "defense_ppa": 38.9,
-          "defense_successRate": 54.0,
-          "defense_explosiveness": 39.2
+          "offense_ppa": 31.8,
+          "offense_successRate": 35.7,
+          "offense_explosiveness": 48.3,
+          "defense_ppa": 62.0,
+          "defense_successRate": 57.5,
+          "defense_explosiveness": 26.2
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 27.8,
-          "points_against": 22.2
+          "points_for": 27.75,
+          "points_against": 22.25
         },
         "away": {
-          "points_for": 23.6,
-          "points_against": 37.4
+          "points_for": 23.62,
+          "points_against": 37.38
         }
       },
       "model_edge_favorite": 1.7,
@@ -4505,7 +4505,7 @@
           "underdog_team": "Kansas",
           "total": 67.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "West Virginia",
@@ -4513,48 +4513,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0258,
-          "offense_successRate": 0.347,
-          "offense_explosiveness": 1.259,
-          "defense_ppa": 0.1895,
-          "defense_successRate": 0.418,
-          "defense_explosiveness": 1.3867
+          "offense_ppa": 0.2114,
+          "offense_successRate": 0.4332,
+          "offense_explosiveness": 1.3419,
+          "defense_ppa": 0.2543,
+          "defense_successRate": 0.4631,
+          "defense_explosiveness": 1.3639
         },
         "away": {
-          "offense_ppa": 0.2128,
-          "offense_successRate": 0.4612,
-          "offense_explosiveness": 1.1987,
-          "defense_ppa": 0.2529,
-          "defense_successRate": 0.4252,
-          "defense_explosiveness": 1.3745
+          "offense_ppa": 0.1326,
+          "offense_successRate": 0.4306,
+          "offense_explosiveness": 1.3716,
+          "defense_ppa": 0.0103,
+          "defense_successRate": 0.3653,
+          "defense_explosiveness": 1.2826
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 18.7,
-          "offense_successRate": 20.0,
-          "offense_explosiveness": 39.8,
-          "defense_ppa": 51.1,
-          "defense_successRate": 53.7,
-          "defense_explosiveness": 71.1
+          "offense_ppa": 66.1,
+          "offense_successRate": 52.0,
+          "offense_explosiveness": 77.6,
+          "defense_ppa": 81.8,
+          "defense_successRate": 69.2,
+          "defense_explosiveness": 57.4
         },
         "away": {
-          "offense_ppa": 60.2,
-          "offense_successRate": 70.8,
-          "offense_explosiveness": 25.6,
-          "defense_ppa": 63.6,
-          "defense_successRate": 57.0,
-          "defense_explosiveness": 68.5
+          "offense_ppa": 52.2,
+          "offense_successRate": 50.8,
+          "offense_explosiveness": 84.6,
+          "defense_ppa": 36.6,
+          "defense_successRate": 30.8,
+          "defense_explosiveness": 44.1
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 35.4,
+          "points_for": 35.38,
           "points_against": 38.0
         },
         "away": {
-          "points_for": 26.8,
-          "points_against": 27.1
+          "points_for": 26.75,
+          "points_against": 27.12
         }
       },
       "model_edge_favorite": -4.7,
@@ -4597,12 +4597,12 @@
           "observed_at": "2026-11-09T10:12:59.205964+00:00"
         },
         "current": {
-          "spread_favorite": -15.5,
+          "spread_favorite": -14.5,
           "favorite_team": "Boise State",
           "underdog_team": "Oregon State",
-          "total": 65.5,
+          "total": 63.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Boise State",
@@ -4610,48 +4610,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1694,
-          "offense_successRate": 0.4044,
-          "offense_explosiveness": 1.2909,
-          "defense_ppa": 0.1026,
-          "defense_successRate": 0.3557,
-          "defense_explosiveness": 1.4142
+          "offense_ppa": 0.3565,
+          "offense_successRate": 0.4965,
+          "offense_explosiveness": 1.2836,
+          "defense_ppa": 0.0919,
+          "defense_successRate": 0.3777,
+          "defense_explosiveness": 1.6248
         },
         "away": {
-          "offense_ppa": 0.0209,
-          "offense_successRate": 0.3978,
-          "offense_explosiveness": 1.101,
-          "defense_ppa": 0.1869,
-          "defense_successRate": 0.3918,
-          "defense_explosiveness": 1.4349
+          "offense_ppa": 0.2598,
+          "offense_successRate": 0.4851,
+          "offense_explosiveness": 1.3226,
+          "defense_ppa": 0.1004,
+          "defense_successRate": 0.4132,
+          "defense_explosiveness": 1.1739
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 50.5,
-          "offense_successRate": 45.5,
-          "offense_explosiveness": 47.3,
-          "defense_ppa": 34.1,
-          "defense_successRate": 25.2,
-          "defense_explosiveness": 76.9
+          "offense_ppa": 91.6,
+          "offense_successRate": 81.5,
+          "offense_explosiveness": 63.9,
+          "defense_ppa": 51.7,
+          "defense_successRate": 35.7,
+          "defense_explosiveness": 100.0
         },
         "away": {
-          "offense_ppa": 17.6,
-          "offense_successRate": 42.6,
-          "offense_explosiveness": 2.7,
-          "defense_ppa": 50.6,
-          "defense_successRate": 41.7,
-          "defense_explosiveness": 81.3
+          "offense_ppa": 74.6,
+          "offense_successRate": 76.2,
+          "offense_explosiveness": 73.1,
+          "defense_ppa": 53.3,
+          "defense_successRate": 49.6,
+          "defense_explosiveness": 26.4
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 39.1,
-          "points_against": 25.4
+          "points_for": 39.12,
+          "points_against": 25.38
         },
         "away": {
-          "points_for": 36.2,
-          "points_against": 28.1
+          "points_for": 36.25,
+          "points_against": 28.12
         }
       },
       "model_edge_favorite": 3.3,
@@ -4699,7 +4699,7 @@
           "underdog_team": "Marshall",
           "total": 54.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "App State",
@@ -4707,48 +4707,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1767,
-          "offense_successRate": 0.4337,
-          "offense_explosiveness": 1.1795,
-          "defense_ppa": 0.1789,
-          "defense_successRate": 0.3986,
-          "defense_explosiveness": 1.4248
+          "offense_ppa": 0.0489,
+          "offense_successRate": 0.4275,
+          "offense_explosiveness": 1.145,
+          "defense_ppa": 0.2179,
+          "defense_successRate": 0.4394,
+          "defense_explosiveness": 1.3604
         },
         "away": {
-          "offense_ppa": 0.0781,
-          "offense_successRate": 0.3914,
-          "offense_explosiveness": 1.2751,
-          "defense_ppa": 0.2058,
-          "defense_successRate": 0.4595,
-          "defense_explosiveness": 1.211
+          "offense_ppa": 0.0895,
+          "offense_successRate": 0.4187,
+          "offense_explosiveness": 1.2522,
+          "defense_ppa": 0.0892,
+          "defense_successRate": 0.4074,
+          "defense_explosiveness": 1.1696
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 52.2,
-          "offense_successRate": 58.6,
-          "offense_explosiveness": 21.1,
-          "defense_ppa": 49.1,
-          "defense_successRate": 44.8,
-          "defense_explosiveness": 79.2
+          "offense_ppa": 37.5,
+          "offense_successRate": 49.4,
+          "offense_explosiveness": 31.5,
+          "defense_ppa": 75.0,
+          "defense_successRate": 59.9,
+          "defense_explosiveness": 56.8
         },
         "away": {
-          "offense_ppa": 30.3,
-          "offense_successRate": 39.7,
-          "offense_explosiveness": 43.6,
-          "defense_ppa": 54.3,
-          "defense_successRate": 72.7,
-          "defense_explosiveness": 33.7
+          "offense_ppa": 44.6,
+          "offense_successRate": 45.3,
+          "offense_explosiveness": 56.6,
+          "defense_ppa": 51.2,
+          "defense_successRate": 47.3,
+          "defense_explosiveness": 25.7
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 20.6,
+          "points_for": 20.62,
           "points_against": 31.5
         },
         "away": {
-          "points_for": 22.8,
-          "points_against": 27.1
+          "points_for": 22.75,
+          "points_against": 27.12
         }
       },
       "model_edge_favorite": -6.4,
@@ -4796,7 +4796,7 @@
           "underdog_team": "Florida",
           "total": 52.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Kentucky",
@@ -4804,48 +4804,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0495,
-          "offense_successRate": 0.4096,
-          "offense_explosiveness": 1.1304,
-          "defense_ppa": 0.1768,
-          "defense_successRate": 0.4317,
-          "defense_explosiveness": 1.2554
+          "offense_ppa": 0.1851,
+          "offense_successRate": 0.4857,
+          "offense_explosiveness": 1.0841,
+          "defense_ppa": 0.0801,
+          "defense_successRate": 0.4412,
+          "defense_explosiveness": 1.2321
         },
         "away": {
-          "offense_ppa": 0.1177,
-          "offense_successRate": 0.4104,
-          "offense_explosiveness": 1.0991,
-          "defense_ppa": 0.2083,
-          "defense_successRate": 0.441,
-          "defense_explosiveness": 1.3176
+          "offense_ppa": 0.1856,
+          "offense_successRate": 0.4361,
+          "offense_explosiveness": 1.2468,
+          "defense_ppa": 0.0658,
+          "defense_successRate": 0.4327,
+          "defense_explosiveness": 1.1239
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 23.9,
-          "offense_successRate": 47.8,
-          "offense_explosiveness": 9.6,
-          "defense_ppa": 48.7,
-          "defense_successRate": 59.9,
-          "defense_explosiveness": 43.1
+          "offense_ppa": 61.5,
+          "offense_successRate": 76.4,
+          "offense_explosiveness": 17.2,
+          "defense_ppa": 49.5,
+          "defense_successRate": 60.6,
+          "defense_explosiveness": 35.9
         },
         "away": {
-          "offense_ppa": 39.1,
-          "offense_successRate": 48.2,
-          "offense_explosiveness": 2.2,
-          "defense_ppa": 54.8,
-          "defense_successRate": 64.2,
-          "defense_explosiveness": 56.4
+          "offense_ppa": 61.6,
+          "offense_successRate": 53.4,
+          "offense_explosiveness": 55.3,
+          "defense_ppa": 46.9,
+          "defense_successRate": 57.2,
+          "defense_explosiveness": 18.2
         }
       },
       "pregame_stats": {
         "home": {
           "points_for": 28.0,
-          "points_against": 27.4
+          "points_against": 27.38
         },
         "away": {
           "points_for": 30.0,
-          "points_against": 30.6
+          "points_against": 30.62
         }
       },
       "model_edge_favorite": 0.4,
@@ -4891,9 +4891,9 @@
           "spread_favorite": -3.5,
           "favorite_team": "Louisville",
           "underdog_team": "North Carolina",
-          "total": 60.5,
+          "total": 59.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Louisville",
@@ -4901,44 +4901,44 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0627,
-          "offense_successRate": 0.3818,
-          "offense_explosiveness": 1.2063,
-          "defense_ppa": 0.1746,
-          "defense_successRate": 0.419,
-          "defense_explosiveness": 1.2145
+          "offense_ppa": 0.1583,
+          "offense_successRate": 0.4642,
+          "offense_explosiveness": 1.1483,
+          "defense_ppa": 0.0579,
+          "defense_successRate": 0.4414,
+          "defense_explosiveness": 1.0864
         },
         "away": {
-          "offense_ppa": 0.1361,
-          "offense_successRate": 0.4341,
-          "offense_explosiveness": 1.229,
-          "defense_ppa": 0.0631,
-          "defense_successRate": 0.3708,
-          "defense_explosiveness": 1.1796
+          "offense_ppa": 0.3369,
+          "offense_successRate": 0.5035,
+          "offense_explosiveness": 1.3786,
+          "defense_ppa": 0.0336,
+          "defense_successRate": 0.3812,
+          "defense_explosiveness": 1.3009
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 26.8,
-          "offense_successRate": 35.5,
-          "offense_explosiveness": 27.4,
-          "defense_ppa": 48.2,
-          "defense_successRate": 54.1,
-          "defense_explosiveness": 34.4
+          "offense_ppa": 56.7,
+          "offense_successRate": 66.5,
+          "offense_explosiveness": 32.2,
+          "defense_ppa": 45.4,
+          "defense_successRate": 60.7,
+          "defense_explosiveness": 12.1
         },
         "away": {
-          "offense_ppa": 43.1,
-          "offense_successRate": 58.8,
-          "offense_explosiveness": 32.8,
-          "defense_ppa": 26.3,
-          "defense_successRate": 32.1,
-          "defense_explosiveness": 27.0
+          "offense_ppa": 88.2,
+          "offense_successRate": 84.7,
+          "offense_explosiveness": 86.2,
+          "defense_ppa": 40.9,
+          "defense_successRate": 37.1,
+          "defense_explosiveness": 47.1
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 26.1,
-          "points_against": 25.2
+          "points_for": 26.12,
+          "points_against": 25.25
         },
         "away": {
           "points_for": 38.5,
@@ -4988,9 +4988,9 @@
           "spread_favorite": -9.5,
           "favorite_team": "Penn State",
           "underdog_team": "Minnesota",
-          "total": 42.5,
+          "total": 41.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Penn State",
@@ -4998,48 +4998,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.2346,
-          "offense_successRate": 0.4605,
-          "offense_explosiveness": 1.2157,
-          "defense_ppa": 0.118,
-          "defense_successRate": 0.4143,
-          "defense_explosiveness": 1.1795
+          "offense_ppa": 0.146,
+          "offense_successRate": 0.4116,
+          "offense_explosiveness": 1.2599,
+          "defense_ppa": 0.031,
+          "defense_successRate": 0.3759,
+          "defense_explosiveness": 1.2471
         },
         "away": {
-          "offense_ppa": 0.0786,
-          "offense_successRate": 0.3756,
-          "offense_explosiveness": 1.1646,
-          "defense_ppa": 0.2023,
-          "defense_successRate": 0.4474,
-          "defense_explosiveness": 1.2327
+          "offense_ppa": 0.0259,
+          "offense_successRate": 0.3721,
+          "offense_explosiveness": 1.2179,
+          "defense_ppa": 0.0027,
+          "defense_successRate": 0.3723,
+          "defense_explosiveness": 1.2949
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 65.0,
-          "offense_successRate": 70.5,
-          "offense_explosiveness": 29.6,
-          "defense_ppa": 37.1,
-          "defense_successRate": 52.0,
-          "defense_explosiveness": 27.0
+          "offense_ppa": 54.6,
+          "offense_successRate": 42.0,
+          "offense_explosiveness": 58.4,
+          "defense_ppa": 40.4,
+          "defense_successRate": 35.0,
+          "defense_explosiveness": 38.3
         },
         "away": {
-          "offense_ppa": 30.4,
-          "offense_successRate": 32.7,
-          "offense_explosiveness": 17.6,
-          "defense_ppa": 53.7,
-          "defense_successRate": 67.1,
-          "defense_explosiveness": 38.3
+          "offense_ppa": 33.4,
+          "offense_successRate": 23.7,
+          "offense_explosiveness": 48.5,
+          "defense_ppa": 35.2,
+          "defense_successRate": 33.6,
+          "defense_explosiveness": 46.1
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 28.9,
-          "points_against": 19.3
+          "points_for": 28.89,
+          "points_against": 19.33
         },
         "away": {
-          "points_for": 20.4,
-          "points_against": 23.9
+          "points_for": 20.38,
+          "points_against": 23.88
         }
       },
       "model_edge_favorite": 4.2,
@@ -5087,7 +5087,7 @@
           "underdog_team": "San Jos\u00e9 State",
           "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Air Force",
@@ -5095,48 +5095,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.274,
-          "offense_successRate": 0.4625,
-          "offense_explosiveness": 1.2417,
-          "defense_ppa": 0.4383,
-          "defense_successRate": 0.5016,
-          "defense_explosiveness": 1.4096
+          "offense_ppa": 0.2077,
+          "offense_successRate": 0.4988,
+          "offense_explosiveness": 1.0107,
+          "defense_ppa": 0.0779,
+          "defense_successRate": 0.4008,
+          "defense_explosiveness": 1.2407
         },
         "away": {
-          "offense_ppa": 0.1522,
-          "offense_successRate": 0.4243,
-          "offense_explosiveness": 1.2166,
-          "defense_ppa": 0.1941,
-          "defense_successRate": 0.4292,
-          "defense_explosiveness": 1.2599
+          "offense_ppa": 0.074,
+          "offense_successRate": 0.3716,
+          "offense_explosiveness": 1.1923,
+          "defense_ppa": 0.0515,
+          "defense_successRate": 0.457,
+          "defense_explosiveness": 1.1123
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 73.8,
-          "offense_successRate": 71.4,
-          "offense_explosiveness": 35.7,
-          "defense_ppa": 100.0,
-          "defense_successRate": 91.9,
-          "defense_explosiveness": 76.0
+          "offense_ppa": 65.4,
+          "offense_successRate": 82.5,
+          "offense_explosiveness": 0.0,
+          "defense_ppa": 49.1,
+          "defense_successRate": 44.7,
+          "defense_explosiveness": 37.3
         },
         "away": {
-          "offense_ppa": 46.7,
-          "offense_successRate": 54.4,
-          "offense_explosiveness": 29.8,
-          "defense_ppa": 52.1,
-          "defense_successRate": 58.8,
-          "defense_explosiveness": 44.1
+          "offense_ppa": 41.9,
+          "offense_successRate": 23.4,
+          "offense_explosiveness": 42.5,
+          "defense_ppa": 44.2,
+          "defense_successRate": 66.8,
+          "defense_explosiveness": 16.3
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 27.4,
-          "points_against": 22.1
+          "points_for": 27.43,
+          "points_against": 22.14
         },
         "away": {
-          "points_for": 19.9,
-          "points_against": 22.2
+          "points_for": 19.89,
+          "points_against": 22.22
         }
       },
       "model_edge_favorite": 1.3,
@@ -5184,7 +5184,7 @@
           "underdog_team": "Troy",
           "total": 55.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "South Alabama",
@@ -5192,48 +5192,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1483,
-          "offense_successRate": 0.4099,
-          "offense_explosiveness": 1.2167,
-          "defense_ppa": 0.2364,
-          "defense_successRate": 0.428,
-          "defense_explosiveness": 1.3118
+          "offense_ppa": 0.164,
+          "offense_successRate": 0.4273,
+          "offense_explosiveness": 1.3397,
+          "defense_ppa": 0.2311,
+          "defense_successRate": 0.4918,
+          "defense_explosiveness": 1.3401
         },
         "away": {
-          "offense_ppa": 0.0507,
-          "offense_successRate": 0.365,
-          "offense_explosiveness": 1.2869,
-          "defense_ppa": 0.1138,
-          "defense_successRate": 0.3973,
-          "defense_explosiveness": 1.2909
+          "offense_ppa": -0.0141,
+          "offense_successRate": 0.3681,
+          "offense_explosiveness": 1.1996,
+          "defense_ppa": 0.0515,
+          "defense_successRate": 0.392,
+          "defense_explosiveness": 1.2712
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 45.8,
-          "offense_successRate": 48.0,
-          "offense_explosiveness": 29.9,
-          "defense_ppa": 60.4,
-          "defense_successRate": 58.3,
-          "defense_explosiveness": 55.1
+          "offense_ppa": 57.8,
+          "offense_successRate": 49.3,
+          "offense_explosiveness": 77.1,
+          "defense_ppa": 77.5,
+          "defense_successRate": 80.4,
+          "defense_explosiveness": 53.5
         },
         "away": {
-          "offense_ppa": 24.2,
-          "offense_successRate": 28.0,
-          "offense_explosiveness": 46.4,
-          "defense_ppa": 36.3,
-          "defense_successRate": 44.2,
-          "defense_explosiveness": 50.7
+          "offense_ppa": 26.4,
+          "offense_successRate": 21.8,
+          "offense_explosiveness": 44.3,
+          "defense_ppa": 44.2,
+          "defense_successRate": 41.3,
+          "defense_explosiveness": 42.3
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 31.6,
+          "points_for": 31.62,
           "points_against": 34.5
         },
         "away": {
-          "points_for": 20.9,
-          "points_against": 27.4
+          "points_for": 20.88,
+          "points_against": 27.38
         }
       },
       "model_edge_favorite": 3.3,
@@ -5281,7 +5281,7 @@
           "underdog_team": "Arizona",
           "total": 54.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Utah",
@@ -5289,48 +5289,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1619,
-          "offense_successRate": 0.4239,
-          "offense_explosiveness": 1.2994,
-          "defense_ppa": 0.0777,
-          "defense_successRate": 0.3778,
-          "defense_explosiveness": 1.2764
+          "offense_ppa": 0.2244,
+          "offense_successRate": 0.4589,
+          "offense_explosiveness": 1.3064,
+          "defense_ppa": -0.0254,
+          "defense_successRate": 0.3603,
+          "defense_explosiveness": 1.3898
         },
         "away": {
-          "offense_ppa": 0.3344,
-          "offense_successRate": 0.4816,
-          "offense_explosiveness": 1.2935,
-          "defense_ppa": 0.0865,
-          "defense_successRate": 0.3843,
-          "defense_explosiveness": 1.349
+          "offense_ppa": 0.2355,
+          "offense_successRate": 0.4907,
+          "offense_explosiveness": 1.2765,
+          "defense_ppa": -0.0245,
+          "defense_successRate": 0.3507,
+          "defense_explosiveness": 1.3975
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 48.9,
-          "offense_successRate": 54.2,
-          "offense_explosiveness": 49.3,
-          "defense_ppa": 29.2,
-          "defense_successRate": 35.3,
-          "defense_explosiveness": 47.6
+          "offense_ppa": 68.4,
+          "offense_successRate": 64.0,
+          "offense_explosiveness": 69.3,
+          "defense_ppa": 30.0,
+          "defense_successRate": 28.9,
+          "defense_explosiveness": 61.6
         },
         "away": {
-          "offense_ppa": 87.2,
-          "offense_successRate": 79.9,
-          "offense_explosiveness": 47.9,
-          "defense_ppa": 30.9,
-          "defense_successRate": 38.3,
-          "defense_explosiveness": 63.1
+          "offense_ppa": 70.3,
+          "offense_successRate": 78.8,
+          "offense_explosiveness": 62.3,
+          "defense_ppa": 30.1,
+          "defense_successRate": 25.1,
+          "defense_explosiveness": 62.9
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 34.1,
+          "points_for": 34.12,
           "points_against": 21.5
         },
         "away": {
-          "points_for": 34.1,
-          "points_against": 16.6
+          "points_for": 34.12,
+          "points_against": 16.62
         }
       },
       "model_edge_favorite": -2.7,
@@ -5378,7 +5378,7 @@
           "underdog_team": "Texas",
           "total": 46.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "LSU",
@@ -5386,48 +5386,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.0517,
-          "offense_successRate": 0.3751,
-          "offense_explosiveness": 1.2318,
-          "defense_ppa": 0.0805,
-          "defense_successRate": 0.3867,
-          "defense_explosiveness": 1.2494
+          "offense_ppa": 0.2231,
+          "offense_successRate": 0.5036,
+          "offense_explosiveness": 1.1785,
+          "defense_ppa": -0.0687,
+          "defense_successRate": 0.3383,
+          "defense_explosiveness": 1.1865
         },
         "away": {
-          "offense_ppa": 0.1907,
-          "offense_successRate": 0.4061,
-          "offense_explosiveness": 1.3879,
-          "defense_ppa": 0.085,
-          "defense_successRate": 0.3842,
-          "defense_explosiveness": 1.1574
+          "offense_ppa": 0.0702,
+          "offense_successRate": 0.4136,
+          "offense_explosiveness": 1.231,
+          "defense_ppa": -0.0361,
+          "defense_successRate": 0.3367,
+          "defense_explosiveness": 1.0671
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 24.4,
-          "offense_successRate": 32.5,
-          "offense_explosiveness": 33.4,
-          "defense_ppa": 29.7,
-          "defense_successRate": 39.4,
-          "defense_explosiveness": 41.9
+          "offense_ppa": 68.2,
+          "offense_successRate": 84.8,
+          "offense_explosiveness": 39.3,
+          "defense_ppa": 22.0,
+          "defense_successRate": 20.3,
+          "defense_explosiveness": 28.4
         },
         "away": {
-          "offense_ppa": 55.3,
-          "offense_successRate": 46.3,
-          "offense_explosiveness": 70.1,
-          "defense_ppa": 30.6,
-          "defense_successRate": 38.2,
-          "defense_explosiveness": 22.3
+          "offense_ppa": 41.2,
+          "offense_successRate": 42.9,
+          "offense_explosiveness": 51.6,
+          "defense_ppa": 28.0,
+          "defense_successRate": 19.6,
+          "defense_explosiveness": 8.9
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 33.9,
-          "points_against": 18.1
+          "points_for": 33.88,
+          "points_against": 18.12
         },
         "away": {
-          "points_for": 31.1,
-          "points_against": 17.4
+          "points_for": 31.11,
+          "points_against": 17.44
         }
       },
       "model_edge_favorite": -0.2,
@@ -5475,7 +5475,7 @@
           "underdog_team": "Stanford",
           "total": 58.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Virginia Tech",
@@ -5483,48 +5483,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1573,
-          "offense_successRate": 0.4044,
-          "offense_explosiveness": 1.2733,
-          "defense_ppa": 0.3077,
-          "defense_successRate": 0.4653,
-          "defense_explosiveness": 1.2802
+          "offense_ppa": 0.2005,
+          "offense_successRate": 0.4531,
+          "offense_explosiveness": 1.2807,
+          "defense_ppa": 0.0704,
+          "defense_successRate": 0.3748,
+          "defense_explosiveness": 1.3924
         },
         "away": {
-          "offense_ppa": 0.0593,
-          "offense_successRate": 0.3635,
-          "offense_explosiveness": 1.2228,
-          "defense_ppa": 0.1775,
-          "defense_successRate": 0.4211,
-          "defense_explosiveness": 1.3412
+          "offense_ppa": 0.0772,
+          "offense_successRate": 0.3775,
+          "offense_explosiveness": 1.3205,
+          "defense_ppa": 0.3102,
+          "defense_successRate": 0.4804,
+          "defense_explosiveness": 1.3362
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 47.8,
-          "offense_successRate": 45.5,
-          "offense_explosiveness": 43.2,
-          "defense_ppa": 74.4,
-          "defense_successRate": 75.3,
-          "defense_explosiveness": 48.4
+          "offense_ppa": 64.2,
+          "offense_successRate": 61.3,
+          "offense_explosiveness": 63.3,
+          "defense_ppa": 47.7,
+          "defense_successRate": 34.6,
+          "defense_explosiveness": 62.0
         },
         "away": {
-          "offense_ppa": 26.1,
-          "offense_successRate": 27.3,
-          "offense_explosiveness": 31.3,
-          "defense_ppa": 48.8,
-          "defense_successRate": 55.1,
-          "defense_explosiveness": 61.4
+          "offense_ppa": 42.5,
+          "offense_successRate": 26.2,
+          "offense_explosiveness": 72.6,
+          "defense_ppa": 92.1,
+          "defense_successRate": 75.9,
+          "defense_explosiveness": 52.9
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 29.4,
+          "points_for": 29.38,
           "points_against": 26.5
         },
         "away": {
-          "points_for": 18.6,
-          "points_against": 41.1
+          "points_for": 18.62,
+          "points_against": 41.12
         }
       },
       "model_edge_favorite": 4.3,
@@ -5572,7 +5572,7 @@
           "underdog_team": "Purdue",
           "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Iowa",
@@ -5580,47 +5580,47 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1446,
-          "offense_successRate": 0.4315,
-          "offense_explosiveness": 1.1247,
-          "defense_ppa": 0.0503,
-          "defense_successRate": 0.3947,
-          "defense_explosiveness": 1.0527
+          "offense_ppa": 0.0963,
+          "offense_successRate": 0.4443,
+          "offense_explosiveness": 1.1553,
+          "defense_ppa": -0.0698,
+          "defense_successRate": 0.3329,
+          "defense_explosiveness": 1.1009
         },
         "away": {
-          "offense_ppa": 0.0857,
-          "offense_successRate": 0.4075,
-          "offense_explosiveness": 1.2449,
-          "defense_ppa": 0.285,
-          "defense_successRate": 0.4766,
-          "defense_explosiveness": 1.2588
+          "offense_ppa": 0.1466,
+          "offense_successRate": 0.4138,
+          "offense_explosiveness": 1.3467,
+          "defense_ppa": 0.2509,
+          "defense_successRate": 0.4507,
+          "defense_explosiveness": 1.505
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 45.0,
-          "offense_successRate": 57.6,
-          "offense_explosiveness": 8.2,
-          "defense_ppa": 23.8,
-          "defense_successRate": 43.0,
-          "defense_explosiveness": 0.0
+          "offense_ppa": 45.8,
+          "offense_successRate": 57.2,
+          "offense_explosiveness": 33.9,
+          "defense_ppa": 21.7,
+          "defense_successRate": 18.1,
+          "defense_explosiveness": 14.4
         },
         "away": {
-          "offense_ppa": 31.9,
-          "offense_successRate": 46.9,
-          "offense_explosiveness": 36.5,
-          "defense_ppa": 69.9,
-          "defense_successRate": 80.5,
-          "defense_explosiveness": 43.9
+          "offense_ppa": 54.7,
+          "offense_successRate": 43.0,
+          "offense_explosiveness": 78.7,
+          "defense_ppa": 81.2,
+          "defense_successRate": 64.3,
+          "defense_explosiveness": 80.4
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 24.4,
-          "points_against": 13.8
+          "points_for": 24.38,
+          "points_against": 13.75
         },
         "away": {
-          "points_for": 27.6,
+          "points_for": 27.62,
           "points_against": 34.0
         }
       },
@@ -5664,12 +5664,12 @@
           "observed_at": "2026-11-09T10:12:59.205964+00:00"
         },
         "current": {
-          "spread_favorite": -14.0,
+          "spread_favorite": -14.5,
           "favorite_team": "New Mexico",
           "underdog_team": "UNLV",
           "total": 46.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "New Mexico",
@@ -5677,47 +5677,47 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1894,
-          "offense_successRate": 0.4215,
-          "offense_explosiveness": 1.3247,
-          "defense_ppa": 0.1284,
-          "defense_successRate": 0.3978,
-          "defense_explosiveness": 1.2931
+          "offense_ppa": 0.1069,
+          "offense_successRate": 0.4156,
+          "offense_explosiveness": 1.2681,
+          "defense_ppa": -0.184,
+          "defense_successRate": 0.2866,
+          "defense_explosiveness": 1.4365
         },
         "away": {
-          "offense_ppa": 0.309,
-          "offense_successRate": 0.4669,
-          "offense_explosiveness": 1.3896,
-          "defense_ppa": 0.2156,
-          "defense_successRate": 0.4338,
-          "defense_explosiveness": 1.3499
+          "offense_ppa": 0.1066,
+          "offense_successRate": 0.3897,
+          "offense_explosiveness": 1.3269,
+          "defense_ppa": 0.1145,
+          "defense_successRate": 0.4378,
+          "defense_explosiveness": 1.2092
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 55.0,
-          "offense_successRate": 53.1,
-          "offense_explosiveness": 55.3,
-          "defense_ppa": 39.2,
-          "defense_successRate": 44.4,
-          "defense_explosiveness": 51.2
+          "offense_ppa": 47.7,
+          "offense_successRate": 43.9,
+          "offense_explosiveness": 60.3,
+          "defense_ppa": 0.6,
+          "defense_successRate": 0.0,
+          "defense_explosiveness": 69.2
         },
         "away": {
-          "offense_ppa": 81.5,
-          "offense_successRate": 73.4,
-          "offense_explosiveness": 70.5,
-          "defense_ppa": 56.3,
-          "defense_successRate": 60.9,
-          "defense_explosiveness": 63.2
+          "offense_ppa": 47.6,
+          "offense_successRate": 31.8,
+          "offense_explosiveness": 74.1,
+          "defense_ppa": 55.9,
+          "defense_successRate": 59.2,
+          "defense_explosiveness": 32.1
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 31.4,
-          "points_against": 10.7
+          "points_for": 31.43,
+          "points_against": 10.71
         },
         "away": {
-          "points_for": 27.8,
+          "points_for": 27.75,
           "points_against": 28.0
         }
       },
@@ -5766,7 +5766,7 @@
           "underdog_team": "Arkansas",
           "total": 51.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "South Carolina",
@@ -5774,48 +5774,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.2804,
-          "offense_successRate": 0.4854,
-          "offense_explosiveness": 1.3214,
-          "defense_ppa": 0.2684,
-          "defense_successRate": 0.4687,
-          "defense_explosiveness": 1.301
+          "offense_ppa": 0.021,
+          "offense_successRate": 0.4115,
+          "offense_explosiveness": 1.151,
+          "defense_ppa": 0.1523,
+          "defense_successRate": 0.4246,
+          "defense_explosiveness": 1.1534
         },
         "away": {
-          "offense_ppa": 0.0968,
-          "offense_successRate": 0.3777,
-          "offense_explosiveness": 1.3529,
-          "defense_ppa": 0.0935,
-          "defense_successRate": 0.4228,
-          "defense_explosiveness": 1.1709
+          "offense_ppa": 0.2014,
+          "offense_successRate": 0.4471,
+          "offense_explosiveness": 1.3097,
+          "defense_ppa": 0.1058,
+          "defense_successRate": 0.4043,
+          "defense_explosiveness": 1.2414
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 75.2,
-          "offense_successRate": 81.6,
-          "offense_explosiveness": 54.5,
-          "defense_ppa": 66.6,
-          "defense_successRate": 76.9,
-          "defense_explosiveness": 52.8
+          "offense_ppa": 32.6,
+          "offense_successRate": 42.0,
+          "offense_explosiveness": 32.9,
+          "defense_ppa": 62.9,
+          "defense_successRate": 54.1,
+          "defense_explosiveness": 23.0
         },
         "away": {
-          "offense_ppa": 34.4,
-          "offense_successRate": 33.6,
-          "offense_explosiveness": 61.9,
-          "defense_ppa": 32.3,
-          "defense_successRate": 55.9,
-          "defense_explosiveness": 25.2
+          "offense_ppa": 64.3,
+          "offense_successRate": 58.5,
+          "offense_explosiveness": 70.1,
+          "defense_ppa": 54.3,
+          "defense_successRate": 46.1,
+          "defense_explosiveness": 37.4
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 18.6,
-          "points_against": 29.1
+          "points_for": 18.62,
+          "points_against": 29.12
         },
         "away": {
-          "points_for": 33.4,
-          "points_against": 25.2
+          "points_for": 33.38,
+          "points_against": 25.25
         }
       },
       "model_edge_favorite": 4.0,
@@ -5863,7 +5863,7 @@
           "underdog_team": "UTSA",
           "total": 76.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "North Texas",
@@ -5871,38 +5871,38 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1872,
-          "offense_successRate": 0.4338,
-          "offense_explosiveness": 1.342,
-          "defense_ppa": 0.1401,
-          "defense_successRate": 0.3794,
-          "defense_explosiveness": 1.3953
+          "offense_ppa": 0.2065,
+          "offense_successRate": 0.4554,
+          "offense_explosiveness": 1.2011,
+          "defense_ppa": 0.137,
+          "defense_successRate": 0.4127,
+          "defense_explosiveness": 1.3152
         },
         "away": {
-          "offense_ppa": 0.3754,
-          "offense_successRate": 0.5267,
-          "offense_explosiveness": 1.3168,
-          "defense_ppa": 0.1772,
-          "defense_successRate": 0.4269,
-          "defense_explosiveness": 1.2462
+          "offense_ppa": 0.3498,
+          "offense_successRate": 0.498,
+          "offense_explosiveness": 1.3945,
+          "defense_ppa": 0.1035,
+          "defense_successRate": 0.4189,
+          "defense_explosiveness": 1.3046
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 54.5,
-          "offense_successRate": 58.6,
-          "offense_explosiveness": 59.3,
-          "defense_ppa": 41.4,
-          "defense_successRate": 36.0,
-          "defense_explosiveness": 72.9
+          "offense_ppa": 65.2,
+          "offense_successRate": 62.4,
+          "offense_explosiveness": 44.6,
+          "defense_ppa": 60.1,
+          "defense_successRate": 49.4,
+          "defense_explosiveness": 49.4
         },
         "away": {
-          "offense_ppa": 96.3,
-          "offense_successRate": 100.0,
-          "offense_explosiveness": 53.4,
-          "defense_ppa": 48.7,
-          "defense_successRate": 57.8,
-          "defense_explosiveness": 41.2
+          "offense_ppa": 90.5,
+          "offense_successRate": 82.2,
+          "offense_explosiveness": 89.9,
+          "defense_ppa": 53.8,
+          "defense_successRate": 51.8,
+          "defense_explosiveness": 47.7
         }
       },
       "pregame_stats": {
@@ -5911,7 +5911,7 @@
           "points_against": 31.5
         },
         "away": {
-          "points_for": 42.4,
+          "points_for": 42.38,
           "points_against": 33.0
         }
       },
@@ -5960,7 +5960,7 @@
           "underdog_team": "Texas Tech",
           "total": 72.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Oklahoma State",
@@ -5968,48 +5968,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": -0.0351,
-          "offense_successRate": 0.3316,
-          "offense_explosiveness": 1.2088,
-          "defense_ppa": 0.2841,
-          "defense_successRate": 0.4521,
-          "defense_explosiveness": 1.3748
+          "offense_ppa": 0.2798,
+          "offense_successRate": 0.5185,
+          "offense_explosiveness": 1.1954,
+          "defense_ppa": 0.0678,
+          "defense_successRate": 0.3986,
+          "defense_explosiveness": 1.3078
         },
         "away": {
-          "offense_ppa": 0.2078,
-          "offense_successRate": 0.4167,
-          "offense_explosiveness": 1.3343,
-          "defense_ppa": -0.071,
-          "defense_successRate": 0.3148,
-          "defense_explosiveness": 1.2233
+          "offense_ppa": 0.1944,
+          "offense_successRate": 0.4637,
+          "offense_explosiveness": 1.2135,
+          "defense_ppa": 0.0054,
+          "defense_successRate": 0.3784,
+          "defense_explosiveness": 1.3816
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 5.1,
-          "offense_successRate": 13.1,
-          "offense_explosiveness": 28.0,
-          "defense_ppa": 69.7,
-          "defense_successRate": 69.3,
-          "defense_explosiveness": 68.5
+          "offense_ppa": 78.1,
+          "offense_successRate": 91.7,
+          "offense_explosiveness": 43.3,
+          "defense_ppa": 47.2,
+          "defense_successRate": 43.9,
+          "defense_explosiveness": 48.2
         },
         "away": {
-          "offense_ppa": 59.1,
-          "offense_successRate": 51.0,
-          "offense_explosiveness": 57.5,
-          "defense_ppa": 0.0,
-          "defense_successRate": 6.5,
-          "defense_explosiveness": 36.3
+          "offense_ppa": 63.1,
+          "offense_successRate": 66.2,
+          "offense_explosiveness": 47.5,
+          "defense_ppa": 35.7,
+          "defense_successRate": 36.0,
+          "defense_explosiveness": 60.3
         }
       },
       "pregame_stats": {
         "home": {
           "points_for": 42.0,
-          "points_against": 30.6
+          "points_against": 30.62
         },
         "away": {
-          "points_for": 38.1,
-          "points_against": 25.9
+          "points_for": 38.12,
+          "points_against": 25.88
         }
       },
       "model_edge_favorite": -6.4,
@@ -6057,7 +6057,7 @@
           "underdog_team": "San Diego State",
           "total": 42.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Utah State",
@@ -6065,47 +6065,47 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.103,
-          "offense_successRate": 0.4094,
-          "offense_explosiveness": 1.1861,
-          "defense_ppa": -0.0129,
-          "defense_successRate": 0.3625,
-          "defense_explosiveness": 1.1649
+          "offense_ppa": -0.0093,
+          "offense_successRate": 0.3679,
+          "offense_explosiveness": 1.199,
+          "defense_ppa": 0.1291,
+          "defense_successRate": 0.4876,
+          "defense_explosiveness": 1.0603
         },
         "away": {
-          "offense_ppa": 0.1848,
-          "offense_successRate": 0.3921,
-          "offense_explosiveness": 1.3792,
-          "defense_ppa": 0.2114,
-          "defense_successRate": 0.4401,
-          "defense_explosiveness": 1.2578
+          "offense_ppa": -0.0065,
+          "offense_successRate": 0.3717,
+          "offense_explosiveness": 1.3177,
+          "defense_ppa": 0.0338,
+          "defense_successRate": 0.386,
+          "defense_explosiveness": 1.238
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 35.8,
-          "offense_successRate": 47.8,
-          "offense_explosiveness": 22.7,
-          "defense_ppa": 11.4,
-          "defense_successRate": 28.3,
-          "defense_explosiveness": 23.9
+          "offense_ppa": 27.2,
+          "offense_successRate": 21.7,
+          "offense_explosiveness": 44.1,
+          "defense_ppa": 58.6,
+          "defense_successRate": 78.8,
+          "defense_explosiveness": 7.8
         },
         "away": {
-          "offense_ppa": 54.0,
-          "offense_successRate": 40.0,
-          "offense_explosiveness": 68.1,
-          "defense_ppa": 55.4,
-          "defense_successRate": 63.8,
-          "defense_explosiveness": 43.6
+          "offense_ppa": 27.7,
+          "offense_successRate": 23.5,
+          "offense_explosiveness": 71.9,
+          "defense_ppa": 40.9,
+          "defense_successRate": 38.9,
+          "defense_explosiveness": 36.8
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 23.1,
-          "points_against": 36.1
+          "points_for": 23.12,
+          "points_against": 36.12
         },
         "away": {
-          "points_for": 16.9,
+          "points_for": 16.88,
           "points_against": 19.5
         }
       },
@@ -6154,7 +6154,7 @@
           "underdog_team": "UTEP",
           "total": 39.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Wyoming",
@@ -6162,47 +6162,47 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": -0.0234,
-          "offense_successRate": 0.3253,
-          "offense_explosiveness": 1.3617,
-          "defense_ppa": 0.1046,
-          "defense_successRate": 0.3915,
-          "defense_explosiveness": 1.2071
+          "offense_ppa": -0.1129,
+          "offense_successRate": 0.3427,
+          "offense_explosiveness": 1.3575,
+          "defense_ppa": 0.2309,
+          "defense_successRate": 0.4641,
+          "defense_explosiveness": 1.2245
         },
         "away": {
-          "offense_ppa": 0.026,
-          "offense_successRate": 0.3591,
-          "offense_explosiveness": 1.2186,
-          "defense_ppa": 0.0971,
-          "defense_successRate": 0.384,
-          "defense_explosiveness": 1.2783
+          "offense_ppa": 0.1314,
+          "offense_successRate": 0.465,
+          "offense_explosiveness": 1.0621,
+          "defense_ppa": 0.1162,
+          "defense_successRate": 0.4368,
+          "defense_explosiveness": 1.1444
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 7.7,
-          "offense_successRate": 10.3,
-          "offense_explosiveness": 63.9,
-          "defense_ppa": 34.5,
-          "defense_successRate": 41.6,
-          "defense_explosiveness": 32.9
+          "offense_ppa": 9.0,
+          "offense_successRate": 10.0,
+          "offense_explosiveness": 81.2,
+          "defense_ppa": 77.4,
+          "defense_successRate": 69.5,
+          "defense_explosiveness": 34.6
         },
         "away": {
-          "offense_ppa": 18.7,
-          "offense_successRate": 25.3,
-          "offense_explosiveness": 30.3,
-          "defense_ppa": 33.0,
-          "defense_successRate": 38.1,
-          "defense_explosiveness": 48.0
+          "offense_ppa": 52.0,
+          "offense_successRate": 66.8,
+          "offense_explosiveness": 12.0,
+          "defense_ppa": 56.2,
+          "defense_successRate": 58.8,
+          "defense_explosiveness": 21.6
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 9.9,
-          "points_against": 38.3
+          "points_for": 9.86,
+          "points_against": 38.29
         },
         "away": {
-          "points_for": 25.1,
+          "points_for": 25.14,
           "points_against": 22.0
         }
       },
@@ -6251,7 +6251,7 @@
           "underdog_team": "Colorado State",
           "total": 66.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-12T10:10:50.940340+00:00"
+          "observed_at": "2026-11-12T20:04:39.138824+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Washington State",
@@ -6259,48 +6259,48 @@
       },
       "advanced_stats": {
         "home": {
-          "offense_ppa": 0.1243,
-          "offense_successRate": 0.4192,
-          "offense_explosiveness": 1.1245,
-          "defense_ppa": 0.1044,
-          "defense_successRate": 0.4154,
-          "defense_explosiveness": 1.106
+          "offense_ppa": -0.0667,
+          "offense_successRate": 0.3553,
+          "offense_explosiveness": 1.1931,
+          "defense_ppa": 0.0942,
+          "defense_successRate": 0.3943,
+          "defense_explosiveness": 1.3428
         },
         "away": {
-          "offense_ppa": 0.1358,
-          "offense_successRate": 0.3863,
-          "offense_explosiveness": 1.2898,
-          "defense_ppa": 0.2613,
-          "defense_successRate": 0.4571,
-          "defense_explosiveness": 1.3114
+          "offense_ppa": 0.2415,
+          "offense_successRate": 0.4584,
+          "offense_explosiveness": 1.412,
+          "defense_ppa": 0.3527,
+          "defense_successRate": 0.5418,
+          "defense_explosiveness": 1.26
         }
       },
       "advanced_stats_normalized": {
         "home": {
-          "offense_ppa": 40.5,
-          "offense_successRate": 52.1,
-          "offense_explosiveness": 8.2,
-          "defense_ppa": 34.4,
-          "defense_successRate": 52.5,
-          "defense_explosiveness": 11.3
+          "offense_ppa": 17.1,
+          "offense_successRate": 15.9,
+          "offense_explosiveness": 42.7,
+          "defense_ppa": 52.1,
+          "defense_successRate": 42.2,
+          "defense_explosiveness": 53.9
         },
         "away": {
-          "offense_ppa": 43.1,
-          "offense_successRate": 37.5,
-          "offense_explosiveness": 47.1,
-          "defense_ppa": 65.2,
-          "defense_successRate": 71.6,
-          "defense_explosiveness": 55.1
+          "offense_ppa": 71.4,
+          "offense_successRate": 63.8,
+          "offense_explosiveness": 94.0,
+          "defense_ppa": 100.0,
+          "defense_successRate": 100.0,
+          "defense_explosiveness": 40.4
         }
       },
       "pregame_stats": {
         "home": {
-          "points_for": 15.4,
+          "points_for": 15.38,
           "points_against": 30.0
         },
         "away": {
           "points_for": 33.0,
-          "points_against": 47.4
+          "points_against": 47.38
         }
       },
       "model_edge_favorite": -2.6,
@@ -6311,28 +6311,28 @@
   ],
   "advanced_stat_ranges": {
     "offense_ppa": {
-      "min": -0.0582,
-      "max": 0.3922
+      "min": -0.1639994673503919,
+      "max": 0.4039398938484622
     },
     "offense_successRate": {
-      "min": 0.3022,
-      "max": 0.5267
+      "min": 0.3211786142374569,
+      "max": 0.5364065031649777
     },
     "offense_explosiveness": {
-      "min": 1.0896,
-      "max": 1.5151
+      "min": 1.0106685401987408,
+      "max": 1.4375512565563435
     },
     "defense_ppa": {
-      "min": -0.071,
-      "max": 0.4383
+      "min": -0.1872167910614906,
+      "max": 0.3526549604561814
     },
     "defense_successRate": {
-      "min": 0.3006,
-      "max": 0.5193
+      "min": 0.2865749392489161,
+      "max": 0.5418444882271077
     },
     "defense_explosiveness": {
-      "min": 1.0527,
-      "max": 1.5226
+      "min": 1.0124294403231373,
+      "max": 1.6248083904549089
     }
   },
   "performance": {
