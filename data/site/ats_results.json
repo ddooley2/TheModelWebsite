@@ -354,14 +354,190 @@
       "su_result": "win",
       "week": 10
     },
+    "11:401856857": {
+      "game_id": "401856857",
+      "result": "win",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401856858": {
+      "game_id": "401856858",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401856859": {
+      "game_id": "401856859",
+      "result": "loss",
+      "su_result": "loss",
+      "week": 11
+    },
     "11:401856860": {
       "game_id": "401856860",
       "su_result": "loss",
       "week": 11
     },
+    "11:401856861": {
+      "game_id": "401856861",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401856862": {
+      "game_id": "401856862",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401856863": {
+      "game_id": "401856863",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401856864": {
+      "game_id": "401856864",
+      "result": "win",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401856882": {
+      "game_id": "401856882",
+      "result": "loss",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401856883": {
+      "game_id": "401856883",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401856884": {
+      "game_id": "401856884",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401856885": {
+      "game_id": "401856885",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401856886": {
+      "game_id": "401856886",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401856888": {
+      "game_id": "401856888",
+      "result": "loss",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401856889": {
+      "game_id": "401856889",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
     "11:401858293": {
       "game_id": "401858293",
       "su_result": "loss",
+      "week": 11
+    },
+    "11:401858294": {
+      "game_id": "401858294",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401858295": {
+      "game_id": "401858295",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401858296": {
+      "game_id": "401858296",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401858297": {
+      "game_id": "401858297",
+      "result": "win",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401858298": {
+      "game_id": "401858298",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401858299": {
+      "game_id": "401858299",
+      "result": "loss",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401858300": {
+      "game_id": "401858300",
+      "result": "push",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401858301": {
+      "game_id": "401858301",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401858518": {
+      "game_id": "401858518",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401858519": {
+      "game_id": "401858519",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401858520": {
+      "game_id": "401858520",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401858521": {
+      "game_id": "401858521",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401858522": {
+      "game_id": "401858522",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401858523": {
+      "game_id": "401858523",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401858524": {
+      "game_id": "401858524",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401858525": {
+      "game_id": "401858525",
+      "result": "loss",
+      "su_result": "win",
       "week": 11
     },
     "11:401858526": {
@@ -370,9 +546,92 @@
       "su_result": "win",
       "week": 11
     },
+    "11:401860914": {
+      "game_id": "401860914",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401860915": {
+      "game_id": "401860915",
+      "result": "loss",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401860916": {
+      "game_id": "401860916",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401860917": {
+      "game_id": "401860917",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401861967": {
+      "game_id": "401861967",
+      "result": "loss",
+      "su_result": "loss",
+      "week": 11
+    },
     "11:401862824": {
       "game_id": "401862824",
       "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401862825": {
+      "game_id": "401862825",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401862826": {
+      "game_id": "401862826",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401862827": {
+      "game_id": "401862827",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401862828": {
+      "game_id": "401862828",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401862829": {
+      "game_id": "401862829",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401864536": {
+      "game_id": "401864536",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401864538": {
+      "game_id": "401864538",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401864539": {
+      "game_id": "401864539",
+      "result": "win",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401864540": {
+      "game_id": "401864540",
+      "result": "win",
       "su_result": "win",
       "week": 11
     },
@@ -404,8 +663,68 @@
       "su_result": "win",
       "week": 11
     },
+    "11:401869928": {
+      "game_id": "401869928",
+      "result": "loss",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401869937": {
+      "game_id": "401869937",
+      "result": "loss",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401869952": {
+      "game_id": "401869952",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
     "11:401869969": {
       "game_id": "401869969",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401870752": {
+      "game_id": "401870752",
+      "result": "loss",
+      "su_result": "loss",
+      "week": 11
+    },
+    "11:401870769": {
+      "game_id": "401870769",
+      "result": "loss",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401870796": {
+      "game_id": "401870796",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401871060": {
+      "game_id": "401871060",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401871061": {
+      "game_id": "401871061",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401871099": {
+      "game_id": "401871099",
+      "result": "win",
+      "su_result": "win",
+      "week": 11
+    },
+    "11:401871100": {
+      "game_id": "401871100",
       "result": "win",
       "su_result": "win",
       "week": 11
