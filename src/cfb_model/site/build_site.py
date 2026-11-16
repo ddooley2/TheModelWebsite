@@ -265,11 +265,11 @@ def _records(games: list[dict], season: int) -> dict[str, str]:
     return {team: f"{wins}-{losses}" for team, (wins, losses) in record.items()}
 
 
-def _rankings(rows: list[dict]) -> dict[str, int]:
+def _rankings(rows: list[dict], poll_names: set[str]) -> dict[str, int]:
     ranks: dict[str, int] = {}
     for row in rows:
         for poll in row.get("polls", []):
-            if str(poll.get("poll", "")).lower() not in {"ap top 25", "associated press"}:
+            if str(poll.get("poll", "")).lower() not in poll_names:
                 continue
             for ranked in poll.get("ranks", []):
                 team = ranked.get("school") or ranked.get("team")
@@ -277,6 +277,23 @@ def _rankings(rows: list[dict]) -> dict[str, int]:
                 if team and rank:
                     ranks[_normalise(team)] = int(rank)
     return ranks
+
+
+def _rankings_for_week(season: int, week: int, api_key: str | None) -> dict[str, int]:
+    ranking_rows = _api_get("rankings", {"year": season, "week": week}, api_key)
+    if week >= 10:
+        for ranking_week in range(week, 9, -1):
+            rows = (
+                ranking_rows
+                if ranking_week == week
+                else _api_get(
+                    "rankings", {"year": season, "week": ranking_week}, api_key
+                )
+            )
+            ranks = _rankings(rows, {"playoff committee rankings"})
+            if ranks:
+                return ranks
+    return _rankings(ranking_rows, {"ap top 25", "associated press"})
 
 
 def _matchup_key(home_team: str, away_team: str) -> tuple[str, str]:
@@ -504,8 +521,6 @@ def build_site(
     schedule = _api_get("games", {"year": season, "week": resolved_week, "seasonType": "regular"}, api_key)
     all_games = _api_get("games", {"year": season, "seasonType": "regular"}, api_key)
     line_games = _api_get("lines", {"year": season, "week": resolved_week, "seasonType": "regular"}, api_key)
-    ranking_rows = _api_get("rankings", {"year": season, "week": resolved_week}, api_key)
-
     history = _read_history()
     line_timestamp = datetime.now(timezone.utc).isoformat()
     lines_by_id, changed = _snapshot_lines(line_games, history, line_timestamp)
@@ -543,7 +558,7 @@ def build_site(
         advanced_by_game, prediction_ranges
     )
     record_lookup = _records(all_games, season)
-    rank_lookup = _rankings(ranking_rows)
+    rank_lookup = _rankings_for_week(season, resolved_week, api_key)
     ats_results = _read_ats_results()
     season_results = ats_results.setdefault(str(season), {})
     games = []

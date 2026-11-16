@@ -14,6 +14,7 @@ from src.cfb_model.site.build_site import (
     _grade_straight_up,
     _market_payload,
     _performance,
+    _rankings_for_week,
     _saved_pregame_stats_payload,
     _snapshot_lines,
 )
@@ -35,6 +36,40 @@ def test_prediction_file_without_week_selects_highest_numeric_week(tmp_path, mon
     monkeypatch.setattr(site_builder, "PROJECT_ROOT", tmp_path)
 
     assert _prediction_file(2026, None) == week10
+
+
+def test_rankings_for_week_uses_latest_available_cfp_poll(monkeypatch):
+    rows_by_week = {
+        12: [{"polls": [{"poll": "Coaches Poll", "ranks": [{"school": "Alpha", "rank": 4}]}]}],
+        11: [{"polls": [{
+            "poll": "Playoff Committee Rankings",
+            "ranks": [{"school": "Beta", "rank": 1}],
+        }]}],
+    }
+    calls = []
+
+    def api_get(endpoint, params, api_key):
+        calls.append(params["week"])
+        return rows_by_week.get(params["week"], [])
+
+    monkeypatch.setattr(site_builder, "_api_get", api_get)
+
+    ranks = _rankings_for_week(2026, 12, "test")
+
+    assert calls == [12, 11]
+    assert ranks == {"beta": 1}
+
+
+def test_rankings_for_week_uses_ap_before_cfp_poll_is_available(monkeypatch):
+    monkeypatch.setattr(
+        site_builder,
+        "_api_get",
+        lambda endpoint, params, api_key: [{
+            "polls": [{"poll": "AP Top 25", "ranks": [{"school": "Alpha", "rank": 2}]}]
+        }],
+    )
+
+    assert _rankings_for_week(2026, 9, "test") == {"alpha": 2}
 
 
 def test_prediction_advanced_stats_payload_reads_saved_model_features():
