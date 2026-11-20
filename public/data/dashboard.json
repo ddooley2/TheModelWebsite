@@ -43,7 +43,7 @@
           "underdog_team": "Eastern Michigan",
           "total": 45.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Western Michigan",
@@ -140,7 +140,7 @@
           "underdog_team": "Ball State",
           "total": 49.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Ohio",
@@ -237,7 +237,7 @@
           "underdog_team": "Kent State",
           "total": 46.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Miami (OH)",
@@ -334,7 +334,7 @@
           "underdog_team": "Akron",
           "total": 46.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Massachusetts",
@@ -431,7 +431,7 @@
           "underdog_team": "Central Michigan",
           "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Buffalo",
@@ -497,14 +497,14 @@
       "home": {
         "name": "Temple",
         "logo_id": 218,
-        "record": "2-8",
+        "record": "2-9",
         "rank": null,
         "projected_score": 28.6
       },
       "away": {
         "name": "Rice",
         "logo_id": 242,
-        "record": "1-9",
+        "record": "2-9",
         "rank": null,
         "projected_score": 21.6
       },
@@ -523,12 +523,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -3.0,
+          "spread_favorite": -2.5,
           "favorite_team": "Temple",
           "underdog_team": "Rice",
-          "total": 51.5,
+          "total": 52.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Temple",
@@ -582,8 +582,8 @@
       },
       "model_edge_favorite": 3.5,
       "pick": "Temple",
-      "ats_result": null,
-      "su_result": null
+      "ats_result": "loss",
+      "su_result": "loss"
     },
     {
       "id": "401856869",
@@ -620,12 +620,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -2.5,
+          "spread_favorite": -1.5,
           "favorite_team": "UCF",
           "underdog_team": "Iowa State",
-          "total": 48.5,
+          "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "UCF",
@@ -720,9 +720,9 @@
           "spread_favorite": -13.5,
           "favorite_team": "Duke",
           "underdog_team": "Clemson",
-          "total": 40.5,
+          "total": 41.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Duke",
@@ -817,9 +817,9 @@
           "spread_favorite": -16.5,
           "favorite_team": "Toledo",
           "underdog_team": "Bowling Green",
-          "total": 48.5,
+          "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Toledo",
@@ -911,12 +911,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -16.5,
+          "spread_favorite": -17.5,
           "favorite_team": "Oregon",
           "underdog_team": "Michigan State",
           "total": 44.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Oregon",
@@ -1008,12 +1008,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -22.5,
+          "spread_favorite": -21.5,
           "favorite_team": "Air Force",
           "underdog_team": "UTEP",
           "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Air Force",
@@ -1110,7 +1110,7 @@
           "underdog_team": "Wyoming",
           "total": 37.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "New Mexico",
@@ -1205,9 +1205,9 @@
           "spread_favorite": -13.5,
           "favorite_team": "Florida",
           "underdog_team": "Vanderbilt",
-          "total": 46.5,
+          "total": 45.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Florida",
@@ -1302,9 +1302,9 @@
           "spread_favorite": -5.5,
           "favorite_team": "BYU",
           "underdog_team": "Kansas",
-          "total": 47.5,
+          "total": 46.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "BYU",
@@ -1399,9 +1399,9 @@
           "spread_favorite": -3.0,
           "favorite_team": "Cincinnati",
           "underdog_team": "Colorado",
-          "total": 58.5,
+          "total": 57.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Cincinnati",
@@ -1496,9 +1496,9 @@
           "spread_favorite": -2.5,
           "favorite_team": "Syracuse",
           "underdog_team": "Boston College",
-          "total": 50.5,
+          "total": 51.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Syracuse",
@@ -1595,7 +1595,7 @@
           "underdog_team": "Georgia Tech",
           "total": 56.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Wake Forest",
@@ -1692,7 +1692,7 @@
           "underdog_team": "Minnesota",
           "total": 41.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Northwestern",
@@ -1784,12 +1784,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -3.0,
+          "spread_favorite": -3.5,
           "favorite_team": "Ohio State",
           "underdog_team": "Nebraska",
           "total": 41.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Ohio State",
@@ -1886,7 +1886,7 @@
           "underdog_team": "Purdue",
           "total": 46.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Wisconsin",
@@ -1981,9 +1981,9 @@
           "spread_favorite": -6.0,
           "favorite_team": "Army",
           "underdog_team": "East Carolina",
-          "total": 45.5,
+          "total": 46.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Army",
@@ -2080,7 +2080,7 @@
           "underdog_team": "Navy",
           "total": 67.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Memphis",
@@ -2177,7 +2177,7 @@
           "underdog_team": "Tulane",
           "total": 55.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "North Texas",
@@ -2272,9 +2272,9 @@
           "spread_favorite": -1.5,
           "favorite_team": "Virginia",
           "underdog_team": "North Carolina",
-          "total": 43.5,
+          "total": 42.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Virginia",
@@ -2366,12 +2366,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -8.5,
+          "spread_favorite": -7.5,
           "favorite_team": "Houston",
           "underdog_team": "West Virginia",
           "total": 70.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Houston",
@@ -2468,7 +2468,7 @@
           "underdog_team": "Western Kentucky",
           "total": 53.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Liberty",
@@ -2563,9 +2563,9 @@
           "spread_favorite": -22.5,
           "favorite_team": "Tulsa",
           "underdog_team": "Charlotte",
-          "total": 52.5,
+          "total": 51.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Tulsa",
@@ -2660,9 +2660,9 @@
           "spread_favorite": -10.5,
           "favorite_team": "Jacksonville State",
           "underdog_team": "Missouri State",
-          "total": 53.5,
+          "total": 52.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Jacksonville State",
@@ -2754,12 +2754,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -5.5,
+          "spread_favorite": -6.0,
           "favorite_team": "Middle Tennessee",
           "underdog_team": "Sam Houston",
           "total": 48.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Middle Tennessee",
@@ -2856,7 +2856,7 @@
           "underdog_team": "Illinois",
           "total": 40.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Iowa",
@@ -2953,7 +2953,7 @@
           "underdog_team": "Florida Atlantic",
           "total": 64.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "South Florida",
@@ -3045,12 +3045,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -14.0,
+          "spread_favorite": -13.5,
           "favorite_team": "App State",
           "underdog_team": "UL Monroe",
-          "total": 50.5,
+          "total": 49.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "App State",
@@ -3147,7 +3147,7 @@
           "underdog_team": "Coastal Carolina",
           "total": 50.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Louisiana",
@@ -3242,9 +3242,9 @@
           "spread_favorite": -3.0,
           "favorite_team": "Delaware",
           "underdog_team": "New Mexico State",
-          "total": 54.5,
+          "total": 53.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Delaware",
@@ -3336,12 +3336,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -3.5,
+          "spread_favorite": -3.0,
           "favorite_team": "Kennesaw State",
           "underdog_team": "Florida International",
           "total": 44.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Kennesaw State",
@@ -3438,7 +3438,7 @@
           "underdog_team": "Tennessee",
           "total": 45.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "LSU",
@@ -3533,9 +3533,9 @@
           "spread_favorite": -20.5,
           "favorite_team": "Texas",
           "underdog_team": "Arkansas",
-          "total": 46.5,
+          "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Texas",
@@ -3627,12 +3627,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -3.5,
+          "spread_favorite": -4.5,
           "favorite_team": "Texas Tech",
           "underdog_team": "Baylor",
-          "total": 55.5,
+          "total": 56.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Texas Tech",
@@ -3729,7 +3729,7 @@
           "underdog_team": "NC State",
           "total": 56.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Florida State",
@@ -3826,7 +3826,7 @@
           "underdog_team": "Michigan",
           "total": 37.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "UCLA",
@@ -3918,12 +3918,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -24.5,
+          "spread_favorite": -26.5,
           "favorite_team": "Penn State",
           "underdog_team": "Rutgers",
-          "total": 50.5,
+          "total": 49.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Penn State",
@@ -4018,9 +4018,9 @@
           "spread_favorite": -7.5,
           "favorite_team": "Indiana",
           "underdog_team": "Washington",
-          "total": 43.5,
+          "total": 44.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Indiana",
@@ -4117,7 +4117,7 @@
           "underdog_team": "Old Dominion",
           "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "UConn",
@@ -4214,7 +4214,7 @@
           "underdog_team": "Texas A&M",
           "total": 38.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Oklahoma",
@@ -4306,12 +4306,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -8.5,
+          "spread_favorite": -9.5,
           "favorite_team": "Georgia Southern",
           "underdog_team": "Troy",
           "total": 48.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Georgia Southern",
@@ -4408,7 +4408,7 @@
           "underdog_team": "Georgia State",
           "total": 55.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Marshall",
@@ -4505,7 +4505,7 @@
           "underdog_team": "Southern Miss",
           "total": 66.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "South Alabama",
@@ -4597,12 +4597,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -11.5,
+          "spread_favorite": -13.5,
           "favorite_team": "Texas State",
           "underdog_team": "Washington State",
-          "total": 61.5,
+          "total": 62.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Texas State",
@@ -4699,7 +4699,7 @@
           "underdog_team": "Maryland",
           "total": 57.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "USC",
@@ -4791,12 +4791,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -7.0,
+          "spread_favorite": -7.5,
           "favorite_team": "Arizona",
           "underdog_team": "Kansas State",
           "total": 52.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Arizona",
@@ -4893,7 +4893,7 @@
           "underdog_team": "Virginia Tech",
           "total": 60.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Miami",
@@ -4985,12 +4985,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -7.0,
+          "spread_favorite": -6.5,
           "favorite_team": "UNLV",
           "underdog_team": "San Jos\u00e9 State",
-          "total": 46.5,
+          "total": 47.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "UNLV",
@@ -5082,12 +5082,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -13.5,
+          "spread_favorite": -14.0,
           "favorite_team": "Louisiana Tech",
           "underdog_team": "Arkansas State",
           "total": 53.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Louisiana Tech",
@@ -5179,12 +5179,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -5.5,
+          "spread_favorite": -4.5,
           "favorite_team": "Missouri",
           "underdog_team": "Kentucky",
           "total": 48.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Missouri",
@@ -5276,12 +5276,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -15.5,
+          "spread_favorite": -14.5,
           "favorite_team": "Georgia",
           "underdog_team": "South Carolina",
           "total": 51.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Georgia",
@@ -5373,12 +5373,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -14.0,
+          "spread_favorite": -13.5,
           "favorite_team": "Louisville",
           "underdog_team": "Pittsburgh",
           "total": 50.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Louisville",
@@ -5475,7 +5475,7 @@
           "underdog_team": "SMU",
           "total": 56.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Notre Dame",
@@ -5572,7 +5572,7 @@
           "underdog_team": "California",
           "total": 56.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Stanford",
@@ -5664,12 +5664,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -20.5,
+          "spread_favorite": -19.5,
           "favorite_team": "Fresno State",
           "underdog_team": "Colorado State",
           "total": 66.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Fresno State",
@@ -5764,9 +5764,9 @@
           "spread_favorite": -6.5,
           "favorite_team": "UTSA",
           "underdog_team": "UAB",
-          "total": 51.5,
+          "total": 50.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "UTSA",
@@ -5858,12 +5858,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -7.0,
+          "spread_favorite": -7.5,
           "favorite_team": "Utah",
           "underdog_team": "TCU",
           "total": 46.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Utah",
@@ -5960,7 +5960,7 @@
           "underdog_team": "San Diego State",
           "total": 60.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Boise State",
@@ -6057,7 +6057,7 @@
           "underdog_team": "Arizona State",
           "total": 59.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Oklahoma State",
@@ -6149,12 +6149,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -9.5,
+          "spread_favorite": -8.5,
           "favorite_team": "Oregon State",
           "underdog_team": "Utah State",
           "total": 50.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Oregon State",
@@ -6246,12 +6246,12 @@
           "observed_at": "2026-11-16T10:16:56.428385+00:00"
         },
         "current": {
-          "spread_favorite": -4.5,
+          "spread_favorite": -5.5,
           "favorite_team": "Nevada",
           "underdog_team": "Hawai'i",
           "total": 40.5,
           "provider": "DraftKings",
-          "observed_at": "2026-11-19T10:10:43.506828+00:00"
+          "observed_at": "2026-11-20T10:10:36.652974+00:00"
         },
         "provider": "DraftKings",
         "favorite_team": "Nevada",
@@ -6339,12 +6339,12 @@
     "current_week": {
       "week": 12,
       "wins": 1,
-      "losses": 3,
+      "losses": 4,
       "pushes": 0,
-      "ats_pct": 0.25,
+      "ats_pct": 0.2,
       "su_wins": 4,
-      "su_losses": 1,
-      "su_pct": 0.8
+      "su_losses": 2,
+      "su_pct": 0.6666666666666666
     },
     "weeks": [
       {
@@ -6380,12 +6380,12 @@
       {
         "week": 12,
         "wins": 1,
-        "losses": 3,
+        "losses": 4,
         "pushes": 0,
-        "ats_pct": 0.25,
+        "ats_pct": 0.2,
         "su_wins": 4,
-        "su_losses": 1,
-        "su_pct": 0.8
+        "su_losses": 2,
+        "su_pct": 0.6666666666666666
       }
     ]
   },
