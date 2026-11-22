@@ -440,28 +440,18 @@ def test_load_espn_season_keeps_fcs_game_for_schedule_and_maps_fbs_ids(monkeypat
     ]
 
     class Response:
-        def __init__(self, week=None, is_teams=False):
+        def __init__(self, week):
             self.week = week
-            self.is_teams = is_teams
 
         def raise_for_status(self):
             pass
 
         def json(self):
-            if self.is_teams:
-                return {"teams": [
-                    {"team": {"id": "espn-alpha", "location": "Alpha"}},
-                    {"team": {"id": "espn-beta", "location": "Beta"}},
-                ]}
-            if self.week is None:
-                return {"events": []}
             return {"events": events if self.week == 1 else []}
 
     class Session:
         def get(self, *args, **kwargs):
-            if args[0] == score_model.ESPN_TEAMS:
-                return Response(is_teams=True)
-            return Response(kwargs["params"].get("week")) if args[0] == score_model.ESPN_SCOREBOARD else Response()
+            return Response(kwargs["params"]["week"])
 
     monkeypatch.setattr(score_model.requests, "Session", Session)
     teams = pd.DataFrame([
@@ -480,45 +470,21 @@ def test_load_espn_season_keeps_fcs_game_for_schedule_and_maps_fbs_ids(monkeypat
     assert set(mapping["provider_team_name"]) == {"Alpha", "Beta"}
 
 
-def test_espn_schedule_fails_and_logs_unmatched_potential_fbs_team(monkeypatch, caplog):
+def test_espn_team_mapping_fails_when_fbs_team_is_missing_from_provider_roster():
     import pytest
     import src.cfb_model.train.score_model as score_model
 
-    class Response:
-        def __init__(self, is_teams=False):
-            self.is_teams = is_teams
-
-        def raise_for_status(self):
-            pass
-
-        def json(self):
-            if self.is_teams:
-                return {"teams": [
-                    {"team": {"id": "espn-alpha", "location": "Alpha"}},
-                    {"team": {"id": "espn-beta", "location": "Beta"}},
-                ]}
-            return {"events": [_espn_event("unknown-game", "Alpha", "Alphaa")]}
-
-    class Session:
-        def get(self, *args, **kwargs):
-            if args[0] == score_model.ESPN_TEAMS:
-                return Response(is_teams=True)
-            return Response() if kwargs["params"]["week"] == 1 else type(
-                "EmptyResponse", (), {"raise_for_status": lambda self: None,
-                                      "json": lambda self: {"events": []}}
-            )()
-
-    monkeypatch.setattr(score_model.requests, "Session", Session)
     teams = pd.DataFrame([
         {"team_id": 1, "school": "Alpha"},
         {"team_id": 2, "school": "Beta"},
     ])
 
-    with pytest.raises(ValueError, match="Unmatched FBS teams"):
-        score_model.load_espn_season(2026, teams)
-    assert "unknown-game" in caplog.text
-    assert "Alphaa" in caplog.text
-    assert "mapping_candidate=Alpha" in caplog.text
+    with pytest.raises(ValueError, match="missing season 2026 CFBD teams: \\['Beta'\\]"):
+        score_model._build_espn_team_mapping(
+            2026,
+            teams,
+            [{"id": "espn-alpha", "location": "Alpha"}],
+        )
 
 
 def test_advanced_features_use_prior_current_season_stats_and_prior_year_shrinkage():

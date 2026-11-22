@@ -35,7 +35,6 @@ DB_PATH = PROJECT_ROOT / "db" / "warehouse.duckdb"
 ESPN_SCOREBOARD = (
     "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
 )
-ESPN_TEAMS = ESPN_SCOREBOARD.rsplit("/", 1)[0] + "/teams"
 FEATURE_COLUMNS = [
     "home_elo",
     "away_elo",
@@ -152,7 +151,6 @@ def _build_espn_team_mapping(
     """Build and validate the season-scoped ESPN ID to CFBD team-ID crosswalk."""
     team_lookup = _team_lookup(fbs_teams)
     rows = []
-    unresolved = []
     for provider_team in provider_teams:
         abbreviation = str(provider_team.get("abbreviation", "")).upper()
         provider_name = (
@@ -165,22 +163,6 @@ def _build_espn_team_mapping(
         lookup_name = ESPN_ABBREVIATION_ALIASES.get(abbreviation, provider_name)
         match = team_lookup.get(_normalize_team_name(lookup_name))
         if match is None:
-            alternatives = {
-                key: value["team_name"] for key, value in team_lookup.items()
-            }
-            candidate_keys = difflib.get_close_matches(
-                _normalize_team_name(lookup_name),
-                list(alternatives),
-                n=1,
-                cutoff=0.6,
-            )
-            unresolved.append({
-                "provider_team_id": str(provider_team.get("id", "")),
-                "provider_team_name": provider_name,
-                "mapping_candidate": (
-                    alternatives[candidate_keys[0]] if candidate_keys else None
-                ),
-            })
             continue
         rows.append({
             "season": season,
@@ -190,16 +172,6 @@ def _build_espn_team_mapping(
             "canonical_team_id": match["team_id"],
             "canonical_team_name": match["team_name"],
         })
-
-    for team in unresolved:
-        LOGGER.error(
-            "Unmatched FBS team season=%s provider=ESPN team=%s provider_id=%s "
-            "reason=no exact season CFBD name or alias mapping mapping_candidate=%s",
-            season, team["provider_team_name"], team["provider_team_id"],
-            team["mapping_candidate"],
-        )
-    if unresolved:
-        raise ValueError(f"Unmatched ESPN FBS teams for {season}: {len(unresolved)}")
 
     mapping = pd.DataFrame(rows).drop_duplicates()
     if (
@@ -212,8 +184,14 @@ def _build_espn_team_mapping(
     mapped_ids = set(mapping["canonical_team_id"])
     if expected_ids != mapped_ids:
         missing_ids = sorted(expected_ids - mapped_ids)
+        missing_teams = sorted(
+            fbs_teams.loc[fbs_teams["team_id"].isin(missing_ids), "school"]
+            .astype(str)
+            .tolist()
+        )
         raise ValueError(
-            f"ESPN team mapping is missing season {season} CFBD IDs: {missing_ids}"
+            f"ESPN team mapping is missing season {season} CFBD teams: "
+            f"{missing_teams} (IDs: {missing_ids})"
         )
     LOGGER.info(
         "Validated %s ESPN-to-CFBD FBS team mappings for %s",
@@ -1009,35 +987,8 @@ def load_espn_season(season: int, teams: pd.DataFrame) -> pd.DataFrame:
     """Refresh the season schedule, retaining FBS/FCS events for calendar features."""
     team_lookup = _team_lookup(teams)
     session = requests.Session()
-    team_response = session.get(
-        ESPN_TEAMS, params={"limit": 1000, "groups": 80}, timeout=20
-    )
-    team_response.raise_for_status()
-    team_payload = team_response.json()
-    provider_teams = team_payload.get("teams", [])
-    if isinstance(provider_teams, dict):
-        provider_teams = provider_teams.get("items", [])
-    if not isinstance(provider_teams, list) or not provider_teams:
-        provider_teams = [
-            item
-            for sport in team_payload.get("sports", [])
-            for league in sport.get("leagues", [])
-            for item in (
-                league.get("teams", {}).get("items", [])
-                if isinstance(league.get("teams"), dict)
-                else league.get("teams", [])
-            )
-        ]
-    provider_teams = [
-        item.get("team", item) for item in provider_teams if isinstance(item, dict)
-    ]
-    team_mapping = _build_espn_team_mapping(season, teams, provider_teams)
-    espn_id_lookup = {
-        row["provider_team_id"]: row
-        for row in team_mapping.to_dict("records")
-    }
-    games_by_id = {}
-    observed_games = {}
+    weekly_events = []
+    provider_teams_by_id = {}
     for week in range(1, 16):
         response = session.get(
             ESPN_SCOREBOARD,
@@ -1052,21 +1003,37 @@ def load_espn_season(season: int, teams: pd.DataFrame) -> pd.DataFrame:
         )
         response.raise_for_status()
         for event in response.json().get("events", []):
-            game = _parse_espn_event(event, season, week, team_lookup, espn_id_lookup)
-            observed_games[game["game_id"]] = game
-            for side in ("home", "away"):
-                if game[f"{side}_mapping_status"] != "mapped":
-                    LOGGER.info(
-                        "Unmapped ESPN team game=%s team=%s provider_id=%s "
-                        "reason=%s mapping_candidate=%s",
-                        game["game_id"], game[f"{side}_espn_team_name"],
-                        game[f"{side}_espn_team_id"], game[f"{side}_mapping_status"],
-                        game[f"{side}_mapping_candidate"],
-                    )
-            if game["home_is_fbs"] or game["away_is_fbs"]:
-                games_by_id[game["game_id"]] = game
-            else:
-                LOGGER.info("Ignoring non-FBS event game=%s", game["game_id"])
+            weekly_events.append((week, event))
+            for competitor in event["competitions"][0]["competitors"]:
+                provider_team = competitor["team"]
+                provider_team_id = str(provider_team.get("id", ""))
+                if provider_team_id:
+                    provider_teams_by_id[provider_team_id] = provider_team
+
+    team_mapping = _build_espn_team_mapping(
+        season, teams, list(provider_teams_by_id.values())
+    )
+    espn_id_lookup = {
+        row["provider_team_id"]: row for row in team_mapping.to_dict("records")
+    }
+    games_by_id = {}
+    observed_games = {}
+    for week, event in weekly_events:
+        game = _parse_espn_event(event, season, week, team_lookup, espn_id_lookup)
+        observed_games[game["game_id"]] = game
+        for side in ("home", "away"):
+            if game[f"{side}_mapping_status"] != "mapped":
+                LOGGER.info(
+                    "Unmapped ESPN team game=%s team=%s provider_id=%s "
+                    "reason=%s mapping_candidate=%s",
+                    game["game_id"], game[f"{side}_espn_team_name"],
+                    game[f"{side}_espn_team_id"], game[f"{side}_mapping_status"],
+                    game[f"{side}_mapping_candidate"],
+                )
+        if game["home_is_fbs"] or game["away_is_fbs"]:
+            games_by_id[game["game_id"]] = game
+        else:
+            LOGGER.info("Ignoring non-FBS event game=%s", game["game_id"])
 
     unmatched = [
         (game, side)
