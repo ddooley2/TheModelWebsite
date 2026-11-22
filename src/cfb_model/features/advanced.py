@@ -62,13 +62,30 @@ def build_advanced_features(games: pd.DataFrame, advanced: pd.DataFrame) -> pd.D
     ``week``, ``team``, and every column in ``ADVANCED_METRICS``.
     """
     long = _attach_stats(_team_games(games), advanced)
-    long = long.sort_values(["team", "game_date", "row"], kind="stable").reset_index(drop=True)
+    long["_game_day"] = long["game_date"].dt.normalize()
+    long = long.sort_values(["team", "_game_day", "row"], kind="stable").reset_index(drop=True)
 
     for metric in ADVANCED_METRICS:
-        values = long[metric]
-        present = values.notna().astype(float)
-        total = values.fillna(0.0).groupby([long["team"], long["season"]]).cumsum() - values.fillna(0.0)
-        count = present.groupby([long["team"], long["season"]]).cumsum() - present
+        day_stats = (
+            long.groupby(["team", "season", "_game_day"], sort=False)[metric]
+            .agg(total=lambda values: values.sum(min_count=1), count="count")
+            .reset_index()
+            .sort_values(["team", "season", "_game_day"], kind="stable")
+        )
+        day_stats["prior_total"] = (
+            day_stats.groupby(["team", "season"])["total"]
+            .transform(lambda values: values.fillna(0.0).cumsum() - values.fillna(0.0))
+        )
+        day_stats["prior_count"] = (
+            day_stats.groupby(["team", "season"])["count"]
+            .transform(lambda values: values.cumsum() - values)
+        )
+        long = long.merge(
+            day_stats[["team", "season", "_game_day", "prior_total", "prior_count"]],
+            on=["team", "season", "_game_day"],
+            how="left",
+            validate="many_to_one",
+        )
 
         season_mean = long.groupby(["team", "season"])[metric].mean().reset_index()
         season_mean = season_mean.sort_values(["team", "season"])
@@ -78,9 +95,17 @@ def build_advanced_features(games: pd.DataFrame, advanced: pd.DataFrame) -> pd.D
         )["prior_mean"]
 
         weight = np.where(prior.notna(), PRIOR_WEIGHT, 0.0)
-        denominator = count + weight
-        numerator = total + weight * prior.fillna(0.0)
-        long[f"_{metric}"] = np.where(denominator > 0, numerator / denominator.where(denominator > 0, 1), np.nan)
+        denominator = long["prior_count"].to_numpy() + weight
+        numerator = (
+            long["prior_total"].fillna(0.0).to_numpy()
+            + weight * prior.fillna(0.0).to_numpy()
+        )
+        long[f"_{metric}"] = np.where(
+            denominator > 0,
+            numerator / np.where(denominator > 0, denominator, 1.0),
+            np.nan,
+        )
+        long = long.drop(columns=["prior_total", "prior_count"])
 
     output = pd.DataFrame(index=np.arange(len(games)))
     for side in ("home", "away"):

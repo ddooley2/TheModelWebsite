@@ -6,6 +6,8 @@ This repository predicts home and away final scores for FBS-vs-FBS games. Margin
 
 - The feature list deliberately excludes betting lines and market columns.
 - Each game receives form and rating features before its own result—or any shared-date result—is applied.
+- Training and prediction targets, plus competitive score statistics, remain FBS-versus-FBS. Rest and games-played features use the separate completed-game schedule history for each FBS team, including FCS opponents.
+- Current-season ESPN team IDs are crosswalked one-to-one to CFBD's FBS IDs for that season. Unmatched FBS names/IDs are logged with a mapping candidate and fail the refresh instead of dropping target games.
 - CFBD lines appear only in the static site’s comparison layer. They never enter model fitting, candidate selection, or prediction.
 - When `db/warehouse.duckdb` is absent, commands rebuild it from the versioned `data/raw/*.parquet` files without changing those source files.
 

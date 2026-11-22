@@ -10,7 +10,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from src.cfb_model.train.score_model import MODEL_COLUMNS, build_model_features, load_advanced_stats, load_historical_games, load_roster_priors
+from src.cfb_model.train.score_model import (
+    MODEL_COLUMNS,
+    build_model_features,
+    load_advanced_stats,
+    load_historical_games,
+    load_roster_priors,
+    load_schedule_history,
+)
 from src.cfb_model.train.experiments import choose_winner, run_candidate_backtest
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -105,8 +112,16 @@ def _plot_performance(metrics: pd.DataFrame, output: Path) -> None:
 def generate_diagnostics(db_path: Path, output_dir: Path = DEFAULT_OUTPUT) -> dict:
     """Create public report artifacts and return a compact machine-readable summary."""
     output_dir.mkdir(parents=True, exist_ok=True)
-    games = load_historical_games(db_path)
-    features = build_model_features(games, load_roster_priors(db_path), load_advanced_stats(db_path))
+    model_history = load_historical_games(db_path)
+    schedule_history = load_schedule_history(db_path)
+    games = model_history
+    features = build_model_features(
+        games,
+        load_roster_priors(db_path),
+        load_advanced_stats(db_path),
+        model_history=model_history,
+        schedule_history=schedule_history,
+    )
     coverage = _source_coverage(db_path)
     missingness = _plot_missingness(features, games, output_dir)
     distributions = _plot_distributions(features, output_dir)

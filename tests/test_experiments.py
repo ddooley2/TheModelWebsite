@@ -64,9 +64,12 @@ def test_diagnostics_pass_advanced_stats_into_candidate_backtest(tmp_path, monke
     ])
 
     monkeypatch.setattr(diagnostics, "load_historical_games", lambda db: games)
+    monkeypatch.setattr(diagnostics, "load_schedule_history", lambda db: games)
     monkeypatch.setattr(diagnostics, "load_roster_priors", lambda db: pd.DataFrame())
     monkeypatch.setattr(diagnostics, "load_advanced_stats", lambda db: advanced)
-    monkeypatch.setattr(diagnostics, "build_model_features", lambda *args: features)
+    monkeypatch.setattr(
+        diagnostics, "build_model_features", lambda *args, **kwargs: features
+    )
     monkeypatch.setattr(diagnostics, "_source_coverage", lambda db: coverage)
     monkeypatch.setattr(diagnostics, "_plot_missingness", lambda *args: pd.DataFrame())
     monkeypatch.setattr(diagnostics, "_plot_distributions", lambda *args: pd.DataFrame())

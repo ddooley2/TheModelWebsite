@@ -3,8 +3,10 @@
 from __future__ import annotations
 
 import argparse
+import difflib
 import hashlib
 import json
+import logging
 import os
 import re
 import subprocess
@@ -33,6 +35,7 @@ DB_PATH = PROJECT_ROOT / "db" / "warehouse.duckdb"
 ESPN_SCOREBOARD = (
     "https://site.api.espn.com/apis/site/v2/sports/football/college-football/scoreboard"
 )
+ESPN_TEAMS = ESPN_SCOREBOARD.rsplit("/", 1)[0] + "/teams"
 FEATURE_COLUMNS = [
     "home_elo",
     "away_elo",
@@ -103,6 +106,7 @@ ESPN_ABBREVIATION_ALIASES = {
     "ULM": "UL Monroe",
     "UMASS": "Massachusetts",
 }
+LOGGER = logging.getLogger(__name__)
 
 
 def _normalize_team_name(name: str) -> str:
@@ -121,16 +125,105 @@ def validate_market_free_feature_columns(columns: list[str] | pd.Index) -> None:
         raise ValueError(f"Betting-market feature columns are forbidden: {forbidden}")
 
 
-def _team_lookup(teams: set[str]) -> dict[str, str]:
-    lookup = {_normalize_team_name(team): team for team in teams}
+def _team_lookup(teams: pd.DataFrame) -> dict[str, dict]:
+    lookup = {}
+    for row in teams.to_dict("records"):
+        canonical = row.get("school") or row.get("team_name")
+        if not canonical:
+            continue
+        mapping = {
+            "team_id": row.get("team_id", row.get("id")),
+            "team_name": canonical,
+        }
+        for field in ("school", "team_name", "abbreviation", "alt_name1", "alt_name2", "alt_name3"):
+            alias = row.get(field)
+            if alias:
+                lookup[_normalize_team_name(str(alias))] = mapping
     for abbreviation, team in ESPN_ABBREVIATION_ALIASES.items():
-        if team in teams:
-            lookup[abbreviation.lower()] = team
+        mapping = lookup.get(_normalize_team_name(team))
+        if mapping is not None:
+            lookup[_normalize_team_name(abbreviation)] = mapping
     return lookup
 
 
+def _build_espn_team_mapping(
+    season: int, fbs_teams: pd.DataFrame, provider_teams: list[dict]
+) -> pd.DataFrame:
+    """Build and validate the season-scoped ESPN ID to CFBD team-ID crosswalk."""
+    team_lookup = _team_lookup(fbs_teams)
+    rows = []
+    unresolved = []
+    for provider_team in provider_teams:
+        abbreviation = str(provider_team.get("abbreviation", "")).upper()
+        provider_name = (
+            provider_team.get("location")
+            or provider_team.get("displayName")
+            or provider_team.get("name")
+            or provider_team.get("shortDisplayName")
+            or ""
+        )
+        lookup_name = ESPN_ABBREVIATION_ALIASES.get(abbreviation, provider_name)
+        match = team_lookup.get(_normalize_team_name(lookup_name))
+        if match is None:
+            alternatives = {
+                key: value["team_name"] for key, value in team_lookup.items()
+            }
+            candidate_keys = difflib.get_close_matches(
+                _normalize_team_name(lookup_name),
+                list(alternatives),
+                n=1,
+                cutoff=0.6,
+            )
+            unresolved.append({
+                "provider_team_id": str(provider_team.get("id", "")),
+                "provider_team_name": provider_name,
+                "mapping_candidate": (
+                    alternatives[candidate_keys[0]] if candidate_keys else None
+                ),
+            })
+            continue
+        rows.append({
+            "season": season,
+            "provider": "ESPN",
+            "provider_team_id": str(provider_team.get("id", "")),
+            "provider_team_name": provider_name,
+            "canonical_team_id": match["team_id"],
+            "canonical_team_name": match["team_name"],
+        })
+
+    for team in unresolved:
+        LOGGER.error(
+            "Unmatched FBS team season=%s provider=ESPN team=%s provider_id=%s "
+            "reason=no exact season CFBD name or alias mapping mapping_candidate=%s",
+            season, team["provider_team_name"], team["provider_team_id"],
+            team["mapping_candidate"],
+        )
+    if unresolved:
+        raise ValueError(f"Unmatched ESPN FBS teams for {season}: {len(unresolved)}")
+
+    mapping = pd.DataFrame(rows).drop_duplicates()
+    if (
+        mapping.empty
+        or mapping["provider_team_id"].duplicated().any()
+        or mapping["canonical_team_id"].duplicated().any()
+    ):
+        raise ValueError(f"ESPN-to-CFBD team mapping is not one-to-one for {season}.")
+    expected_ids = set(fbs_teams["team_id"])
+    mapped_ids = set(mapping["canonical_team_id"])
+    if expected_ids != mapped_ids:
+        missing_ids = sorted(expected_ids - mapped_ids)
+        raise ValueError(
+            f"ESPN team mapping is missing season {season} CFBD IDs: {missing_ids}"
+        )
+    LOGGER.info(
+        "Validated %s ESPN-to-CFBD FBS team mappings for %s",
+        len(mapping), season,
+    )
+    return mapping
+
+
 def load_historical_games(db_path: Path = DB_PATH) -> pd.DataFrame:
-    """Load completed FBS-vs-FBS games from the local warehouse."""
+    """Load completed FBS-vs-FBS games used for model statistics and targets."""
     with duckdb.connect(str(db_path), read_only=True) as connection:
         return connection.execute(
             """
@@ -145,20 +238,111 @@ def load_historical_games(db_path: Path = DB_PATH) -> pd.DataFrame:
         ).fetchdf()
 
 
-def build_pregame_features(games: pd.DataFrame) -> pd.DataFrame:
-    """Build each game's features before updating team state with its result."""
+def load_schedule_history(db_path: Path = DB_PATH) -> pd.DataFrame:
+    """Load completed games involving an FBS team for schedule-derived features."""
+    with duckdb.connect(str(db_path), read_only=True) as connection:
+        return connection.execute(
+            """
+            SELECT game_id, season, week, game_date, home_team, away_team,
+                   home_score, away_score, neutral_site, home_is_fbs, away_is_fbs
+            FROM stg_games_raw
+            WHERE (home_is_fbs = TRUE OR away_is_fbs = TRUE)
+              AND home_score IS NOT NULL AND away_score IS NOT NULL
+              AND game_date IS NOT NULL
+            ORDER BY game_date, game_id
+            """
+        ).fetchdf()
+
+
+def load_fbs_teams(season: int, db_path: Path = DB_PATH) -> pd.DataFrame:
+    """Load the FBS team IDs for this season, fetching only when not cached."""
+    with duckdb.connect(str(db_path), read_only=True) as connection:
+        cached = connection.execute(
+            """
+            SELECT DISTINCT history.team_id, lookup.team_name
+            FROM stg_conference_history_raw AS history
+            JOIN stg_team_lookup_raw AS lookup USING (team_id)
+            WHERE history.season = ?
+            ORDER BY history.team_id
+            """,
+            [season],
+        ).fetchdf()
+    if not cached.empty:
+        teams = cached.rename(columns={"team_name": "school"}).assign(season=season)
+    else:
+        load_dotenv()
+        api_key = os.environ.get("CFBD_API_KEY")
+        if not api_key:
+            raise RuntimeError(f"CFBD_API_KEY is required to load FBS teams for {season}.")
+        response = requests.get(
+            f"{CFBD_API}/teams/fbs",
+            headers={"Authorization": f"Bearer {api_key}"},
+            params={"year": season},
+            timeout=60,
+        )
+        response.raise_for_status()
+        teams = pd.DataFrame(
+            [
+                {"team_id": item.get("id"), "school": item.get("school"), "season": season}
+                for item in response.json()
+            ]
+        )
+
+    if teams.empty or teams["team_id"].isna().any() or teams["school"].isna().any():
+        raise ValueError(f"CFBD returned an invalid FBS team list for {season}.")
+    if teams["team_id"].duplicated().any() or teams["school"].duplicated().any():
+        raise ValueError(f"CFBD returned duplicate FBS team IDs or names for {season}.")
+    return teams
+
+
+def build_pregame_features(
+    target_games: pd.DataFrame,
+    model_history: pd.DataFrame,
+    schedule_history: pd.DataFrame,
+) -> pd.DataFrame:
+    """Build target features from FBS model history and all-opponent schedule history.
+
+    Both histories are processed in UTC calendar-date batches. Targets are
+    evaluated before any result from their date updates either history.
+    """
     required = {
         "season", "week", "game_date", "home_team", "away_team",
         "home_score", "away_score", "neutral_site",
     }
-    missing = required - set(games.columns)
-    if missing:
-        raise ValueError(f"Missing game columns: {sorted(missing)}")
+    for label, frame in (
+        ("target_games", target_games),
+        ("model_history", model_history),
+        ("schedule_history", schedule_history),
+    ):
+        missing = required.difference(frame.columns)
+        if missing:
+            raise ValueError(f"{label} is missing game columns: {sorted(missing)}")
 
-    ordered = games.copy()
-    ordered["input_order"] = np.arange(len(ordered))
-    ordered["game_date"] = pd.to_datetime(ordered["game_date"], utc=True, format="mixed")
-    ordered = ordered.sort_values(["game_date", "input_order"], kind="stable")
+    def dated(frame: pd.DataFrame, label: str) -> pd.DataFrame:
+        result = frame.copy().reset_index(drop=True)
+        result["_history_date"] = pd.to_datetime(
+            result["game_date"], utc=True, errors="coerce", format="mixed"
+        ).dt.normalize()
+        if result["_history_date"].isna().any():
+            raise ValueError(f"{label} contains invalid game_date values.")
+        return result
+
+    targets = dated(target_games, "target_games")
+    model_games = dated(model_history, "model_history")
+    schedule_games = dated(schedule_history, "schedule_history")
+
+    def sort_history(frame: pd.DataFrame) -> pd.DataFrame:
+        ordered = frame.copy()
+        ordered["_sort_game_id"] = ordered.get(
+            "game_id", pd.Series("", index=ordered.index)
+        ).fillna("").astype(str)
+        return ordered.sort_values(
+            ["_history_date", "_sort_game_id", "home_team", "away_team"],
+            kind="stable",
+        ).drop(columns="_sort_game_id").reset_index(drop=True)
+
+    model_games = sort_history(model_games)
+    schedule_games = sort_history(schedule_games)
 
     state = defaultdict(
         lambda: {
@@ -168,58 +352,77 @@ def build_pregame_features(games: pd.DataFrame) -> pd.DataFrame:
             "career_for": 0.0,
             "career_against": 0.0,
             "career_games": 0,
-            "last_date": None,
         }
     )
-    season_stats = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0, 0, 0]))
-    features = []
+    model_season_stats = defaultdict(lambda: defaultdict(lambda: [0.0, 0.0, 0, 0]))
+    schedule_season_games = defaultdict(lambda: defaultdict(int))
+    last_schedule_date: dict[str, pd.Timestamp] = {}
+    features: list[dict] = [{} for _ in range(len(targets))]
 
-    for row in ordered.itertuples(index=False):
-        home = state[row.home_team]
-        away = state[row.away_team]
-        home_season = season_stats[row.season][row.home_team]
-        away_season = season_stats[row.season][row.away_team]
+    target_dates = {
+        day: rows
+        for day, rows in targets.groupby("_history_date", sort=True).groups.items()
+    }
+    model_dates = {
+        day: rows
+        for day, rows in model_games.groupby("_history_date", sort=True).groups.items()
+    }
+    schedule_dates = {
+        day: rows
+        for day, rows in schedule_games.groupby("_history_date", sort=True).groups.items()
+    }
+    all_dates = sorted(set(target_dates) | set(model_dates) | set(schedule_dates))
 
-        def average_or_prior(total: float, count: int, career_total: float, career_count: int) -> float:
-            if count:
-                return total / count
-            if career_count:
-                return career_total / career_count
-            return 0.0
+    def average_or_prior(total: float, count: int, career_total: float, career_count: int) -> float:
+        if count:
+            return total / count
+        if career_count:
+            return career_total / career_count
+        return 0.0
 
-        home_recent_for = list(home["recent_for"])
-        home_recent_against = list(home["recent_against"])
-        away_recent_for = list(away["recent_for"])
-        away_recent_against = list(away["recent_against"])
-        game_date = row.game_date
+    for game_date in all_dates:
+        for position in target_dates.get(game_date, []):
+            row = targets.iloc[position]
+            home = state[row["home_team"]]
+            away = state[row["away_team"]]
+            home_season = model_season_stats[row["season"]][row["home_team"]]
+            away_season = model_season_stats[row["season"]][row["away_team"]]
+            home_schedule_games = schedule_season_games[row["season"]][row["home_team"]]
+            away_schedule_games = schedule_season_games[row["season"]][row["away_team"]]
 
-        def rest_days(team_state: dict) -> float:
-            previous = team_state["last_date"]
-            if previous is None:
-                return 14.0
-            return float(min(max((game_date - previous).days, 0), 14))
+            def rest_days(team: str) -> float:
+                previous = last_schedule_date.get(team)
+                if previous is None:
+                    return 14.0
+                return float(min(max((game_date - previous).days, 0), 14))
 
-        features.append(
-            {
-                "input_order": row.input_order,
+            features[position] = {
                 "home_elo": home["elo"],
                 "away_elo": away["elo"],
                 "elo_diff": home["elo"] - away["elo"],
                 "home_points_for_recent": (
-                    float(np.mean(home_recent_for)) if home_recent_for
-                    else average_or_prior(home_season[0], home_season[2], home["career_for"], home["career_games"])
+                    float(np.mean(home["recent_for"])) if home["recent_for"]
+                    else average_or_prior(
+                        home_season[0], home_season[2], home["career_for"], home["career_games"]
+                    )
                 ),
                 "home_points_against_recent": (
-                    float(np.mean(home_recent_against)) if home_recent_against
-                    else average_or_prior(home_season[1], home_season[2], home["career_against"], home["career_games"])
+                    float(np.mean(home["recent_against"])) if home["recent_against"]
+                    else average_or_prior(
+                        home_season[1], home_season[2], home["career_against"], home["career_games"]
+                    )
                 ),
                 "away_points_for_recent": (
-                    float(np.mean(away_recent_for)) if away_recent_for
-                    else average_or_prior(away_season[0], away_season[2], away["career_for"], away["career_games"])
+                    float(np.mean(away["recent_for"])) if away["recent_for"]
+                    else average_or_prior(
+                        away_season[0], away_season[2], away["career_for"], away["career_games"]
+                    )
                 ),
                 "away_points_against_recent": (
-                    float(np.mean(away_recent_against)) if away_recent_against
-                    else average_or_prior(away_season[1], away_season[2], away["career_against"], away["career_games"])
+                    float(np.mean(away["recent_against"])) if away["recent_against"]
+                    else average_or_prior(
+                        away_season[1], away_season[2], away["career_against"], away["career_games"]
+                    )
                 ),
                 "home_points_for_season": average_or_prior(
                     home_season[0], home_season[2], home["career_for"], home["career_games"]
@@ -235,56 +438,75 @@ def build_pregame_features(games: pd.DataFrame) -> pd.DataFrame:
                 ),
                 "home_win_pct_season": home_season[3] / home_season[2] if home_season[2] else 0.5,
                 "away_win_pct_season": away_season[3] / away_season[2] if away_season[2] else 0.5,
-                "home_games_played": home_season[2],
-                "away_games_played": away_season[2],
-                "home_rest_days": rest_days(home),
-                "away_rest_days": rest_days(away),
-                "week": float(row.week),
-                "neutral_site": float(bool(row.neutral_site)),
+                "home_games_played": home_schedule_games,
+                "away_games_played": away_schedule_games,
+                "home_rest_days": rest_days(row["home_team"]),
+                "away_rest_days": rest_days(row["away_team"]),
+                "week": float(row["week"]),
+                "neutral_site": float(
+                    bool(row["neutral_site"]) if pd.notna(row["neutral_site"]) else False
+                ),
             }
-        )
+        if game_date in model_dates:
+            daily_deltas = defaultdict(float)
+            for position in model_dates[game_date]:
+                row = model_games.iloc[position]
+                home_team, away_team = row["home_team"], row["away_team"]
+                home_score = pd.to_numeric(row["home_score"], errors="coerce")
+                away_score = pd.to_numeric(row["away_score"], errors="coerce")
+                if (
+                    pd.isna(home_team) or pd.isna(away_team)
+                    or pd.isna(home_score) or pd.isna(away_score)
+                    or not np.isfinite(home_score) or not np.isfinite(away_score)
+                ):
+                    continue
+                home, away = state[home_team], state[away_team]
+                margin = float(home_score - away_score)
+                expected_home = 1.0 / (1.0 + 10.0 ** ((away["elo"] - home["elo"]) / 400.0))
+                actual_home = 1.0 if margin > 0 else 0.0 if margin < 0 else 0.5
+                margin_multiplier = np.log1p(abs(margin)) * 2.2 / (
+                    abs(home["elo"] - away["elo"]) * 0.001 + 2.2
+                )
+                change = 20.0 * margin_multiplier * (actual_home - expected_home)
+                daily_deltas[home_team] += change
+                daily_deltas[away_team] -= change
 
-        if pd.notna(row.home_score) and pd.notna(row.away_score):
-            home_score = float(row.home_score)
-            away_score = float(row.away_score)
-            home_margin = home_score - away_score
-            expected_home = 1.0 / (1.0 + 10.0 ** ((away["elo"] - home["elo"]) / 400.0))
-            actual_home = 1.0 if home_margin > 0 else 0.0 if home_margin < 0 else 0.5
-            margin_multiplier = np.log1p(abs(home_margin)) * 2.2 / (
-                abs(home["elo"] - away["elo"]) * 0.001 + 2.2
-            )
-            elo_change = 20.0 * margin_multiplier * (actual_home - expected_home)
-            home["elo"] += elo_change
-            away["elo"] -= elo_change
+                home["recent_for"].append(float(home_score))
+                home["recent_against"].append(float(away_score))
+                away["recent_for"].append(float(away_score))
+                away["recent_against"].append(float(home_score))
+                home["career_for"] += float(home_score)
+                home["career_against"] += float(away_score)
+                home["career_games"] += 1
+                away["career_for"] += float(away_score)
+                away["career_against"] += float(home_score)
+                away["career_games"] += 1
 
-            home["recent_for"].append(home_score)
-            home["recent_against"].append(away_score)
-            away["recent_for"].append(away_score)
-            away["recent_against"].append(home_score)
-            home["career_for"] += home_score
-            home["career_against"] += away_score
-            home["career_games"] += 1
-            away["career_for"] += away_score
-            away["career_against"] += home_score
-            away["career_games"] += 1
+                home_season = model_season_stats[row["season"]][home_team]
+                away_season = model_season_stats[row["season"]][away_team]
+                home_season[0] += float(home_score)
+                home_season[1] += float(away_score)
+                home_season[2] += 1
+                home_season[3] += int(margin > 0)
+                away_season[0] += float(away_score)
+                away_season[1] += float(home_score)
+                away_season[2] += 1
+                away_season[3] += int(margin < 0)
+            for team, change in daily_deltas.items():
+                state[team]["elo"] += change
 
-            home_season[0] += home_score
-            home_season[1] += away_score
-            home_season[2] += 1
-            home_season[3] += int(home_margin > 0)
-            away_season[0] += away_score
-            away_season[1] += home_score
-            away_season[2] += 1
-            away_season[3] += int(home_margin < 0)
-            home["last_date"] = game_date
-            away["last_date"] = game_date
+        if game_date in schedule_dates:
+            for position in schedule_dates[game_date]:
+                row = schedule_games.iloc[position]
+                home_team, away_team = row["home_team"], row["away_team"]
+                if pd.isna(home_team) or pd.isna(away_team):
+                    continue
+                schedule_season_games[row["season"]][home_team] += 1
+                schedule_season_games[row["season"]][away_team] += 1
+                last_schedule_date[home_team] = game_date
+                last_schedule_date[away_team] = game_date
 
-    return (
-        pd.DataFrame(features)
-        .sort_values("input_order")
-        .drop(columns="input_order")
-        .reset_index(drop=True)
-    )
+    return pd.DataFrame(features, columns=FEATURE_COLUMNS)
 
 
 def load_roster_priors(db_path: Path = DB_PATH, season: int | None = None) -> pd.DataFrame:
@@ -393,13 +615,45 @@ def _season_to_date_advanced_stats(
     return display, ranges
 
 
+def _combine_model_history(
+    target_games: pd.DataFrame, model_history: pd.DataFrame
+) -> tuple[pd.DataFrame, np.ndarray]:
+    """Return unique FBS model events and target row positions in that timeline."""
+    targets = target_games.copy().reset_index(drop=True)
+    history = model_history.copy().reset_index(drop=True)
+    targets["_target_position"] = np.arange(len(targets))
+    history["_target_position"] = np.nan
+    combined = pd.concat([targets, history], ignore_index=True, sort=False)
+
+    def identity(row: pd.Series) -> tuple:
+        game_date = pd.to_datetime(row["game_date"], utc=True, errors="coerce", format="mixed")
+        if pd.notna(game_date):
+            return row["season"], game_date.normalize(), row["home_team"], row["away_team"]
+        return "game_id", row.get("game_id")
+
+    combined["_identity"] = combined.apply(identity, axis=1)
+    if combined.iloc[:len(targets)]["_identity"].duplicated().any():
+        raise ValueError("target_games contains duplicate game identities.")
+    timeline = combined.drop_duplicates("_identity", keep="first").drop(
+        columns="_identity"
+    ).reset_index(drop=True)
+    positions = np.flatnonzero(timeline["_target_position"].notna().to_numpy())
+    return timeline.drop(columns="_target_position"), positions
+
+
 def build_model_features(
-    games: pd.DataFrame, roster_priors: pd.DataFrame, advanced: pd.DataFrame | None = None
+    target_games: pd.DataFrame,
+    roster_priors: pd.DataFrame,
+    advanced: pd.DataFrame | None = None,
+    *,
+    model_history: pd.DataFrame,
+    schedule_history: pd.DataFrame,
 ) -> pd.DataFrame:
-    """Build all pregame features (no market inputs); output is row-aligned with games."""
-    pregame = build_pregame_features(games)
-    ratings = build_opponent_adjusted_features(games).reset_index(drop=True)
-    preseason = build_preseason_features(games, roster_priors).reset_index(drop=True)
+    """Build row-aligned FBS target features from explicit model and schedule histories."""
+    model_timeline, target_positions = _combine_model_history(target_games, model_history)
+    pregame = build_pregame_features(target_games, model_history, schedule_history)
+    ratings = build_opponent_adjusted_features(model_timeline).iloc[target_positions].reset_index(drop=True)
+    preseason = build_preseason_features(model_timeline, roster_priors).iloc[target_positions].reset_index(drop=True)
     preseason = preseason.rename(columns={
         "home_elo": "home_preseason_elo",
         "away_elo": "away_preseason_elo",
@@ -407,7 +661,7 @@ def build_model_features(
     })
     if advanced is None:
         advanced = pd.DataFrame(columns=["game_id", "season", "week", "team", *ADVANCED_METRICS])
-    advanced_features = build_advanced_features(games, advanced)
+    advanced_features = build_advanced_features(model_timeline, advanced).iloc[target_positions].reset_index(drop=True)
     features = pd.concat([pregame, ratings, preseason, advanced_features], axis=1)
     validate_market_free_feature_columns(MODEL_COLUMNS)
     return features[MODEL_COLUMNS]
@@ -622,23 +876,109 @@ def write_baseline_run(
     return manifest
 
 
-def _parse_espn_event(event: dict, season: int, week: int, team_lookup: dict[str, str]) -> dict | None:
+def _parse_espn_event(
+    event: dict,
+    season: int,
+    week: int,
+    team_lookup: dict[str, dict | str],
+    espn_id_lookup: dict[str, dict] | None = None,
+) -> dict:
     competition = event["competitions"][0]
     competitors = competition["competitors"]
     home = next(team for team in competitors if team["homeAway"] == "home")
     away = next(team for team in competitors if team["homeAway"] == "away")
 
-    def canonical_name(team: dict) -> str | None:
-        abbreviation = team["team"].get("abbreviation", "").upper()
-        name = ESPN_ABBREVIATION_ALIASES.get(abbreviation, team["team"]["location"])
-        return team_lookup.get(_normalize_team_name(name))
+    def candidate_name(lookup_name: str) -> str | None:
+        alternatives = {
+            key: value["team_name"] if isinstance(value, dict) else value
+            for key, value in team_lookup.items()
+        }
+        candidates = difflib.get_close_matches(
+            _normalize_team_name(lookup_name), list(alternatives), n=1, cutoff=0.9
+        )
+        return alternatives[candidates[0]] if candidates else None
 
-    home_name = canonical_name(home)
-    away_name = canonical_name(away)
-    if home_name is None or away_name is None:
-        return None
+    def mapped_team(team: dict) -> tuple[str, object, bool, str | None, str, str, str]:
+        provider_team = team["team"]
+        abbreviation = provider_team.get("abbreviation", "").upper()
+        provider_name = (
+            provider_team.get("location")
+            or provider_team.get("displayName")
+            or provider_team.get("name")
+            or provider_team.get("shortDisplayName")
+            or ""
+        )
+        lookup_name = ESPN_ABBREVIATION_ALIASES.get(abbreviation, provider_name)
+        name_mapping = team_lookup.get(_normalize_team_name(lookup_name))
+        provider_id = str(provider_team.get("id", ""))
+        id_mapping = (espn_id_lookup or {}).get(provider_id)
+        if id_mapping is not None:
+            if name_mapping is not None and not isinstance(name_mapping, str):
+                if name_mapping["team_id"] != id_mapping["canonical_team_id"]:
+                    return (
+                        id_mapping["canonical_team_name"],
+                        id_mapping["canonical_team_id"],
+                        True,
+                        name_mapping["team_name"],
+                        provider_id,
+                        provider_name,
+                        "provider_name_id_mismatch",
+                    )
+            elif (
+                name_mapping is None
+                and _normalize_team_name(lookup_name)
+                != _normalize_team_name(id_mapping["provider_team_name"])
+            ):
+                return (
+                    id_mapping["canonical_team_name"],
+                    id_mapping["canonical_team_id"],
+                    True,
+                    candidate_name(lookup_name),
+                    provider_id,
+                    provider_name,
+                    "provider_name_id_mismatch",
+                )
+            canonical_name = id_mapping["canonical_team_name"]
+            team_id = id_mapping["canonical_team_id"]
+            status = "mapped"
+        elif isinstance(name_mapping, str):
+            canonical_name, team_id = name_mapping, None
+            status = "mapped_by_name"
+        elif name_mapping is not None:
+            canonical_name, team_id = name_mapping["team_name"], name_mapping.get("team_id")
+            status = "unmapped_fbs_provider_id"
+        else:
+            canonical_name, team_id, status = provider_name, None, "not_fbs"
+        candidate = (
+            name_mapping["team_name"]
+            if name_mapping is not None and not isinstance(name_mapping, str)
+            else candidate_name(lookup_name)
+        )
+        return (
+            canonical_name,
+            team_id,
+            status != "not_fbs",
+            candidate,
+            provider_id,
+            provider_name,
+            status,
+        )
+
+    (
+        home_name, home_id, home_is_fbs, home_candidate,
+        home_espn_id, home_provider_name, home_mapping_status,
+    ) = mapped_team(home)
+    (
+        away_name, away_id, away_is_fbs, away_candidate,
+        away_espn_id, away_provider_name, away_mapping_status,
+    ) = mapped_team(away)
 
     completed = event["status"]["type"]["completed"]
+
+    def score_for(team: dict) -> float:
+        value = team.get("score")
+        return float(value) if completed and value is not None and value != "" else np.nan
+
     return {
         "game_id": f"espn-{event['id']}",
         "season": season,
@@ -646,18 +986,58 @@ def _parse_espn_event(event: dict, season: int, week: int, team_lookup: dict[str
         "game_date": event["date"],
         "home_team": home_name,
         "away_team": away_name,
-        "home_score": float(home["score"]) if completed else np.nan,
-        "away_score": float(away["score"]) if completed else np.nan,
+        "home_team_id": home_id,
+        "away_team_id": away_id,
+        "home_is_fbs": home_is_fbs,
+        "away_is_fbs": away_is_fbs,
+        "home_espn_team_id": home_espn_id,
+        "away_espn_team_id": away_espn_id,
+        "home_espn_team_name": home_provider_name,
+        "away_espn_team_name": away_provider_name,
+        "home_mapping_status": home_mapping_status,
+        "away_mapping_status": away_mapping_status,
+        "home_mapping_candidate": home_candidate,
+        "away_mapping_candidate": away_candidate,
+        "home_score": score_for(home),
+        "away_score": score_for(away),
         "neutral_site": competition.get("neutralSite", False),
         "completed": completed,
     }
 
 
-def load_espn_season(season: int, teams: set[str]) -> pd.DataFrame:
-    """Refresh the regular-season FBS schedule and completed scores from ESPN."""
+def load_espn_season(season: int, teams: pd.DataFrame) -> pd.DataFrame:
+    """Refresh the season schedule, retaining FBS/FCS events for calendar features."""
     team_lookup = _team_lookup(teams)
     session = requests.Session()
+    team_response = session.get(
+        ESPN_TEAMS, params={"limit": 1000, "groups": 80}, timeout=20
+    )
+    team_response.raise_for_status()
+    team_payload = team_response.json()
+    provider_teams = team_payload.get("teams", [])
+    if isinstance(provider_teams, dict):
+        provider_teams = provider_teams.get("items", [])
+    if not isinstance(provider_teams, list) or not provider_teams:
+        provider_teams = [
+            item
+            for sport in team_payload.get("sports", [])
+            for league in sport.get("leagues", [])
+            for item in (
+                league.get("teams", {}).get("items", [])
+                if isinstance(league.get("teams"), dict)
+                else league.get("teams", [])
+            )
+        ]
+    provider_teams = [
+        item.get("team", item) for item in provider_teams if isinstance(item, dict)
+    ]
+    team_mapping = _build_espn_team_mapping(season, teams, provider_teams)
+    espn_id_lookup = {
+        row["provider_team_id"]: row
+        for row in team_mapping.to_dict("records")
+    }
     games_by_id = {}
+    observed_games = {}
     for week in range(1, 16):
         response = session.get(
             ESPN_SCOREBOARD,
@@ -672,24 +1052,64 @@ def load_espn_season(season: int, teams: set[str]) -> pd.DataFrame:
         )
         response.raise_for_status()
         for event in response.json().get("events", []):
-            game = _parse_espn_event(event, season, week, team_lookup)
-            if game is not None:
+            game = _parse_espn_event(event, season, week, team_lookup, espn_id_lookup)
+            observed_games[game["game_id"]] = game
+            for side in ("home", "away"):
+                if game[f"{side}_mapping_status"] != "mapped":
+                    LOGGER.info(
+                        "Unmapped ESPN team game=%s team=%s provider_id=%s "
+                        "reason=%s mapping_candidate=%s",
+                        game["game_id"], game[f"{side}_espn_team_name"],
+                        game[f"{side}_espn_team_id"], game[f"{side}_mapping_status"],
+                        game[f"{side}_mapping_candidate"],
+                    )
+            if game["home_is_fbs"] or game["away_is_fbs"]:
                 games_by_id[game["game_id"]] = game
-    if not games_by_id:
+            else:
+                LOGGER.info("Ignoring non-FBS event game=%s", game["game_id"])
+
+    unmatched = [
+        (game, side)
+        for game in observed_games.values()
+        for side in ("home", "away")
+        if game[f"{side}_mapping_status"] in {
+            "unmapped_fbs_provider_id", "provider_name_id_mismatch"
+        }
+    ]
+    for game, side in unmatched:
+        LOGGER.error(
+            "Unmatched FBS game=%s team=%s provider_id=%s reason=%s mapping_candidate=%s",
+            game["game_id"], game[f"{side}_espn_team_name"],
+            game[f"{side}_espn_team_id"], game[f"{side}_mapping_status"],
+            game[f"{side}_mapping_candidate"],
+        )
+    if unmatched:
+        raise ValueError(f"Unmatched FBS teams in ESPN schedule: {len(unmatched)}")
+
+    if not any(game["home_is_fbs"] and game["away_is_fbs"] for game in games_by_id.values()):
         raise ValueError(f"ESPN returned no FBS-vs-FBS games for season {season}.")
-    return pd.DataFrame(games_by_id.values()).sort_values(["game_date", "game_id"]).reset_index(drop=True)
+    schedule = pd.DataFrame(games_by_id.values()).sort_values(
+        ["game_date", "game_id"]
+    ).reset_index(drop=True)
+    schedule.attrs["provider_team_mapping"] = team_mapping
+    return schedule
 
 
 def run_backtest(db_path: Path = DB_PATH, run_dir: Path | None = None) -> pd.DataFrame:
     ensure_warehouse(db_path)
-    games = load_historical_games(db_path)
+    model_history = load_historical_games(db_path)
+    schedule_history = load_schedule_history(db_path)
     features = build_model_features(
-        games, load_roster_priors(db_path), load_advanced_stats(db_path)
+        model_history,
+        load_roster_priors(db_path),
+        load_advanced_stats(db_path),
+        model_history=model_history,
+        schedule_history=schedule_history,
     )
     if run_dir is not None:
-        manifest = write_baseline_run(games, features, run_dir)
+        manifest = write_baseline_run(model_history, features, run_dir)
         return pd.DataFrame(manifest["metrics_by_season"])
-    return run_walk_forward(games, features)
+    return run_walk_forward(model_history, features)
 
 
 def predict_week(
@@ -698,14 +1118,30 @@ def predict_week(
     """Predict one week with a registered market-free score candidate."""
     ensure_warehouse(db_path)
     historical = load_historical_games(db_path)
-    teams = set(historical.loc[historical["season"] == 2025, "home_team"]) | set(
-        historical.loc[historical["season"] == 2025, "away_team"]
+    schedule_history = load_schedule_history(db_path)
+    season_teams = load_fbs_teams(season, db_path)
+    current_schedule = load_espn_season(season, season_teams)
+    current_targets = current_schedule[
+        current_schedule["home_is_fbs"] & current_schedule["away_is_fbs"]
+    ].copy()
+    current_completed = current_targets[
+        current_targets["home_score"].notna() & current_targets["away_score"].notna()
+    ]
+    current_schedule_history = current_schedule[
+        current_schedule["home_score"].notna() & current_schedule["away_score"].notna()
+    ]
+    model_history = pd.concat([historical, current_completed], ignore_index=True, sort=False)
+    schedule_history = pd.concat(
+        [schedule_history, current_schedule_history], ignore_index=True, sort=False
     )
-    current = load_espn_season(season, teams)
-    games = pd.concat([historical, current], ignore_index=True, sort=False)
+    games = pd.concat([historical, current_targets], ignore_index=True, sort=False)
     advanced = load_advanced_stats(db_path, season)
     features = build_model_features(
-        games, load_roster_priors(db_path, season), advanced
+        games,
+        load_roster_priors(db_path, season),
+        advanced,
+        model_history=model_history,
+        schedule_history=schedule_history,
     )
     prediction_features = features
     if candidate.startswith("role_"):
@@ -742,7 +1178,7 @@ def predict_week(
         )
     output = games.loc[predict_mask, ["game_id", "season", "week", "game_date", "home_team", "away_team"]].copy()
     display_stats, display_ranges = _season_to_date_advanced_stats(
-        output, advanced, teams, season, week
+        output, advanced, set(season_teams["school"]), season, week
     )
     for column in DISPLAY_ADVANCED_COLUMNS:
         output[column] = display_stats[column].to_numpy()
