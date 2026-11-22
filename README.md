@@ -17,6 +17,16 @@ python -m src.cfb_model.train.score_model --backtest
 
 The headline metric is per-team score MAE. The evaluation is a season-forward backtest: each validation season uses training data from prior seasons only.
 
+To save the canonical market-free baseline with per-game predictions, a machine-readable run manifest, and seasonal metrics:
+
+```bash
+python -m src.cfb_model.train.score_model \
+  --backtest \
+  --run-dir results/baselines/direct_score_l1-<run-id>
+```
+
+The run directory must not already exist. Its manifest records the candidate, source commit, feature-schema hash, cutoff policy, held-out game IDs, game count, market-independence status, and overall/season metrics. The per-game CSV includes both score predictions and actuals, score errors, and the recorded game-date cutoff. Betting-derived feature names are rejected before model fitting.
+
 `src/cfb_model.train.experiments` evaluates seven market-free candidates on identical folds:
 
 1. `direct_score_l1` predicts home and away scores directly.

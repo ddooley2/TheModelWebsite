@@ -12,8 +12,12 @@ from src.cfb_model.train.score_model import (
     build_pregame_features,
     load_advanced_stats,
     predict_week,
+    run_walk_forward_predictions,
     score_metrics,
+    validate_market_free_feature_columns,
+    write_baseline_run,
 )
+from src.cfb_model.train.experiments import run_candidate_backtest
 
 
 def _games():
@@ -41,6 +45,31 @@ def _games():
             },
         ]
     )
+
+
+def _walk_forward_games():
+    return pd.DataFrame([
+        {
+            "game_id": 1, "season": 2013, "week": 1, "game_date": "2013-08-31T12:00Z",
+            "home_team": "Alpha", "away_team": "Beta", "home_score": 28,
+            "away_score": 14, "neutral_site": False,
+        },
+        {
+            "game_id": 2, "season": 2013, "week": 1, "game_date": "2013-08-31T12:00Z",
+            "home_team": "Gamma", "away_team": "Delta", "home_score": 7,
+            "away_score": 21, "neutral_site": False,
+        },
+        {
+            "game_id": 3, "season": 2014, "week": 1, "game_date": "2014-08-30T12:00Z",
+            "home_team": "Alpha", "away_team": "Beta", "home_score": 31,
+            "away_score": 10, "neutral_site": False,
+        },
+        {
+            "game_id": 4, "season": 2014, "week": 1, "game_date": "2014-08-30T12:00Z",
+            "home_team": "Gamma", "away_team": "Delta", "home_score": 10,
+            "away_score": 24, "neutral_site": False,
+        },
+    ])
 
 
 def test_features_use_only_prior_game_results():
@@ -73,6 +102,98 @@ def test_model_features_are_aligned_and_exclude_market_inputs():
     assert list(features.columns) == MODEL_COLUMNS
     assert len(features) == len(games)
     assert not any("market" in column for column in features.columns)
+
+
+def test_market_feature_validator_catches_normalized_prohibited_terms():
+    import pytest
+
+    with pytest.raises(ValueError, match="over_under"):
+        validate_market_free_feature_columns(["team_over_under_edge"])
+
+
+def test_line_data_does_not_change_features_training_or_predictions(monkeypatch, tmp_path):
+    import src.cfb_model.train.score_model as score_model
+
+    games = _walk_forward_games()
+    with_lines = games.assign(
+        market_spread_home=[-1000, 1000, -1000, 1000],
+        market_total=[9999, -9999, 9999, -9999],
+    )
+    plain_features = build_model_features(games, pd.DataFrame())
+    line_features = build_model_features(with_lines, pd.DataFrame())
+    pd.testing.assert_frame_equal(plain_features, line_features)
+
+    fit_sizes = []
+    candidate_inputs = []
+
+    class Model:
+        def fit(self, values, targets):
+            fit_sizes.append((len(values), len(targets)))
+            self.prediction = targets.mean(axis=0)
+
+        def predict(self, values):
+            return np.tile(self.prediction, (len(values), 1))
+
+    monkeypatch.setattr(score_model, "_make_model", Model)
+    def candidate_fit(train_x, train_y, valid_x):
+        candidate_inputs.append(train_x.copy())
+        return np.tile(train_y.mean(axis=0), (len(valid_x), 1))
+
+    monkeypatch.setattr(
+        "src.cfb_model.train.experiments.CANDIDATES",
+        {"direct_score_l1": candidate_fit},
+    )
+    plain_metrics, plain_candidate_predictions = run_candidate_backtest(
+        games, plain_features, val_seasons=[2014]
+    )
+    line_metrics, line_candidate_predictions = run_candidate_backtest(
+        with_lines, line_features, val_seasons=[2014]
+    )
+    pd.testing.assert_frame_equal(plain_metrics, line_metrics)
+    pd.testing.assert_frame_equal(plain_candidate_predictions, line_candidate_predictions)
+    pd.testing.assert_frame_equal(candidate_inputs[0], candidate_inputs[1])
+
+    plain_predictions = run_walk_forward_predictions(
+        games, plain_features, val_seasons=[2014]
+    )
+    line_predictions = run_walk_forward_predictions(
+        with_lines, line_features, val_seasons=[2014]
+    )
+
+    pd.testing.assert_frame_equal(plain_predictions, line_predictions)
+    assert fit_sizes == [(2, 2), (2, 2)]
+    assert len(plain_predictions) == 2
+    assert plain_predictions["game_id"].tolist() == [3, 4]
+    assert all(plain_predictions["prediction_cutoff_utc"].str.endswith("+00:00"))
+
+
+def test_baseline_run_writes_candidate_sha_and_row_level_artifacts(monkeypatch, tmp_path):
+    import json
+    import src.cfb_model.train.score_model as score_model
+
+    games = _walk_forward_games()
+    features = pd.DataFrame(0.0, index=games.index, columns=MODEL_COLUMNS)
+
+    class Model:
+        def fit(self, values, targets):
+            self.prediction = targets.mean(axis=0)
+
+        def predict(self, values):
+            return np.tile(self.prediction, (len(values), 1))
+
+    monkeypatch.setattr(score_model, "_make_model", Model)
+    run_dir = tmp_path / "baseline"
+    manifest = write_baseline_run(games, features, run_dir, val_seasons=[2014])
+
+    saved = json.loads((run_dir / "manifest.json").read_text())
+    assert saved["candidate_id"] == "direct_score_l1"
+    assert saved["source_commit_sha"]
+    assert "source_worktree_dirty" in saved
+    assert saved["market_features_enabled"] is False
+    assert saved["market_independence_check_passed"] is True
+    assert manifest["game_count"] == 2
+    assert len(pd.read_csv(run_dir / "predictions.csv")) == 2
+    assert (run_dir / "metrics_by_season.csv").exists()
 
 
 def test_score_metrics_report_score_and_derived_quality():

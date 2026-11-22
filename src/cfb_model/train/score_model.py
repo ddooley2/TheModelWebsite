@@ -3,10 +3,14 @@
 from __future__ import annotations
 
 import argparse
+import hashlib
+import json
 import os
+import re
+import subprocess
 import unicodedata
 from collections import defaultdict, deque
-from datetime import date
+from datetime import date, datetime, timezone
 from pathlib import Path
 
 import duckdb
@@ -70,6 +74,11 @@ PRESEASON_COLUMNS = [
     "away_recruiting_points",
 ]
 MODEL_COLUMNS = FEATURE_COLUMNS + RATING_COLUMNS + PRESEASON_COLUMNS + ADVANCED_COLUMNS
+MARKET_FEATURES_ENABLED = False
+FORBIDDEN_FEATURE_TERMS = (
+    "line", "spread", "overunder", "total", "odds", "implied", "vegas",
+    "market", "book", "consensus",
+)
 DISPLAY_ADVANCED_COLUMNS = [
     f"{side}_display_{metric}"
     for metric in ADVANCED_METRICS
@@ -100,6 +109,16 @@ def _normalize_team_name(name: str) -> str:
     decomposed = unicodedata.normalize("NFKD", name)
     ascii_name = decomposed.encode("ascii", "ignore").decode("ascii")
     return "".join(character for character in ascii_name.lower() if character.isalnum())
+
+
+def validate_market_free_feature_columns(columns: list[str] | pd.Index) -> None:
+    """Reject feature names that could encode betting-market information."""
+    forbidden = [
+        column for column in columns
+        if any(term in re.sub(r"[^a-z0-9]", "", column.lower()) for term in FORBIDDEN_FEATURE_TERMS)
+    ]
+    if forbidden:
+        raise ValueError(f"Betting-market feature columns are forbidden: {forbidden}")
 
 
 def _team_lookup(teams: set[str]) -> dict[str, str]:
@@ -390,6 +409,7 @@ def build_model_features(
         advanced = pd.DataFrame(columns=["game_id", "season", "week", "team", *ADVANCED_METRICS])
     advanced_features = build_advanced_features(games, advanced)
     features = pd.concat([pregame, ratings, preseason, advanced_features], axis=1)
+    validate_market_free_feature_columns(MODEL_COLUMNS)
     return features[MODEL_COLUMNS]
 
 
@@ -442,6 +462,30 @@ def run_walk_forward(
     val_seasons: list[int] = BACKTEST_SEASONS,
 ) -> pd.DataFrame:
     """Train only on earlier seasons and score each untouched validation season."""
+    predictions = run_walk_forward_predictions(games, features, val_seasons)
+    results = []
+    for season, fold in predictions.groupby("season", sort=True):
+        actual = fold[["actual_home_score", "actual_away_score"]].to_numpy(dtype=float)
+        predicted = fold[["predicted_home_score", "predicted_away_score"]].to_numpy(dtype=float)
+        results.append({
+            "season": season,
+            "games": len(fold),
+            **score_metrics(actual, predicted),
+            "baseline_score_mae": float(fold["baseline_score_mae"].iloc[0]),
+        })
+    return pd.DataFrame(results)
+
+
+def run_walk_forward_predictions(
+    games: pd.DataFrame,
+    features: pd.DataFrame,
+    val_seasons: list[int] = BACKTEST_SEASONS,
+) -> pd.DataFrame:
+    """Return row-level out-of-fold predictions for the direct-score baseline."""
+    validate_market_free_feature_columns(MODEL_COLUMNS)
+    missing = set(MODEL_COLUMNS) - set(features.columns)
+    if missing:
+        raise ValueError(f"Missing model feature columns: {sorted(missing)}")
     results = []
     for season in val_seasons:
         train_mask = (games["season"] < season) & (games["season"] >= FIRST_TRAIN_SEASON)
@@ -455,17 +499,127 @@ def run_walk_forward(
         model.fit(features.loc[train_mask, MODEL_COLUMNS], train_y)
         predicted = model.predict(features.loc[valid_mask, MODEL_COLUMNS])
         baseline = np.tile(train_y.mean(axis=0), (len(valid_y), 1))
-        results.append(
-            {
-                "season": season,
-                "games": len(valid_y),
-                **score_metrics(valid_y, predicted),
-                "baseline_score_mae": float(mean_absolute_error(valid_y.ravel(), baseline.ravel())),
-            }
-        )
+        fold = games.loc[valid_mask].copy()
+        fold["actual_home_score"] = valid_y[:, 0]
+        fold["actual_away_score"] = valid_y[:, 1]
+        fold["predicted_home_score"] = predicted[:, 0]
+        fold["predicted_away_score"] = predicted[:, 1]
+        fold["home_score_absolute_error"] = np.abs(valid_y[:, 0] - predicted[:, 0])
+        fold["away_score_absolute_error"] = np.abs(valid_y[:, 1] - predicted[:, 1])
+        fold["score_absolute_error"] = (fold["home_score_absolute_error"] + fold["away_score_absolute_error"]) / 2
+        fold["prediction_cutoff_utc"] = pd.to_datetime(
+            fold["game_date"], utc=True, format="mixed"
+        ).map(lambda value: value.isoformat())
+        fold["baseline_score_mae"] = float(mean_absolute_error(valid_y.ravel(), baseline.ravel()))
+        keep = [
+            column for column in (
+                "game_id", "season", "week", "game_date", "home_team", "away_team",
+                "actual_home_score", "actual_away_score", "predicted_home_score",
+                "predicted_away_score", "home_score_absolute_error",
+                "away_score_absolute_error", "score_absolute_error",
+                "prediction_cutoff_utc", "baseline_score_mae",
+            ) if column in fold.columns
+        ]
+        results.append(fold[keep])
     if not results:
         raise ValueError("No walk-forward seasons had both training and validation games.")
-    return pd.DataFrame(results)
+    return pd.concat(results, ignore_index=True)
+
+
+def write_baseline_run(
+    games: pd.DataFrame,
+    features: pd.DataFrame,
+    run_dir: Path,
+    val_seasons: list[int] = BACKTEST_SEASONS,
+) -> dict:
+    """Save reproducible baseline predictions, metrics, and run metadata."""
+    if run_dir.exists():
+        raise FileExistsError(f"Baseline run directory already exists: {run_dir}")
+    predictions = run_walk_forward_predictions(games, features, val_seasons)
+    run_dir.mkdir(parents=True)
+
+    metrics = []
+    for season, fold in predictions.groupby("season", sort=True):
+        actual = fold[["actual_home_score", "actual_away_score"]].to_numpy(dtype=float)
+        predicted = fold[["predicted_home_score", "predicted_away_score"]].to_numpy(dtype=float)
+        metrics.append({"season": int(season), "games": len(fold), **score_metrics(actual, predicted)})
+    metrics_frame = pd.DataFrame(metrics)
+    actual = predictions[["actual_home_score", "actual_away_score"]].to_numpy(dtype=float)
+    predicted = predictions[["predicted_home_score", "predicted_away_score"]].to_numpy(dtype=float)
+    early = predictions[pd.to_numeric(predictions["week"], errors="coerce") <= 3]
+    late = predictions[pd.to_numeric(predictions["week"], errors="coerce") >= 9]
+    overall = score_metrics(actual, predicted)
+    overall["early_season_score_mae"] = (
+        float(early[["actual_home_score", "actual_away_score"]].sub(
+            early[["predicted_home_score", "predicted_away_score"]].to_numpy()
+        ).abs().to_numpy().mean()) if not early.empty else None
+    )
+    overall["late_season_score_mae"] = (
+        float(late[["actual_home_score", "actual_away_score"]].sub(
+            late[["predicted_home_score", "predicted_away_score"]].to_numpy()
+        ).abs().to_numpy().mean()) if not late.empty else None
+    )
+    commit_sha = subprocess.run(
+        ["git", "rev-parse", "HEAD"], cwd=PROJECT_ROOT, check=True,
+        capture_output=True, text=True,
+    ).stdout.strip()
+    working_tree_diff = subprocess.run(
+        ["git", "diff", "--binary", "HEAD"], cwd=PROJECT_ROOT, check=True,
+        capture_output=True,
+    ).stdout
+    working_tree_dirty = bool(subprocess.run(
+        ["git", "status", "--porcelain", "--untracked-files=no"],
+        cwd=PROJECT_ROOT, check=True, capture_output=True, text=True,
+    ).stdout.strip())
+    feature_list = list(MODEL_COLUMNS)
+    feature_hash = hashlib.sha256(
+        json.dumps(feature_list, separators=(",", ":")).encode("utf-8")
+    ).hexdigest()
+    predictions.to_csv(run_dir / "predictions.csv", index=False)
+    metrics_frame.to_csv(run_dir / "metrics_by_season.csv", index=False)
+    manifest = {
+        "candidate_id": "direct_score_l1",
+        "source_commit_sha": commit_sha,
+        "source_worktree_dirty": working_tree_dirty,
+        "source_worktree_diff_sha256": (
+            hashlib.sha256(working_tree_diff).hexdigest() if working_tree_dirty else None
+        ),
+        "created_at": datetime.now(timezone.utc).isoformat(),
+        "market_features_enabled": MARKET_FEATURES_ENABLED,
+        "market_independence_check_passed": True,
+        "training_cutoff_policy": "training seasons >= 2013 and strictly earlier than each validation season",
+        "prediction_cutoff_policy": "point-in-time features at each game's recorded game_date; validation season excluded from fitting",
+        "feature_schema_hash": feature_hash,
+        "feature_list": feature_list,
+        "validation_seasons": [int(season) for season in predictions["season"].drop_duplicates()],
+        "held_out_game_ids": [str(game_id) for game_id in predictions.get("game_id", pd.Series(dtype=str))],
+        "folds": [
+            {
+                "validation_season": int(season),
+                "training_seasons": sorted(
+                    int(value) for value in games.loc[
+                        (games["season"] >= FIRST_TRAIN_SEASON)
+                        & (games["season"] < season), "season"
+                    ].dropna().unique()
+                ),
+                "held_out_game_ids": [
+                    str(game_id) for game_id in fold["game_id"]
+                ] if "game_id" in fold else [],
+            }
+            for season, fold in predictions.groupby("season", sort=True)
+        ],
+        "game_count": int(len(predictions)),
+        "metrics_overall": overall,
+        "metrics_by_season": metrics,
+        "artifact_paths": {
+            "predictions": "predictions.csv",
+            "metrics_by_season": "metrics_by_season.csv",
+        },
+    }
+    (run_dir / "manifest.json").write_text(
+        json.dumps(manifest, indent=2, allow_nan=False) + "\n", encoding="utf-8"
+    )
+    return manifest
 
 
 def _parse_espn_event(event: dict, season: int, week: int, team_lookup: dict[str, str]) -> dict | None:
@@ -526,12 +680,15 @@ def load_espn_season(season: int, teams: set[str]) -> pd.DataFrame:
     return pd.DataFrame(games_by_id.values()).sort_values(["game_date", "game_id"]).reset_index(drop=True)
 
 
-def run_backtest(db_path: Path = DB_PATH) -> pd.DataFrame:
+def run_backtest(db_path: Path = DB_PATH, run_dir: Path | None = None) -> pd.DataFrame:
     ensure_warehouse(db_path)
     games = load_historical_games(db_path)
     features = build_model_features(
         games, load_roster_priors(db_path), load_advanced_stats(db_path)
     )
+    if run_dir is not None:
+        manifest = write_baseline_run(games, features, run_dir)
+        return pd.DataFrame(manifest["metrics_by_season"])
     return run_walk_forward(games, features)
 
 
@@ -616,6 +773,10 @@ def main() -> None:
     parser.add_argument("--season", type=int, default=date.today().year)
     parser.add_argument("--output", type=Path, help="CSV path for weekly score predictions.")
     parser.add_argument(
+        "--run-dir", type=Path,
+        help="Save per-game predictions, metrics, and manifest for a reproducible backtest.",
+    )
+    parser.add_argument(
         "--candidate", default="direct_score_l1",
         choices=[
             "direct_score_l1",
@@ -631,8 +792,10 @@ def main() -> None:
     args = parser.parse_args()
 
     if args.backtest:
-        results = run_backtest()
+        results = run_backtest(run_dir=args.run_dir)
         print(results.to_string(index=False, float_format=lambda value: f"{value:.3f}"))
+        if args.run_dir:
+            print(f"\nSaved baseline artifacts to {args.run_dir}")
         print(
             "\nMean across validation seasons: "
             f"score MAE={results['score_mae'].mean():.3f}, "
