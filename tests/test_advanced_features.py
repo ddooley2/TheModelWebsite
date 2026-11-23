@@ -30,3 +30,25 @@ def test_features_use_only_earlier_games_and_prior_season():
     expected = (3 * 0.3 + 0.9) / 4
     assert np.isclose(features.loc[2, "home_offense_ppa"], expected)
     assert np.isclose(features.loc[2, "away_offense_ppa"], (3 * 0.1 + 0.5) / 4)
+
+
+def test_features_match_advanced_stats_with_provider_string_game_ids():
+    games = pd.DataFrame([
+        {
+            "game_id": "espn-1", "season": 2026, "week": 1,
+            "game_date": "2026-09-01", "home_team": "A", "away_team": "B",
+        },
+        {
+            "game_id": "espn-2", "season": 2026, "week": 2,
+            "game_date": "2026-09-08", "home_team": "A", "away_team": "B",
+        },
+    ])
+    stats = _stats([
+        ["espn-1", 2026, 1, "A", 0.4],
+        ["espn-1", 2026, 1, "B", 0.2],
+    ])
+
+    features = build_advanced_features(games, stats)
+
+    assert features.loc[1, "home_offense_ppa"] == 0.4
+    assert features.loc[1, "away_offense_ppa"] == 0.2

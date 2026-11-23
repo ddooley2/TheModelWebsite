@@ -1,0 +1,16 @@
+{
+  "stage": 2,
+  "change": "CFBD advanced-game-stat ingestion and cache; no model-feature change",
+  "baseline_run": "results/baselines/direct_score_l1-stage1-final-2026-11-22-live-verified",
+  "stage2_run": "results/baselines/cfbd_advanced_game_stats_stage2/stage2_model_run",
+  "game_count": 3944,
+  "same_held_out_games": true,
+  "predictions_identical": true,
+  "feature_schema_hash_unchanged": true,
+  "overall_score_mae": {
+    "stage1": 9.181573911853388,
+    "stage2": 9.181573911853388
+  },
+  "comparison_csv": "seasonal_score_mae_comparison.csv",
+  "comparison_chart": "seasonal_score_mae_comparison.png"
+}

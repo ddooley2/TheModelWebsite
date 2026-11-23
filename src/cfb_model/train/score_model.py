@@ -24,6 +24,12 @@ from dotenv import load_dotenv
 from sklearn.metrics import mean_absolute_error, mean_squared_error, r2_score, roc_auc_score
 from sklearn.multioutput import MultiOutputRegressor
 
+from src.cfb_model.data.advanced_game_stats import (
+    EXCLUDE_GARBAGE_TIME,
+    load_cached_advanced_game_stats,
+    reconcile_advanced_game_stats,
+    save_reconciliation_report,
+)
 from src.cfb_model.features.advanced import ADVANCED_METRICS, FEATURE_COLUMNS as ADVANCED_COLUMNS, build_advanced_features
 from src.cfb_model.features.opponent_adjusted import build_opponent_adjusted_features
 from src.cfb_model.data.warehouse import ensure_warehouse
@@ -522,7 +528,7 @@ def load_roster_priors(db_path: Path = DB_PATH, season: int | None = None) -> pd
 
 
 def load_advanced_stats(db_path: Path = DB_PATH, season: int | None = None) -> pd.DataFrame:
-    """Load warehouse stats and refresh the requested season from CFBD when available."""
+    """Load historical warehouse stats and an explicitly cached current season."""
     columns = ["game_id", "season", "week", "team", *ADVANCED_METRICS]
     with duckdb.connect(str(db_path), read_only=True) as connection:
         stats = connection.execute(
@@ -531,34 +537,22 @@ def load_advanced_stats(db_path: Path = DB_PATH, season: int | None = None) -> p
     if season is None:
         return stats
 
-    load_dotenv()
-    api_key = os.environ.get("CFBD_API_KEY")
-    if not api_key:
+    try:
+        current = load_cached_advanced_game_stats(season)
+    except FileNotFoundError:
         if (pd.to_numeric(stats["season"], errors="coerce") == season).any():
             return stats
-        raise RuntimeError(f"CFBD_API_KEY is required to fetch {season} advanced stats.")
-    response = requests.get(
-        f"{CFBD_API}/stats/game/advanced",
-        headers={"Authorization": "Bearer " + api_key},
-        params={"year": season, "seasonType": "regular"},
-        timeout=60,
-    )
-    response.raise_for_status()
-    rows = []
-    for item in response.json():
-        row = {
-            "season": item.get("season") or season,
-            "week": item.get("week"),
-            "team": item.get("team"),
-        }
-        for side in ("offense", "defense"):
-            for metric in ("ppa", "successRate", "explosiveness"):
-                row[f"{side}_{metric}"] = (item.get(side) or {}).get(metric)
-        rows.append(row)
-    # ESPN-sourced current games have no CFBD id; they join on season/week/team.
-    current = pd.DataFrame(rows, columns=columns)
-    if current.empty:
-        return stats
+        raise FileNotFoundError(
+            f"No cached advanced-game stats for {season}; run "
+            f"'python -m src.cfb_model.data.advanced_game_stats --season {season} --refresh'."
+        ) from None
+    current = current[
+        (current["season"] == season) & (current["season_type"] == "regular")
+    ].copy()
+    for column in ADVANCED_METRICS:
+        if column not in current:
+            current[column] = np.nan
+    current = current[columns + ["season_type", "opponent"]]
     stats = stats[pd.to_numeric(stats["season"], errors="coerce") != season]
     return pd.concat([stats, current], ignore_index=True)
 
@@ -819,6 +813,10 @@ def write_baseline_run(
         "created_at": datetime.now(timezone.utc).isoformat(),
         "market_features_enabled": MARKET_FEATURES_ENABLED,
         "market_independence_check_passed": True,
+        "advanced_stats_policy": {
+            "season_type": "both",
+            "exclude_garbage_time": EXCLUDE_GARBAGE_TIME,
+        },
         "training_cutoff_policy": "training seasons >= 2013 and strictly earlier than each validation season",
         "prediction_cutoff_policy": "point-in-time features at each game's recorded game_date; validation season excluded from fitting",
         "feature_schema_hash": feature_hash,
@@ -1103,6 +1101,46 @@ def predict_week(
     )
     games = pd.concat([historical, current_targets], ignore_index=True, sort=False)
     advanced = load_advanced_stats(db_path, season)
+    if "season_type" in advanced:
+        current_advanced = advanced[
+            (pd.to_numeric(advanced["season"], errors="coerce") == season)
+            & (advanced["season_type"] == "regular")
+        ].copy()
+        fbs_names = set(season_teams["school"].astype(str))
+        current_advanced = current_advanced[
+            current_advanced["team"].astype(str).isin(fbs_names)
+            & current_advanced["opponent"].astype(str).isin(fbs_names)
+        ]
+        reconciled, reconciliation = reconcile_advanced_game_stats(
+            current_advanced, current_targets
+        )
+        LOGGER.info(
+            "Reconciled current-season CFBD advanced stats season=%s "
+            "matched=%s/%s rate=%.3f unmatched_canonical_games=%s",
+            season,
+            reconciliation["records_matched"],
+            reconciliation["records_total"],
+            reconciliation["match_rate"],
+            reconciliation["canonical_games_without_stats"],
+        )
+        save_reconciliation_report(season, reconciliation)
+        if not reconciled.empty:
+            reconciled["game_id"] = reconciled["canonical_game_id"]
+            current_advanced = reconciled.drop(
+                columns=["canonical_game_id", "game_date", "match_method"]
+            )
+        else:
+            current_advanced = current_advanced.iloc[0:0]
+        advanced = pd.concat(
+            [
+                advanced[
+                    pd.to_numeric(advanced["season"], errors="coerce") != season
+                ],
+                current_advanced,
+            ],
+            ignore_index=True,
+            sort=False,
+        )
     features = build_model_features(
         games,
         load_roster_priors(db_path, season),

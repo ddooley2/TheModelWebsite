@@ -22,9 +22,18 @@ FEATURE_COLUMNS = [f"{side}_{metric}" for metric in ADVANCED_METRICS for side in
 PRIOR_WEIGHT = 3.0
 
 
+def _game_id_key(value: object) -> object:
+    if pd.isna(value):
+        return pd.NA
+    numeric = pd.to_numeric(value, errors="coerce")
+    if pd.notna(numeric) and float(numeric).is_integer():
+        return str(int(numeric))
+    return str(value)
+
+
 def _team_games(games: pd.DataFrame) -> pd.DataFrame:
     dates = pd.to_datetime(games["game_date"], utc=True, format="mixed")
-    keys = pd.to_numeric(games.get("game_id", pd.Series(np.nan, index=games.index)), errors="coerce")
+    keys = games.get("game_id", pd.Series(np.nan, index=games.index)).map(_game_id_key)
     frames = []
     for side in ("home", "away"):
         frames.append(pd.DataFrame({
@@ -42,6 +51,9 @@ def _team_games(games: pd.DataFrame) -> pd.DataFrame:
 def _attach_stats(long: pd.DataFrame, advanced: pd.DataFrame) -> pd.DataFrame:
     """Join stats by CFBD game id, falling back to season/week/team for id-less rows."""
     metrics = list(ADVANCED_METRICS)
+    advanced = advanced.copy()
+    advanced["game_id"] = advanced["game_id"].map(_game_id_key)
+    long["game_id"] = long["game_id"].map(_game_id_key)
     by_id = advanced.dropna(subset=["game_id"]).drop_duplicates(["game_id", "team"])
     by_week = advanced[advanced["game_id"].isna()].drop_duplicates(["season", "week", "team"])
     merged = long.merge(

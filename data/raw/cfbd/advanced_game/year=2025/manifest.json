@@ -1,0 +1,30 @@
+{
+  "schema_version": 1,
+  "season": 2025,
+  "endpoint": "https://api.collegefootballdata.com/stats/game/advanced",
+  "request_parameters": {
+    "year": 2025,
+    "seasonType": "both",
+    "excludeGarbageTime": false
+  },
+  "fetched_at": "2026-11-23T20:02:56.024553+00:00",
+  "source_commit_sha": "f2c90b5c0268fa5b904946bfb6a0ab062b8e45af",
+  "ingestion_code_sha256": "affdba41f0208418227cda49c0899b7ce4e5a3e811a6833e2f5d71c912477a14",
+  "response_sha256": "56d576086eb56a6d844834691bb8627514d85e583b0c5ba51fb8d1ced53be45f",
+  "normalized_sha256": "ff1ada1afca781df973290269ba089599e6b25f43f6c311d57f09347ee0a1b2f",
+  "row_count": 3316,
+  "exclude_garbage_time": false,
+  "raw_payload": "response.json",
+  "normalized_table": "normalized.parquet",
+  "reconciliation": {
+    "records_total": 3316,
+    "records_in_scope": 1868,
+    "records_out_of_scope": 1448,
+    "records_matched": 1868,
+    "match_rate": 1.0,
+    "games_matched": 934,
+    "canonical_completed_games": 934,
+    "canonical_games_without_stats": 0,
+    "unmatched_records": []
+  }
+}

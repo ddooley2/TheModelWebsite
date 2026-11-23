@@ -11,6 +11,27 @@ This repository predicts home and away final scores for FBS-vs-FBS games. Margin
 - CFBD lines appear only in the static site’s comparison layer. They never enter model fitting, candidate selection, or prediction.
 - When `db/warehouse.duckdb` is absent, commands rebuild it from the versioned `data/raw/*.parquet` files without changing those source files.
 
+## CFBD advanced-game-stat cache
+
+The advanced-game endpoint is fetched only by the explicit ingestion command, not by model feature construction. Raw response bytes, a normalized Parquet table, and a manifest are stored under `data/raw/cfbd/advanced_game/year=<season>/`. The manifest records the request parameters, `excludeGarbageTime=false` policy (matching the existing historical source), response and normalized-data hashes, row count, code hash, and fetch time. Normalized rows use `(game_id, team)` as the primary key; `season_type`, `week`, `opponent`, optional team IDs, and flattened numeric fields such as `offense_passingPlays_ppa` are retained.
+
+Refresh a season explicitly, or load its existing cache without network access:
+
+```bash
+python -m src.cfb_model.data.advanced_game_stats --season 2026 --refresh
+python -m src.cfb_model.data.advanced_game_stats --season 2026
+```
+
+Weekly prediction jobs refresh the season cache before predicting. Historical backtests continue to use the versioned warehouse data; adding or refreshing a cache does not change model features until a separate modeling experiment opts into it.
+
+| Column | Meaning |
+|---|---|
+| `game_id` | CFBD game ID; nullable only when the provider omits it. |
+| `season`, `season_type`, `week` | CFBD season identity and schedule period. |
+| `team`, `opponent` | CFBD team names for this team's game-level row. |
+| `team_id`, `opponent_id` | Provider identifiers when present; otherwise null. |
+| `offense_<path>`, `defense_<path>` | Numeric leaves copied from the nested response, preserving their source path and scale (for example `offense_plays`, `defense_ppa`, `offense_passingPlays_successRate`). Null source metrics remain null. |
+
 ## Backtest and challenger selection
 
 ```bash

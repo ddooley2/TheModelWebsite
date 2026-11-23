@@ -102,6 +102,8 @@ jobs:
             echo "Weekly prediction already exists; preserving it."
             exit 0
           fi
+          python -m src.cfb_model.data.advanced_game_stats \
+            --season "$SEASON" --refresh
           python -m src.cfb_model.site.build_site \
             --season "$SEASON" --week "$WEEK" --capture-reference
           python -m src.cfb_model.train.score_model \

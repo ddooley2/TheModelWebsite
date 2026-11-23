@@ -553,7 +553,7 @@ def test_advanced_features_exclude_other_results_from_the_same_date():
     assert pd.isna(features.loc[1, "home_offense_ppa"])
 
 
-def test_load_advanced_stats_refreshes_partial_requested_season(tmp_path, monkeypatch):
+def test_load_advanced_stats_uses_cache_without_network(tmp_path, monkeypatch):
     import duckdb
     import src.cfb_model.train.score_model as score_model
 
@@ -571,27 +571,29 @@ def test_load_advanced_stats_refreshes_partial_requested_season(tmp_path, monkey
             "(2, 2026, 1, 'Alpha', 0.2, 0.2, 0.2, 0.2, 0.2, 0.2)"
         )
 
-    class Response:
-        def raise_for_status(self):
-            pass
+    cached = pd.DataFrame([
+        {
+            "game_id": 10, "season": 2026, "season_type": "regular",
+            "week": 1, "team": "Alpha", "opponent": "Beta",
+            "offense_ppa": 0.4, "offense_successRate": 0.5,
+            "offense_explosiveness": 1.2, "defense_ppa": -0.1,
+            "defense_successRate": 0.3, "defense_explosiveness": 0.9,
+        },
+        {
+            "game_id": 11, "season": 2026, "season_type": "regular",
+            "week": 2, "team": "Beta", "opponent": "Alpha",
+            "offense_ppa": 0.7, "offense_successRate": 0.6,
+            "offense_explosiveness": 1.3, "defense_ppa": -0.2,
+            "defense_successRate": 0.4, "defense_explosiveness": 0.8,
+        },
+    ])
+    monkeypatch.setattr(
+        score_model, "load_cached_advanced_game_stats", lambda season: cached
+    )
+    def unexpected_request(*args, **kwargs):
+        raise AssertionError("Prediction-time loading made a network request.")
 
-        def json(self):
-            return [
-                {
-                    "season": 2026, "week": 1, "team": "Alpha",
-                    "offense": {"ppa": 0.4, "successRate": 0.5, "explosiveness": 1.2},
-                    "defense": {"ppa": -0.1, "successRate": 0.3, "explosiveness": 0.9},
-                },
-                {
-                    "season": 2026, "week": 2, "team": "Beta",
-                    "offense": {"ppa": 0.7, "successRate": 0.6, "explosiveness": 1.3},
-                    "defense": {"ppa": -0.2, "successRate": 0.4, "explosiveness": 0.8},
-                },
-            ]
-
-    monkeypatch.setattr(score_model, "load_dotenv", lambda: None)
-    monkeypatch.setattr(score_model.requests, "get", lambda *args, **kwargs: Response())
-    monkeypatch.setenv("CFBD_API_KEY", "test")
+    monkeypatch.setattr(score_model.requests, "get", unexpected_request)
 
     stats = load_advanced_stats(db_path, season=2026)
     current = stats[stats["season"] == 2026].set_index(["week", "team"])
@@ -600,6 +602,28 @@ def test_load_advanced_stats_refreshes_partial_requested_season(tmp_path, monkey
     assert current.loc[(1, "Alpha"), "offense_ppa"] == 0.4
     assert current.loc[(2, "Beta"), "offense_ppa"] == 0.7
     assert len(current) == 2
+
+
+def test_load_advanced_stats_requires_cache_when_season_is_missing(tmp_path, monkeypatch):
+    import duckdb
+    import pytest
+    import src.cfb_model.train.score_model as score_model
+
+    db_path = tmp_path / "warehouse.duckdb"
+    with duckdb.connect(str(db_path)) as connection:
+        connection.execute(
+            "CREATE TABLE stg_team_game_stats_raw ("
+            "game_id BIGINT, season INTEGER, week INTEGER, team VARCHAR, "
+            + ", ".join(f"{metric} DOUBLE" for metric in ADVANCED_METRICS)
+            + ")"
+        )
+    def missing_cache(season):
+        raise FileNotFoundError(f"No cache for {season}")
+
+    monkeypatch.setattr(score_model, "load_cached_advanced_game_stats", missing_cache)
+
+    with pytest.raises(FileNotFoundError, match="--refresh"):
+        load_advanced_stats(db_path, season=2026)
 
 
 def test_predict_week_saves_prediction_time_features(monkeypatch, tmp_path):
