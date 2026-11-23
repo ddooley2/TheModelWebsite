@@ -58,6 +58,14 @@ The run directory must not already exist. Its manifest records the candidate, so
 
 The selector marks a challenger eligible only if it lowers unweighted mean seasonal score MAE **and** wins at least three validation seasons. The publish workflow currently pins `role_relevant_and_overall_score_l1` for new weekly predictions; it still generates the comparison report for review.
 
+To run the recency-weighted opponent-adjusted ratings experiment:
+
+```bash
+python -m src.cfb_model.train.recency_experiment
+```
+
+It preserves the unweighted ratings as the baseline, tunes half-life, positive season-prior strength, and Ridge alpha on 2021–24, and evaluates the selected challenger on 2025 as an untouched final season. A zero-strength prior is retained as a no-prior ablation, not an eligible challenger. The report, seasonal comparison chart, tuning grid, per-game final-season errors, week-block metrics, and week-cluster bootstrap intervals are saved under `results/baselines/recency_weighted_ratings_stage3/`. This experiment does not change the production candidate.
+
 ## Build a prediction file
 
 ```bash

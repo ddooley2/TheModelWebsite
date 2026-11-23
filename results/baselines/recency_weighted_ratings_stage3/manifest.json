@@ -1,0 +1,55 @@
+{
+  "stage": 3,
+  "production_model_changed": false,
+  "rating_observation_policy": "FBS-vs-FBS completed score records only; features are emitted before each UTC calendar-date batch, so same-date and future results are excluded.",
+  "baseline": "existing unweighted opponent-adjusted score ratings",
+  "selection_metric": "lowest mean seasonal score MAE across tuning seasons among positive-prior variants; zero prior is retained as a no-prior ablation",
+  "tuning_seasons": [
+    2021,
+    2022,
+    2023,
+    2024
+  ],
+  "untouched_final_season": 2025,
+  "tuning_grid_reused": true,
+  "parameter_grid": {
+    "half_life_days": [
+      28,
+      56,
+      84,
+      140,
+      224
+    ],
+    "season_prior_strength": [
+      0.0,
+      5.0,
+      20.0
+    ],
+    "ridge_alpha": [
+      10.0,
+      20.0,
+      40.0
+    ]
+  },
+  "selected_parameters": {
+    "half_life_days": 56,
+    "season_prior_strength": 20.0,
+    "ridge_alpha": 10.0,
+    "tuning_mean_score_mae": 9.197066892353499
+  },
+  "selected_candidate": "Recency h=56d, prior=20, ridge=10",
+  "baseline_mean_seasonal_score_mae": 9.18244198931621,
+  "challenger_mean_seasonal_score_mae": 9.165225893328312,
+  "baseline_overall_score_mae": 9.181573911853388,
+  "challenger_overall_score_mae": 9.164211860652506,
+  "final_season_baseline_score_mae": 9.054094774236598,
+  "final_season_challenger_score_mae": 9.037861897227566,
+  "artifacts": {
+    "tuning_grid_metrics": "tuning_grid_metrics.csv",
+    "seasonal_metrics": "seasonal_metrics.csv",
+    "seasonal_comparison_chart": "seasonal_score_mae_comparison.png",
+    "paired_final_season_errors": "paired_error_deltas_2025.csv",
+    "week_block_metrics": "week_block_metrics_2025.csv",
+    "week_cluster_bootstrap_ci": "paired_week_bootstrap_ci_2025.json"
+  }
+}

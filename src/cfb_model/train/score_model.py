@@ -31,7 +31,9 @@ from src.cfb_model.data.advanced_game_stats import (
     save_reconciliation_report,
 )
 from src.cfb_model.features.advanced import ADVANCED_METRICS, FEATURE_COLUMNS as ADVANCED_COLUMNS, build_advanced_features
-from src.cfb_model.features.opponent_adjusted import build_opponent_adjusted_features
+from src.cfb_model.features.opponent_adjusted import (
+    build_unweighted_opponent_adjusted_features,
+)
 from src.cfb_model.data.warehouse import ensure_warehouse
 from src.cfb_model.features.preseason import build_preseason_features
 
@@ -624,7 +626,11 @@ def build_model_features(
     """Build row-aligned FBS target features from explicit model and schedule histories."""
     model_timeline, target_positions = _combine_model_history(target_games, model_history)
     pregame = build_pregame_features(target_games, model_history, schedule_history)
-    ratings = build_opponent_adjusted_features(model_timeline).iloc[target_positions].reset_index(drop=True)
+    ratings = (
+        build_unweighted_opponent_adjusted_features(model_timeline)
+        .iloc[target_positions]
+        .reset_index(drop=True)
+    )
     preseason = build_preseason_features(model_timeline, roster_priors).iloc[target_positions].reset_index(drop=True)
     preseason = preseason.rename(columns={
         "home_elo": "home_preseason_elo",
