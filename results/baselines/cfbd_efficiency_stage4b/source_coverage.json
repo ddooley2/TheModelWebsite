@@ -1,0 +1,152 @@
+{
+  "canonical_team_game_rows": 35386,
+  "matched_team_game_rows": 31872,
+  "missing_team_game_rows": 3514,
+  "coverage_rate": 0.90069519018821,
+  "by_season": {
+    "2001": {
+      "canonical_team_game_rows": 1304,
+      "matched_team_game_rows": 804,
+      "missing_team_game_rows": 500,
+      "coverage_rate": 0.6165644171779141
+    },
+    "2002": {
+      "canonical_team_game_rows": 1414,
+      "matched_team_game_rows": 62,
+      "missing_team_game_rows": 1352,
+      "coverage_rate": 0.04384724186704385
+    },
+    "2003": {
+      "canonical_team_game_rows": 1398,
+      "matched_team_game_rows": 924,
+      "missing_team_game_rows": 474,
+      "coverage_rate": 0.6609442060085837
+    },
+    "2004": {
+      "canonical_team_game_rows": 1310,
+      "matched_team_game_rows": 882,
+      "missing_team_game_rows": 428,
+      "coverage_rate": 0.6732824427480916
+    },
+    "2005": {
+      "canonical_team_game_rows": 1328,
+      "matched_team_game_rows": 1126,
+      "missing_team_game_rows": 202,
+      "coverage_rate": 0.8478915662650602
+    },
+    "2006": {
+      "canonical_team_game_rows": 1428,
+      "matched_team_game_rows": 1250,
+      "missing_team_game_rows": 178,
+      "coverage_rate": 0.8753501400560224
+    },
+    "2007": {
+      "canonical_team_game_rows": 1436,
+      "matched_team_game_rows": 1296,
+      "missing_team_game_rows": 140,
+      "coverage_rate": 0.9025069637883009
+    },
+    "2008": {
+      "canonical_team_game_rows": 1434,
+      "matched_team_game_rows": 1386,
+      "missing_team_game_rows": 48,
+      "coverage_rate": 0.9665271966527197
+    },
+    "2009": {
+      "canonical_team_game_rows": 1428,
+      "matched_team_game_rows": 1398,
+      "missing_team_game_rows": 30,
+      "coverage_rate": 0.9789915966386554
+    },
+    "2010": {
+      "canonical_team_game_rows": 1436,
+      "matched_team_game_rows": 1402,
+      "missing_team_game_rows": 34,
+      "coverage_rate": 0.9763231197771588
+    },
+    "2011": {
+      "canonical_team_game_rows": 1430,
+      "matched_team_game_rows": 1416,
+      "missing_team_game_rows": 14,
+      "coverage_rate": 0.9902097902097902
+    },
+    "2012": {
+      "canonical_team_game_rows": 1464,
+      "matched_team_game_rows": 1444,
+      "missing_team_game_rows": 20,
+      "coverage_rate": 0.9863387978142076
+    },
+    "2013": {
+      "canonical_team_game_rows": 1474,
+      "matched_team_game_rows": 1474,
+      "missing_team_game_rows": 0,
+      "coverage_rate": 1.0
+    },
+    "2014": {
+      "canonical_team_game_rows": 1520,
+      "matched_team_game_rows": 1488,
+      "missing_team_game_rows": 32,
+      "coverage_rate": 0.9789473684210527
+    },
+    "2015": {
+      "canonical_team_game_rows": 1530,
+      "matched_team_game_rows": 1516,
+      "missing_team_game_rows": 14,
+      "coverage_rate": 0.9908496732026144
+    },
+    "2016": {
+      "canonical_team_game_rows": 1520,
+      "matched_team_game_rows": 1494,
+      "missing_team_game_rows": 26,
+      "coverage_rate": 0.9828947368421053
+    },
+    "2017": {
+      "canonical_team_game_rows": 1552,
+      "matched_team_game_rows": 1544,
+      "missing_team_game_rows": 8,
+      "coverage_rate": 0.9948453608247423
+    },
+    "2018": {
+      "canonical_team_game_rows": 1544,
+      "matched_team_game_rows": 1540,
+      "missing_team_game_rows": 4,
+      "coverage_rate": 0.9974093264248705
+    },
+    "2019": {
+      "canonical_team_game_rows": 1548,
+      "matched_team_game_rows": 1546,
+      "missing_team_game_rows": 2,
+      "coverage_rate": 0.9987080103359173
+    },
+    "2021": {
+      "canonical_team_game_rows": 1540,
+      "matched_team_game_rows": 1540,
+      "missing_team_game_rows": 0,
+      "coverage_rate": 1.0
+    },
+    "2022": {
+      "canonical_team_game_rows": 1552,
+      "matched_team_game_rows": 1552,
+      "missing_team_game_rows": 0,
+      "coverage_rate": 1.0
+    },
+    "2023": {
+      "canonical_team_game_rows": 1584,
+      "matched_team_game_rows": 1584,
+      "missing_team_game_rows": 0,
+      "coverage_rate": 1.0
+    },
+    "2024": {
+      "canonical_team_game_rows": 1596,
+      "matched_team_game_rows": 1590,
+      "missing_team_game_rows": 6,
+      "coverage_rate": 0.9962406015037594
+    },
+    "2025": {
+      "canonical_team_game_rows": 1616,
+      "matched_team_game_rows": 1614,
+      "missing_team_game_rows": 2,
+      "coverage_rate": 0.9987623762376238
+    }
+  }
+}

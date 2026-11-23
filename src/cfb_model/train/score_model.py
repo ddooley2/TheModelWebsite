@@ -712,10 +712,12 @@ def run_walk_forward_predictions(
     games: pd.DataFrame,
     features: pd.DataFrame,
     val_seasons: list[int] = BACKTEST_SEASONS,
+    feature_columns: list[str] | None = None,
 ) -> pd.DataFrame:
-    """Return row-level out-of-fold predictions for the direct-score baseline."""
-    validate_market_free_feature_columns(MODEL_COLUMNS)
-    missing = set(MODEL_COLUMNS) - set(features.columns)
+    """Return row-level out-of-fold predictions for the requested feature set."""
+    columns = MODEL_COLUMNS if feature_columns is None else feature_columns
+    validate_market_free_feature_columns(columns)
+    missing = set(columns) - set(features.columns)
     if missing:
         raise ValueError(f"Missing model feature columns: {sorted(missing)}")
     results = []
@@ -728,8 +730,8 @@ def run_walk_forward_predictions(
         train_y = games.loc[train_mask, TARGET_COLUMNS].to_numpy(dtype=float)
         valid_y = games.loc[valid_mask, TARGET_COLUMNS].to_numpy(dtype=float)
         model = _make_model()
-        model.fit(features.loc[train_mask, MODEL_COLUMNS], train_y)
-        predicted = model.predict(features.loc[valid_mask, MODEL_COLUMNS])
+        model.fit(features.loc[train_mask, columns], train_y)
+        predicted = model.predict(features.loc[valid_mask, columns])
         baseline = np.tile(train_y.mean(axis=0), (len(valid_y), 1))
         fold = games.loc[valid_mask].copy()
         fold["actual_home_score"] = valid_y[:, 0]
