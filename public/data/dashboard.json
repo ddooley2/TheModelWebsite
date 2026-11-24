@@ -7065,7 +7065,16 @@
         "su_losses": 0,
         "su_pct": null
       }
-    ]
+    ],
+    "season_total": {
+      "wins": 101,
+      "losses": 94,
+      "pushes": 5,
+      "ats_pct": 0.517948717948718,
+      "su_wins": 174,
+      "su_losses": 70,
+      "su_pct": 0.7131147540983607
+    }
   },
   "market_data_status": "live CFBD snapshot",
   "methodology": {

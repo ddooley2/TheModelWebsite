@@ -387,7 +387,7 @@ function renderGameBoard(games, filter = "all") {
   }
   $("#game-board").replaceChildren(...sections);
 }
-function performanceSummary(week, current = false) {
+function performanceSummary(week, current = false, heading = null) {
   const wins = numeric(week.wins) ?? 0;
   const losses = numeric(week.losses) ?? 0;
   const pushes = numeric(week.pushes) ?? 0;
@@ -396,15 +396,16 @@ function performanceSummary(week, current = false) {
   const suLosses = numeric(week.su_losses) ?? 0;
   const suPct = numeric(week.su_pct);
   const pctLabel = value => value === null ? "—" : `${(value <= 1 ? value * 100 : value).toFixed(1)}%`;
-  return `<article class="performance-week${current ? " current-week" : " past-week"}">
-    <div class="performance-week-heading"><h2>Week ${week.week}</h2>${current ? '<span class="current-label">CURRENT WEEK</span>' : ""}</div>
+  const cardClass = current ? "current-week" : heading ? "season-total" : "past-week";
+  return `<article class="performance-week ${cardClass}">
+    <div class="performance-week-heading"><h2>${heading ?? `Week ${week.week}`}</h2>${current ? '<span class="current-label">CURRENT WEEK</span>' : ""}</div>
     <div class="performance-metrics">
       <div class="performance-metric"><span>ATS · W–L–P</span><strong>${wins}–${losses}–${pushes}</strong><small>${pctLabel(atsPct)} win rate</small></div>
       <div class="performance-metric"><span>STRAIGHT UP · W–L</span><strong>${suWins}–${suLosses}</strong><small>${pctLabel(suPct)} win rate</small></div>
     </div>
   </article>`;
 }
-function renderPerformance(performance) {
+function renderPerformance(performance, season) {
   const container = $("#performance-content");
   const weeks = Array.isArray(performance?.weeks)
     ? performance.weeks.filter(week => week && numeric(week.week) !== null && numeric(week.week) >= 9)
@@ -425,7 +426,10 @@ function renderPerformance(performance) {
   const currentCard = current
     ? performanceSummary(current, true)
     : `<article class="performance-week current-week"><div class="performance-week-heading"><h2>Week ${currentWeek}</h2><span class="current-label">CURRENT WEEK</span></div><p class="performance-empty-message">Results are not available yet.</p></article>`;
-  container.innerHTML = `${currentCard}
+  const seasonTotal = performance.season_total
+    ? performanceSummary(performance.season_total, false, `${season ?? "Season"} season to date`)
+    : "";
+  container.innerHTML = `${seasonTotal}${currentCard}
     ${past.length ? `<div class="past-weeks">${past.map(week => performanceSummary(week)).join("")}</div>` : ""}`;
 }
 let boardGames = [];
@@ -460,7 +464,7 @@ async function loadBoard() {
     $("#generated-at").textContent = `Predictions generated ${predictionTime}. Lines last updated ${formatTimestamp(lineTime) || "unavailable"}.`;
     boardGames = data.games;
     renderGameBoard(boardGames, boardFilter);
-    renderPerformance(data.performance);
+    renderPerformance(data.performance, data.season);
   } catch (error) {
     $("#generated-at").textContent = error.message;
     renderPerformance(null);

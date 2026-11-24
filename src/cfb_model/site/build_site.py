@@ -117,26 +117,28 @@ def _performance(results: dict, season: int, current_week: int) -> dict:
     ]
     final_week = max([current_week, *weeks], default=current_week)
 
-    def totals(week: int) -> dict:
+    def totals(week: int | None) -> dict:
+        week_records = [
+            record
+            for record in season_results.values()
+            if int(record["week"]) >= 9
+            and (week is None or int(record["week"]) == week)
+        ]
         outcomes = [
             record.get("result")
-            for record in season_results.values()
-            if int(record["week"]) == week
+            for record in week_records
         ]
         wins = outcomes.count("win")
         losses = outcomes.count("loss")
         pushes = outcomes.count("push")
         decided = wins + losses
         straight_up_outcomes = [
-            record.get("su_result")
-            for record in season_results.values()
-            if int(record["week"]) == week
+            record.get("su_result") for record in week_records
         ]
         straight_up_wins = straight_up_outcomes.count("win")
         straight_up_losses = straight_up_outcomes.count("loss")
         straight_up_decided = straight_up_wins + straight_up_losses
-        return {
-            "week": week,
+        summary = {
             "wins": wins,
             "losses": losses,
             "pushes": pushes,
@@ -149,8 +151,10 @@ def _performance(results: dict, season: int, current_week: int) -> dict:
                 else straight_up_wins / straight_up_decided
             ),
         }
+        return {"week": week, **summary} if week is not None else summary
 
     return {
+        "season_total": totals(None),
         "current_week": (
             totals(current_week)
             if current_week >= 9

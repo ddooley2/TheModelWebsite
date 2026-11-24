@@ -613,6 +613,23 @@ def test_performance_ats_percent_excludes_pushes_and_weeks_before_nine():
     assert [item["week"] for item in performance["weeks"]] == [9]
 
 
+def test_performance_includes_season_totals_across_all_weeks():
+    results = {"2026": {
+        "9:1": {"week": 9, "result": "win", "su_result": "win"},
+        "9:2": {"week": 9, "result": "loss", "su_result": "loss"},
+        "9:3": {"week": 9, "result": "push", "su_result": "win"},
+        "10:1": {"week": 10, "result": "win", "su_result": "loss"},
+        "8:1": {"week": 8, "result": "win", "su_result": "win"},
+    }}
+
+    performance = _performance(results, 2026, 10)
+
+    assert performance["season_total"] == {
+        "wins": 2, "losses": 1, "pushes": 1, "ats_pct": 2 / 3,
+        "su_wins": 2, "su_losses": 2, "su_pct": 0.5,
+    }
+
+
 def test_line_refresh_persists_opening_line_ats_results_and_weekly_performance(
     tmp_path, monkeypatch
 ):
@@ -735,6 +752,10 @@ def test_line_refresh_persists_opening_line_ats_results_and_weekly_performance(
     assert saved_results["2026"]["9:9"]["result"] == "loss"
     assert saved_results["2026"]["9:9"]["su_result"] == "loss"
     assert week10["performance"]["current_week"]["week"] == 10
+    assert week10["performance"]["season_total"] == {
+        "wins": 0, "losses": 1, "pushes": 0, "ats_pct": 0.0,
+        "su_wins": 0, "su_losses": 1, "su_pct": 0.0,
+    }
     assert week10["performance"]["weeks"] == [
         {"week": 9, "wins": 0, "losses": 1, "pushes": 0, "ats_pct": 0.0,
          "su_wins": 0, "su_losses": 1, "su_pct": 0.0},
