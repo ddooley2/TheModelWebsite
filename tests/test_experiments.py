@@ -43,6 +43,7 @@ def test_role_candidates_use_only_their_own_feature_formulation():
     points_columns = candidate_feature_columns("role_points_score_l1")
     role_columns = candidate_feature_columns("role_both_roles_score_l1")
     advanced_columns = candidate_feature_columns("role_advanced_score_l1")
+    stabilized_columns = candidate_feature_columns("role_stabilized_score_l1")
 
     assert points_columns[:len(MODEL_COLUMNS)] == MODEL_COLUMNS
     assert role_columns[:len(MODEL_COLUMNS)] == MODEL_COLUMNS
@@ -51,6 +52,8 @@ def test_role_candidates_use_only_their_own_feature_formulation():
     assert "home_team_prior_away_points_for" not in points_columns
     assert "home_team_prior_away_points_for" in role_columns
     assert "home_team_prior_home_offense_ppa" in advanced_columns
+    assert "home_team_prior_home_points_for_shrunk" in stabilized_columns
+    assert "home_team_prior_home_effective_weight" in stabilized_columns
 
 
 def test_diagnostics_pass_advanced_stats_into_candidate_backtest(tmp_path, monkeypatch):

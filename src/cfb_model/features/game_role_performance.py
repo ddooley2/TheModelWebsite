@@ -8,8 +8,11 @@ import numpy as np
 import pandas as pd
 
 
-FORMULATIONS = ("points", "form", "advanced", "both_roles", "relevant_and_overall")
+FORMULATIONS = (
+    "points", "form", "advanced", "both_roles", "relevant_and_overall", "stabilized"
+)
 BASE_METRICS = ("points_for", "points_against", "win_pct")
+ROLE_PRIOR_GAMES = 4.0
 ADVANCED_METRICS = (
     "offense_ppa",
     "offense_successRate",
@@ -29,6 +32,21 @@ def _role_columns(matchup_side: str, historical_role: str, metrics: tuple[str, .
 
 def _overall_columns(matchup_side: str, metrics: tuple[str, ...]) -> list[str]:
     return [f"{matchup_side}_team_prior_overall_{metric}" for metric in metrics]
+
+
+def _stabilized_columns(matchup_side: str, historical_role: str) -> list[str]:
+    return (
+        [
+            f"{matchup_side}_team_prior_{historical_role}_{metric}_shrunk"
+            for metric in BASE_METRICS
+        ]
+        + [
+            f"{matchup_side}_team_prior_{historical_role}_games",
+            f"{matchup_side}_team_prior_overall_games",
+            f"{matchup_side}_team_prior_{historical_role}_effective_weight",
+        ]
+        + _overall_columns(matchup_side, BASE_METRICS)
+    )
 
 
 FEATURE_COLUMNS = {
@@ -56,10 +74,112 @@ FEATURE_COLUMNS = {
         + _role_columns("away", "away", BASE_METRICS)
         + _overall_columns("away", BASE_METRICS)
     ),
+    "stabilized": (
+        _stabilized_columns("home", "home")
+        + _stabilized_columns("away", "away")
+    ),
 }
 ALL_FEATURE_COLUMNS = list(dict.fromkeys(
     column for columns in FEATURE_COLUMNS.values() for column in columns
 ))
+
+
+def stabilized_role_data_dictionary() -> pd.DataFrame:
+    """Describe stabilized role features and the neutral-site fallback."""
+    rows = []
+    for side, role in (("home", "home"), ("away", "away")):
+        for metric in BASE_METRICS:
+            rows.extend([
+                {
+                    "feature": f"{side}_team_prior_{role}_{metric}_shrunk",
+                    "definition": (
+                        f"Prior {role}-role {metric}, shrunk toward the team's "
+                        "same-season overall estimate."
+                    ),
+                    "orientation": metric,
+                    "source_field": (
+                        "team points for" if metric == "points_for"
+                        else "opponent points" if metric == "points_against"
+                        else "game outcome"
+                    ),
+                    "numerator": (
+                        "role estimate × role games + overall estimate × 4 "
+                        "pseudo-games"
+                    ),
+                    "denominator": "role games + 4 pseudo-games, when both estimates exist",
+                    "aggregation_window": (
+                        "same-season completed games before the target UTC date"
+                    ),
+                    "missing_value_policy": (
+                        "Fallback to the overall estimate when role data are absent; "
+                        "otherwise retain NaN for the model-native missing path."
+                    ),
+                    "neutral_site_policy": (
+                        "Use overall estimate directly and set role effective weight to 0."
+                    ),
+                    "availability_cutoff": (
+                        "before the target UTC calendar-date batch"
+                    ),
+                }
+            ])
+        rows.extend([
+            {
+                "feature": f"{side}_team_prior_{role}_games",
+                "definition": f"Prior non-neutral {role}-role games in the season.",
+                "orientation": "sample count",
+                "source_field": "completed game scores and neutral_site",
+                "numerator": "count of valid prior role observations",
+                "denominator": "not applicable",
+                "aggregation_window": "same season, before the target UTC date",
+                "missing_value_policy": "0 when no role observations exist.",
+                "neutral_site_policy": "Count is descriptive; role value is not applied.",
+                "availability_cutoff": "before the target UTC calendar-date batch",
+            },
+            {
+                "feature": f"{side}_team_prior_overall_games",
+                "definition": "Prior scored team games in any venue role.",
+                "orientation": "sample count",
+                "source_field": "completed game scores",
+                "numerator": "count of valid prior team observations",
+                "denominator": "not applicable",
+                "aggregation_window": "same season, before the target UTC date",
+                "missing_value_policy": "0 when no overall observations exist.",
+                "neutral_site_policy": "Includes neutral-site results.",
+                "availability_cutoff": "before the target UTC calendar-date batch",
+            },
+            {
+                "feature": f"{side}_team_prior_{role}_effective_weight",
+                "definition": "Effective contribution weight of the role estimate.",
+                "orientation": "role estimate weight",
+                "source_field": "role and overall game counts",
+                "numerator": "role observation count",
+                "denominator": "role observation count + 4 overall pseudo-games",
+                "aggregation_window": "same season, before the target UTC date",
+                "missing_value_policy": "0 when role data are absent.",
+                "neutral_site_policy": "0; neutral targets use overall estimates directly.",
+                "availability_cutoff": "before the target UTC calendar-date batch",
+            },
+        ])
+        for metric in BASE_METRICS:
+            rows.append({
+                "feature": f"{side}_team_prior_overall_{metric}",
+                "definition": f"Overall same-season team {metric}, including neutral games.",
+                "orientation": metric,
+                "source_field": (
+                    "team points for" if metric == "points_for"
+                    else "opponent points" if metric == "points_against"
+                    else "game outcome"
+                ),
+                "numerator": "sum of prior metric observations",
+                "denominator": "number of valid prior observations",
+                "aggregation_window": "same season, before the target UTC date",
+                "missing_value_policy": "NaN when no overall observations exist.",
+                "neutral_site_policy": "Includes neutral-site results.",
+                "availability_cutoff": "before the target UTC calendar-date batch",
+            })
+    return pd.DataFrame(rows).set_index("feature").loc[
+        FEATURE_COLUMNS["stabilized"]
+    ].reset_index()
 
 
 def _summarize(stats: dict[str, list[float]]) -> dict[str, float]:
@@ -178,6 +298,72 @@ def build_game_role_features(
                             ):
                                 if metric in stats:
                                     output[position, column_index[name]] = stats[metric]
+                    elif formulation == "stabilized":
+                        role_history = team_history[role]
+                        overall_history = team_history["overall"]
+                        role_games = int(
+                            role_history.get("points_for", [0.0, 0.0])[1]
+                        )
+                        overall_games = int(
+                            overall_history.get("points_for", [0.0, 0.0])[1]
+                        )
+                        effective_weight = (
+                            role_games / (role_games + ROLE_PRIOR_GAMES)
+                            if role_games
+                            else 0.0
+                        )
+                        if neutral[position]:
+                            effective_weight = 0.0
+                        for metric in BASE_METRICS:
+                            overall_value = overall.get(metric, np.nan)
+                            role_value = role_stats.get(metric, np.nan)
+                            if neutral[position]:
+                                value = overall_value
+                            elif np.isfinite(overall_value):
+                                value = (
+                                    (
+                                        role_games * role_value
+                                        + ROLE_PRIOR_GAMES * overall_value
+                                    )
+                                    / (role_games + ROLE_PRIOR_GAMES)
+                                    if role_games
+                                    else overall_value
+                                )
+                            elif role_games:
+                                value = role_value
+                                effective_weight = 1.0
+                            else:
+                                value = np.nan
+                            name = (
+                                f"{matchup_side}_team_prior_{role}_"
+                                f"{metric}_shrunk"
+                            )
+                            output[position, column_index[name]] = value
+                            overall_name = (
+                                f"{matchup_side}_team_prior_overall_{metric}"
+                            )
+                            if metric in overall:
+                                output[position, column_index[overall_name]] = (
+                                    overall_value
+                                )
+                        output[
+                            position,
+                            column_index[
+                                f"{matchup_side}_team_prior_{role}_games"
+                            ],
+                        ] = role_games
+                        output[
+                            position,
+                            column_index[
+                                f"{matchup_side}_team_prior_overall_games"
+                            ],
+                        ] = overall_games
+                        output[
+                            position,
+                            column_index[
+                                f"{matchup_side}_team_prior_{role}_effective_weight"
+                            ],
+                        ] = effective_weight
                     else:
                         for stats, names in (
                             (role_stats, _role_columns(matchup_side, role, BASE_METRICS)),
