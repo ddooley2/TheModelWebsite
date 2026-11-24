@@ -1,0 +1,11 @@
+{
+  "records_total": 3074,
+  "records_in_scope": 1644,
+  "records_out_of_scope": 1430,
+  "records_matched": 1644,
+  "match_rate": 1.0,
+  "games_matched": 822,
+  "canonical_completed_games": 822,
+  "canonical_games_without_stats": 0,
+  "unmatched_records": []
+}

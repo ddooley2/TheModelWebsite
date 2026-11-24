@@ -1,0 +1,16 @@
+{
+  "season": 2026,
+  "endpoints": [
+    "/games?year=2026&seasonType=regular",
+    "/games?year=2026&seasonType=postseason"
+  ],
+  "fetched_at_utc": "2026-11-24T02:50:59.712361+00:00",
+  "responses": {
+    "regular": 3767,
+    "postseason": 0
+  },
+  "game_rows": 3767,
+  "completed_fbs_vs_fbs_games": 695,
+  "latest_completed_game_date": "2026-11-22T03:30:00.000Z",
+  "payload_sha256": "ee99b6fe0f650e7b7770415dc893a8ee6d3d7e679c24741bfc4135276fa92557"
+}

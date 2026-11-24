@@ -1,0 +1,7 @@
+candidate,week_block,games,score_mae
+Unweighted baseline,Weeks 0-3,191,9.628524121188722
+Unweighted baseline,Weeks 4-8,266,8.700758809070068
+Unweighted baseline,Weeks 9+,351,9.009283838243551
+Recency-weighted,Weeks 0-3,191,9.615612316746779
+Recency-weighted,Weeks 4-8,266,8.651300563232514
+Recency-weighted,Weeks 9+,351,9.016423107240428

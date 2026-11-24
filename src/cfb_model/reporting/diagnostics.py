@@ -10,7 +10,14 @@ import matplotlib.pyplot as plt
 import numpy as np
 import pandas as pd
 
-from src.cfb_model.train.score_model import MODEL_COLUMNS, build_model_features, load_advanced_stats, load_historical_games, load_roster_priors
+from src.cfb_model.train.score_model import (
+    MODEL_COLUMNS,
+    build_model_features,
+    load_advanced_stats,
+    load_historical_games,
+    load_roster_priors,
+    load_schedule_history,
+)
 from src.cfb_model.train.experiments import choose_winner, run_candidate_backtest
 
 PROJECT_ROOT = Path(__file__).resolve().parents[3]
@@ -102,11 +109,45 @@ def _plot_performance(metrics: pd.DataFrame, output: Path) -> None:
     _save(fig, output / "seasonal_score_mae.png")
 
 
+def plot_mae_by_season_comparison(metrics: pd.DataFrame, path: Path) -> None:
+    """Save paired seasonal MAE bars for baseline and challenger candidates."""
+    required = {"candidate", "season", "score_mae"}
+    if not required <= set(metrics.columns):
+        raise ValueError(f"Comparison metrics need columns: {sorted(required)}")
+    if metrics.duplicated(["candidate", "season"]).any():
+        raise ValueError("Comparison metrics contain duplicate candidate/season rows.")
+    seasonal = metrics.pivot(
+        index="season", columns="candidate", values="score_mae"
+    ).sort_index()
+    if seasonal.shape[1] < 2 or seasonal.isna().any().any():
+        raise ValueError("Each compared candidate must have MAE for every season.")
+
+    fig, ax = plt.subplots(figsize=(11, 6))
+    seasonal.plot(kind="bar", ax=ax, width=0.82)
+    ax.set(
+        title="Walk-forward score MAE by season",
+        xlabel="Validation season",
+        ylabel="Per-team score MAE (lower is better)",
+    )
+    ax.legend(title="Model")
+    ax.grid(axis="y", alpha=0.25)
+    path.parent.mkdir(parents=True, exist_ok=True)
+    _save(fig, path)
+
+
 def generate_diagnostics(db_path: Path, output_dir: Path = DEFAULT_OUTPUT) -> dict:
     """Create public report artifacts and return a compact machine-readable summary."""
     output_dir.mkdir(parents=True, exist_ok=True)
-    games = load_historical_games(db_path)
-    features = build_model_features(games, load_roster_priors(db_path), load_advanced_stats(db_path))
+    model_history = load_historical_games(db_path)
+    schedule_history = load_schedule_history(db_path)
+    games = model_history
+    features = build_model_features(
+        games,
+        load_roster_priors(db_path),
+        load_advanced_stats(db_path),
+        model_history=model_history,
+        schedule_history=schedule_history,
+    )
     coverage = _source_coverage(db_path)
     missingness = _plot_missingness(features, games, output_dir)
     distributions = _plot_distributions(features, output_dir)

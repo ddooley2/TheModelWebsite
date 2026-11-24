@@ -17,6 +17,7 @@ from src.cfb_model.train.score_model import (
     TARGET_COLUMNS,
     _make_model,
     score_metrics,
+    validate_market_free_feature_columns,
 )
 from src.cfb_model.features.game_role_performance import (
     FEATURE_COLUMNS as ROLE_FEATURE_COLUMNS,
@@ -81,9 +82,12 @@ def candidate_feature_columns(candidate: str) -> list[str]:
     """Return the input columns used by a registered candidate."""
     if candidate not in CANDIDATES:
         raise ValueError(f"Unknown candidate {candidate!r}; choose from {sorted(CANDIDATES)}")
-    if candidate in BASE_CANDIDATES:
-        return MODEL_COLUMNS
-    return MODEL_COLUMNS + ROLE_FEATURE_COLUMNS[ROLE_CANDIDATES[candidate]]
+    columns = (
+        MODEL_COLUMNS if candidate in BASE_CANDIDATES
+        else MODEL_COLUMNS + ROLE_FEATURE_COLUMNS[ROLE_CANDIDATES[candidate]]
+    )
+    validate_market_free_feature_columns(columns)
+    return columns
 
 
 def run_candidate_backtest(
@@ -97,9 +101,7 @@ def run_candidate_backtest(
     Every candidate uses identical folds and feature columns. Betting-market
     columns are rejected even if they are present in ``features``.
     """
-    forbidden = [column for column in features if "market" in column.lower() or "line" in column.lower()]
-    if forbidden:
-        raise ValueError(f"Market-derived columns are forbidden: {forbidden}")
+    validate_market_free_feature_columns(features.columns)
 
     role_features = build_game_role_features(games, advanced)
     candidate_features = pd.concat([features, role_features], axis=1)

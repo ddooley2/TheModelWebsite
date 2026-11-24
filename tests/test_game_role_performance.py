@@ -4,7 +4,9 @@ import pandas as pd
 from src.cfb_model.features.advanced import ADVANCED_METRICS
 from src.cfb_model.features.game_role_performance import (
     FEATURE_COLUMNS,
+    ROLE_PRIOR_GAMES,
     build_game_role_features,
+    stabilized_role_data_dictionary,
 )
 
 
@@ -88,3 +90,60 @@ def test_role_form_resets_at_the_start_of_each_season():
 
     assert np.isnan(features.loc[4, "home_team_prior_home_points_for"])
     assert np.isnan(features.loc[4, "home_team_prior_overall_points_for"])
+
+
+def test_stabilized_role_uses_overall_fallback_for_zero_home_and_away_samples():
+    features = build_game_role_features(_games())
+
+    assert features.loc[2, "home_team_prior_home_games"] == 0
+    assert features.loc[2, "home_team_prior_home_effective_weight"] == 0
+    assert features.loc[2, "home_team_prior_home_points_for_shrunk"] == 10
+    assert features.loc[2, "away_team_prior_away_games"] == 0
+    assert features.loc[2, "away_team_prior_away_effective_weight"] == 0
+    assert features.loc[2, "away_team_prior_away_points_for_shrunk"] == 25
+
+
+def test_stabilized_role_shrinks_one_role_game_toward_overall():
+    features = build_game_role_features(_games())
+
+    assert features.loc[3, "home_team_prior_home_games"] == 1
+    assert features.loc[3, "home_team_prior_overall_games"] == 3
+    assert features.loc[
+        3, "home_team_prior_home_effective_weight"
+    ] == 1 / (1 + ROLE_PRIOR_GAMES)
+    assert features.loc[
+        3, "home_team_prior_home_points_for_shrunk"
+    ] == (20 + ROLE_PRIOR_GAMES * (67 / 3)) / (1 + ROLE_PRIOR_GAMES)
+
+
+def test_stabilized_neutral_target_uses_overall_not_nominal_home_role():
+    games = _games()
+    games.loc[3, "neutral_site"] = True
+    features = build_game_role_features(games)
+
+    assert features.loc[
+        3, "home_team_prior_home_points_for_shrunk"
+    ] == features.loc[3, "home_team_prior_overall_points_for"]
+    assert features.loc[3, "home_team_prior_home_effective_weight"] == 0
+
+
+def test_stabilized_role_features_exclude_same_date_results():
+    games = _games()
+    original = build_game_role_features(games)
+    changed = games.copy()
+    changed.loc[0, ["home_score", "away_score"]] = [0, 50]
+    changed_features = build_game_role_features(changed)
+
+    pd.testing.assert_series_equal(
+        original.loc[1, FEATURE_COLUMNS["stabilized"]],
+        changed_features.loc[1, FEATURE_COLUMNS["stabilized"]],
+    )
+
+
+def test_stabilized_role_dictionary_covers_the_candidate_schema():
+    dictionary = stabilized_role_data_dictionary()
+
+    assert dictionary["feature"].tolist() == FEATURE_COLUMNS["stabilized"]
+    assert dictionary["availability_cutoff"].eq(
+        "before the target UTC calendar-date batch"
+    ).all()

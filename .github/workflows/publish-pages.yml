@@ -77,36 +77,20 @@ jobs:
           test -n "$SEASON"
           test -n "$WEEK"
           test "$RUN_MODE" = weekly -o "$RUN_MODE" = daily
-      - name: Build warehouse and evaluate market-free challengers
+      - name: Predict the selected recency, pace, and role/site model
         if: ${{ env.RUN_MODE == 'weekly' }}
         run: |
           if [ -f "$PREDICTION_CSV" ]; then
             echo "Weekly prediction already exists; preserving it."
             exit 0
           fi
-          python - <<'PY'
-          from pathlib import Path
-          from src.cfb_model.data.warehouse import ensure_warehouse
-          from src.cfb_model.reporting.diagnostics import generate_diagnostics
-          db_path = ensure_warehouse()
-          report = generate_diagnostics(db_path)
-          candidate = "role_relevant_and_overall_score_l1"
-          Path("candidate.txt").write_text(candidate)
-          print(f"Pinned production candidate: {candidate}")
-          print(report["winner"])
-          PY
-      - name: Predict the chosen candidate
-        if: ${{ env.RUN_MODE == 'weekly' }}
-        run: |
-          if [ -f "$PREDICTION_CSV" ]; then
-            echo "Weekly prediction already exists; preserving it."
-            exit 0
-          fi
+          python -m src.cfb_model.data.advanced_game_stats \
+            --season "$SEASON" --refresh
           python -m src.cfb_model.site.build_site \
             --season "$SEASON" --week "$WEEK" --capture-reference
           python -m src.cfb_model.train.score_model \
             --season "$SEASON" --predict-week "$WEEK" \
-            --candidate "$(cat candidate.txt)"
+            --candidate recency_pace_role_stabilized_score_l1
           echo "PREDICTIONS_GENERATED=true" >> "$GITHUB_ENV"
       - name: Build static dashboard and retrieve display-only CFBD lines
         run: |

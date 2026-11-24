@@ -1,0 +1,11 @@
+candidate,season,score_mae
+Production baseline,2021,9.314880710298702
+Production baseline,2022,9.095575397128187
+Production baseline,2023,9.239609689850578
+Production baseline,2024,9.208049375066992
+Production baseline,2025,9.054094774236598
+Recency + pace,2021,9.261977413676929
+Recency + pace,2022,9.070974739686392
+Recency + pace,2023,9.175593009131498
+Recency + pace,2024,9.168882183224872
+Recency + pace,2025,8.979151917642113

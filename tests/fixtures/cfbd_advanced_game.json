@@ -1,0 +1,50 @@
+[
+  {
+    "gameId": 401000001,
+    "season": 2025,
+    "seasonType": "regular",
+    "week": 1,
+    "team": "Alpha",
+    "opponent": "Beta",
+    "offense": {
+      "plays": 60,
+      "drives": 10,
+      "ppa": 0.22,
+      "successRate": 0.45,
+      "explosiveness": 1.1,
+      "passingPlays": {
+        "ppa": 0.31,
+        "successRate": 0.49
+      }
+    },
+    "defense": {
+      "plays": 55,
+      "drives": 9,
+      "ppa": -0.08,
+      "successRate": 0.37,
+      "explosiveness": 0.9
+    }
+  },
+  {
+    "gameId": 401000001,
+    "season": 2025,
+    "seasonType": "regular",
+    "week": 1,
+    "team": "Beta",
+    "opponent": "Alpha",
+    "offense": {
+      "plays": 55,
+      "drives": 9,
+      "ppa": 0.04,
+      "successRate": 0.36,
+      "explosiveness": 0.8
+    },
+    "defense": {
+      "plays": 60,
+      "drives": 10,
+      "ppa": -0.21,
+      "successRate": 0.44,
+      "explosiveness": 1.0
+    }
+  }
+]

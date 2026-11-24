@@ -86,6 +86,8 @@ def test_prediction_advanced_stats_payload_reads_saved_model_features():
             for metric in ADVANCED_METRICS
             for bound in ("min", "max")
         },
+        "home_pace_offense_plays_per_game_s2d": 72.0,
+        "away_pace_offense_plays_per_game_s2d": 64.0,
     }])
 
     payload = _prediction_advanced_stats_payload(predictions)
@@ -93,18 +95,21 @@ def test_prediction_advanced_stats_payload_reads_saved_model_features():
 
     assert payload[("alpha", "beta")]["home"]["offense_ppa"] == 0.1
     assert payload[("alpha", "beta")]["away"]["offense_ppa"] == 0.2
+    assert payload[("alpha", "beta")]["home"]["pace"] == 72.0
+    assert payload[("alpha", "beta")]["away"]["pace"] == 64.0
     assert ranges["offense_ppa"] == {"min": 0.0, "max": 1.0}
+    assert ranges["pace"] == {"min": 64.0, "max": 72.0}
 
 
 def test_advanced_stats_normalization_uses_week_team_min_and_max():
     stats = {
         ("alpha", "beta"): {
-            "home": {metric: 0.2 for metric in ADVANCED_METRICS},
-            "away": {metric: 0.4 for metric in ADVANCED_METRICS},
+            "home": {**{metric: 0.2 for metric in ADVANCED_METRICS}, "pace": 60.0},
+            "away": {**{metric: 0.4 for metric in ADVANCED_METRICS}, "pace": 70.0},
         },
         ("gamma", "delta"): {
-            "home": {metric: 0.6 for metric in ADVANCED_METRICS},
-            "away": {metric: 0.3 for metric in ADVANCED_METRICS},
+            "home": {**{metric: 0.6 for metric in ADVANCED_METRICS}, "pace": 80.0},
+            "away": {**{metric: 0.3 for metric in ADVANCED_METRICS}, "pace": 65.0},
         },
     }
 
@@ -116,6 +121,11 @@ def test_advanced_stats_normalization_uses_week_team_min_and_max():
         assert normalized[("alpha", "beta")]["away"][metric] == 50
         assert normalized[("gamma", "delta")]["home"][metric] == 100
         assert normalized[("gamma", "delta")]["away"][metric] == 25
+    assert ranges["pace"] == {"min": 60.0, "max": 80.0}
+    assert normalized[("alpha", "beta")]["home"]["pace"] == 0
+    assert normalized[("alpha", "beta")]["away"]["pace"] == 50
+    assert normalized[("gamma", "delta")]["home"]["pace"] == 100
+    assert normalized[("gamma", "delta")]["away"]["pace"] == 25
 
 
 def test_site_refresh_uses_prediction_features_over_cached_stats(tmp_path, monkeypatch):
@@ -473,6 +483,87 @@ def test_new_predictions_refresh_prediction_timestamp(tmp_path, monkeypatch):
     output = site_builder.build_site(2026, 9, None, False, predictions_generated=True)
 
     assert json.loads(output.read_text())["generated_at"] != "2026-10-26T14:17:00+00:00"
+
+
+def test_preserve_lines_build_uses_saved_snapshot_without_fetching_or_writing_lines(
+    tmp_path, monkeypatch
+):
+    prediction_path = tmp_path / "week9.csv"
+    pd.DataFrame([{
+        "game_id": "espn-42",
+        "season": 2026,
+        "week": 9,
+        "game_date": "2026-10-31T12:00:00Z",
+        "home_team": "Alpha",
+        "away_team": "Beta",
+        "model_candidate": "recency_pace_role_stabilized_score_l1",
+        "predicted_home_score": 24.0,
+        "predicted_away_score": 20.0,
+        "predicted_home_margin": 4.0,
+        "predicted_total": 44.0,
+    }]).to_csv(prediction_path, index=False)
+    dashboard_dir = tmp_path / "public" / "data"
+    dashboard_dir.mkdir(parents=True)
+    history = {
+        "42:draftkings": {
+            "opening": {
+                "provider": "DraftKings",
+                "spread": -3.0,
+                "total": 46.5,
+                "observed_at": "2026-10-31T10:14:00+00:00",
+            },
+            "current": {
+                "provider": "DraftKings",
+                "spread": -3.5,
+                "total": 47.0,
+                "observed_at": "2026-10-31T10:15:00+00:00",
+            },
+        }
+    }
+    schedule_game = {
+        "id": "42",
+        "homeTeam": "Alpha",
+        "awayTeam": "Beta",
+        "startDate": "2026-10-31T12:00:00Z",
+    }
+    calls = []
+
+    def api_get(endpoint, params, api_key):
+        calls.append(endpoint)
+        if endpoint == "lines":
+            raise AssertionError("Preserving the line snapshot must not fetch lines.")
+        if endpoint == "games" and "week" in params:
+            return [schedule_game]
+        if endpoint == "rankings":
+            return []
+        return []
+
+    def unexpected_history_write(value):
+        raise AssertionError("Preserving saved lines must not rewrite line history.")
+
+    monkeypatch.setattr(site_builder, "PROJECT_ROOT", tmp_path)
+    monkeypatch.setattr(site_builder, "SITE_DIR", tmp_path / "public")
+    monkeypatch.setattr(site_builder, "DATA_DIR", dashboard_dir)
+    monkeypatch.setattr(site_builder, "HISTORY_PATH", tmp_path / "line_history.json")
+    monkeypatch.setattr(site_builder, "ATS_RESULTS_PATH", tmp_path / "ats_results.json")
+    monkeypatch.setattr(site_builder, "_prediction_file", lambda season, week: prediction_path)
+    monkeypatch.setattr(site_builder, "_api_get", api_get)
+    monkeypatch.setattr(site_builder, "_read_history", lambda: history)
+    monkeypatch.setattr(site_builder, "_write_history", unexpected_history_write)
+
+    output = site_builder.build_site(
+        2026, 9, None, False, predictions_generated=True, preserve_lines=True
+    )
+
+    payload = json.loads(output.read_text())
+    market = payload["games"][0]["market"]
+    assert market["opening"]["observed_at"] == "2026-10-31T10:14:00+00:00"
+    assert market["current"]["observed_at"] == "2026-10-31T10:15:00+00:00"
+    assert payload["market_data_status"] == "saved CFBD line snapshot"
+    assert payload["methodology"]["candidate_id"] == (
+        "recency_pace_role_stabilized_score_l1"
+    )
+    assert "lines" not in calls
 
 
 @pytest.mark.parametrize(

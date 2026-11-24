@@ -167,6 +167,7 @@ const advancedMetrics = [
   {key:"defense_ppa", short:"Def. PPA", lowerIsBetter:true, tooltip:"Ability to suppress the scoring value of opposing plays."},
   {key:"defense_successRate", short:"Def. success", lowerIsBetter:true, tooltip:"Ability to limit successful offensive plays."},
   {key:"defense_explosiveness", short:"Def. explosive", lowerIsBetter:true, tooltip:"Ability to prevent successful offensive plays from becoming high-value gains."},
+  {key:"pace", short:"Pace", tooltip:"Offensive plays per game. Higher values mean a faster pace, not necessarily better performance."},
 ];
 
 function normalizedScore(game, side, metric) {
@@ -285,7 +286,7 @@ function renderCoverage(game) {
     return `<circle class="radar-dot ${side}" cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="3"></circle>`;
   }).join("");
   return `${detailStatHeader(game)}
-    <p class="coverage-note">Higher values indicate better performance. 100% is best and 0% is worst.</p>
+    <p class="coverage-note">Higher values indicate better performance; for pace, higher means faster. 100% is highest and 0% is lowest.</p>
     <div class="coverage-layout"><div class="coverage-wrap"><svg class="coverage-plot" viewBox="0 0 440 350" role="img" aria-label="Radar coverage plot comparing normalized advanced stats for ${game.away.name} and ${game.home.name}">
       <polygon class="radar-grid" points="${ring(25)}"></polygon><polygon class="radar-grid" points="${ring(50)}"></polygon><polygon class="radar-grid" points="${ring(75)}"></polygon><polygon class="radar-grid" points="${ring(100)}"></polygon>
       ${spokes}

@@ -1,0 +1,3 @@
+candidate,season,score_mae
+Production baseline,2026,9.042647630780403
+Recency + pace,2026,9.019960569672826

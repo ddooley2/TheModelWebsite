@@ -1,0 +1,3 @@
+candidate,season,score_mae
+Production baseline,2026,9.042647630780403
+Core + Stage 5 score prior,2026,9.003690557717588

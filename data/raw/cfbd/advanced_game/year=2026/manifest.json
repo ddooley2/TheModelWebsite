@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "season": 2026,
+  "endpoint": "https://api.collegefootballdata.com/stats/game/advanced",
+  "request_parameters": {
+    "year": 2026,
+    "seasonType": "both",
+    "excludeGarbageTime": false
+  },
+  "fetched_at": "2026-11-24T02:50:49.050134+00:00",
+  "source_commit_sha": "7a974eb4f6e8fbb341a9668d40f5dcb0466f5e05",
+  "ingestion_code_sha256": "2458ce6d8d7cd017392ca932dc3bc34102f207fd2f6e03c8fcc967da354dcac2",
+  "response_sha256": "3dfcb517a3bcf3214df8b1a9a591581aaaa33f337ec22e9b14dc0d834d10c667",
+  "normalized_sha256": "f438ba57eca02853baa90efcb1bd74e37a52fd33bb72e6c578db2a6f9e5c8ed1",
+  "row_count": 3074,
+  "exclude_garbage_time": false,
+  "raw_payload": "response.json",
+  "normalized_table": "normalized.parquet"
+}

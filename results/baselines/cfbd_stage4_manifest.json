@@ -1,0 +1,652 @@
+{
+  "pace": {
+    "stage": "4A",
+    "production_model_changed": false,
+    "baseline": "Production baseline",
+    "challenger": "CFBD pace challenger",
+    "baseline_feature_columns": [
+      "home_elo",
+      "away_elo",
+      "elo_diff",
+      "home_points_for_recent",
+      "home_points_against_recent",
+      "away_points_for_recent",
+      "away_points_against_recent",
+      "home_points_for_season",
+      "home_points_against_season",
+      "away_points_for_season",
+      "away_points_against_season",
+      "home_win_pct_season",
+      "away_win_pct_season",
+      "home_games_played",
+      "away_games_played",
+      "home_rest_days",
+      "away_rest_days",
+      "week",
+      "neutral_site",
+      "home_offense_rating",
+      "home_defense_rating",
+      "away_offense_rating",
+      "away_defense_rating",
+      "offense_rating_diff",
+      "defense_rating_diff",
+      "home_preseason_elo",
+      "away_preseason_elo",
+      "preseason_elo_diff",
+      "home_team_talent",
+      "away_team_talent",
+      "home_recruiting_rank",
+      "away_recruiting_rank",
+      "home_recruiting_points",
+      "away_recruiting_points",
+      "home_offense_ppa",
+      "away_offense_ppa",
+      "home_offense_successRate",
+      "away_offense_successRate",
+      "home_offense_explosiveness",
+      "away_offense_explosiveness",
+      "home_defense_ppa",
+      "away_defense_ppa",
+      "home_defense_successRate",
+      "away_defense_successRate",
+      "home_defense_explosiveness",
+      "away_defense_explosiveness"
+    ],
+    "challenger_feature_columns": [
+      "home_pace_offense_plays_per_game_s2d",
+      "home_pace_offense_plays_per_game_recent",
+      "home_pace_offense_drives_per_game_s2d",
+      "home_pace_offense_drives_per_game_recent",
+      "home_pace_defense_plays_allowed_per_game_s2d",
+      "home_pace_defense_plays_allowed_per_game_recent",
+      "home_pace_defense_drives_allowed_per_game_s2d",
+      "home_pace_defense_drives_allowed_per_game_recent",
+      "away_pace_offense_plays_per_game_s2d",
+      "away_pace_offense_plays_per_game_recent",
+      "away_pace_offense_drives_per_game_s2d",
+      "away_pace_offense_drives_per_game_recent",
+      "away_pace_defense_plays_allowed_per_game_s2d",
+      "away_pace_defense_plays_allowed_per_game_recent",
+      "away_pace_defense_drives_allowed_per_game_s2d",
+      "away_pace_defense_drives_allowed_per_game_recent",
+      "home_pace_n_games_s2d",
+      "home_pace_n_plays_s2d",
+      "home_pace_n_drives_s2d",
+      "home_pace_n_games_recent_ess",
+      "home_pace_missing_s2d",
+      "home_pace_missing_recent",
+      "away_pace_n_games_s2d",
+      "away_pace_n_plays_s2d",
+      "away_pace_n_drives_s2d",
+      "away_pace_n_games_recent_ess",
+      "away_pace_missing_s2d",
+      "away_pace_missing_recent",
+      "home_off_plays_minus_away_def_plays_s2d",
+      "home_off_plays_minus_away_def_plays_recent",
+      "away_off_plays_minus_home_def_plays_s2d",
+      "away_off_plays_minus_home_def_plays_recent",
+      "offense_plays_sum_s2d",
+      "offense_plays_sum_recent"
+    ],
+    "validation_seasons": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "selection_policy": "Independent challenger evaluation on the same season-forward folds; no parameter tuning or production selection.",
+    "cfbd_source_policy": {
+      "overall_table": "stg_team_game_stats_raw",
+      "split_table": "stg_pbp_team_game_raw",
+      "excludeGarbageTime": false,
+      "missing_stats": "Retain the canonical game; emit missing CFBD features and missingness and sample-size features. LightGBM handles NaN values natively.",
+      "source_quality": {
+        "overall_source_rows": 41052,
+        "split_source_rows": 41052,
+        "reconciled_team_game_rows": 41052,
+        "split_count_inference": {
+          "offense_passingPlays": {
+            "nonzero_ppa_rows": 41046,
+            "reliable_integer_count_rows": 41046,
+            "zero_or_missing_ppa_rows_count_unavailable": 6
+          },
+          "defense_passingPlays": {
+            "nonzero_ppa_rows": 41046,
+            "reliable_integer_count_rows": 41046,
+            "zero_or_missing_ppa_rows_count_unavailable": 6
+          },
+          "offense_rushingPlays": {
+            "nonzero_ppa_rows": 41049,
+            "reliable_integer_count_rows": 41049,
+            "zero_or_missing_ppa_rows_count_unavailable": 3
+          },
+          "defense_rushingPlays": {
+            "nonzero_ppa_rows": 41049,
+            "reliable_integer_count_rows": 41049,
+            "zero_or_missing_ppa_rows_count_unavailable": 3
+          }
+        }
+      },
+      "matched_game_coverage": {
+        "canonical_team_game_rows": 35386,
+        "matched_team_game_rows": 31872,
+        "missing_team_game_rows": 3514,
+        "coverage_rate": 0.90069519018821,
+        "by_season": {
+          "2001": {
+            "canonical_team_game_rows": 1304,
+            "matched_team_game_rows": 804,
+            "missing_team_game_rows": 500,
+            "coverage_rate": 0.6165644171779141
+          },
+          "2002": {
+            "canonical_team_game_rows": 1414,
+            "matched_team_game_rows": 62,
+            "missing_team_game_rows": 1352,
+            "coverage_rate": 0.04384724186704385
+          },
+          "2003": {
+            "canonical_team_game_rows": 1398,
+            "matched_team_game_rows": 924,
+            "missing_team_game_rows": 474,
+            "coverage_rate": 0.6609442060085837
+          },
+          "2004": {
+            "canonical_team_game_rows": 1310,
+            "matched_team_game_rows": 882,
+            "missing_team_game_rows": 428,
+            "coverage_rate": 0.6732824427480916
+          },
+          "2005": {
+            "canonical_team_game_rows": 1328,
+            "matched_team_game_rows": 1126,
+            "missing_team_game_rows": 202,
+            "coverage_rate": 0.8478915662650602
+          },
+          "2006": {
+            "canonical_team_game_rows": 1428,
+            "matched_team_game_rows": 1250,
+            "missing_team_game_rows": 178,
+            "coverage_rate": 0.8753501400560224
+          },
+          "2007": {
+            "canonical_team_game_rows": 1436,
+            "matched_team_game_rows": 1296,
+            "missing_team_game_rows": 140,
+            "coverage_rate": 0.9025069637883009
+          },
+          "2008": {
+            "canonical_team_game_rows": 1434,
+            "matched_team_game_rows": 1386,
+            "missing_team_game_rows": 48,
+            "coverage_rate": 0.9665271966527197
+          },
+          "2009": {
+            "canonical_team_game_rows": 1428,
+            "matched_team_game_rows": 1398,
+            "missing_team_game_rows": 30,
+            "coverage_rate": 0.9789915966386554
+          },
+          "2010": {
+            "canonical_team_game_rows": 1436,
+            "matched_team_game_rows": 1402,
+            "missing_team_game_rows": 34,
+            "coverage_rate": 0.9763231197771588
+          },
+          "2011": {
+            "canonical_team_game_rows": 1430,
+            "matched_team_game_rows": 1416,
+            "missing_team_game_rows": 14,
+            "coverage_rate": 0.9902097902097902
+          },
+          "2012": {
+            "canonical_team_game_rows": 1464,
+            "matched_team_game_rows": 1444,
+            "missing_team_game_rows": 20,
+            "coverage_rate": 0.9863387978142076
+          },
+          "2013": {
+            "canonical_team_game_rows": 1474,
+            "matched_team_game_rows": 1474,
+            "missing_team_game_rows": 0,
+            "coverage_rate": 1.0
+          },
+          "2014": {
+            "canonical_team_game_rows": 1520,
+            "matched_team_game_rows": 1488,
+            "missing_team_game_rows": 32,
+            "coverage_rate": 0.9789473684210527
+          },
+          "2015": {
+            "canonical_team_game_rows": 1530,
+            "matched_team_game_rows": 1516,
+            "missing_team_game_rows": 14,
+            "coverage_rate": 0.9908496732026144
+          },
+          "2016": {
+            "canonical_team_game_rows": 1520,
+            "matched_team_game_rows": 1494,
+            "missing_team_game_rows": 26,
+            "coverage_rate": 0.9828947368421053
+          },
+          "2017": {
+            "canonical_team_game_rows": 1552,
+            "matched_team_game_rows": 1544,
+            "missing_team_game_rows": 8,
+            "coverage_rate": 0.9948453608247423
+          },
+          "2018": {
+            "canonical_team_game_rows": 1544,
+            "matched_team_game_rows": 1540,
+            "missing_team_game_rows": 4,
+            "coverage_rate": 0.9974093264248705
+          },
+          "2019": {
+            "canonical_team_game_rows": 1548,
+            "matched_team_game_rows": 1546,
+            "missing_team_game_rows": 2,
+            "coverage_rate": 0.9987080103359173
+          },
+          "2021": {
+            "canonical_team_game_rows": 1540,
+            "matched_team_game_rows": 1540,
+            "missing_team_game_rows": 0,
+            "coverage_rate": 1.0
+          },
+          "2022": {
+            "canonical_team_game_rows": 1552,
+            "matched_team_game_rows": 1552,
+            "missing_team_game_rows": 0,
+            "coverage_rate": 1.0
+          },
+          "2023": {
+            "canonical_team_game_rows": 1584,
+            "matched_team_game_rows": 1584,
+            "missing_team_game_rows": 0,
+            "coverage_rate": 1.0
+          },
+          "2024": {
+            "canonical_team_game_rows": 1596,
+            "matched_team_game_rows": 1590,
+            "missing_team_game_rows": 6,
+            "coverage_rate": 0.9962406015037594
+          },
+          "2025": {
+            "canonical_team_game_rows": 1616,
+            "matched_team_game_rows": 1614,
+            "missing_team_game_rows": 2,
+            "coverage_rate": 0.9987623762376238
+          }
+        }
+      }
+    },
+    "feature_parameters": {
+      "recency_half_life_days": 56,
+      "prior_season_shrinkage_games": 3,
+      "season_to_date_cutoff": "Only completed observations before the target UTC calendar-date batch."
+    },
+    "baseline_mean_seasonal_score_mae": 9.18244198931621,
+    "challenger_mean_seasonal_score_mae": 9.14950869850593,
+    "baseline_overall_score_mae": 9.181573911853388,
+    "challenger_overall_score_mae": 9.148587358741326,
+    "artifacts": {
+      "seasonal_metrics": "seasonal_metrics.csv",
+      "seasonal_comparison_chart": "seasonal_score_mae_comparison.png",
+      "baseline_predictions": "baseline_predictions.csv",
+      "challenger_predictions": "challenger_predictions.csv",
+      "paired_errors": "paired_error_deltas.csv",
+      "feature_data_dictionary": "feature_data_dictionary.csv",
+      "source_coverage": "source_coverage.json"
+    }
+  },
+  "efficiency": {
+    "stage": "4B",
+    "production_model_changed": false,
+    "baseline": "Production baseline",
+    "challenger": "CFBD efficiency challenger",
+    "baseline_feature_columns": [
+      "home_elo",
+      "away_elo",
+      "elo_diff",
+      "home_points_for_recent",
+      "home_points_against_recent",
+      "away_points_for_recent",
+      "away_points_against_recent",
+      "home_points_for_season",
+      "home_points_against_season",
+      "away_points_for_season",
+      "away_points_against_season",
+      "home_win_pct_season",
+      "away_win_pct_season",
+      "home_games_played",
+      "away_games_played",
+      "home_rest_days",
+      "away_rest_days",
+      "week",
+      "neutral_site",
+      "home_offense_rating",
+      "home_defense_rating",
+      "away_offense_rating",
+      "away_defense_rating",
+      "offense_rating_diff",
+      "defense_rating_diff",
+      "home_preseason_elo",
+      "away_preseason_elo",
+      "preseason_elo_diff",
+      "home_team_talent",
+      "away_team_talent",
+      "home_recruiting_rank",
+      "away_recruiting_rank",
+      "home_recruiting_points",
+      "away_recruiting_points"
+    ],
+    "challenger_feature_columns": [
+      "home_eff_off_ppa_s2d",
+      "home_eff_off_ppa_recent",
+      "home_eff_def_ppa_s2d",
+      "home_eff_def_ppa_recent",
+      "home_eff_off_success_rate_s2d",
+      "home_eff_off_success_rate_recent",
+      "home_eff_def_success_rate_s2d",
+      "home_eff_def_success_rate_recent",
+      "home_eff_off_explosiveness_s2d",
+      "home_eff_off_explosiveness_recent",
+      "home_eff_def_explosiveness_s2d",
+      "home_eff_def_explosiveness_recent",
+      "home_eff_off_pass_ppa_s2d",
+      "home_eff_off_pass_ppa_recent",
+      "home_eff_def_pass_ppa_s2d",
+      "home_eff_def_pass_ppa_recent",
+      "home_eff_off_pass_success_rate_s2d",
+      "home_eff_off_pass_success_rate_recent",
+      "home_eff_def_pass_success_rate_s2d",
+      "home_eff_def_pass_success_rate_recent",
+      "home_eff_off_pass_explosiveness_s2d",
+      "home_eff_off_pass_explosiveness_recent",
+      "home_eff_def_pass_explosiveness_s2d",
+      "home_eff_def_pass_explosiveness_recent",
+      "home_eff_off_rush_ppa_s2d",
+      "home_eff_off_rush_ppa_recent",
+      "home_eff_def_rush_ppa_s2d",
+      "home_eff_def_rush_ppa_recent",
+      "home_eff_off_rush_success_rate_s2d",
+      "home_eff_off_rush_success_rate_recent",
+      "home_eff_def_rush_success_rate_s2d",
+      "home_eff_def_rush_success_rate_recent",
+      "home_eff_off_rush_explosiveness_s2d",
+      "home_eff_off_rush_explosiveness_recent",
+      "home_eff_def_rush_explosiveness_s2d",
+      "home_eff_def_rush_explosiveness_recent",
+      "away_eff_off_ppa_s2d",
+      "away_eff_off_ppa_recent",
+      "away_eff_def_ppa_s2d",
+      "away_eff_def_ppa_recent",
+      "away_eff_off_success_rate_s2d",
+      "away_eff_off_success_rate_recent",
+      "away_eff_def_success_rate_s2d",
+      "away_eff_def_success_rate_recent",
+      "away_eff_off_explosiveness_s2d",
+      "away_eff_off_explosiveness_recent",
+      "away_eff_def_explosiveness_s2d",
+      "away_eff_def_explosiveness_recent",
+      "away_eff_off_pass_ppa_s2d",
+      "away_eff_off_pass_ppa_recent",
+      "away_eff_def_pass_ppa_s2d",
+      "away_eff_def_pass_ppa_recent",
+      "away_eff_off_pass_success_rate_s2d",
+      "away_eff_off_pass_success_rate_recent",
+      "away_eff_def_pass_success_rate_s2d",
+      "away_eff_def_pass_success_rate_recent",
+      "away_eff_off_pass_explosiveness_s2d",
+      "away_eff_off_pass_explosiveness_recent",
+      "away_eff_def_pass_explosiveness_s2d",
+      "away_eff_def_pass_explosiveness_recent",
+      "away_eff_off_rush_ppa_s2d",
+      "away_eff_off_rush_ppa_recent",
+      "away_eff_def_rush_ppa_s2d",
+      "away_eff_def_rush_ppa_recent",
+      "away_eff_off_rush_success_rate_s2d",
+      "away_eff_off_rush_success_rate_recent",
+      "away_eff_def_rush_success_rate_s2d",
+      "away_eff_def_rush_success_rate_recent",
+      "away_eff_off_rush_explosiveness_s2d",
+      "away_eff_off_rush_explosiveness_recent",
+      "away_eff_def_rush_explosiveness_s2d",
+      "away_eff_def_rush_explosiveness_recent",
+      "home_eff_n_games_s2d",
+      "home_eff_n_plays_s2d",
+      "home_eff_n_pass_plays_s2d",
+      "home_eff_n_rush_plays_s2d",
+      "home_eff_n_games_recent_ess",
+      "home_eff_missing_s2d",
+      "home_eff_missing_recent",
+      "home_eff_missing_metrics_s2d",
+      "home_eff_missing_metrics_recent",
+      "away_eff_n_games_s2d",
+      "away_eff_n_plays_s2d",
+      "away_eff_n_pass_plays_s2d",
+      "away_eff_n_rush_plays_s2d",
+      "away_eff_n_games_recent_ess",
+      "away_eff_missing_s2d",
+      "away_eff_missing_recent",
+      "away_eff_missing_metrics_s2d",
+      "away_eff_missing_metrics_recent",
+      "home_off_ppa_minus_away_def_ppa_s2d",
+      "home_off_ppa_minus_away_def_ppa_recent",
+      "away_off_ppa_minus_home_def_ppa_s2d",
+      "away_off_ppa_minus_home_def_ppa_recent"
+    ],
+    "validation_seasons": [
+      2021,
+      2022,
+      2023,
+      2024,
+      2025
+    ],
+    "selection_policy": "Independent challenger evaluation on the same season-forward folds; no parameter tuning or production selection.",
+    "cfbd_source_policy": {
+      "overall_table": "stg_team_game_stats_raw",
+      "split_table": "stg_pbp_team_game_raw",
+      "excludeGarbageTime": false,
+      "missing_stats": "Retain the canonical game; emit missing CFBD features and missingness and sample-size features. LightGBM handles NaN values natively.",
+      "source_quality": {
+        "overall_source_rows": 41052,
+        "split_source_rows": 41052,
+        "reconciled_team_game_rows": 41052,
+        "split_count_inference": {
+          "offense_passingPlays": {
+            "nonzero_ppa_rows": 41046,
+            "reliable_integer_count_rows": 41046,
+            "zero_or_missing_ppa_rows_count_unavailable": 6
+          },
+          "defense_passingPlays": {
+            "nonzero_ppa_rows": 41046,
+            "reliable_integer_count_rows": 41046,
+            "zero_or_missing_ppa_rows_count_unavailable": 6
+          },
+          "offense_rushingPlays": {
+            "nonzero_ppa_rows": 41049,
+            "reliable_integer_count_rows": 41049,
+            "zero_or_missing_ppa_rows_count_unavailable": 3
+          },
+          "defense_rushingPlays": {
+            "nonzero_ppa_rows": 41049,
+            "reliable_integer_count_rows": 41049,
+            "zero_or_missing_ppa_rows_count_unavailable": 3
+          }
+        }
+      },
+      "matched_game_coverage": {
+        "canonical_team_game_rows": 35386,
+        "matched_team_game_rows": 31872,
+        "missing_team_game_rows": 3514,
+        "coverage_rate": 0.90069519018821,
+        "by_season": {
+          "2001": {
+            "canonical_team_game_rows": 1304,
+            "matched_team_game_rows": 804,
+            "missing_team_game_rows": 500,
+            "coverage_rate": 0.6165644171779141
+          },
+          "2002": {
+            "canonical_team_game_rows": 1414,
+            "matched_team_game_rows": 62,
+            "missing_team_game_rows": 1352,
+            "coverage_rate": 0.04384724186704385
+          },
+          "2003": {
+            "canonical_team_game_rows": 1398,
+            "matched_team_game_rows": 924,
+            "missing_team_game_rows": 474,
+            "coverage_rate": 0.6609442060085837
+          },
+          "2004": {
+            "canonical_team_game_rows": 1310,
+            "matched_team_game_rows": 882,
+            "missing_team_game_rows": 428,
+            "coverage_rate": 0.6732824427480916
+          },
+          "2005": {
+            "canonical_team_game_rows": 1328,
+            "matched_team_game_rows": 1126,
+            "missing_team_game_rows": 202,
+            "coverage_rate": 0.8478915662650602
+          },
+          "2006": {
+            "canonical_team_game_rows": 1428,
+            "matched_team_game_rows": 1250,
+            "missing_team_game_rows": 178,
+            "coverage_rate": 0.8753501400560224
+          },
+          "2007": {
+            "canonical_team_game_rows": 1436,
+            "matched_team_game_rows": 1296,
+            "missing_team_game_rows": 140,
+            "coverage_rate": 0.9025069637883009
+          },
+          "2008": {
+            "canonical_team_game_rows": 1434,
+            "matched_team_game_rows": 1386,
+            "missing_team_game_rows": 48,
+            "coverage_rate": 0.9665271966527197
+          },
+          "2009": {
+            "canonical_team_game_rows": 1428,
+            "matched_team_game_rows": 1398,
+            "missing_team_game_rows": 30,
+            "coverage_rate": 0.9789915966386554
+          },
+          "2010": {
+            "canonical_team_game_rows": 1436,
+            "matched_team_game_rows": 1402,
+            "missing_team_game_rows": 34,
+            "coverage_rate": 0.9763231197771588
+          },
+          "2011": {
+            "canonical_team_game_rows": 1430,
+            "matched_team_game_rows": 1416,
+            "missing_team_game_rows": 14,
+            "coverage_rate": 0.9902097902097902
+          },
+          "2012": {
+            "canonical_team_game_rows": 1464,
+            "matched_team_game_rows": 1444,
+            "missing_team_game_rows": 20,
+            "coverage_rate": 0.9863387978142076
+          },
+          "2013": {
+            "canonical_team_game_rows": 1474,
+            "matched_team_game_rows": 1474,
+            "missing_team_game_rows": 0,
+            "coverage_rate": 1.0
+          },
+          "2014": {
+            "canonical_team_game_rows": 1520,
+            "matched_team_game_rows": 1488,
+            "missing_team_game_rows": 32,
+            "coverage_rate": 0.9789473684210527
+          },
+          "2015": {
+            "canonical_team_game_rows": 1530,
+            "matched_team_game_rows": 1516,
+            "missing_team_game_rows": 14,
+            "coverage_rate": 0.9908496732026144
+          },
+          "2016": {
+            "canonical_team_game_rows": 1520,
+            "matched_team_game_rows": 1494,
+            "missing_team_game_rows": 26,
+            "coverage_rate": 0.9828947368421053
+          },
+          "2017": {
+            "canonical_team_game_rows": 1552,
+            "matched_team_game_rows": 1544,
+            "missing_team_game_rows": 8,
+            "coverage_rate": 0.9948453608247423
+          },
+          "2018": {
+            "canonical_team_game_rows": 1544,
+            "matched_team_game_rows": 1540,
+            "missing_team_game_rows": 4,
+            "coverage_rate": 0.9974093264248705
+          },
+          "2019": {
+            "canonical_team_game_rows": 1548,
+            "matched_team_game_rows": 1546,
+            "missing_team_game_rows": 2,
+            "coverage_rate": 0.9987080103359173
+          },
+          "2021": {
+            "canonical_team_game_rows": 1540,
+            "matched_team_game_rows": 1540,
+            "missing_team_game_rows": 0,
+            "coverage_rate": 1.0
+          },
+          "2022": {
+            "canonical_team_game_rows": 1552,
+            "matched_team_game_rows": 1552,
+            "missing_team_game_rows": 0,
+            "coverage_rate": 1.0
+          },
+          "2023": {
+            "canonical_team_game_rows": 1584,
+            "matched_team_game_rows": 1584,
+            "missing_team_game_rows": 0,
+            "coverage_rate": 1.0
+          },
+          "2024": {
+            "canonical_team_game_rows": 1596,
+            "matched_team_game_rows": 1590,
+            "missing_team_game_rows": 6,
+            "coverage_rate": 0.9962406015037594
+          },
+          "2025": {
+            "canonical_team_game_rows": 1616,
+            "matched_team_game_rows": 1614,
+            "missing_team_game_rows": 2,
+            "coverage_rate": 0.9987623762376238
+          }
+        }
+      }
+    },
+    "feature_parameters": {
+      "recency_half_life_days": 56,
+      "prior_season_shrinkage_games": 3,
+      "season_to_date_cutoff": "Only completed observations before the target UTC calendar-date batch."
+    },
+    "baseline_mean_seasonal_score_mae": 9.18244198931621,
+    "challenger_mean_seasonal_score_mae": 9.171214351275312,
+    "baseline_overall_score_mae": 9.181573911853388,
+    "challenger_overall_score_mae": 9.170274255548874,
+    "artifacts": {
+      "seasonal_metrics": "seasonal_metrics.csv",
+      "seasonal_comparison_chart": "seasonal_score_mae_comparison.png",
+      "baseline_predictions": "baseline_predictions.csv",
+      "challenger_predictions": "challenger_predictions.csv",
+      "paired_errors": "paired_error_deltas.csv",
+      "feature_data_dictionary": "feature_data_dictionary.csv",
+      "source_coverage": "source_coverage.json"
+    }
+  }
+}
