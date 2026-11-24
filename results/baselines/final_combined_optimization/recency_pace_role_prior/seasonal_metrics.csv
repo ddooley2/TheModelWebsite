@@ -1,0 +1,11 @@
+candidate,season,score_mae
+Production baseline,2021,9.314880710298702
+Production baseline,2022,9.095575397128187
+Production baseline,2023,9.239609689850578
+Production baseline,2024,9.208049375066992
+Production baseline,2025,9.054094774236598
+Core + Stage 5 score prior,2021,9.27176326113483
+Core + Stage 5 score prior,2022,9.09257573803842
+Core + Stage 5 score prior,2023,9.200326914750539
+Core + Stage 5 score prior,2024,9.153446674632717
+Core + Stage 5 score prior,2025,8.946305901658208
