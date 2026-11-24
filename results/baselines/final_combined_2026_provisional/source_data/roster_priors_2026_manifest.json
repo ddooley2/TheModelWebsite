@@ -1,0 +1,17 @@
+{
+  "season": 2026,
+  "fetched_at_utc": "2026-11-24T02:52:49.579307+00:00",
+  "rows": 221,
+  "fields": [
+    "season",
+    "team",
+    "team_talent",
+    "recruiting_rank",
+    "recruiting_points"
+  ],
+  "sha256": "501e49dd1135087cb2e212309b38143e27e82cfb59ed8ada80a756bda7ad6038",
+  "provenance": [
+    "CFBD /talent?year=2026",
+    "CFBD /recruiting/teams?year=2026"
+  ]
+}

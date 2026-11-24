@@ -304,10 +304,23 @@ def _write_candidate_chart(
 def run_experiment(
     db_path: Path = DB_PATH,
     output_dir: Path = DEFAULT_OUTPUT_DIR,
+    validation_seasons: list[int] | None = None,
+    source_metadata: dict | None = None,
 ) -> dict:
     """Run fixed Stage 3–6 combinations on identical walk-forward folds."""
     ensure_warehouse(db_path)
     games = load_historical_games(db_path).reset_index(drop=True)
+    validation_seasons = sorted(set(
+        BACKTEST_SEASONS if validation_seasons is None else validation_seasons
+    ))
+    if not validation_seasons:
+        raise ValueError("At least one validation season is required.")
+    missing_seasons = set(validation_seasons) - set(games["season"].unique())
+    if missing_seasons:
+        raise ValueError(
+            f"No completed validation games for seasons: {sorted(missing_seasons)}"
+        )
+    final_season = max(validation_seasons)
     schedule_history = load_schedule_history(db_path)
     advanced = load_advanced_stats(db_path)
     baseline_features = build_model_features(
@@ -378,7 +391,10 @@ def run_experiment(
     for candidate_id, (features, columns) in candidate_inputs.items():
         validate_market_free_feature_columns(columns)
         candidate_predictions = run_walk_forward_predictions(
-            games, features, feature_columns=columns
+            games,
+            features,
+            val_seasons=validation_seasons,
+            feature_columns=columns,
         )
         predictions[candidate_id] = candidate_predictions
         candidate_details[candidate_id] = {
@@ -410,7 +426,7 @@ def run_experiment(
     bootstrap_by_candidate = {}
     for candidate_id, frame in challengers.items():
         paired = _paired_final_season(
-            baseline_predictions, frame, FINAL_SEASON
+            baseline_predictions, frame, final_season
         )
         bootstrap_by_candidate[candidate_id] = _week_cluster_bootstrap(paired)
 
@@ -460,6 +476,7 @@ def run_experiment(
             seasonal["candidate_id"] == candidate_id
         ].to_dict("records")
 
+    provisional_2026 = validation_seasons == [2026]
     training_seasons = {
         str(season): [
             int(value) for value in sorted(
@@ -481,21 +498,42 @@ def run_experiment(
         "candidate_ids": list(candidate_inputs),
         "candidate_labels": CANDIDATE_LABELS,
         "training_seasons_by_validation_season": training_seasons,
-        "validation_seasons": [int(season) for season in sorted(
-            seasonal["season"].unique()
-        )],
+        "validation_seasons": validation_seasons,
         "untouched_test_block": None,
         "untouched_test_block_note": (
-            "All 2021-2025 seasons were examined in prior sequential stages; "
-            "this is a screening experiment, not a promotion test."
+            (
+                "Provisional 2026 current-season screen; the season is incomplete "
+                "and the Week 8 production evaluation predates this comparison. "
+                "Do not tune or promote from this screen."
+                if provisional_2026
+                else (
+                    "All 2021-2025 seasons were examined in prior sequential stages; "
+                    "this is a screening experiment, not a promotion test."
+                )
+            )
         ),
+        "source_data_snapshot": source_metadata,
         "prediction_cutoff_policy": (
-            "Each feature builder uses results available before the target UTC "
-            "calendar-date batch."
+            (
+                "Feature builders exclude games on the target UTC calendar date. "
+                "The 2026 CFBD statistics and roster priors are pinned current "
+                "snapshots, not archived as-of-game-date snapshots; provider "
+                "revision timing is unavailable."
+            )
+            if provisional_2026
+            else (
+                "Each feature builder uses results available before the target UTC "
+                "calendar-date batch."
+            )
         ),
         "garbage_time_policy": (
-            "No new CFBD endpoint is queried; existing Stage 4 CFBD tables retain "
-            "the excludeGarbageTime=false policy."
+            "The 2026 advanced-game cache and historical Stage 4 CFBD tables use "
+            "excludeGarbageTime=false."
+            if provisional_2026
+            else (
+                "No new CFBD endpoint is queried; existing Stage 4 CFBD tables "
+                "retain the excludeGarbageTime=false policy."
+            )
         ),
         "market_independence_check_passed": True,
         "baseline_feature_schema_sha256": _schema_hash(MODEL_COLUMNS),
@@ -518,8 +556,14 @@ def run_experiment(
         "cfbd_source_quality": stat_source_quality,
         "cfbd_stat_coverage": stat_coverage,
         "cfbd_endpoint_and_cache_versions": {
-            "new_endpoint": None,
-            "new_cache": None,
+            "new_endpoint": (
+                source_metadata.get("advanced_game_stats", {}).get("endpoint")
+                if source_metadata else None
+            ),
+            "new_cache": (
+                source_metadata.get("advanced_game_stats", {}).get("manifest_path")
+                if source_metadata else None
+            ),
             "historical_advanced_stats": (
                 "stg_team_game_stats_raw and stg_pbp_team_game_raw; "
                 "excludeGarbageTime=false"
@@ -533,8 +577,15 @@ def run_experiment(
         "metrics_by_subset": _json_records(subset_metrics),
         "paired_week_cluster_bootstrap_ci": bootstrap_by_candidate,
         "promotion_decision": (
-            "none; do not promote from this screen because no untouched block exists "
-            "and all candidates were compared on previously examined seasons"
+            (
+                "none; this is a provisional screen on an incomplete 2026 season "
+                "with an earlier Week 8 production evaluation; do not tune or promote"
+            )
+            if provisional_2026
+            else (
+                "none; do not promote from this screen because no untouched block "
+                "exists and all candidates were compared on previously examined seasons"
+            )
         ),
         "artifact_paths": {
             "all_candidate_seasonal_chart": "seasonal_score_mae_all_candidates.png",
@@ -554,7 +605,15 @@ def run_experiment(
         },
     }
     (output_dir / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
-    _write_report(output_dir, seasonal, subset_metrics, overall_metrics, bootstrap_by_candidate)
+    _write_report(
+        output_dir,
+        seasonal,
+        subset_metrics,
+        overall_metrics,
+        bootstrap_by_candidate,
+        validation_seasons=validation_seasons,
+        provisional_2026=provisional_2026,
+    )
     return manifest
 
 
@@ -564,38 +623,83 @@ def _write_report(
     subset_metrics: pd.DataFrame,
     overall_metrics: dict,
     bootstrap: dict,
+    *,
+    validation_seasons: list[int],
+    provisional_2026: bool,
 ) -> None:
-    final_seasonal = seasonal[seasonal["season"] == FINAL_SEASON].set_index(
+    final_season = max(validation_seasons)
+    final_seasonal = seasonal[seasonal["season"] == final_season].set_index(
         "candidate_id"
     )
     subset_all = subset_metrics[subset_metrics["season"] == "all"]
-    lines = [
-        "# Final combined optimization screen",
-        "",
-        "All candidates use the same 2021–2025 walk-forward folds and the same "
-        "score model. Parameters were fixed before this run. The seasons have "
-        "already been examined in earlier stages, so results are screening-only.",
-        "",
-        "| Candidate | Overall score MAE | 2025 score MAE | 2025 margin MAE | 2025 total MAE |",
-        "|---|---:|---:|---:|---:|",
-    ]
+    if provisional_2026:
+        games = int(final_seasonal["games"].iloc[0])
+        lines = [
+            "# Provisional 2026 combined-model comparison",
+            "",
+            (
+                f"All candidates were evaluated on the same {games} completed "
+                "FBS-vs-FBS games in the pinned 2026 snapshot (latest game "
+                "2026-11-22). Each candidate was trained only on prior seasons "
+                "and no parameters were tuned. Feature builders exclude games "
+                "on each target's UTC date, but CFBD statistics and roster priors "
+                "are pinned current snapshots rather than archived as-of-game-date "
+                "snapshots, so provider revisions are a limitation. The season is "
+                "incomplete, and a Week 8 production evaluation predates this "
+                "comparison; treat it as provisional, not a fully untouched test."
+            ),
+            "",
+            "| Candidate | Games | 2026 score MAE | 2026 margin MAE | 2026 total MAE |",
+            "|---|---:|---:|---:|---:|",
+        ]
+    else:
+        lines = [
+            "# Final combined optimization screen",
+            "",
+            (
+                f"All candidates use the same {min(validation_seasons)}–"
+                f"{max(validation_seasons)} walk-forward folds and the same "
+                "score model. Parameters were fixed before this run. The "
+                "seasons have already been examined in earlier stages, so "
+                "results are screening-only."
+            ),
+            "",
+            "| Candidate | Overall score MAE | "
+            f"{final_season} score MAE | {final_season} margin MAE | "
+            f"{final_season} total MAE |",
+            "|---|---:|---:|---:|---:|",
+        ]
     for candidate_id, label in CANDIDATE_LABELS.items():
         overall = overall_metrics[candidate_id]
         final = final_seasonal.loc[candidate_id]
-        lines.append(
-            f"| {label} | {overall['score_mae']:.4f} | "
-            f"{final['score_mae']:.4f} | {final['margin_mae']:.4f} | "
-            f"{final['total_mae']:.4f} |"
-        )
+        if provisional_2026:
+            lines.append(
+                f"| {label} | {int(final['games'])} | "
+                f"{final['score_mae']:.4f} | {final['margin_mae']:.4f} | "
+                f"{final['total_mae']:.4f} |"
+            )
+        else:
+            lines.append(
+                f"| {label} | {overall['score_mae']:.4f} | "
+                f"{final['score_mae']:.4f} | {final['margin_mae']:.4f} | "
+                f"{final['total_mae']:.4f} |"
+            )
     lines.extend([
         "",
         "## Opening-week and neutral-site MAE",
         "",
-        "| Candidate | Weeks 0–3 | Neutral-site all seasons | Neutral-site 2025 |",
-        "|---|---:|---:|---:|",
+        (
+            "| Candidate | Weeks 0–3 | Neutral-site MAE |"
+            if provisional_2026
+            else (
+                "| Candidate | Weeks 0–3 | Neutral-site all seasons | "
+                f"Neutral-site {final_season} |"
+            )
+        ),
+        "|---|---:|---:" + ("" if provisional_2026 else "---:") + "|",
     ])
     final_neutral = subset_metrics[
-        (subset_metrics["season"] == FINAL_SEASON)
+        (subset_metrics["season"] == final_season)
         & (subset_metrics["subset"] == "Neutral site")
     ].set_index("candidate_id")
     for candidate_id, label in CANDIDATE_LABELS.items():
@@ -609,11 +713,17 @@ def _write_report(
         ]
         if early.empty or neutral.empty or candidate_id not in final_neutral.index:
             continue
-        lines.append(
-            f"| {label} | {early.iloc[0]['score_mae']:.4f} | "
-            f"{neutral.iloc[0]['score_mae']:.4f} | "
-            f"{final_neutral.loc[candidate_id, 'score_mae']:.4f} |"
-        )
+        if provisional_2026:
+            lines.append(
+                f"| {label} | {early.iloc[0]['score_mae']:.4f} | "
+                f"{final_neutral.loc[candidate_id, 'score_mae']:.4f} |"
+            )
+        else:
+            lines.append(
+                f"| {label} | {early.iloc[0]['score_mae']:.4f} | "
+                f"{neutral.iloc[0]['score_mae']:.4f} | "
+                f"{final_neutral.loc[candidate_id, 'score_mae']:.4f} |"
+            )
     lines.extend([
         "",
         "## Seasonal score MAE",
@@ -635,9 +745,17 @@ def _write_report(
         )
     lines.extend([
         "",
-        "## Paired final-season intervals",
+        (
+            f"## Paired {final_season} intervals"
+            if provisional_2026
+            else "## Paired final-season intervals"
+        ),
         "",
-        "| Candidate | Overall 95% CI for score-MAE delta vs baseline |",
+        (
+            "| Candidate | Paired week-cluster 95% CI for score-MAE delta vs baseline |"
+            if provisional_2026
+            else "| Candidate | Overall 95% CI for score-MAE delta vs baseline |"
+        ),
         "|---|---:|",
     ])
     for candidate_id, label in CANDIDATE_LABELS.items():
@@ -652,16 +770,29 @@ def _write_report(
         "## Recommendation",
         "",
         (
-            "Treat the cumulative stack as a screening candidate only. Prefer the "
-            "simplest recency-plus-pace combination unless stabilized role/site "
-            "features add repeatable value across seasons and neutral games. Keep "
-            "Stage 5 and Stage 4B as ablations; do not select a winner from the "
-            "previously examined 2025 block."
+            (
+                "Treat this as a provisional out-of-time signal only. Do not tune "
+                "or promote using this incomplete season; keep production unchanged "
+                "and repeat the locked comparison after the 2026 season and data "
+                "reconciliation are complete."
+            )
+            if provisional_2026
+            else (
+                "Treat the cumulative stack as a screening candidate only. Prefer "
+                "the simplest recency-plus-pace combination unless stabilized "
+                "role/site features add repeatable value across seasons and neutral "
+                "games. Keep Stage 5 and Stage 4B as ablations; do not select a "
+                "winner from the previously examined 2025 block."
+            )
         ),
         "",
         "## Reproduction",
         "",
-        "- `python -m src.cfb_model.train.final_combined_experiment`",
+        (
+            "- `python -m src.cfb_model.train.final_combined_2026_experiment`"
+            if provisional_2026
+            else "- `python -m src.cfb_model.train.final_combined_experiment`"
+        ),
         "- `python -m pytest`",
         "",
     ])
@@ -672,8 +803,13 @@ def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--db-path", type=Path, default=DB_PATH)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
+    parser.add_argument("--validation-seasons", type=int, nargs="+")
     args = parser.parse_args()
-    print(json.dumps(run_experiment(args.db_path, args.output_dir), indent=2))
+    print(json.dumps(run_experiment(
+        args.db_path,
+        args.output_dir,
+        validation_seasons=args.validation_seasons,
+    ), indent=2))
 
 
 if __name__ == "__main__":
