@@ -322,12 +322,12 @@ def _write_report(
         "|---|---:|---:|",
         (
             f"| {BASELINE_LABEL} | "
-            f"{manifest['baseline_overall_metrics']['score_mae']:.4f} | "
+            f"{manifest['metrics_overall']['baseline']['score_mae']:.4f} | "
             f"{final['baseline']['score_mae']:.4f} |"
         ),
         (
             f"| {CANDIDATE_LABEL} | "
-            f"{manifest['candidate_overall_metrics']['score_mae']:.4f} | "
+            f"{manifest['metrics_overall']['candidate']['score_mae']:.4f} | "
             f"{final['candidate']['score_mae']:.4f} |"
         ),
         "",
