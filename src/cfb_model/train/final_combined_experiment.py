@@ -561,7 +561,7 @@ def run_experiment(
                 if source_metadata else None
             ),
             "new_cache": (
-                source_metadata.get("advanced_game_stats", {}).get("manifest_path")
+                source_metadata.get("advanced_game_stats", {}).get("path")
                 if source_metadata else None
             ),
             "historical_advanced_stats": (
