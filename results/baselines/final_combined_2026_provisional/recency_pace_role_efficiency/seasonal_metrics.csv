@@ -1,0 +1,3 @@
+candidate,season,score_mae
+Production baseline,2026,9.042647630780403
+Core + Stage 4B efficiency,2026,9.018081753672691
