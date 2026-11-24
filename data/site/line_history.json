@@ -819,6 +819,346 @@
       "total": 46.5
     }
   },
+  "401856756:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 11.5,
+      "total": 40.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 11.5,
+      "total": 40.5
+    }
+  },
+  "401856756:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 11.5,
+      "total": 40.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 11.5,
+      "total": 40.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 11.5,
+      "total": 40.5
+    }
+  },
+  "401856757:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -17,
+      "total": 49
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -17,
+      "total": 49
+    }
+  },
+  "401856757:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -16.5,
+      "total": 48.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -16.5,
+      "total": 48.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -16.5,
+      "total": 48.5
+    }
+  },
+  "401856758:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 13.5,
+      "total": 48
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 13.5,
+      "total": 48
+    }
+  },
+  "401856758:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 13.5,
+      "total": 47.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 13.5,
+      "total": 47.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 13.5,
+      "total": 47.5
+    }
+  },
+  "401856759:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 5,
+      "total": 52.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 5,
+      "total": 52.5
+    }
+  },
+  "401856759:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 4.5,
+      "total": 52.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 4.5,
+      "total": 52.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 4.5,
+      "total": 52.5
+    }
+  },
+  "401856760:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -35.5,
+      "total": 56
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -35.5,
+      "total": 56
+    }
+  },
+  "401856760:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -35.5,
+      "total": 55.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -35.5,
+      "total": 55.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -35.5,
+      "total": 55.5
+    }
+  },
+  "401856761:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 2.5,
+      "total": 54.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 2.5,
+      "total": 54.5
+    }
+  },
+  "401856761:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 3,
+      "total": 54.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 3,
+      "total": 54.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 3,
+      "total": 54.5
+    }
+  },
+  "401856762:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -19,
+      "total": 56.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -19,
+      "total": 56.5
+    }
+  },
+  "401856762:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -18.5,
+      "total": 56.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -18.5,
+      "total": 56.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -18.5,
+      "total": 56.5
+    }
+  },
+  "401856763:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -2.5,
+      "total": 41.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -2.5,
+      "total": 41.5
+    }
+  },
+  "401856763:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -1.5,
+      "total": 41.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -1.5,
+      "total": 41.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -1.5,
+      "total": 41.5
+    }
+  },
+  "401856764:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 5,
+      "total": 41
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 5,
+      "total": 41
+    }
+  },
+  "401856764:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 5.5,
+      "total": 40.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 5.5,
+      "total": 40.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 5.5,
+      "total": 40.5
+    }
+  },
+  "401856765:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 11.5,
+      "total": 43
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 11.5,
+      "total": 43
+    }
+  },
+  "401856765:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 11.5,
+      "total": 43.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 11.5,
+      "total": 43.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 11.5,
+      "total": 43.5
+    }
+  },
   "401856809:bovada": {
     "current": {
       "observed_at": "2026-10-14T18:20:10.963339+00:00",
@@ -1977,6 +2317,278 @@
       "provider": "DraftKings",
       "spread": 6.5,
       "total": 46.5
+    }
+  },
+  "401856873:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -7.5,
+      "total": 54
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -7.5,
+      "total": 54
+    }
+  },
+  "401856873:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -7.5,
+      "total": 54.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -7.5,
+      "total": 54.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -7.5,
+      "total": 54.5
+    }
+  },
+  "401856874:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -6,
+      "total": 55.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -6,
+      "total": 55.5
+    }
+  },
+  "401856874:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -6.5,
+      "total": 55.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -6.5,
+      "total": 55.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -6.5,
+      "total": 55.5
+    }
+  },
+  "401856875:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -2,
+      "total": 51.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -2,
+      "total": 51.5
+    }
+  },
+  "401856875:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -2.5,
+      "total": 51.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -2.5,
+      "total": 51.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -2.5,
+      "total": 51.5
+    }
+  },
+  "401856876:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -15.5,
+      "total": 56
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -15.5,
+      "total": 56
+    }
+  },
+  "401856876:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -14.5,
+      "total": 55.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -14.5,
+      "total": 55.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -14.5,
+      "total": 55.5
+    }
+  },
+  "401856877:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -7,
+      "total": 67
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -7,
+      "total": 67
+    }
+  },
+  "401856877:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -7,
+      "total": 66.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -7,
+      "total": 66.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -7,
+      "total": 66.5
+    }
+  },
+  "401856878:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -3.5,
+      "total": 55
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -3.5,
+      "total": 55
+    }
+  },
+  "401856878:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -4,
+      "total": 54.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -4,
+      "total": 54.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -4,
+      "total": 54.5
+    }
+  },
+  "401856879:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -13,
+      "total": 46.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -13,
+      "total": 46.5
+    }
+  },
+  "401856879:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -12.5,
+      "total": 46.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -12.5,
+      "total": 46.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -12.5,
+      "total": 46.5
+    }
+  },
+  "401856880:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -21,
+      "total": 68.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -21,
+      "total": 68.5
+    }
+  },
+  "401856880:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -21,
+      "total": 68.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -21,
+      "total": 68.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -21,
+      "total": 68.5
     }
   },
   "401856882:bovada": {
@@ -3493,6 +4105,244 @@
       "total": 56.5
     }
   },
+  "401858311:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -26,
+      "total": 53.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -26,
+      "total": 53.5
+    }
+  },
+  "401858311:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -25.5,
+      "total": 53.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -25.5,
+      "total": 53.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -25.5,
+      "total": 53.5
+    }
+  },
+  "401858312:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -14.5,
+      "total": 56
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -14.5,
+      "total": 56
+    }
+  },
+  "401858312:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -14,
+      "total": 55.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -14,
+      "total": 55.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -14,
+      "total": 55.5
+    }
+  },
+  "401858313:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -5.5,
+      "total": 55
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -5.5,
+      "total": 55
+    }
+  },
+  "401858313:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -5.5,
+      "total": 54.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -5.5,
+      "total": 54.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -5.5,
+      "total": 54.5
+    }
+  },
+  "401858314:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 24.5,
+      "total": 53
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 24.5,
+      "total": 53
+    }
+  },
+  "401858314:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 24.5,
+      "total": 52.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 24.5,
+      "total": 52.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 24.5,
+      "total": 52.5
+    }
+  },
+  "401858315:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 9.5,
+      "total": 47.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 9.5,
+      "total": 47.5
+    }
+  },
+  "401858315:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 9.5,
+      "total": 47.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 9.5,
+      "total": 47.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 9.5,
+      "total": 47.5
+    }
+  },
+  "401858316:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 8,
+      "total": 61
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 8,
+      "total": 61
+    }
+  },
+  "401858316:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 8.5,
+      "total": 60.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 8.5,
+      "total": 60.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 8.5,
+      "total": 60.5
+    }
+  },
+  "401858317:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 52
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 52
+    }
+  },
+  "401858317:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 51.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 51.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 51.5
+    }
+  },
   "401858488:bovada": {
     "current": {
       "observed_at": "2026-10-14T18:20:10.963339+00:00",
@@ -4777,6 +5627,312 @@
       "total": 43.5
     }
   },
+  "401858536:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -4.5,
+      "total": 39.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -4.5,
+      "total": 39.5
+    }
+  },
+  "401858536:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -4.5,
+      "total": 39.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -4.5,
+      "total": 39.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -4.5,
+      "total": 39.5
+    }
+  },
+  "401858537:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 49.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 49.5
+    }
+  },
+  "401858537:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 49.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 49.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 49.5
+    }
+  },
+  "401858538:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -22,
+      "total": 52
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -22,
+      "total": 52
+    }
+  },
+  "401858538:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -22.5,
+      "total": 52.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -22.5,
+      "total": 52.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -22.5,
+      "total": 52.5
+    }
+  },
+  "401858539:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 7,
+      "total": 50.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 7,
+      "total": 50.5
+    }
+  },
+  "401858539:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 7,
+      "total": 50.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 7,
+      "total": 50.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 7,
+      "total": 50.5
+    }
+  },
+  "401858540:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -10,
+      "total": 38.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -10,
+      "total": 38.5
+    }
+  },
+  "401858540:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -9.5,
+      "total": 38.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -9.5,
+      "total": 38.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -9.5,
+      "total": 38.5
+    }
+  },
+  "401858541:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -14,
+      "total": 49.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -14,
+      "total": 49.5
+    }
+  },
+  "401858541:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -14,
+      "total": 49.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -14,
+      "total": 49.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -14,
+      "total": 49.5
+    }
+  },
+  "401858542:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 3.5,
+      "total": 47.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 3.5,
+      "total": 47.5
+    }
+  },
+  "401858542:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 3.5,
+      "total": 47.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 3.5,
+      "total": 47.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 3.5,
+      "total": 47.5
+    }
+  },
+  "401858543:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 6.5,
+      "total": 46
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 6.5,
+      "total": 46
+    }
+  },
+  "401858543:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 6.5,
+      "total": 46.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 6.5,
+      "total": 46.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 6.5,
+      "total": 46.5
+    }
+  },
+  "401858544:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -7.5,
+      "total": 37.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -7.5,
+      "total": 37.5
+    }
+  },
+  "401858544:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -7.5,
+      "total": 37.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -7.5,
+      "total": 37.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -7.5,
+      "total": 37.5
+    }
+  },
   "401859185:bovada": {
     "current": {
       "observed_at": "2026-11-02T17:46:57.628589+00:00",
@@ -5357,6 +6513,142 @@
       "total": 62.5
     }
   },
+  "401860926:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 21.5,
+      "total": 77
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 21.5,
+      "total": 77
+    }
+  },
+  "401860926:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 21,
+      "total": 76.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 21,
+      "total": 76.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 21,
+      "total": 76.5
+    }
+  },
+  "401860927:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 57
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 57
+    }
+  },
+  "401860927:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 57.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 57.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 57.5
+    }
+  },
+  "401860928:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 7,
+      "total": 52
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 7,
+      "total": 52
+    }
+  },
+  "401860928:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 7,
+      "total": 52.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 7,
+      "total": 52.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 7,
+      "total": 52.5
+    }
+  },
+  "401860929:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -2,
+      "total": 45.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -2,
+      "total": 45.5
+    }
+  },
+  "401860929:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -1.5,
+      "total": 45.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -1.5,
+      "total": 45.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -1.5,
+      "total": 45.5
+    }
+  },
   "401861966:bovada": {
     "current": {
       "observed_at": "2026-11-02T17:46:57.628589+00:00",
@@ -5451,6 +6743,40 @@
       "provider": "DraftKings",
       "spread": -13.5,
       "total": 47.5
+    }
+  },
+  "401861969:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 3,
+      "total": 48.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 3,
+      "total": 48.5
+    }
+  },
+  "401861969:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 3,
+      "total": 48.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 3,
+      "total": 48.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 3,
+      "total": 48.5
     }
   },
   "401862800:bovada": {
@@ -6427,6 +7753,244 @@
       "total": 52.5
     }
   },
+  "401862837:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -2,
+      "total": 55.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -2,
+      "total": 55.5
+    }
+  },
+  "401862837:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -1.5,
+      "total": 55.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -1.5,
+      "total": 55.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -1.5,
+      "total": 55.5
+    }
+  },
+  "401862838:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -17.5,
+      "total": 64.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -17.5,
+      "total": 64.5
+    }
+  },
+  "401862838:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -17.5,
+      "total": 64.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -17.5,
+      "total": 64.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -17.5,
+      "total": 64.5
+    }
+  },
+  "401862839:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -6.5,
+      "total": 43.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -6.5,
+      "total": 43.5
+    }
+  },
+  "401862839:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -6.5,
+      "total": 43.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -6.5,
+      "total": 43.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -6.5,
+      "total": 43.5
+    }
+  },
+  "401862840:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -1.5,
+      "total": 58.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -1.5,
+      "total": 58.5
+    }
+  },
+  "401862840:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -1.5,
+      "total": 58.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -1.5,
+      "total": 58.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -1.5,
+      "total": 58.5
+    }
+  },
+  "401862841:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 6.5,
+      "total": 48.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 6.5,
+      "total": 48.5
+    }
+  },
+  "401862841:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 6.5,
+      "total": 48.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 6.5,
+      "total": 48.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 6.5,
+      "total": 48.5
+    }
+  },
+  "401862842:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 17,
+      "total": 55.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 17,
+      "total": 55.5
+    }
+  },
+  "401862842:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 16.5,
+      "total": 55.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 16.5,
+      "total": 55.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 16.5,
+      "total": 55.5
+    }
+  },
+  "401862843:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -4.5,
+      "total": 48
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -4.5,
+      "total": 48
+    }
+  },
+  "401862843:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -3.5,
+      "total": 47.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3.5,
+      "total": 47.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3.5,
+      "total": 47.5
+    }
+  },
   "401864520:bovada": {
     "current": {
       "observed_at": "2026-10-14T18:20:10.963339+00:00",
@@ -7101,6 +8665,176 @@
       "provider": "DraftKings",
       "spread": -22.5,
       "total": 45.5
+    }
+  },
+  "401864546:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -6.5,
+      "total": 41.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -6.5,
+      "total": 41.5
+    }
+  },
+  "401864546:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -6.5,
+      "total": 41.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -6.5,
+      "total": 41.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -6.5,
+      "total": 41.5
+    }
+  },
+  "401864547:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -13.5,
+      "total": 39
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -13.5,
+      "total": 39
+    }
+  },
+  "401864547:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -13.5,
+      "total": 38.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -13.5,
+      "total": 38.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -13.5,
+      "total": 38.5
+    }
+  },
+  "401864548:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -4.5,
+      "total": 43.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -4.5,
+      "total": 43.5
+    }
+  },
+  "401864548:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -4.5,
+      "total": 43.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -4.5,
+      "total": 43.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -4.5,
+      "total": 43.5
+    }
+  },
+  "401864549:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 9,
+      "total": 40
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 9,
+      "total": 40
+    }
+  },
+  "401864549:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 9.5,
+      "total": 39.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 9.5,
+      "total": 39.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 9.5,
+      "total": 39.5
+    }
+  },
+  "401864550:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -5,
+      "total": 48.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -5,
+      "total": 48.5
+    }
+  },
+  "401864550:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -4.5,
+      "total": 48.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -4.5,
+      "total": 48.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -4.5,
+      "total": 48.5
     }
   },
   "401866441:bovada": {
@@ -7845,6 +9579,210 @@
       "provider": "DraftKings",
       "spread": -2.5,
       "total": 43.5
+    }
+  },
+  "401866470:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -5,
+      "total": 45.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -5,
+      "total": 45.5
+    }
+  },
+  "401866470:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -5.5,
+      "total": 45.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -5.5,
+      "total": 45.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -5.5,
+      "total": 45.5
+    }
+  },
+  "401866471:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -7.5,
+      "total": 45.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -7.5,
+      "total": 45.5
+    }
+  },
+  "401866471:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -7.5,
+      "total": 45.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -7.5,
+      "total": 45.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -7.5,
+      "total": 45.5
+    }
+  },
+  "401866472:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 7.5,
+      "total": 50.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 7.5,
+      "total": 50.5
+    }
+  },
+  "401866472:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 7.5,
+      "total": 50.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 7.5,
+      "total": 50.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 7.5,
+      "total": 50.5
+    }
+  },
+  "401866473:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 3.5,
+      "total": 49
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 3.5,
+      "total": 49
+    }
+  },
+  "401866473:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 3.5,
+      "total": 49.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 3.5,
+      "total": 49.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 3.5,
+      "total": 49.5
+    }
+  },
+  "401866474:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 3.5,
+      "total": 47.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 3.5,
+      "total": 47.5
+    }
+  },
+  "401866474:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 4,
+      "total": 47.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 4,
+      "total": 47.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 4,
+      "total": 47.5
+    }
+  },
+  "401866475:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 44
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 44
+    }
+  },
+  "401866475:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 44.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 44.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 44.5
     }
   },
   "401866478:bovada": {
@@ -10561,6 +12499,40 @@
       "total": 50.5
     }
   },
+  "401869930:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 56.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 56.5
+    }
+  },
+  "401869930:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 56.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 56.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 56.5
+    }
+  },
   "401869934:bovada": {
     "current": {
       "observed_at": "2026-10-14T18:20:10.963339+00:00",
@@ -10685,6 +12657,40 @@
       "total": 53.5
     }
   },
+  "401869939:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -4.5,
+      "total": 46.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -4.5,
+      "total": 46.5
+    }
+  },
+  "401869939:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -4,
+      "total": 46.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -4,
+      "total": 46.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -4,
+      "total": 46.5
+    }
+  },
   "401869944:bovada": {
     "current": {
       "observed_at": "2026-11-02T17:46:57.628589+00:00",
@@ -10773,6 +12779,40 @@
       "provider": "DraftKings",
       "spread": -10.5,
       "total": 50.5
+    }
+  },
+  "401869947:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -15.5,
+      "total": 56
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -15.5,
+      "total": 56
+    }
+  },
+  "401869947:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -15.5,
+      "total": 56.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -15.5,
+      "total": 56.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -15.5,
+      "total": 56.5
     }
   },
   "401869950:bovada": {
@@ -10899,6 +12939,40 @@
       "total": 48.5
     }
   },
+  "401869954:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -2.5,
+      "total": 52.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -2.5,
+      "total": 52.5
+    }
+  },
+  "401869954:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -2.5,
+      "total": 52.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -2.5,
+      "total": 52.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -2.5,
+      "total": 52.5
+    }
+  },
   "401869957:bovada": {
     "current": {
       "observed_at": "2026-10-14T18:20:10.963339+00:00",
@@ -10959,6 +13033,40 @@
       "provider": "DraftKings",
       "spread": 1.5,
       "total": 57.5
+    }
+  },
+  "401869959:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 5.5,
+      "total": 56.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 5.5,
+      "total": 56.5
+    }
+  },
+  "401869959:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 5.5,
+      "total": 56.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 5.5,
+      "total": 56.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 5.5,
+      "total": 56.5
     }
   },
   "401869963:bovada": {
@@ -11237,6 +13345,40 @@
       "total": 49.5
     }
   },
+  "401870804:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 3,
+      "total": 54.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 3,
+      "total": 54.5
+    }
+  },
+  "401870804:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 3,
+      "total": 54.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 3,
+      "total": 54.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 3,
+      "total": 54.5
+    }
+  },
   "401870842:draftkings": {
     "current": {
       "observed_at": "2026-11-15T10:04:41.900841+00:00",
@@ -11457,6 +13599,74 @@
       "provider": "DraftKings",
       "spread": -21.5,
       "total": 53.5
+    }
+  },
+  "401871062:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 58
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 58
+    }
+  },
+  "401871062:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -2.5,
+      "total": 57.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -2.5,
+      "total": 57.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -2.5,
+      "total": 57.5
+    }
+  },
+  "401871063:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 15.5,
+      "total": 52
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 15.5,
+      "total": 52
+    }
+  },
+  "401871063:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 15.5,
+      "total": 51.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 15.5,
+      "total": 51.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 15.5,
+      "total": 51.5
     }
   },
   "401871067:bovada": {
@@ -11853,6 +14063,74 @@
       "total": 48.5
     }
   },
+  "401871082:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -11,
+      "total": 41.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -11,
+      "total": 41.5
+    }
+  },
+  "401871082:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -11.5,
+      "total": 41.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -11.5,
+      "total": 41.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -11.5,
+      "total": 41.5
+    }
+  },
+  "401871083:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 52.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -3,
+      "total": 52.5
+    }
+  },
+  "401871083:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 52.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 52.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -3,
+      "total": 52.5
+    }
+  },
   "401871091:bovada": {
     "current": {
       "observed_at": "2026-10-14T18:20:10.963339+00:00",
@@ -12093,6 +14371,74 @@
       "provider": "DraftKings",
       "spread": 4.5,
       "total": 63.5
+    }
+  },
+  "401871102:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": 5,
+      "total": 51
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": 5,
+      "total": 51
+    }
+  },
+  "401871102:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": 4.5,
+      "total": 51.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 4.5,
+      "total": 51.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": 4.5,
+      "total": 51.5
+    }
+  },
+  "401871103:bovada": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "Bovada",
+      "spread": -6,
+      "total": 51
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "Bovada",
+      "spread": -6,
+      "total": 51
+    }
+  },
+  "401871103:draftkings": {
+    "current": {
+      "observed_at": "2026-11-23T10:15:46.887975+00:00",
+      "provider": "DraftKings",
+      "spread": -6,
+      "total": 50.5
+    },
+    "opening": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -6,
+      "total": 50.5
+    },
+    "reference": {
+      "observed_at": "2026-11-23T10:14:31.373327+00:00",
+      "provider": "DraftKings",
+      "spread": -6,
+      "total": 50.5
     }
   },
   "401872617:draftkings": {

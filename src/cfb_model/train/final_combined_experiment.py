@@ -72,6 +72,7 @@ RECENCY_HALF_LIFE_DAYS = 56
 RECENCY_PRIOR_STRENGTH = 20.0
 RECENCY_RIDGE_ALPHA = 10.0
 ROLE_COLUMNS = ROLE_FEATURE_COLUMNS["stabilized"]
+CORE_COLUMNS = MODEL_COLUMNS + PACE_FEATURE_COLUMNS + ROLE_COLUMNS
 
 BASELINE_ID = "production"
 RECENCY_ID = "recency"
@@ -88,6 +89,46 @@ CANDIDATE_LABELS = {
     PRIOR_ABLATION_ID: "Core + Stage 5 score prior",
     EFFICIENCY_ABLATION_ID: "Core + Stage 4B efficiency",
 }
+
+
+def _build_core_feature_components(
+    games: pd.DataFrame,
+    baseline_features: pd.DataFrame,
+    advanced: pd.DataFrame,
+    stats: pd.DataFrame,
+) -> tuple[pd.DataFrame, pd.DataFrame, pd.DataFrame]:
+    recency_features = _replace_ratings(
+        games,
+        baseline_features,
+        RECENCY_HALF_LIFE_DAYS,
+        RECENCY_PRIOR_STRENGTH,
+        RECENCY_RIDGE_ALPHA,
+    )
+    pace_features = build_cfbd_pace_features(games, stats)
+    role_features = build_game_role_features(games, advanced)
+    return recency_features, pace_features, role_features
+
+
+def build_core_candidate_features(
+    games: pd.DataFrame,
+    baseline_features: pd.DataFrame,
+    advanced: pd.DataFrame,
+    stats: pd.DataFrame,
+) -> pd.DataFrame:
+    """Build the selected recency + pace + stabilized role/site feature set."""
+    recency_features, pace_features, role_features = _build_core_feature_components(
+        games, baseline_features, advanced, stats
+    )
+    features = pd.concat(
+        [recency_features, pace_features, role_features], axis=1
+    )
+    missing_columns = set(CORE_COLUMNS) - set(features.columns)
+    if missing_columns:
+        raise ValueError(
+            f"Core candidate features are missing columns: {sorted(missing_columns)}"
+        )
+    validate_market_free_feature_columns(features.columns)
+    return features
 
 
 def _week_block(week: object) -> str:
@@ -332,22 +373,15 @@ def run_experiment(
     )
     stats, stat_source_quality = load_cfbd_game_stats(db_path)
     stat_coverage = cfbd_stat_coverage(games, stats)
-    recency_features = _replace_ratings(
-        games,
-        baseline_features,
-        RECENCY_HALF_LIFE_DAYS,
-        RECENCY_PRIOR_STRENGTH,
-        RECENCY_RIDGE_ALPHA,
+    recency_features, pace_features, role_features = _build_core_feature_components(
+        games, baseline_features, advanced, stats
     )
-    pace_features = build_cfbd_pace_features(games, stats)
     efficiency_features = build_cfbd_efficiency_features(games, stats)
-    role_features = build_game_role_features(games, advanced)
     prior_features = build_preseason_score_prior_features(games)
 
     non_advanced_columns = [
         column for column in MODEL_COLUMNS if column not in ADVANCED_COLUMNS
     ]
-    core_columns = MODEL_COLUMNS + PACE_FEATURE_COLUMNS + ROLE_COLUMNS
     efficiency_columns = (
         non_advanced_columns
         + PACE_FEATURE_COLUMNS
@@ -363,14 +397,14 @@ def run_experiment(
         ),
         CORE_ID: (
             pd.concat([recency_features, pace_features, role_features], axis=1),
-            core_columns,
+            CORE_COLUMNS,
         ),
         PRIOR_ABLATION_ID: (
             pd.concat(
                 [recency_features, pace_features, role_features, prior_features],
                 axis=1,
             ),
-            core_columns + PRIOR_FEATURE_COLUMNS,
+            CORE_COLUMNS + PRIOR_FEATURE_COLUMNS,
         ),
         EFFICIENCY_ABLATION_ID: (
             pd.concat(

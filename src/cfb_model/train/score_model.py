@@ -85,6 +85,7 @@ PRESEASON_COLUMNS = [
 ]
 MODEL_COLUMNS = FEATURE_COLUMNS + RATING_COLUMNS + PRESEASON_COLUMNS + ADVANCED_COLUMNS
 MARKET_FEATURES_ENABLED = False
+FINAL_CANDIDATE_ID = "recency_pace_role_stabilized_score_l1"
 FORBIDDEN_FEATURE_TERMS = (
     "line", "spread", "overunder", "total", "odds", "implied", "vegas",
     "market", "book", "consensus",
@@ -1157,7 +1158,55 @@ def predict_week(
         schedule_history=schedule_history,
     )
     prediction_features = features
-    if candidate.startswith("role_"):
+    if candidate == FINAL_CANDIDATE_ID:
+        from src.cfb_model.train.cfbd_game_experiment import load_cfbd_game_stats
+        from src.cfb_model.train.final_combined_experiment import (
+            CORE_COLUMNS,
+            build_core_candidate_features,
+        )
+
+        pace_stats, _ = load_cfbd_game_stats(db_path)
+        cached_pace_stats = load_cached_advanced_game_stats(season)
+        if "season_type" not in cached_pace_stats:
+            raise ValueError(
+                f"Cached CFBD game stats for {season} are missing season_type."
+            )
+        cached_pace_stats = cached_pace_stats[
+            cached_pace_stats["season_type"].eq("regular")
+        ].copy()
+        fbs_names = set(season_teams["school"].astype(str))
+        cached_pace_stats = cached_pace_stats[
+            cached_pace_stats["team"].astype(str).isin(fbs_names)
+            & cached_pace_stats["opponent"].astype(str).isin(fbs_names)
+        ]
+        reconciled_pace_stats, _ = reconcile_advanced_game_stats(
+            cached_pace_stats, current_targets
+        )
+        if not reconciled_pace_stats.empty:
+            reconciled_pace_stats["game_id"] = reconciled_pace_stats[
+                "canonical_game_id"
+            ]
+            reconciled_pace_stats = reconciled_pace_stats.drop(
+                columns=["canonical_game_id", "game_date", "match_method"]
+            )
+        pace_stats = pd.concat(
+            [
+                pace_stats[
+                    pd.to_numeric(pace_stats["season"], errors="coerce") != season
+                ],
+                reconciled_pace_stats,
+            ],
+            ignore_index=True,
+            sort=False,
+        )
+        if reconciled_pace_stats.empty:
+            raise ValueError(
+                f"No reconciled CFBD pace stats are available for {season}."
+            )
+        prediction_features = build_core_candidate_features(
+            games, features, advanced, pace_stats
+        )
+    elif candidate.startswith("role_"):
         from src.cfb_model.features.game_role_performance import build_game_role_features
         prediction_features = pd.concat(
             [features, build_game_role_features(games, advanced)], axis=1
@@ -1180,6 +1229,18 @@ def predict_week(
             games.loc[train_mask, TARGET_COLUMNS].to_numpy(dtype=float),
         )
         predictions = model.predict(prediction_features.loc[predict_mask, MODEL_COLUMNS])
+    elif candidate == FINAL_CANDIDATE_ID:
+        from src.cfb_model.train.final_combined_experiment import CORE_COLUMNS
+
+        validate_market_free_feature_columns(CORE_COLUMNS)
+        model = _make_model()
+        model.fit(
+            prediction_features.loc[train_mask, CORE_COLUMNS],
+            games.loc[train_mask, TARGET_COLUMNS].to_numpy(dtype=float),
+        )
+        predictions = model.predict(
+            prediction_features.loc[predict_mask, CORE_COLUMNS]
+        )
     else:
         from src.cfb_model.train.experiments import candidate_feature_columns, predict_candidate
         columns = candidate_feature_columns(candidate)
@@ -1190,6 +1251,7 @@ def predict_week(
             prediction_features.loc[predict_mask, columns],
         )
     output = games.loc[predict_mask, ["game_id", "season", "week", "game_date", "home_team", "away_team"]].copy()
+    output["model_candidate"] = candidate
     display_stats, display_ranges = _season_to_date_advanced_stats(
         output, advanced, set(season_teams["school"]), season, week
     )
@@ -1207,6 +1269,12 @@ def predict_week(
         output[column] = prediction_features.loc[predict_mask, column].to_numpy()
     for column in ADVANCED_COLUMNS:
         output[column] = prediction_features.loc[predict_mask, column].to_numpy()
+    if candidate == FINAL_CANDIDATE_ID:
+        for column in (
+            "home_pace_offense_plays_per_game_s2d",
+            "away_pace_offense_plays_per_game_s2d",
+        ):
+            output[column] = prediction_features.loc[predict_mask, column].to_numpy()
     output["predicted_home_score"] = predictions[:, 0]
     output["predicted_away_score"] = predictions[:, 1]
     output["predicted_home_margin"] = predictions[:, 0] - predictions[:, 1]
@@ -1235,6 +1303,7 @@ def main() -> None:
             "role_advanced_score_l1",
             "role_both_roles_score_l1",
             "role_relevant_and_overall_score_l1",
+            FINAL_CANDIDATE_ID,
         ],
         help="Market-free score candidate. Use the validated winner only after backtesting.",
     )

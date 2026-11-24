@@ -25,6 +25,11 @@ DATA_DIR = SITE_DIR / "data"
 HISTORY_PATH = PROJECT_ROOT / "data" / "site" / "line_history.json"
 ATS_RESULTS_PATH = PROJECT_ROOT / "data" / "site" / "ats_results.json"
 LINE_PROVIDER_PREFERENCE = ("DraftKings", "FanDuel", "BetMGM", "Bovada", "Caesars")
+PACE_DISPLAY_COLUMNS = {
+    side: f"{side}_pace_offense_plays_per_game_s2d"
+    for side in ("home", "away")
+}
+RADAR_METRICS = (*ADVANCED_METRICS, "pace")
 
 
 def _normalise(value: object) -> str:
@@ -219,6 +224,25 @@ def _snapshot_lines(lines_games: list[dict], history: dict, timestamp: str) -> t
     return by_game, changed
 
 
+def _saved_lines_by_game(history: dict) -> dict[str, dict]:
+    by_game: dict[str, dict] = {}
+    for key, record in history.items():
+        game_id, separator, _ = key.rpartition(":")
+        current = record.get("current")
+        if not separator or not isinstance(current, dict):
+            continue
+        provider = current.get("provider")
+        if not provider or pd.isna(pd.to_numeric(current.get("spread"), errors="coerce")):
+            continue
+        game = by_game.setdefault(game_id, {"id": game_id, "lines": []})
+        game["lines"].append({
+            "provider": provider,
+            "spread": current.get("spread"),
+            "overUnder": current.get("total"),
+        })
+    return by_game
+
+
 def capture_reference_lines(season: int, week: int) -> None:
     """Capture live line history as the immutable reference for new predictions."""
     load_dotenv()
@@ -323,6 +347,14 @@ def _prediction_advanced_stats_payload(
                 teams[side][metric] = (
                     None if pd.isna(value) else round(float(value), 4)
                 )
+            pace_column = PACE_DISPLAY_COLUMNS[side]
+            if pace_column in predictions:
+                pace = pd.to_numeric(
+                    getattr(prediction, pace_column), errors="coerce"
+                )
+                teams[side]["pace"] = (
+                    None if pd.isna(pace) else round(float(pace), 4)
+                )
         payload[_matchup_key(prediction.home_team, prediction.away_team)] = teams
     return payload
 
@@ -335,21 +367,36 @@ def _prediction_advanced_stat_ranges(
         for metric in ADVANCED_METRICS
         for bound in ("min", "max")
     }
-    if not columns.issubset(predictions.columns) or predictions.empty:
+    if predictions.empty:
         return None
 
-    first = predictions.iloc[0]
-    return {
-        metric: {
-            bound: (
-                None
-                if pd.isna(pd.to_numeric(first[f"advanced_{metric}_{bound}"], errors="coerce"))
-                else float(first[f"advanced_{metric}_{bound}"])
-            )
-            for bound in ("min", "max")
+    ranges: dict[str, dict[str, float | None]] = {}
+    if columns.issubset(predictions.columns):
+        first = predictions.iloc[0]
+        ranges.update({
+            metric: {
+                bound: (
+                    None
+                    if pd.isna(pd.to_numeric(
+                        first[f"advanced_{metric}_{bound}"], errors="coerce"
+                    ))
+                    else float(first[f"advanced_{metric}_{bound}"])
+                )
+                for bound in ("min", "max")
+            }
+            for metric in ADVANCED_METRICS
+        })
+    if all(column in predictions for column in PACE_DISPLAY_COLUMNS.values()):
+        values = pd.concat(
+            [pd.to_numeric(predictions[column], errors="coerce")
+             for column in PACE_DISPLAY_COLUMNS.values()],
+            ignore_index=True,
+        ).dropna()
+        ranges["pace"] = {
+            "min": float(values.min()) if not values.empty else None,
+            "max": float(values.max()) if not values.empty else None,
         }
-        for metric in ADVANCED_METRICS
-    }
+    return ranges or None
 
 
 def _saved_pregame_stats_payload(predictions: pd.DataFrame) -> dict[tuple[str, str], dict]:
@@ -385,7 +432,7 @@ def _normalize_advanced_stats(
 ) -> tuple[dict[tuple[str, str], dict], dict[str, dict[str, float | None]]]:
     if ranges is None:
         ranges = {}
-        for metric in ADVANCED_METRICS:
+        for metric in RADAR_METRICS:
             values = [
                 value
                 for teams in stats_by_matchup.values()
@@ -402,9 +449,10 @@ def _normalize_advanced_stats(
         normalized[matchup] = {}
         for side in ("home", "away"):
             normalized[matchup][side] = {}
-            for metric in ADVANCED_METRICS:
+            for metric in RADAR_METRICS:
                 value = teams.get(side, {}).get(metric)
-                low, high = ranges[metric]["min"], ranges[metric]["max"]
+                metric_range = ranges.get(metric, {})
+                low, high = metric_range.get("min"), metric_range.get("max")
                 if value is None or low is None or high is None:
                     score = None
                 elif low == high:
@@ -498,6 +546,7 @@ def build_site(
     db_path: Path | None,
     include_diagnostics: bool,
     predictions_generated: bool = False,
+    preserve_lines: bool = False,
 ) -> Path:
     """Build static data for the dashboard; CFBD is display-only, never a model input."""
     load_dotenv()
@@ -520,12 +569,20 @@ def build_site(
 
     schedule = _api_get("games", {"year": season, "week": resolved_week, "seasonType": "regular"}, api_key)
     all_games = _api_get("games", {"year": season, "seasonType": "regular"}, api_key)
-    line_games = _api_get("lines", {"year": season, "week": resolved_week, "seasonType": "regular"}, api_key)
     history = _read_history()
     line_timestamp = datetime.now(timezone.utc).isoformat()
-    lines_by_id, changed = _snapshot_lines(line_games, history, line_timestamp)
-    if changed:
-        _write_history(history)
+    if preserve_lines:
+        lines_by_id = _saved_lines_by_game(history)
+        line_games = []
+    else:
+        line_games = _api_get(
+            "lines",
+            {"year": season, "week": resolved_week, "seasonType": "regular"},
+            api_key,
+        )
+        lines_by_id, changed = _snapshot_lines(line_games, history, line_timestamp)
+        if changed:
+            _write_history(history)
 
     generated_at = line_timestamp
     if not predictions_generated and matching_previous:
@@ -533,7 +590,7 @@ def build_site(
 
     schedule_by_teams = schedule or [
         {"id": game.get("id"), "homeTeam": game.get("homeTeam"), "awayTeam": game.get("awayTeam")}
-        for game in line_games
+        for game in lines_by_id.values()
     ]
     advanced_by_game = _prediction_advanced_stats_payload(predictions)
     if not advanced_by_game and not predictions_generated and matching_previous:
@@ -564,10 +621,13 @@ def build_site(
     games = []
     for prediction in predictions.itertuples(index=False):
         schedule_game = _match_schedule_game(prediction, schedule_by_teams)
-        line_game = lines_by_id.get(str(schedule_game.get("id")))
+        saved_game_id = schedule_game.get("id") or str(
+            prediction.game_id
+        ).removeprefix("espn-")
+        line_game = lines_by_id.get(str(saved_game_id))
         if line_game is None:
             line_game = next((
-                game for game in line_games
+                game for game in lines_by_id.values()
                 if _normalise(game.get("homeTeam")) == _normalise(prediction.home_team)
                 and _normalise(game.get("awayTeam")) == _normalise(prediction.away_team)
             ), {})
@@ -666,6 +726,18 @@ def build_site(
             "su_result": su_result,
         })
     _write_ats_results(ats_results)
+    candidate_ids = (
+        predictions["model_candidate"].dropna().unique()
+        if "model_candidate" in predictions
+        else []
+    )
+    candidate_id = str(candidate_ids[0]) if len(candidate_ids) == 1 else None
+    model_description = (
+        "Recency-weighted opponent ratings plus CFBD pace and stabilized role/site "
+        "features. Betting lines are display-only."
+        if candidate_id == "recency_pace_role_stabilized_score_l1"
+        else "Market-free score model. Lines are shown only after prediction generation."
+    )
     payload = {
         "generated_at": generated_at,
         "season": season,
@@ -675,11 +747,14 @@ def build_site(
         "performance": _performance(ats_results, season, resolved_week),
         "market_data_status": "live CFBD snapshot" if api_key else "no CFBD_API_KEY; market fields unavailable",
         "methodology": {
-            "model": "Market-free score model. Lines are shown only after prediction generation.",
+            "model": model_description,
+            "candidate_id": candidate_id,
             "pick_threshold_points": 1.0,
             "spread_convention": "A negative spread means the favorite is favored.",
         },
     }
+    if preserve_lines:
+        payload["market_data_status"] = "saved CFBD line snapshot"
     (DATA_DIR / "dashboard.json").write_text(json.dumps(payload, indent=2))
 
     if include_diagnostics:
@@ -697,6 +772,11 @@ def main() -> None:
     parser.add_argument("--db-path", type=Path)
     parser.add_argument("--skip-diagnostics", action="store_true")
     parser.add_argument("--predictions-generated", action="store_true")
+    parser.add_argument(
+        "--preserve-lines",
+        action="store_true",
+        help="Use saved line history without fetching or refreshing CFBD lines.",
+    )
     parser.add_argument("--capture-reference", action="store_true")
     args = parser.parse_args()
     if args.capture_reference:
@@ -710,6 +790,7 @@ def main() -> None:
         args.db_path,
         not args.skip_diagnostics,
         args.predictions_generated,
+        args.preserve_lines,
     )
     print(f"Wrote {output}")
 

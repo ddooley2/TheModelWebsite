@@ -2,6 +2,10 @@ import numpy as np
 import pandas as pd
 
 from src.cfb_model.features.advanced import build_advanced_features
+import src.cfb_model.train.final_combined_experiment as final_combined
+import src.cfb_model.train.score_model as score_model
+from src.cfb_model.features.cfbd_game_features import PACE_FEATURE_COLUMNS
+from src.cfb_model.features.game_role_performance import FEATURE_COLUMNS as ROLE_FEATURE_COLUMNS
 from src.cfb_model.train.score_model import (
     ADVANCED_COLUMNS,
     ADVANCED_METRICS,
@@ -18,6 +22,34 @@ from src.cfb_model.train.score_model import (
     write_baseline_run,
 )
 from src.cfb_model.train.experiments import run_candidate_backtest
+
+
+def test_core_prediction_candidate_combines_recency_pace_and_stabilized_role_features(
+    monkeypatch,
+):
+    baseline = pd.DataFrame([{column: 1.0 for column in MODEL_COLUMNS}])
+    pace = pd.DataFrame([{column: 2.0 for column in PACE_FEATURE_COLUMNS}])
+    role_columns = ROLE_FEATURE_COLUMNS["stabilized"]
+    role = pd.DataFrame([{column: 3.0 for column in role_columns}])
+    monkeypatch.setattr(final_combined, "_replace_ratings", lambda *args: baseline)
+    monkeypatch.setattr(
+        final_combined, "build_cfbd_pace_features", lambda *args: pace
+    )
+    monkeypatch.setattr(
+        final_combined, "build_game_role_features", lambda *args: role
+    )
+
+    features = final_combined.build_core_candidate_features(
+        pd.DataFrame(), baseline, pd.DataFrame(), pd.DataFrame()
+    )
+
+    assert score_model.FINAL_CANDIDATE_ID == (
+        "recency_pace_role_stabilized_score_l1"
+    )
+    assert features.columns.tolist() == final_combined.CORE_COLUMNS
+    assert features.iloc[0][MODEL_COLUMNS[0]] == 1.0
+    assert features.iloc[0][PACE_FEATURE_COLUMNS[0]] == 2.0
+    assert features.iloc[0][role_columns[0]] == 3.0
 
 
 def _games():
