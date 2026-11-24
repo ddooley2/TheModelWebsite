@@ -296,6 +296,7 @@ def _write_report(
         early.loc[CANDIDATE_LABEL] if CANDIDATE_LABEL in early.index else None
     )
     final = manifest["final_season_metrics"]
+    overall = manifest["metrics_overall"]
     lines = [
         "# Stage 5: prior-season scoring prior",
         "",
@@ -318,16 +319,23 @@ def _write_report(
         "",
         "## Results",
         "",
-        "| Model | All-season score MAE | Final-season score MAE |",
-        "|---|---:|---:|",
+        (
+            "| Model | Overall score MAE | Overall margin MAE | Overall total MAE | "
+            "2025 score MAE |"
+        ),
+        "|---|---:|---:|---:|---:|",
         (
             f"| {BASELINE_LABEL} | "
-            f"{manifest['metrics_overall']['baseline']['score_mae']:.4f} | "
+            f"{overall['baseline']['score_mae']:.4f} | "
+            f"{overall['baseline']['margin_mae']:.4f} | "
+            f"{overall['baseline']['total_mae']:.4f} | "
             f"{final['baseline']['score_mae']:.4f} |"
         ),
         (
             f"| {CANDIDATE_LABEL} | "
-            f"{manifest['metrics_overall']['candidate']['score_mae']:.4f} | "
+            f"{overall['candidate']['score_mae']:.4f} | "
+            f"{overall['candidate']['margin_mae']:.4f} | "
+            f"{overall['candidate']['total_mae']:.4f} | "
             f"{final['candidate']['score_mae']:.4f} |"
         ),
         "",
@@ -345,6 +353,23 @@ def _write_report(
             "",
         ])
     lines.extend([
+        "### Score MAE by week range",
+        "",
+        "| Week range | Baseline | Challenger |",
+        "|---|---:|---:|",
+    ])
+    for subset_name in ("Weeks 0-3", "Weeks 4-6", "Weeks 7+"):
+        subset = subset_metrics[subset_metrics["subset"] == subset_name].set_index(
+            "candidate"
+        )
+        if BASELINE_LABEL in subset.index and CANDIDATE_LABEL in subset.index:
+            lines.append(
+                f"| {subset_name} | "
+                f"{subset.loc[BASELINE_LABEL, 'score_mae']:.4f} | "
+                f"{subset.loc[CANDIDATE_LABEL, 'score_mae']:.4f} |"
+            )
+    lines.extend([
+        "",
         "### Seasonal MAE",
         "",
         "| Season | Baseline | Challenger |",
@@ -369,6 +394,12 @@ def _write_report(
         ),
         "",
         f"Paired final-season bootstrap: `{output_dir.name}/paired_week_bootstrap_ci.json`.",
+        "",
+        "## Reproduction",
+        "",
+        "- `python -m src.cfb_model.train.preseason_score_prior_experiment`",
+        "- `python -m pytest`",
+        "- No new API fetch or cache is required; the runner uses the existing warehouse.",
         "",
     ])
     (output_dir / "experiment_report.md").write_text("\n".join(lines))

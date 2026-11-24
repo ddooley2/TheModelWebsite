@@ -7,6 +7,10 @@ from src.cfb_model.features.preseason_score_prior import (
     build_preseason_score_prior_features,
     preseason_score_prior_data_dictionary,
 )
+from src.cfb_model.train.score_model import (
+    MODEL_COLUMNS,
+    validate_market_free_feature_columns,
+)
 
 
 def _games():
@@ -86,3 +90,14 @@ def test_invalid_prior_strength_is_rejected_and_dictionary_is_complete():
     assert dictionary["availability_cutoff"].eq(
         "before the target UTC calendar-date batch"
     ).all()
+
+
+def test_candidate_features_are_market_independent():
+    games = _games()
+    baseline = build_preseason_score_prior_features(games)
+    with_market = games.assign(spread=7.5, over_under=48.0)
+
+    pd.testing.assert_frame_equal(
+        baseline, build_preseason_score_prior_features(with_market)
+    )
+    validate_market_free_feature_columns(MODEL_COLUMNS + FEATURE_COLUMNS)
