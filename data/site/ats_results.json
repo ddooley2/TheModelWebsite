@@ -1107,6 +1107,18 @@
       "su_result": "win",
       "week": 12
     },
+    "13:401866470": {
+      "game_id": "401866470",
+      "result": "loss",
+      "su_result": "win",
+      "week": 13
+    },
+    "13:401866471": {
+      "game_id": "401866471",
+      "result": "win",
+      "su_result": "loss",
+      "week": 13
+    },
     "9:401856733": {
       "game_id": "401856733",
       "result": "loss",
